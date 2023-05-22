@@ -14,7 +14,7 @@ const Layout = (props: LayoutProps) => {
   return (
     <main>
       <Header />
-      <section className={`${className} text-white h-full py-8 px-4 flex flex-col overflow-hidden bg-gradient-to-b from-neutral-900 to-black lg:px-48 2xl:px-96 3xl:px-[400px] 4xl:px-[650px]`}>
+      <section className={`${className} text-white min-h-full py-8 px-4 flex flex-col overflow-hidden bg-gradient-to-b from-neutral-900 to-black lg:px-48 2xl:px-80 3xl:px-[400px] 4xl:px-[600px]`}>
         {children}
       </section>
     </main>
