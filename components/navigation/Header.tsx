@@ -23,7 +23,7 @@ const Header = () => {
   ];
 
   return (
-    <header className='flex justify-between items-center py-5 px-4 border-b border-gray-700 bg-black sticky relative top-0 right-0 left-0 z-10 lg:px-48 2xl:px-80 3xl:px-[400px] 4xl:px-[650px]'>
+    <header className='flex justify-between items-center py-5 px-4 border-b border-gray-700 bg-black sticky relative top-0 right-0 left-0 z-10 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[650px]'>
       <div className='flex justify-center items-center'>
         <NextImage
           className='rounded-full mr-4'
@@ -37,7 +37,7 @@ const Header = () => {
         </NextLink>
       </div>
       <div className='space-x-4 flex items-center'>
-        <div className='hidden md:block space-x-4 flex items-center'>
+        <div className='hidden xl:block space-x-4 flex items-center'>
           {routes.map((route) => (
             <button
               className='font-semibold tracking-wide text-white hover:bg-gray-900 p-2 rounded'
@@ -54,7 +54,7 @@ const Header = () => {
           ))}
         </div>
 
-        <div className='md:hidden'>
+        <div className='xl:hidden'>
           <MobileMenu content={routes} />
         </div>
       </div>
