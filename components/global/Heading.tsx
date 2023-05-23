@@ -33,7 +33,7 @@ const Heading = (props: HeadingProps) => {
   const renderHeading = () => {
     switch (size) {
       case '3xl':
-        return <h1 className={`${styles} text-9xl`}>{children}</h1>;
+        return <h1 className={`${styles} text-display`}>{children}</h1>;
       case '2xl':
         return <h1 className={`${styles} text-7xl`}>{children}</h1>;
       case 'xl':
