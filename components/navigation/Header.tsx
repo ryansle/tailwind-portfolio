@@ -1,5 +1,4 @@
 // Components
-import { Heading } from '@/components/global';
 import { MobileMenu } from '@/components/navigation';
 import { AiFillHome as Home } from 'react-icons/ai';
 import { IoPerson as Person } from 'react-icons/io5';
@@ -24,7 +23,7 @@ const Header = () => {
   ];
 
   return (
-    <header className='flex justify-between items-center py-5 px-4 border-b border-gray-700 bg-black sticky relative top-0 right-0 left-0 z-10 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
+    <header className='flex justify-between items-center py-5 px-6 border-b border-gray-700 bg-black sticky relative top-0 right-0 left-0 z-10 xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
       <NextLink href='/' className='flex justify-center items-center'>
         <NextImage
           className='rounded-full mr-4'
@@ -33,7 +32,7 @@ const Header = () => {
           src='/headshot.png'
           alt='Ryan Le Headshot'
         />
-        <Heading size='sm'>RYAN S. LE</Heading>
+        <h4 className='tracking-wider font-medium text-xl'>RYAN S. LE</h4>
       </NextLink>
 
       <HeaderLinks routes={routes} />
