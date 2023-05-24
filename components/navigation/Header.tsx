@@ -11,6 +11,7 @@ import {
 } from 'react-icons/md';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
+import { HeaderLinks } from '@/components/navigation';
 
 const Header = () => {
   const routes = [
@@ -24,7 +25,7 @@ const Header = () => {
 
   return (
     <header className='flex justify-between items-center py-5 px-4 border-b border-gray-700 bg-black sticky relative top-0 right-0 left-0 z-10 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
-      <div className='flex justify-center items-center'>
+      <NextLink href='/' className='flex justify-center items-center'>
         <NextImage
           className='rounded-full mr-4'
           height={40}
@@ -32,31 +33,13 @@ const Header = () => {
           src='/headshot.png'
           alt='Ryan Le Headshot'
         />
-        <NextLink href='/'>
-          <Heading size='sm'>RYAN S. LE</Heading>
-        </NextLink>
-      </div>
-      <div className='space-x-4 flex items-center'>
-        <div className='hidden xl:block space-x-4 flex items-center'>
-          {routes.map((route) => (
-            <button
-              className='font-semibold tracking-wide text-white hover:bg-gray-900 p-2 rounded'
-              key={route.text}
-            >
-              <NextLink
-                className='flex items-center gap-x-2'
-                href={route.href}
-              >
-                {route.icon}
-                {route.text}
-              </NextLink>
-            </button>
-          ))}
-        </div>
+        <Heading size='sm'>RYAN S. LE</Heading>
+      </NextLink>
 
-        <div className='xl:hidden'>
-          <MobileMenu content={routes} />
-        </div>
+      <HeaderLinks routes={routes} />
+
+      <div className='xl:hidden'>
+        <MobileMenu content={routes} />
       </div>
     </header>
   );
