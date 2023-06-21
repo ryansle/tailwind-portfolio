@@ -5,13 +5,11 @@ import { Menu, Transition } from '@headlessui/react';
 import NextLink from 'next/link';
 import { GiHamburgerMenu as Hamburger } from 'react-icons/gi';
 
-type MenuOption = {
-  text: string;
-  href: string;
-};
+// Types
+import type { Route } from '@/lib/types';
 
 type MobileMenuProps = {
-  content: MenuOption[];
+  content: Route[];
 };
 
 const MobileMenu = (props: MobileMenuProps) => {
@@ -50,9 +48,10 @@ const MobileMenu = (props: MobileMenuProps) => {
                             className={`${active
                               ? 'bg-gray-100 text-gray-900'
                               : 'text-gray-700'
-                              } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                              } flex w-full px-4 py-2 text-sm leading-5 text-left items-center gap-x-4`}
                             href={row.href}
                           >
+                            {row.icon}
                             {row.text}
                           </NextLink>
                         )}

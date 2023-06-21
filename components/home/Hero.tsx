@@ -3,16 +3,17 @@ import NextImage from 'next/image';
 import NextLink from 'next/link';
 
 // Utilities
-import { fetchSkills } from '@/data/fetch';
 import { convertImageUrl } from '@/utils/convert';
 
 // Types
-import type { ContentfulImage } from '@/lib/types';
+import type { ContentfulImage, Skill } from '@/lib/types';
 
-const Hero = async () => {
-  const skills = await fetchSkills();
+type HeroProps = {
+  skills: Skill[]
+};
 
-  const currentStack = skills.filter((skill) => skill.primary);
+const Hero = (props: HeroProps) => {
+  const { skills } = props;
 
   return (
     <div className='tracking-wider'>
@@ -26,7 +27,10 @@ const Hero = async () => {
             Ryan Le.
           </h1>
           <h4 className='text-2xl font-medium'>
-            I&apos;m currently a <span className='text-teal-500 font-semibold'>UI Engineer II</span> at <NextLink className='text-red-500 hover:underline' href='https://www.crowdstrike.com/'>CrowdStrike</NextLink>, working on all things front-end.
+            I&apos;m currently a <span className='text-teal-500 font-semibold'>UI Engineer II</span> at{' '}
+            <NextLink className='text-red-500 hover:underline underline-offset-2' href='https://www.crowdstrike.com/'>
+              CrowdStrike
+            </NextLink>, working on all things front-end.
           </h4>
 
           <h4 className='mt-8 mb-1 text-xl font-bold'>
@@ -62,7 +66,7 @@ const Hero = async () => {
         </h4>
         <div className='mx-8 mb-4 w-0.5 border border-white h-10 hidden xl:block xl:mb-0' />
         <div className='flex space-x-8 flex-wrap'>
-          {currentStack.map((skill) => (
+          {skills.map((skill) => (
             <div
               key={skill.technology as string}
               className='relative w-10 h-10'

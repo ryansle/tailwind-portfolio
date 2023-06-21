@@ -4,17 +4,11 @@
 import NextLink from 'next/link';
 
 // Types
-import type { ReactNode } from 'react';
+import type { Route } from '@/lib/types';
 
 // Utilities
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-
-type Route = {
-  text: string;
-  href: string;
-  icon: ReactNode;
-};
 
 type HeaderLinksProps = {
   routes: Route[];
@@ -34,7 +28,6 @@ const HeaderLinks = (props: HeaderLinksProps) => {
   const { routes } = props;
 
   const path = usePathname();
-  console.log(path);
 
   return (
     <div className='space-x-4 flex items-center'>

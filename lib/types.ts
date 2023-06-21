@@ -1,3 +1,6 @@
+// Built-in Types
+import type { ReactNode } from 'react';
+
 // #region Contentful Types
 type ContentfulSys = {
   id: string;
@@ -45,6 +48,12 @@ type ContentfulImage = {
 // #endregion
 
 // #region Custom Types
+type Route = {
+  text: string;
+  href: string;
+  icon: ReactNode;
+}
+
 type Skill = {
   technology: string;
   icon: ContentfulImage,
@@ -54,9 +63,20 @@ type Skill = {
   primary: string;
   experiences: string[];
 }
+
+type Reference = {
+  name: string;
+  jobTitle: string;
+  avatar: ContentfulImage;
+  testimony: string;
+  linkedinUrl: string;
+  email: string;
+}
 // #endregion
 
 export type {
   ContentfulImage,
   Skill,
+  Route,
+  Reference,
 };

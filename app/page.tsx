@@ -1,11 +1,27 @@
-import { Hero } from '@/components/home';
+// Components
+import { Hero, HiringBlurb, References } from '@/components/home';
 import { Layout } from '@/components/navigation';
+import { Divider } from '@/components/global';
 
-const Home = () => {
+// Types
+import { Skill, Reference } from '@/lib/types';
+
+// Utilities
+import { fetchSkills, fetchTestimonies } from '@/data/fetch';
+
+const Home = async () => {
+  const skills = await fetchSkills();
+  const references = await fetchTestimonies();
+
+  const currentStack = skills.filter((skill) => skill.primary);
+
   return (
     <Layout>
-      <Hero />
-      <div className='h-[1px] border-t border-gray-700 my-8' />
+      <Hero skills={currentStack as Skill[]} />
+      <Divider />
+      <HiringBlurb />
+      <Divider />
+      <References references={references as Reference[]} />
     </Layout>
   );
 };

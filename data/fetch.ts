@@ -1,19 +1,19 @@
 import client from './contentful';
 
 const fetchSocialMedia = async () => {
-  const data = await client.getEntries(({ content_type: 'Social Media' }));
+  const data = await client.getEntries(({ content_type: 'socialMedia' }));
 
   return data.items.map((entry) => entry.fields);
 };
 
 const fetchAccomplishments = async () => {
-  const data = await client.getEntries(({ content_type: 'Accomplishments' }));
+  const data = await client.getEntries(({ content_type: 'accomplishments' }));
 
   return data.items.map((entry) => entry.fields);
 };
 
 const fetchExperience = async () => {
-  const data = await client.getEntries(({ content_type: 'Experience' }));
+  const data = await client.getEntries(({ content_type: 'experience' }));
 
   return data.items.map((entry) => entry.fields);
 };
@@ -25,13 +25,13 @@ const fetchSkills = async () => {
 };
 
 const fetchTestimonies = async () => {
-  const data = await client.getEntries(({ content_type: 'Testimonies' }));
+  const data = await client.getEntries(({ content_type: 'testimonies' }));
 
   return data.items.map((entry) => entry.fields);
 };
 
 const fetchProjects = async () => {
-  const data = await client.getEntries(({ content_type: 'Projects' }));
+  const data = await client.getEntries(({ content_type: 'promects' }));
 
   return data.items.map((entry) => entry.fields);
 };
