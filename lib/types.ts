@@ -72,6 +72,23 @@ type Reference = {
   linkedinUrl: string;
   email: string;
 }
+
+type Experience = {
+  company: string;
+  title: string;
+  datesEmployed: string;
+  summary: string;
+  header: string;
+  image: ContentfulImage;
+  responsibilities: string[];
+  techStack: {
+    metadata: {
+      tags: string[]
+    };
+    sys: ContentfulSys;
+    fields: Skill;
+  }[];
+}
 // #endregion
 
 export type {
@@ -79,4 +96,5 @@ export type {
   Skill,
   Route,
   Reference,
+  Experience,
 };

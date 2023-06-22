@@ -1,10 +1,24 @@
+// Components
 import { Layout } from '@/components/navigation';
-import { NextPage } from 'next';
+import { History } from '@/components/experience';
 
-const ExperiencePage: NextPage = () => {
+// Types
+import { Experience } from '@/lib/types';
+
+// Utilities
+import { fetchExperience } from '@/data/fetch';
+
+
+const ExperiencePage = async () => {
+  const experiences = await fetchExperience();
+
   return (
     <Layout>
+      <h1 className='font-bold text-display2'>
+        Work Experience
+      </h1>
 
+      <History experiences={experiences as Experience[]} />
     </Layout>
   );
 };

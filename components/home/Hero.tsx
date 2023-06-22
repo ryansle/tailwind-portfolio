@@ -65,6 +65,7 @@ const Hero = (props: HeroProps) => {
           Currently Working With
         </h4>
         <div className='mx-8 mb-4 w-0.5 border border-white h-10 hidden xl:block xl:mb-0' />
+        {/* TODO: tooltips when hovered over */}
         <div className='flex space-x-8 flex-wrap'>
           {skills.map((skill) => (
             <div
