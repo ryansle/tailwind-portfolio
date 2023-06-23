@@ -66,11 +66,11 @@ const Hero = (props: HeroProps) => {
         </h4>
         <div className='mx-8 mb-4 w-0.5 border border-white h-10 hidden xl:block xl:mb-0' />
         {/* TODO: tooltips when hovered over */}
-        <div className='flex space-x-8 flex-wrap'>
+        <div className='flex flex-wrap'>
           {skills.map((skill) => (
             <div
               key={skill.technology as string}
-              className='relative w-10 h-10'
+              className='relative w-10 h-10 mr-8 mb-3'
             >
               <NextImage
                 src={convertImageUrl(skill.icon as ContentfulImage)}
