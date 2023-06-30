@@ -61,6 +61,7 @@ type Skill = {
   radii: boolean;
   visibility: boolean;
   primary: string;
+  uses: string;
   experiences: string[];
 }
 

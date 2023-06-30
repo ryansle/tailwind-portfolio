@@ -99,8 +99,6 @@ const ContactForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
 
-  console.log(errors);
-
   return (
     <form>
       {!render && (
@@ -205,7 +203,7 @@ const ContactForm = () => {
           setOpen={setOpenAlert}
           title='Email Sent!'
         >
-          Expect an email back from theryanmeetup@gmail.com soon!
+          Expect an email back from me soon!
         </Toast>
       </div>
     </form>
