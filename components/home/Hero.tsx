@@ -30,7 +30,7 @@ const Hero = (props: HeroProps) => {
             I&apos;m currently a <span className='text-teal-500 font-semibold'>UI Engineer II</span> at{' '}
             <NextLink className='text-red-500 hover:underline underline-offset-2' href='https://www.crowdstrike.com/'>
               CrowdStrike
-            </NextLink>, working on all things front-end.
+            </NextLink>, working on all things frontend.
           </h4>
 
           <h4 className='mt-8 mb-1 text-xl font-bold'>

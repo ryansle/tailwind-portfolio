@@ -23,7 +23,7 @@ const SkillsPage = async () => {
       <h2 className='font-bold text-3xl mb-4'>
         Web Development
       </h2>
-      <div className='text-lg space-y-4 mb-6 tracking-wide'>
+      <div className='text-lg space-y-4 mb-6 tracking-wide text-gray-400'>
         <p>
           Throughout my career, I have primarily focused on front-end web development, specializing in the creation of design systems and web components that bring life to diverse applications. The front-end realm is where I truly excel as a developer.
         </p>

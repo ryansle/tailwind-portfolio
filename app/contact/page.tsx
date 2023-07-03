@@ -15,10 +15,10 @@ const ContactPage: NextPage = () => {
 
         <div className='text-lg space-y-4 mb-6 tracking-wide'>
           <p>
-            Looking for a skilled front-end web developer? Need assistance with a project or have an open role at your company? I&apos;m here to help!
+            Looking for a skilled frontend web developer? Need assistance with a project or have an open role at your company? I&apos;m here to help!
           </p>
           <p>
-            With expertise in front-end development and a passion for design, I can bring your ideas to life. I&apos;m dedicated, professional, and committed to delivering exceptional results.
+            With expertise in frontend development and a passion for design, I can bring your ideas to life. I&apos;m dedicated, professional, and committed to delivering exceptional results.
           </p>
           <p>
             Let&apos;s collaborate and make your digital dreams a reality! Fill out the form below to get in touch. 👇🏽

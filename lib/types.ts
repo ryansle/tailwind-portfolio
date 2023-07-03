@@ -90,6 +90,11 @@ type Experience = {
     fields: Skill;
   }[];
 }
+
+type SocialMedia = {
+  url: string;
+  platform: string;
+}
 // #endregion
 
 export type {
@@ -98,4 +103,5 @@ export type {
   Route,
   Reference,
   Experience,
+  SocialMedia,
 };
