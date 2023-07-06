@@ -43,6 +43,8 @@ const Company = (props: CompanyProps) => {
         return 'text-stone-400';
       case 'Re-Logic Games':
         return 'text-indigo-500';
+      case 'Nelnet':
+        return 'text-[#6FBA41]';
       default:
         return;
     }

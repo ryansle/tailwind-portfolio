@@ -63,8 +63,8 @@ const Biography = (props: BiographyProps) => {
         About Me
       </h1>
 
-      <div className='grid grid-cols-12 flex items-center'>
-        <div className='space-y-3 text-gray-400 xl:col-span-6'>
+      <div className='grid grid-cols-12 flex items-center flex-wrap-reverse'>
+        <div className='space-y-3 text-gray-400 col-span-12 xl:col-span-6'>
           <p>
             Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate frontend web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
           </p>
@@ -92,18 +92,34 @@ const Biography = (props: BiographyProps) => {
           </div>
         </div>
 
-        <div className='xl:col-span-1' />
+        <div className='col-span-0 xl:col-span-1' />
 
-        <div className='mb-10 xl:col-span-5'>
-          <div className='relative h-[500px] w-full'>
+        <div className='mb-10 col-span-12 order-first xl:col-span-5 xl:mt-0 xl:order-last'>
+          <div className='relative w-full h-[320px] xl:h-[500px]'>
             <NextImage
-              className='rounded-xl z-10'
+              className='rounded-xl z-10 block sm:hidden'
               alt='Ryan Le - Portrait'
               fill
-              src='/portrait.png'
+              src='/athens.png'
               style={{ objectFit: 'cover' }}
             />
-            <div className='w-full h-full left-4 top-4 border border-4 rounded-xl border-teal-500 absolute z-0' />
+
+            <NextImage
+              className='rounded-xl z-10 hidden sm:block xl:hidden'
+              alt='Ryan Le - Portrait'
+              fill
+              src='/athens-longer.png'
+              style={{ objectFit: 'cover' }}
+            />
+
+            <NextImage
+              className='rounded-xl z-10 hidden xl:block'
+              alt='Ryan Le - Portrait'
+              fill
+              src='/athens.png'
+              style={{ objectFit: 'cover' }}
+            />
+            <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
           </div>
         </div>
       </div>

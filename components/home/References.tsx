@@ -66,7 +66,7 @@ const References = (props: ReferencesProps) => {
 
   return (
     <div className='tracking-wide flex flex-col items-center h-full'>
-      <h1 className='text-3xl font-bold tracking-wider mb-4'>
+      <h1 className='text-display3 font-bold tracking-wider mb-4'>
         Professional References
       </h1>
 

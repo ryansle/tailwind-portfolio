@@ -18,7 +18,7 @@ const Education = () => {
   return (
     <div>
       <div className='grid grid-cols-12 flex items-center'>
-        <div className='xl:col-span-5 flex items-center justify-center'>
+        <div className='flex items-center justify-center col-span-12 xl:col-span-5'>
           <NextImage
             src='/Nebraska.png'
             alt='University of Nebraska-Lincoln'
@@ -27,14 +27,14 @@ const Education = () => {
           />
         </div>
 
-        <div className='xl:col-span-1' />
+        <div className='col-span-0 xl:col-span-1' />
 
-        <div className='xl:col-span-6'>
-          <h1 className='font-bold text-display2 mb-6'>
+        <div className='col-span-12 mt-10 xl:col-span-6 xl:mt-0'>
+          <h1 className='font-bold text-display2 mb-1 xl:mb-6'>
             Education
           </h1>
 
-          <h2 className='text-3xl font-bold mb-4'>
+          <h2 className='text-display3 font-bold mb-4'>
             University of Nebraska-Lincoln
           </h2>
 

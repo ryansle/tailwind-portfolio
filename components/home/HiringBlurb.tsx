@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 const HiringBlurb = () => {
   return (
     <div className='tracking-wide flex flex-col items-center'>
-      <h1 className='text-3xl font-bold tracking-wider mb-2 text-center'>
+      <h1 className='text-display3 font-bold tracking-wider mb-2 text-center'>
         Looking to expand your team?
       </h1>
       <h2 className='mb-10 font-semibold tracking-wider'>
