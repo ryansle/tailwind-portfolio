@@ -1,5 +1,3 @@
-//'use client';
-
 // Components
 import { FeaturedProject, ProjectCard } from '@/components/projects';
 import { Divider } from '@/components/global';
@@ -68,20 +66,10 @@ const ProjectsList = (props: ProjectsListProps) => {
     <div>
       {featured.map((project: Project, index: number) => (
         <div key={project.title}>
-          {/* <Transition
-            show={true}
-            enter="transition-opacity duration-75"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-150"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          > */}
           <FeaturedProject
             project={project}
             index={index}
           />
-          {/* </Transition> */}
 
           {index !== featured.length - 1 && (
             <div className='block xl:hidden'>
