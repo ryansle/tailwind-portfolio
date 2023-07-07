@@ -11,15 +11,13 @@ import { fetchProjects } from '@/data/fetch';
 const ProjectsPage = async () => {
   const projects = await fetchProjects();
 
-  const featured = projects.filter((project) => project.featured);
-
   return (
     <Layout>
       <h1 className='font-bold text-display2 mb-6'>
         Things I&apos;ve Built
       </h1>
 
-      <ProjectsList projects={featured as Project[]} />
+      <ProjectsList projects={projects as Project[]} />
     </Layout>
   );
 };

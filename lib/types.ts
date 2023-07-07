@@ -103,7 +103,7 @@ type Project = {
   image: ContentfulImage;
   github?: string;
   url?: string;
-  category: string;
+  category: 'Professional' | 'Freelance' | 'Personal';
   techStack: {
     metadata: {
       tags: string[];
