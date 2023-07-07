@@ -53,7 +53,6 @@ const Company = (props: CompanyProps) => {
   return (
     <li className='ml-6 xl:mb-10'>
       <div className='relative h-40 w-full flex items-center justify-center lg:mb-6 xl:hidden'>
-        {/* TODO: resize amex logo */}
         <NextImage
           src={convertImageUrl(image)}
           fill

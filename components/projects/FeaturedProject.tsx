@@ -1,11 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 // Components
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import { SkeletonFeaturedProject } from '@/components/projects';
 import { TechLabel } from '@/components/experience';
 import { AiFillGithub as GitHub } from 'react-icons/ai';
 import { HiExternalLink as Link } from 'react-icons/hi';

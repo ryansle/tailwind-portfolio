@@ -44,7 +44,7 @@ const ProjectGroup = (props: ProjectGroupProps) => {
       <p className='mb-4'>
         {subtitle}
       </p>
-      {projects.map((project: Project) => (
+      {projects.map((project: Project, index: number) => (
         <ProjectCard
           key={project.title}
           project={project}
@@ -92,12 +92,18 @@ const ProjectsList = (props: ProjectsListProps) => {
           subtitle="Projects I've worked on within the industry, as a salaried employee."
           align='left'
         />
+        <div className='block col-span-12 xl:hidden'>
+          <Divider />
+        </div>
         <ProjectGroup
           projects={personal}
           title='Personal Projects'
           subtitle="Projects I've either built just for fun, or for my own purposes."
           align='center'
         />
+        <div className='block col-span-12 xl:hidden'>
+          <Divider />
+        </div>
         <ProjectGroup
           projects={freelance}
           title='Freelance Projects'

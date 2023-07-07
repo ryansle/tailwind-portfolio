@@ -161,7 +161,7 @@ const ContactForm = () => {
             <div className='col-span-2'>
               <Input
                 label='Subject'
-                placeholder='Opportunities at <your company here>'
+                placeholder='Career opportunites in...'
                 required
                 {...register('subject', {
                   onBlur: (event) => event.target.value === '' ?
@@ -174,7 +174,7 @@ const ContactForm = () => {
               <Textarea
                 id='message'
                 label='Message'
-                placeholder='Hey Ryan, I want to offer you a salary of $1,000,000...'
+                placeholder='Hi Ryan! I hope you are having a great week so far! I just came across your profile and was very impressed with your background...'
                 required
                 {...register('message', {
                   onBlur: (event) => event.target.value === '' ?

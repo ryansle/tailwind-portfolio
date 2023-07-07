@@ -22,7 +22,7 @@ const HiringBlurb = () => {
           If you&apos;re looking for a frontend engineer with a passion for delivering exceptional results, let&apos;s connect - I&apos;m always on the lookout for exciting new opportunities!
         </p>
         <p>
-          Check out out my <NextLink className='text-teal-500  font-medium hover:underline' href='/projects'>previous work</NextLink>, and contact me today to discuss your project and let&apos;s create something amazing together!
+          Check out out my <NextLink className='text-teal-500 font-medium hover:underline' href='/projects'>previous work</NextLink>, and contact me today to discuss your project and let&apos;s create something amazing together!
         </p>
       </div>
     </div>
