@@ -29,14 +29,14 @@ const ProjectGroup = (props: ProjectGroupProps) => {
 
   const renderGroup = (align: string) => {
     return clsx([
-      align === 'left' && 'text-left',
+      align === 'left' && 'text-center xl:text-left',
       align === 'center' && 'text-center',
-      align === 'right' && 'text-right',
+      align === 'right' && 'text-center xl:text-right',
     ]);
   };
 
   return (
-    <div className={`${renderGroup(align)} col-span-4 tracking-wide`}>
+    <div className={`${renderGroup(align)} col-span-12 tracking-wide xl:col-span-4`}>
       <h3 className='font-semibold text-xl mb-2'>
         {title}
       </h3>
@@ -64,11 +64,18 @@ const ProjectsList = (props: ProjectsListProps) => {
   return (
     <div>
       {featured.map((project: Project, index: number) => (
-        <FeaturedProject
-          key={project.title}
-          project={project}
-          index={index}
-        />
+        <div key={project.title}>
+          <FeaturedProject
+            project={project}
+            index={index}
+          />
+
+          {index !== featured.length - 1 && (
+            <div className='block xl:hidden'>
+              <Divider />
+            </div>
+          )}
+        </div>
       ))}
 
       <Divider />

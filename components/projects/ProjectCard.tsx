@@ -16,6 +16,8 @@ type ProjectCardProps = {
   project: Project;
 }
 
+// TODO: Replace photo for 'A Novel Idea Bookstore'
+// TODO: hover behavior
 const ProjectCard = (props: ProjectCardProps) => {
   const {
     title,
@@ -24,7 +26,6 @@ const ProjectCard = (props: ProjectCardProps) => {
     image,
     github,
     url,
-    category,
     techStack,
   } = props.project;
 
