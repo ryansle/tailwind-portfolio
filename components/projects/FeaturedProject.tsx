@@ -46,8 +46,6 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
 
   return (
     <>
-      <SkeletonFeaturedProject order={order} />
-
       <Transition
         appear={true}
         show={true}
