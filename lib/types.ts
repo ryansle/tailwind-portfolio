@@ -84,8 +84,8 @@ type Experience = {
   responsibilities: string[];
   techStack: {
     metadata: {
-      tags: string[]
-    };
+      tags: string[];
+    }
     sys: ContentfulSys;
     fields: Skill;
   }[];
@@ -94,6 +94,24 @@ type Experience = {
 type SocialMedia = {
   url: string;
   platform: string;
+}
+
+type Project = {
+  title: string;
+  subtitle?: string;
+  summary: string;
+  image: ContentfulImage;
+  github?: string;
+  url?: string;
+  category: string;
+  techStack: {
+    metadata: {
+      tags: string[];
+    }
+    sys: ContentfulSys;
+    fields: Skill;
+  }[];
+  featured: boolean;
 }
 // #endregion
 
@@ -104,4 +122,5 @@ export type {
   Reference,
   Experience,
   SocialMedia,
+  Project,
 };

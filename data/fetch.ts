@@ -31,7 +31,7 @@ const fetchTestimonies = async () => {
 };
 
 const fetchProjects = async () => {
-  const data = await client.getEntries(({ content_type: 'promects' }));
+  const data = await client.getEntries(({ content_type: 'projects' }));
 
   return data.items.map((entry) => entry.fields);
 };

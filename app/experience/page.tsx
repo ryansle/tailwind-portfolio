@@ -8,7 +8,6 @@ import { Experience } from '@/lib/types';
 // Utilities
 import { fetchExperience } from '@/data/fetch';
 
-
 const ExperiencePage = async () => {
   const experiences = await fetchExperience();
 
