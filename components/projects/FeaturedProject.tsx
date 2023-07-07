@@ -23,6 +23,7 @@ const FeaturedTag = ({ order }: { order: boolean }) => (
 );
 
 // TODO: transitions
+// TODO: unprivate tailwind repo
 const FeaturedProject = (props: FeaturedProjectProps) => {
   const {
     title,
@@ -40,7 +41,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
 
   return (
     <>
-      <div className='grid grid-cols-12 tracking-wide mb-10 xl:mb-20'>
+      <div className='grid grid-cols-12 tracking-wide mb-10 transition ease-in duration-300 hover:scale-102 xl:mb-20 '>
         <div className={`${order ? 'pr-8 mt-4 order-last xl:order-first' : 'order-last pl-8 mt-4'} col-span-12 xl:col-span-5`}>
           <FeaturedTag order={order} />
           <div className={`${order ? 'text-left' : 'text-right'}`}>
@@ -83,16 +84,18 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
 
         <div className={`${order ? 'order-first xl:order-last' : 'order-first'} col-span-12 xl:col-span-7`}>
           <div className='relative w-full aspect-video'>
-            <NextImage
-              fill
-              className='rounded-xl'
-              src={convertImageUrl(image)}
-              alt={`${title} Project`}
-              style={{ objectFit: 'cover' }}
-            />
+            <NextLink href={(url ?? github) as string}>
+              <NextImage
+                fill
+                className='rounded-xl'
+                src={convertImageUrl(image)}
+                alt={`${title} Project`}
+                style={{ objectFit: 'cover' }}
+              />
+            </NextLink>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

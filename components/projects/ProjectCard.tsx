@@ -16,8 +16,6 @@ type ProjectCardProps = {
   project: Project;
 }
 
-// TODO: Replace photo for 'A Novel Idea Bookstore'
-// TODO: hover behavior
 const ProjectCard = (props: ProjectCardProps) => {
   const {
     title,
@@ -32,7 +30,7 @@ const ProjectCard = (props: ProjectCardProps) => {
   const tech = techStack.map((item) => item.fields);
 
   return (
-    <div className='rounded-xl border border-gray-700 mb-4'>
+    <div className='rounded-xl border border-gray-700 mb-4 transition ease-in duration-300 hover:scale-102'>
       <div className='relative w-full aspect-video'>
         <NextImage
           fill
@@ -68,7 +66,7 @@ const ProjectCard = (props: ProjectCardProps) => {
             {subtitle}
           </h4>
 
-          <div className='flex flex-wrap'>
+          <div className='flex flex-wrap mt-1'>
             {tech.map((tool) => (
               <TechLabel
                 key={tool.technology}

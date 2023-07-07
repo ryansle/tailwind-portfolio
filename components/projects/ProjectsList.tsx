@@ -1,6 +1,9 @@
+//'use client';
+
 // Components
 import { FeaturedProject, ProjectCard } from '@/components/projects';
 import { Divider } from '@/components/global';
+import { Transition } from '@headlessui/react';
 
 // Types
 import type { Project } from '@/lib/types';
@@ -65,10 +68,20 @@ const ProjectsList = (props: ProjectsListProps) => {
     <div>
       {featured.map((project: Project, index: number) => (
         <div key={project.title}>
+          {/* <Transition
+            show={true}
+            enter="transition-opacity duration-75"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          > */}
           <FeaturedProject
             project={project}
             index={index}
           />
+          {/* </Transition> */}
 
           {index !== featured.length - 1 && (
             <div className='block xl:hidden'>
@@ -80,7 +93,7 @@ const ProjectsList = (props: ProjectsListProps) => {
 
       <Divider />
 
-      <h2 className='text-center text-display3 font-bold mb-10'>
+      <h2 className='text-center font-bold mb-10 text-3xl lg:text-display3'>
         Other Noteworthy Projects
       </h2>
 
