@@ -85,7 +85,7 @@ const Hero = (props: HeroProps) => {
 
       <SlideUpWhenVisible duration={0.9} delay={0.9}>
         <div className='flex items-start mt-8 flex-col xl:flex-row xl:items-center'>
-          <h4 className='mb-2 text-xl font-medium xl:mb-0'>
+          <h4 className='mb-2 text-xl font-medium tracking-wider xl:mb-0'>
             Currently Working With
           </h4>
           <div className='mx-8 mb-4 w-0.5 border border-white h-10 hidden xl:block xl:mb-0' />

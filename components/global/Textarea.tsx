@@ -34,7 +34,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props: Textarea
         {label} {required && <span className='text-red-500'>*</span>}
       </label>
       <textarea
-        className='border bg-black border-gray-700 text-white text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 ring-inset placeholder-gray-700'
+        className='border bg-black border-gray-700 text-white text-sm rounded-md focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 ring-inset placeholder-gray-700'
         id={id}
         name={id}
         placeholder={placeholder}

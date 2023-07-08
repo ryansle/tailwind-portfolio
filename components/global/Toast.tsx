@@ -47,7 +47,7 @@ const Toast = (props: ToastProps) => {
         </div>
         <button
           type='button'
-          className='ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg p-1.5 inline-flex h-8 w-8 hover:text-white hover:bg-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-gray-300'
+          className='ml-auto -mx-1.5 -my-1.5 text-gray-400 rounded-lg p-1.5 inline-flex h-8 w-8 hover:text-white hover:bg-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-teal-500'
           aria-label='Close'
           onClick={() => setOpen(false)}
         >

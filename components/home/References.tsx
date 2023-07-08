@@ -53,7 +53,7 @@ const Testimony = (props: Reference) => {
         </div>
       </div>
 
-      <p className='font-normal text-sm'>
+      <p className='font-normal text-sm text-gray-400'>
         {testimony}
       </p>
     </div >
