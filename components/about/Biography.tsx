@@ -10,7 +10,6 @@ import {
   FaInstagram as Instagram,
   FaStackOverflow as StackOverflow,
 } from 'react-icons/fa6';
-import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 
 // Types
 import type { SocialMedia } from '@/lib/types';
@@ -69,36 +68,34 @@ const Biography = (props: BiographyProps) => {
 
       <div className='grid grid-cols-12 flex items-center flex-wrap-reverse'>
         <div className='col-span-12 xl:col-span-6'>
-          <SlideUpWhenVisible>
-            <div className='space-y-3 text-gray-400 tracking-wide'>
-              <p>
-                Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate front-end web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
-              </p>
-              <p>
-                During my time at the University of Nebraska-Lincoln, I gained extensive experience in software development, specializing in front-end web development. Using cutting-edge technologies like React.js, Next.js, Tailwind CSS, and TypeScript, I craft exceptional user interfaces and engaging experiences.
-              </p>
-              <p>
-                I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, but these days I call <span className={emphasis}>Brooklyn, New York</span>, my home. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
-              </p>
-              <p>
-                When I&apos;m not coding, you&apos;ll find me exploring virtual worlds as an avid gamer or biking through city streets, embracing the thrill of adventure. With a personal goal of visiting all 50 states, I&apos;m eager to experience the diverse tapestry of the United States.
-              </p>
+          <div className='space-y-3 text-gray-400 tracking-wide'>
+            <p>
+              Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate front-end web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
+            </p>
+            <p>
+              During my time at the University of Nebraska-Lincoln, I gained extensive experience in software development, specializing in front-end web development. Using cutting-edge technologies like React.js, Next.js, Tailwind CSS, and TypeScript, I craft exceptional user interfaces and engaging experiences.
+            </p>
+            <p>
+              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, but these days I call <span className={emphasis}>Brooklyn, New York</span>, my home. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
+            </p>
+            <p>
+              When I&apos;m not coding, you&apos;ll find me exploring virtual worlds as an avid gamer or biking through city streets, embracing the thrill of adventure. With a personal goal of visiting all 50 states, I&apos;m eager to experience the diverse tapestry of the United States.
+            </p>
 
 
-              <h2 className='text-white text-3xl font-bold pt-6 pb-2 tracking-wider'>
-                Follow me on...
-              </h2>
-              <div className='flex flex-wrap'>
-                {socials.map((social) => (
-                  <SocialMediaLink
-                    key={social.platform}
-                    url={social.url}
-                    platform={social.platform}
-                  />
-                ))}
-              </div>
+            <h2 className='text-white text-3xl font-bold pt-6 pb-2 tracking-wider'>
+              Follow me on...
+            </h2>
+            <div className='flex flex-wrap'>
+              {socials.map((social) => (
+                <SocialMediaLink
+                  key={social.platform}
+                  url={social.url}
+                  platform={social.platform}
+                />
+              ))}
             </div>
-          </SlideUpWhenVisible>
+          </div>
         </div>
 
         <div className='col-span-0 xl:col-span-1' />
@@ -112,7 +109,7 @@ const Biography = (props: BiographyProps) => {
               enterFrom='opacity-0'
               enterTo='opacity-100'
             >
-              <div className='absolute h-60 w-60 -top-20 -left-12 hidden xl:block'>
+              <div className='absolute h-60 w-60 -top-6 -left-12 xl:-top-20'>
                 <NextImage
                   className='z-10'
                   alt='dots'

@@ -39,7 +39,7 @@ const Footer = () => {
       <div className='w-full py-6 lg:py-8'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
-            <div className='flex items-center'>
+            <div className='items-center hidden xl:flex'>
               <NextLink href='/'>
                 <NextImage
                   className='rounded-full mr-4'
@@ -62,11 +62,16 @@ const Footer = () => {
               </div>
             </div>
 
-            <Divider margins='md' />
+            <div className='hidden xl:block'>
+              <Divider margins='md' />
+            </div>
 
-            <div className='space-y-1 font-cooper tracking-widest'>
+            <div className='space-y-1 font-cooper tracking-widest text-lg'>
               <p>
                 Is your name RYAN?
+              </p>
+              <p>
+                Wanna meet other RYANs?
               </p>
               <p>
                 Join the <NextLink className='text-teal-500 hover:underline' href='https://www.meetup.com/ryanmeetup/'>RYAN MEETUP</NextLink>!
