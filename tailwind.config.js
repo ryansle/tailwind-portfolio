@@ -48,7 +48,10 @@ module.exports = {
       },
       animation: {
         wave: 'wave 1.5s infinite'
-      }
+      },
+      fontFamily: {
+        cooper: ['Cooper', 'sans-serif']
+      },
     },
   },
   plugins: [],

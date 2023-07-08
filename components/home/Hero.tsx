@@ -63,7 +63,7 @@ const Hero = (props: HeroProps) => {
               enterFrom='opacity-0'
               enterTo='opacity-100'
             >
-              <div className='absolute h-60 w-60 -top-10 -left-12 hidden xl:block'>
+              <div className='absolute h-60 w-60 -top-8 -left-4 xl:-top-10 xl:-left-12'>
                 <NextImage
                   src='/dots.svg'
                   fill

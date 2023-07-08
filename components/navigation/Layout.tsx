@@ -1,5 +1,5 @@
 // Components
-import { Header } from './Header';
+import { Header, Footer } from '@/components/navigation';
 
 // Types
 import type { ReactNode } from 'react';
@@ -18,6 +18,7 @@ const Layout = (props: LayoutProps) => {
       <section className={`${className} text-white min-h-full pt-12 pb-8 px-6 flex flex-col overflow-hidden bg-gradient-to-b from-neutral-900 to-black xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]`}>
         {children}
       </section>
+      <Footer />
     </main>
   );
 };
