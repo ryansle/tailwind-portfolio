@@ -36,7 +36,7 @@ const Hero = (props: HeroProps) => {
               I&apos;m currently a <span className='text-teal-500 font-semibold'>UI Engineer II</span> at{' '}
               <NextLink className='text-red-500 hover:underline underline-offset-2' href='https://www.crowdstrike.com/'>
                 CrowdStrike
-              </NextLink>, working on all things frontend.
+              </NextLink>, working on all things front-end.
             </h4>
           </SlideUpWhenVisible>
 
@@ -67,7 +67,7 @@ const Hero = (props: HeroProps) => {
                 <NextImage
                   src='/dots.svg'
                   fill
-                  className='z-10 fill-white'
+                  className='z-10'
                   alt='dots'
                 />
               </div>

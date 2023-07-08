@@ -21,7 +21,7 @@ const SkillsPage = async () => {
       </h1>
 
       <h2 className='font-bold text-3xl mb-4'>
-        Web Development
+        Web Engineering
       </h2>
       <div className='text-lg space-y-4 mb-6 tracking-wide text-gray-400'>
         <p>

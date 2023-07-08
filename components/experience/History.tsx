@@ -2,6 +2,7 @@
 import NextImage from 'next/image';
 import { List, TechLabel } from '@/components/experience';
 import { Divider } from '@/components/global';
+import NextLink from 'next/link';
 
 // Types
 import { Experience } from '@/lib/types';
@@ -28,6 +29,7 @@ const Company = (props: CompanyProps) => {
     image,
     responsibilities,
     techStack,
+    companyUrl
   } = props.experience;
   const { renderDivider } = props;
 
@@ -69,7 +71,11 @@ const Company = (props: CompanyProps) => {
           <h3 className='text-3xl mb-4 tracking-wide'>
             <span className='text-teal-500 font-semibold break-words'>{title}</span>
             {' '}@{' '}
-            <span className={`${renderCompanyColor(company)} font-semibold`}>{company}</span>
+            <NextLink href={companyUrl}>
+              <span className={`${renderCompanyColor(company)} font-semibold underline-offset-4 hover:underline`}>
+                {company}
+              </span>
+            </NextLink>
           </h3>
           <p className='mb-4 text-base font-normal text-gray-500 dark:text-gray-400'>
             {summary}
@@ -97,12 +103,14 @@ const Company = (props: CompanyProps) => {
         <div className='col-span-1' />
 
         <div className='relative h-full w-full col-span-3'>
-          <NextImage
-            src={convertImageUrl(image)}
-            fill
-            alt={`${company} Logo`}
-            style={{ objectFit: 'contain' }}
-          />
+          <NextLink href={companyUrl}>
+            <NextImage
+              src={convertImageUrl(image)}
+              fill
+              alt={`${company} Logo`}
+              style={{ objectFit: 'contain' }}
+            />
+          </NextLink>
         </div>
       </div>
       {renderDivider && <Divider />}

@@ -15,7 +15,7 @@ type HeaderLinksProps = {
 };
 
 const renderStyles = (path: string, href: string) => {
-  const styles = 'font-semibold tracking-wide hover:bg-gray-900 p-2';
+  const styles = 'font-semibold tracking-wide p-2 transition ease-in-out duration-300 hover:bg-gray-900 hover:scale-105';
 
   return clsx([
     styles,

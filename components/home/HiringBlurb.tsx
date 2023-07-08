@@ -4,7 +4,6 @@
 import NextLink from 'next/link';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 
-// TODO: transition animation
 const HiringBlurb = () => {
   return (
     <SlideUpWhenVisible delay={1} duration={0.8}>
@@ -17,16 +16,19 @@ const HiringBlurb = () => {
         </h2>
         <div className='text-center space-y-4 font-medium text-gray-500 xl:px-32'>
           <p>
-            I&apos;m a frontend engineer working primarily with Next.js, React.js, and Tailwind CSS. With my expertise in these cutting-edge technologies, I create stunning and user-friendly websites and applications.
+            I&apos;m a front-end engineer working primarily with Next.js, React.js, and Tailwind CSS. With my expertise in these cutting-edge technologies, I create stunning and user-friendly websites and applications.
           </p>
           <p>
             I believe in the power of collaboration and teamwork. Working closely with designers, backend engineers, and stakeholders, I bring ideas to life and create remarkable digital experiences.
           </p>
           <p>
-            If you&apos;re looking for a frontend engineer with a passion for delivering exceptional results, let&apos;s connect - I&apos;m always on the lookout for exciting new opportunities!
+            If you&apos;re looking for a front-end engineer with a passion for delivering exceptional results, let&apos;s connect - I&apos;m always on the lookout for exciting new opportunities!
           </p>
           <p>
-            Check out out my <NextLink className='text-teal-500 font-medium hover:underline' href='/projects'>previous work</NextLink>, and contact me today to discuss your project and let&apos;s create something amazing together!
+            Check out some of my <NextLink className='text-teal-500 font-medium hover:underline' href='/projects'>previous work</NextLink>, and contact me today to discuss your project.
+          </p>
+          <p>
+            Let&apos;s create something amazing together!
           </p>
         </div>
       </div>
