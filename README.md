@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ryan Le's Tailwind Portfolio
 
-## Getting Started
+Another year, another revamp of my portfolio site!
 
-First, run the development server:
+As is tradition, I thought it became necessary to rebuild my portfolio once again after spending the last year learnings lots of new frameworks, technologies, techniques, and more!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## So what's new this time?
+
+This time around, we're saying goodbye to component libraries and selling hello to utility-first CSS frameworks! Namely: [Tailwind CSS](https://tailwindcss.com/).
+
+Along with that...
+* Replaced [Sanity.io](https://www.sanity.io/) with [Contentful](https://www.contentful.com/) (I find Contentful easier to work with these days, sorry!)
+* Played around with Next.js 13 and their fancy new [Server Components](https://nextjs.org/docs/getting-started/react-essentials)
+* Finally made the jump from JavaScript to TypeScript (about time...)
+* Building upon what I've made previously and improving my designs ever so slightly each time
+* Next.js isn't wrestling against me this time and actually lets me host my images/documents
+* Plugged the [Ryan Meetup](https://www.ryanmeetup.com)
+
+
+## [](https://github.com/ryansle/updated-portfolio#running-locally)Running Locally
+
+```
+$ git clone https://github.com/ryansle/tailwind-portfolio.git
+$ cd tailwind-portfolio
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install npm packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm i
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
 
-## Learn More
+Start up Next.js server and navigate to  `localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## [](https://github.com/ryansle/updated-portfolio#motivation)Motivation
 
-## Deploy on Vercel
+-   Redevelop my portfolio (again) now that continue to become more and more experienced
+-   Polish my portfolio project and give the site a facelift (by rebuilding from scratch!)
+-   Play around with another new content management system (Contentful)
+-   Continuously improve my previous design and site content
+-   Gain more experience with Tailwind CSS, now that it's starting to become an industry standard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## [](https://github.com/ryansle/updated-portfolio#technologies-used)Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   React.js as a front-end framework
+-   TypeScript as an implementation language
+-   Tailwind CSS for better customizations and more rapid development
+-   Next.js for server-side rendering, routing, and more
+-   Contentful for content management
+-   Vercel for site hosting
+-   Visual Studio Code as in the integrated development environment
