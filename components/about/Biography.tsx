@@ -63,14 +63,14 @@ const Biography = (props: BiographyProps) => {
 
   return (
     <div>
-      <h1 className='font-bold text-display2 mb-6'>
+      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
         About Me
       </h1>
 
       <div className='grid grid-cols-12 flex items-center flex-wrap-reverse'>
         <div className='col-span-12 xl:col-span-6'>
           <SlideUpWhenVisible>
-            <div className='space-y-3 text-gray-400'>
+            <div className='space-y-3 text-gray-400 tracking-wide'>
               <p>
                 Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate front-end web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
               </p>
@@ -85,7 +85,7 @@ const Biography = (props: BiographyProps) => {
               </p>
 
 
-              <h2 className='text-white text-3xl font-bold pt-6 pb-2'>
+              <h2 className='text-white text-3xl font-bold pt-6 pb-2 tracking-wider'>
                 Follow me on...
               </h2>
               <div className='flex flex-wrap'>

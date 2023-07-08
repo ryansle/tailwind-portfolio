@@ -60,7 +60,6 @@ const Testimony = (props: Reference) => {
   );
 };
 
-// TODO: move tracking-wide to a parent class of everything
 const References = (props: ReferencesProps) => {
   const { references } = props;
 

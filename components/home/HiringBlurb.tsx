@@ -14,7 +14,7 @@ const HiringBlurb = () => {
         <h2 className='mb-10 font-semibold tracking-wider'>
           or just hire a freelance engineer?
         </h2>
-        <div className='text-center space-y-4 font-medium text-gray-400 xl:px-32'>
+        <div className='text-center space-y-4 font-medium text-gray-400 tracking-wider xl:px-32'>
           <p>
             I&apos;m a front-end engineer working primarily with Next.js, React.js, and Tailwind CSS. With my expertise in these cutting-edge technologies, I create stunning and user-friendly websites and applications.
           </p>

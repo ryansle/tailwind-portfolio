@@ -38,7 +38,7 @@ const ProjectGroup = (props: ProjectGroupProps) => {
 
   return (
     <div className={`${renderGroup(align)} col-span-12 tracking-wide xl:col-span-4`}>
-      <h3 className='font-semibold text-xl mb-2'>
+      <h3 className='font-semibold text-xl mb-2 tracking-wider'>
         {title}
       </h3>
       <p className='mb-4'>
@@ -81,7 +81,7 @@ const ProjectsList = (props: ProjectsListProps) => {
 
       <Divider />
 
-      <h2 className='text-center font-bold mb-10 text-3xl lg:text-display3'>
+      <h2 className='text-center tracking-wider font-bold mb-10 text-3xl lg:text-display3'>
         Other Noteworthy Projects
       </h2>
 

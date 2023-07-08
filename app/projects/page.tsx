@@ -13,7 +13,7 @@ const ProjectsPage = async () => {
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2 mb-6'>
+      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
         Things I&apos;ve Built
       </h1>
 

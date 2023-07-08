@@ -43,7 +43,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
       <div className='p-4 tracking-wide'>
         <div className='flex justify-between items-center'>
-          <h3 className='font-semibold text-xl'>
+          <h3 className='font-semibold text-xl tracking-wider'>
             {title}
           </h3>
           <div className='flex space-x-2 items-center'>
@@ -62,7 +62,7 @@ const ProjectCard = (props: ProjectCardProps) => {
         </div>
 
         <div className='text-left'>
-          <h4 className='font-medium text-sm'>
+          <h4 className='font-medium text-sm tracking-wider'>
             {subtitle}
           </h4>
 

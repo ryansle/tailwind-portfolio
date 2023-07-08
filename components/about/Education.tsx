@@ -30,15 +30,15 @@ const Education = () => {
         <div className='col-span-0 xl:col-span-1' />
 
         <div className='col-span-12 mt-10 xl:col-span-6 xl:mt-0'>
-          <h1 className='font-bold text-display2 mb-1 xl:mb-6'>
+          <h1 className='font-bold text-display2 mb-1 tracking-wider xl:mb-4'>
             Education
           </h1>
 
-          <h2 className='text-display3 font-bold mb-4'>
+          <h2 className='text-display3 font-bold mb-4 tracking-wide'>
             University of Nebraska-Lincoln
           </h2>
 
-          <div className='text-lg mb-4'>
+          <div className='text-lg mb-4 tracking-wide'>
             <p>
               Bachelor of Science Degree in <span className={emphasis}>Software Engineering</span>; Minor in <span className={emphasis}>Mathematics.</span>
             </p>
@@ -50,14 +50,14 @@ const Education = () => {
             </p>
           </div>
 
-          <h3 className='font-semibold text-xl mb-2'>
+          <h3 className='font-semibold text-xl mb-2 tracking-wider'>
             Accomplishments
           </h3>
           <ul className='space-y-1 text-gray-400 list-inside'>
             {accomplishments.map((accomplishment) => (
               <li key={accomplishment} className='flex'>
                 <Check className='fill-teal-500 w-4 h-4 flex-shrink-0 mt-1' />
-                <p className='ml-3'>
+                <p className='ml-3 tracking-wide'>
                   {accomplishment}
                 </p>
               </li>

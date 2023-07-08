@@ -68,7 +68,7 @@ const Company = (props: CompanyProps) => {
           <time className='mb-1 text-lg font-normal leading-none text-gray-400'>
             {datesEmployed}
           </time>
-          <h3 className='text-3xl mb-4 tracking-wide'>
+          <h3 className='text-3xl mb-4 tracking-wider'>
             <span className='text-teal-500 font-semibold break-words'>{title}</span>
             {' '}@{' '}
             <NextLink href={companyUrl}>
@@ -81,7 +81,7 @@ const Company = (props: CompanyProps) => {
             {summary}
           </p>
 
-          <h4 className='text-teal-500 font-semibold text-xl tracking-wide mb-2'>
+          <h4 className='text-teal-500 font-semibold text-xl tracking-wider mb-2'>
             {header}
           </h4>
 

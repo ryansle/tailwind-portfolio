@@ -6,7 +6,6 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = seo;
 
-// TODO: consistent margins + tracking for content
 export default function RootLayout({
   children,
 }: {

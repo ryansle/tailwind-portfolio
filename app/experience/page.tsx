@@ -13,7 +13,7 @@ const ExperiencePage = async () => {
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2'>
+      <h1 className='font-bold text-display2 tracking-wider'>
         Work Experience
       </h1>
 

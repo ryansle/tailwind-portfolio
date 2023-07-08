@@ -9,7 +9,7 @@ const ContactPage: NextPage = () => {
   return (
     <Layout>
       <div className='xl:px-16'>
-        <h1 className='font-bold text-display2 mb-6'>
+        <h1 className='font-bold text-display2 mb-6 tracking-wider'>
           Let&apos;s Collaborate!
         </h1>
 

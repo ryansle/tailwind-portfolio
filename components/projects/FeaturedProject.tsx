@@ -54,10 +54,10 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
           <div className={`${order ? 'pr-8 mt-4 order-last xl:order-first' : 'order-last pl-8 mt-4'} col-span-12 xl:col-span-5`}>
             <FeaturedTag order={order} />
             <div className={`${order ? 'text-left' : 'text-right'}`}>
-              <h2 className='text-3xl font-semibold mb-1'>
+              <h2 className='text-3xl font-semibold mb-1 tracking-wider'>
                 {title}
               </h2>
-              <h3 className='mb-4 font-medium'>
+              <h3 className='mb-4 font-medium tracking-wider'>
                 {subtitle}
               </h3>
             </div>

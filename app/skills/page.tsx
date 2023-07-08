@@ -16,11 +16,11 @@ const SkillsPage = async () => {
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2 mb-6'>
+      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
         My Skillsets
       </h1>
 
-      <h2 className='font-bold text-3xl mb-4'>
+      <h2 className='font-bold text-3xl mb-4 tracking-wider'>
         Web Engineering
       </h2>
       <div className='text-lg space-y-4 mb-6 tracking-wide text-gray-400'>
