@@ -65,7 +65,7 @@ const Company = (props: CompanyProps) => {
       <div className='absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-gray-900 bg-gray-700' />
       <div className='grid grid-cols-10 flex items-center'>
         <div className='col-span-10 xl:col-span-6'>
-          <time className='mb-1 text-lg font-normal leading-none text-gray-500'>
+          <time className='mb-1 text-lg font-normal leading-none text-gray-400'>
             {datesEmployed}
           </time>
           <h3 className='text-3xl mb-4 tracking-wide'>
@@ -77,7 +77,7 @@ const Company = (props: CompanyProps) => {
               </span>
             </NextLink>
           </h3>
-          <p className='mb-4 text-base font-normal text-gray-500 dark:text-gray-400'>
+          <p className='mb-4 text-base font-normal text-white'>
             {summary}
           </p>
 

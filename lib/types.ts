@@ -89,6 +89,7 @@ type Experience = {
     sys: ContentfulSys;
     fields: Skill;
   }[];
+  companyUrl: string;
 }
 
 type SocialMedia = {

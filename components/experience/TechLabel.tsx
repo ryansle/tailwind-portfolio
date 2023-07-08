@@ -17,7 +17,7 @@ const TechLabel = (props: TechLabelProps) => {
   const { name, icon, radii } = props;
 
   return (
-    <div className='mt-1 bg-gray-800 text-gray-800 text-xs font-medium px-2 py-1 rounded flex items-center mr-2'>
+    <div className='mt-1 bg-gray-800 text-xs font-medium px-2 py-1 rounded flex items-center mr-2'>
       <NextImage
         className={radii ? 'rounded-full' : 'rounded-none'}
         src={convertImageUrl(icon)}

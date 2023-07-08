@@ -53,7 +53,7 @@ const Education = () => {
           <h3 className='font-semibold text-xl mb-2'>
             Accomplishments
           </h3>
-          <ul className='space-y-1 text-gray-500 list-inside'>
+          <ul className='space-y-1 text-gray-400 list-inside'>
             {accomplishments.map((accomplishment) => (
               <li key={accomplishment} className='flex'>
                 <Check className='fill-teal-500 w-4 h-4 flex-shrink-0 mt-1' />

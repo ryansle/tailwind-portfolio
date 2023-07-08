@@ -6,7 +6,7 @@ import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 
 const HiringBlurb = () => {
   return (
-    <SlideUpWhenVisible delay={1} duration={0.8}>
+    <SlideUpWhenVisible delay={1.2} duration={0.8}>
       <div className='tracking-wide flex flex-col items-center'>
         <h1 className='text-display3 font-bold tracking-wider mb-2 text-center'>
           Looking to expand your team?
@@ -14,7 +14,7 @@ const HiringBlurb = () => {
         <h2 className='mb-10 font-semibold tracking-wider'>
           or just hire a freelance engineer?
         </h2>
-        <div className='text-center space-y-4 font-medium text-gray-500 xl:px-32'>
+        <div className='text-center space-y-4 font-medium text-gray-400 xl:px-32'>
           <p>
             I&apos;m a front-end engineer working primarily with Next.js, React.js, and Tailwind CSS. With my expertise in these cutting-edge technologies, I create stunning and user-friendly websites and applications.
           </p>
