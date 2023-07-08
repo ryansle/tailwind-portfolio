@@ -9,11 +9,13 @@ import {
 } from 'react-icons/fa6';
 import { Divider } from '@/components/global';
 
-// Utilities
-import { fetchSocialMedia } from '@/data/fetch';
-
-const Footer = async () => {
-  const socials = await fetchSocialMedia();
+const Footer = () => {
+  const socials = [
+    { url: 'https://www.linkedin.com/in/ryansle/', platform: 'LinkedIn' },
+    { url: 'https://stackoverflow.com/users/11599714/ryansle', platform: 'Stack Overflow' },
+    { url: 'https://github.com/ryansle', platform: 'GitHub' },
+    { url: 'https://www.instagram.com/ryansle/', platform: 'Instagram' },
+  ];
 
   const renderIcon = (platform: string) => {
     const iconStyle = 'w-5 h-5 fill-gray-400 transition ease-in-out duration-300 hover:fill-teal-500';
@@ -38,14 +40,16 @@ const Footer = async () => {
       <div className='w-full py-6 lg:py-8'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
-            <NextLink href='/' className='flex items-center'>
-              <NextImage
-                className='rounded-full mr-4'
-                height={40}
-                width={40}
-                src='/headshot.png'
-                alt='Ryan Le Headshot'
-              />
+            <div className='flex items-center'>
+              <NextLink href='/'>
+                <NextImage
+                  className='rounded-full mr-4'
+                  height={40}
+                  width={40}
+                  src='/headshot.png'
+                  alt='Ryan Le Headshot'
+                />
+              </NextLink>
               <div>
                 <h4 className='tracking-wider font-medium text-xl'>RYAN S. LE</h4>
                 <h5 className='tracking-wide font-semibold'>
@@ -57,7 +61,9 @@ const Footer = async () => {
                   </NextLink>
                 </h5>
               </div>
-            </NextLink>
+            </div>
+
+
 
             <Divider margins='md' />
 
