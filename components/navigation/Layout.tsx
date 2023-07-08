@@ -1,3 +1,4 @@
+// Components
 import { Header } from './Header';
 
 // Types
@@ -6,7 +7,7 @@ import type { ReactNode } from 'react';
 type LayoutProps = {
   className?: string;
   children: ReactNode;
-};
+}
 
 const Layout = (props: LayoutProps) => {
   const { className, children } = props;

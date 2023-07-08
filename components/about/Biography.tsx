@@ -1,12 +1,16 @@
+'use client';
+
 // Components
 import NextImage from 'next/image';
 import NextLink from 'next/link';
+import { Transition } from '@headlessui/react';
 import {
   FaLinkedin as LinkedIn,
   FaGithub as GitHub,
   FaInstagram as Instagram,
   FaStackOverflow as StackOverflow,
 } from 'react-icons/fa6';
+import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 
 // Types
 import type { SocialMedia } from '@/lib/types';
@@ -65,61 +69,71 @@ const Biography = (props: BiographyProps) => {
 
       <div className='grid grid-cols-12 flex items-center flex-wrap-reverse'>
         <div className='space-y-3 text-gray-400 col-span-12 xl:col-span-6'>
-          <p>
-            Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate frontend web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
-          </p>
-          <p>
-            During my time at the University of Nebraska-Lincoln, I gained extensive experience in software development, specializing in frontend web development. Using cutting-edge technologies like React.js, Next.js, Tailwind CSS, and TypeScript, I craft exceptional user interfaces and engaging experiences.
-          </p>
-          <p>
-            I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, but these days I call <span className={emphasis}>Brooklyn, New York</span>, my home. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
-          </p>
-          <p>
-            When I&apos;m not coding, you&apos;ll find me exploring virtual worlds as an avid gamer or biking through city streets, embracing the thrill of adventure. With a personal goal of visiting all 50 states, I&apos;m eager to experience the diverse tapestry of the United States.
-          </p>
+          <SlideUpWhenVisible>
+            <p>
+              Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate frontend web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
+            </p>
+            <p>
+              During my time at the University of Nebraska-Lincoln, I gained extensive experience in software development, specializing in frontend web development. Using cutting-edge technologies like React.js, Next.js, Tailwind CSS, and TypeScript, I craft exceptional user interfaces and engaging experiences.
+            </p>
+            <p>
+              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, but these days I call <span className={emphasis}>Brooklyn, New York</span>, my home. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
+            </p>
+            <p>
+              When I&apos;m not coding, you&apos;ll find me exploring virtual worlds as an avid gamer or biking through city streets, embracing the thrill of adventure. With a personal goal of visiting all 50 states, I&apos;m eager to experience the diverse tapestry of the United States.
+            </p>
 
-          <h2 className='text-white text-3xl font-bold pt-6 pb-2'>
-            Follow me on...
-          </h2>
-          <div className='flex flex-wrap'>
-            {socials.map((social) => (
-              <SocialMediaLink
-                key={social.platform}
-                url={social.url}
-                platform={social.platform}
-              />
-            ))}
-          </div>
+            <h2 className='text-white text-3xl font-bold pt-6 pb-2'>
+              Follow me on...
+            </h2>
+            <div className='flex flex-wrap'>
+              {socials.map((social) => (
+                <SocialMediaLink
+                  key={social.platform}
+                  url={social.url}
+                  platform={social.platform}
+                />
+              ))}
+            </div>
+          </SlideUpWhenVisible>
         </div>
 
         <div className='col-span-0 xl:col-span-1' />
 
         <div className='mb-10 col-span-12 order-first xl:col-span-5 xl:mt-0 xl:order-last'>
           <div className='relative w-full h-[320px] xl:h-[500px]'>
-            <NextImage
-              className='rounded-xl z-10 block sm:hidden'
-              alt='Ryan Le - Portrait'
-              fill
-              src='/athens.png'
-              style={{ objectFit: 'cover' }}
-            />
+            <Transition
+              appear={true}
+              show={true}
+              enter='transition-opacity ease-linear duration-1000'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+            >
+              <NextImage
+                className='rounded-xl z-10 block sm:hidden'
+                alt='Ryan Le - Portrait'
+                fill
+                src='/athens.png'
+                style={{ objectFit: 'cover' }}
+              />
 
-            <NextImage
-              className='rounded-xl z-10 hidden sm:block xl:hidden'
-              alt='Ryan Le - Portrait'
-              fill
-              src='/athens-longer.png'
-              style={{ objectFit: 'cover' }}
-            />
+              <NextImage
+                className='rounded-xl z-10 hidden sm:block xl:hidden'
+                alt='Ryan Le - Portrait'
+                fill
+                src='/athens-longer.png'
+                style={{ objectFit: 'cover' }}
+              />
 
-            <NextImage
-              className='rounded-xl z-10 hidden xl:block'
-              alt='Ryan Le - Portrait'
-              fill
-              src='/athens.png'
-              style={{ objectFit: 'cover' }}
-            />
-            <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
+              <NextImage
+                className='rounded-xl z-10 hidden xl:block'
+                alt='Ryan Le - Portrait'
+                fill
+                src='/athens.png'
+                style={{ objectFit: 'cover' }}
+              />
+              <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
+            </Transition>
           </div>
         </div>
       </div>
