@@ -25,7 +25,6 @@ const FeaturedTag = ({ order }: { order: boolean }) => (
   </div>
 );
 
-// TODO: unprivate tailwind repo
 const FeaturedProject = (props: FeaturedProjectProps) => {
   const {
     title,

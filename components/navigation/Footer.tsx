@@ -36,7 +36,6 @@ const Footer = () => {
 
   return (
     <footer className='border-t border-gray-700 px-6 h-20 mt-24 xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
-
       <div className='w-full py-6 lg:py-8'>
         <div className='md:flex md:justify-between'>
           <div className='mb-6 md:mb-0'>
@@ -62,8 +61,6 @@ const Footer = () => {
                 </h5>
               </div>
             </div>
-
-
 
             <Divider margins='md' />
 
