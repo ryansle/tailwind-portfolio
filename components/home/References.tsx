@@ -69,7 +69,7 @@ const References = (props: ReferencesProps) => {
         Professional References
       </h1>
 
-      <p className='text-gray-400 font-medium mb-10'>
+      <p className='text-gray-400 font-medium mb-10 text-center'>
         Don&apos;t believe me? Hear from people I&apos;ve worked with in the past:
       </p>
 
