@@ -23,3 +23,5 @@ const ExperiencePage = async () => {
 };
 
 export default ExperiencePage;
+
+export const revalidate = 30;

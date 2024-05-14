@@ -42,3 +42,5 @@ const SkillsPage = async () => {
 };
 
 export default SkillsPage;
+
+export const revalidate = 30;

@@ -22,3 +22,5 @@ const AboutPage = async () => {
 };
 
 export default AboutPage;
+
+export const revalidate = 30;
