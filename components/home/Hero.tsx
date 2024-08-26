@@ -73,7 +73,7 @@ const Hero = (props: HeroProps) => {
               </div>
               <NextImage
                 className='rounded-full drop-shadow-2xl z-20'
-                src='/headshot.png'
+                src='/profile.png'
                 fill
                 alt='Ryan Le - Headshot'
                 style={{ objectFit: 'cover' }}

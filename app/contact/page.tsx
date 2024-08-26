@@ -13,7 +13,7 @@ const ContactPage: NextPage = () => {
           Let&apos;s Collaborate!
         </h1>
 
-        <div className='text-lg space-y-4 mb-6 tracking-wide'>
+        <div className='text-lg space-y-4 mb-6 tracking-wide text-gray-400'>
           <p>
             Looking for a skilled front-end web developer? Need assistance with a project or have an open role at your company? I&apos;m here to help!
           </p>

@@ -45,7 +45,7 @@ const Footer = () => {
                   className='rounded-full mr-4'
                   height={40}
                   width={40}
-                  src='/headshot.png'
+                  src='/profile.png'
                   alt='Ryan Le Headshot'
                 />
               </NextLink>

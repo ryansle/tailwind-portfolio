@@ -29,7 +29,7 @@ const Header = () => {
           className='rounded-full mr-4'
           height={40}
           width={40}
-          src='/headshot.png'
+          src='/profile.png'
           alt='Ryan Le Headshot'
         />
         <h4 className='tracking-wider font-medium text-xl'>RYAN S. LE</h4>
