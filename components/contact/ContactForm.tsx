@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react';
 
 // Components
-import { Input, Textarea, Toast } from '@/components/global';
+import { Input, Textarea } from '@/components/global';
 import { SkeletonForm } from './SkeletonForm';
 import { BiMailSend as Send } from 'react-icons/bi';
+import toast from 'react-hot-toast';
+import { IoCloseSharp as Close } from 'react-icons/io5';
+import { FaCheckCircle as Check } from 'react-icons/fa';
 
 // Utilities
 import { useForm } from 'react-hook-form';
@@ -19,7 +22,6 @@ type Form = {
   firstName: string;
   lastName: string;
   email: string;
-  phoneNumber: number | string;
   subject: string;
   message: string;
 };
@@ -58,18 +60,10 @@ const ContactForm = () => {
       const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
 
       emailjs.send(serviceId as string, templateId as string, data, userId);
-      showAlert();
+
+      sendSuccessAlert();
       setLoading(false);
-
       reset();
-    }, 2500);
-  };
-
-  const showAlert = () => {
-    setOpenAlert(true);
-
-    setTimeout(() => {
-      setOpenAlert(false);
     }, 5000);
   };
 
@@ -98,6 +92,29 @@ const ContactForm = () => {
     toggleErrorFlags();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
+
+  const sendSuccessAlert = () => toast.custom((t) => (
+    <div
+      className={`${t.visible ? 'animate-enter' : 'animate-leave'
+        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 text-black grid grid-cols-12 p-4 -pb-1`}
+    >
+      <div className='col-span-1 flex items-center justify-center'>
+        <Check className='h-8 w-8 fill-green-500 shrink-0' />
+      </div>
+      <div className='col-span-10 pl-4 pr-6'>
+        <h1 className='text-lg text-semibold font-cooper'>Email sent!</h1>
+        <p className='text-sm tracking-wide'>
+          Expect an email back from me soon!
+        </p>
+      </div>
+      <div className='col-span-1 flex items-center'>
+        <button onClick={() => toast.dismiss(t.id)}>
+          <span className='sr-only'>Close</span>
+          <Close className='w-8 h-8 shrink-0' />
+        </button>
+      </div>
+    </div>
+  ));
 
   return (
     <form>
@@ -132,7 +149,7 @@ const ContactForm = () => {
               />
             </div>
 
-            <div className='col-span-2 sm:col-span-1'>
+            <div className='col-span-2'>
               <Input
                 label='Email Address'
                 placeholder='Where should I follow up?'
@@ -147,15 +164,6 @@ const ContactForm = () => {
                   {errors.email.message as ReactNode}
                 </p>
               )}
-            </div>
-
-            <div className='col-span-2 sm:col-span-1'>
-              <Input
-                label='Phone Number (optional, if you want me to text you)'
-                placeholder='(123) 456-7890'
-                type='number'
-                {...register('phoneNumber')}
-              />
             </div>
 
             <div className='col-span-2'>
@@ -196,16 +204,6 @@ const ContactForm = () => {
           </button>
         </div>
       )}
-
-      <div className='flex w-full items-center justify-center'>
-        <Toast
-          open={openAlert}
-          setOpen={setOpenAlert}
-          title='Email Sent!'
-        >
-          Expect an email back from me soon!
-        </Toast>
-      </div>
     </form>
   );
 };

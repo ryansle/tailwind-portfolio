@@ -38,11 +38,11 @@ const Footer = () => {
     <footer className='border-t border-gray-700 px-6 h-20 mt-24 xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
       <div className='w-full py-6 lg:py-8'>
         <div className='md:flex md:justify-between'>
-          <div className='mb-6 md:mb-0'>
-            <div className='items-center hidden xl:flex'>
+          <div className='mb-6 mr-8 md:mb-0'>
+            <div className='block lg:items-center lg:flex'>
               <NextLink href='/'>
                 <NextImage
-                  className='rounded-full mr-4'
+                  className='rounded-full mr-4 mb-2 lg:mb-0'
                   height={40}
                   width={40}
                   src='/profile.png'
@@ -61,25 +61,18 @@ const Footer = () => {
                 </h5>
               </div>
             </div>
-
-            <div className='hidden xl:block'>
-              <Divider margins='md' />
-            </div>
-
-            <div className='space-y-1 font-cooper tracking-widest text-lg'>
+            <div className='space-y-1 font-cooper tracking-widest text-xs lg:text-lg'>
               <p>
-                Is your name RYAN?
+                Wanna meet other Ryans?
               </p>
               <p>
-                Wanna meet other RYANs?
-              </p>
-              <p>
-                Join the <NextLink className='text-teal-500 hover:underline' href='https://www.meetup.com/ryanmeetup/'>RYAN MEETUP</NextLink>!
-              </p>
-              <p>
-                No Bryans allowed!
+                JOIN THE <NextLink className='text-teal-500 hover:underline' href='https://www.meetup.com/ryanmeetup/'>RYAN MEETUP</NextLink>!
               </p>
             </div>
+          </div>
+
+          <div className='block md:hidden'>
+            <Divider margins='md' />
           </div>
 
           {/* Resources & Follow Us */}
