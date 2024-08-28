@@ -61,7 +61,7 @@ const Footer = () => {
                 </h5>
               </div>
             </div>
-            <div className='space-y-1 font-cooper tracking-widest text-xs lg:text-lg'>
+            <div className='space-y-1 font-cooper tracking-widest mt-4'>
               <p>
                 Wanna meet other Ryans?
               </p>

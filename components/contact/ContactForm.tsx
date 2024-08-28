@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { Input, Textarea } from '@/components/global';
 import { SkeletonForm } from './SkeletonForm';
 import { BiMailSend as Send } from 'react-icons/bi';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { IoCloseSharp as Close } from 'react-icons/io5';
 import { FaCheckCircle as Check } from 'react-icons/fa';
 
@@ -40,7 +40,6 @@ const Loader = () => {
 const ContactForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [render, setRender] = useState<boolean>(false);
-  const [openAlert, setOpenAlert] = useState<boolean>(false);
 
   const {
     register,
@@ -64,7 +63,7 @@ const ContactForm = () => {
       sendSuccessAlert();
       setLoading(false);
       reset();
-    }, 5000);
+    }, 1500);
   };
 
   const checkEmail = (email: string) => {
@@ -96,7 +95,7 @@ const ContactForm = () => {
   const sendSuccessAlert = () => toast.custom((t) => (
     <div
       className={`${t.visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 text-black grid grid-cols-12 p-4 -pb-1`}
+        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 text-black grid grid-cols-12 p-4 -pb-1 z-10`}
     >
       <div className='col-span-1 flex items-center justify-center'>
         <Check className='h-8 w-8 fill-green-500 shrink-0' />
@@ -117,94 +116,97 @@ const ContactForm = () => {
   ));
 
   return (
-    <form>
-      {!render && (
-        <SkeletonForm />
-      )}
+    <>
+      <form>
+        {!render && (
+          <SkeletonForm />
+        )}
 
-      {render && (
-        <div>
-          <div className='grid grid-cols-2 gap-x-4 gap-y-4 mb-4'>
-            <div className='col-span-1'>
-              <Input
-                label='First Name'
-                placeholder='Ryan'
-                required
-                {...register('firstName', {
-                  onBlur: (event) => event.target.value === '' ?
-                    setError('firstName', { message: 'Error: must provide a first name' }) : clearErrors('firstName')
-                })}
-              />
-            </div>
+        {render && (
+          <div>
+            <div className='grid grid-cols-2 gap-x-4 gap-y-4 mb-4'>
+              <div className='col-span-1'>
+                <Input
+                  label='First Name'
+                  placeholder='Ryan'
+                  required
+                  {...register('firstName', {
+                    onBlur: (event) => event.target.value === '' ?
+                      setError('firstName', { message: 'Error: must provide a first name' }) : clearErrors('firstName')
+                  })}
+                />
+              </div>
 
-            <div className='col-span-1'>
-              <Input
-                label='Last Name'
-                placeholder='Le'
-                required
-                {...register('lastName', {
-                  onBlur: (event) => event.target.value === '' ?
-                    setError('lastName', { message: 'Error: must provide a last name' }) : clearErrors('lastName')
-                })}
-              />
-            </div>
+              <div className='col-span-1'>
+                <Input
+                  label='Last Name'
+                  placeholder='Le'
+                  required
+                  {...register('lastName', {
+                    onBlur: (event) => event.target.value === '' ?
+                      setError('lastName', { message: 'Error: must provide a last name' }) : clearErrors('lastName')
+                  })}
+                />
+              </div>
 
-            <div className='col-span-2'>
-              <Input
-                label='Email Address'
-                placeholder='Where should I follow up?'
-                type='text'
-                required
-                {...register('email', {
-                  onBlur: (event) => checkEmail(event.target.value)
-                })}
-              />
-              {errors.email && (
-                <p className='mt-2 text-red-500 text-xs'>
-                  {errors.email.message as ReactNode}
-                </p>
-              )}
-            </div>
+              <div className='col-span-2'>
+                <Input
+                  label='Email Address'
+                  placeholder='Where should I follow up?'
+                  type='text'
+                  required
+                  {...register('email', {
+                    onBlur: (event) => checkEmail(event.target.value)
+                  })}
+                />
+                {errors.email && (
+                  <p className='mt-2 text-red-500 text-xs'>
+                    {errors.email.message as ReactNode}
+                  </p>
+                )}
+              </div>
 
-            <div className='col-span-2'>
-              <Input
-                label='Subject'
-                placeholder='Career opportunites in...'
-                required
-                {...register('subject', {
-                  onBlur: (event) => event.target.value === '' ?
-                    setError('subject', { message: 'Error: must provide a subject' }) : clearErrors('subject')
-                })}
-              />
-            </div>
+              <div className='col-span-2'>
+                <Input
+                  label='Subject'
+                  placeholder='Career opportunites in...'
+                  required
+                  {...register('subject', {
+                    onBlur: (event) => event.target.value === '' ?
+                      setError('subject', { message: 'Error: must provide a subject' }) : clearErrors('subject')
+                  })}
+                />
+              </div>
 
-            <div className='col-span-2'>
-              <Textarea
-                id='message'
-                label='Message'
-                placeholder='Hi Ryan! I hope you are having a great week so far! I just came across your profile and was very impressed with your background...'
-                required
-                {...register('message', {
-                  onBlur: (event) => event.target.value === '' ?
-                    setError('message', { message: 'Error: must provide a message' }) : clearErrors('message')
-                })}
-              />
+              <div className='col-span-2'>
+                <Textarea
+                  id='message'
+                  label='Message'
+                  placeholder='Hi Ryan! I hope you are having a great week so far! I just came across your profile and was very impressed with your background...'
+                  required
+                  {...register('message', {
+                    onBlur: (event) => event.target.value === '' ?
+                      setError('message', { message: 'Error: must provide a message' }) : clearErrors('message')
+                  })}
+                />
+              </div>
             </div>
           </div>
+        )}
+      </form>
 
-          <button
-            className='rounded-lg p-3 bg-black uppercase border border-gray-700 tracking-widest flex disabled:cursor-not-allowed disabled:text-gray-700'
-            onClick={handleSubmit((data) => sendEmail(data as Form))}
-            disabled={Object.keys(errors).length !== 0}
-          >
-            <span className='mr-2 mt-1'>
-              {loading ? <Loader /> : <Send />}
-            </span>
-            Send Message
-          </button>
-        </div>
-      )}
-    </form>
+      <Toaster position='bottom-center' />
+      <button
+        className='rounded-lg p-3 bg-black uppercase border border-gray-700 tracking-widest flex disabled:cursor-not-allowed disabled:text-gray-700'
+        onClick={handleSubmit((data) => sendEmail(data as Form))}
+        disabled={Object.keys(errors).length !== 0}
+      >
+        <span className='mr-2 mt-1'>
+          {loading ? <Loader /> : <Send />}
+        </span>
+        Send Message
+      </button>
+    </>
   );
 };
 
