@@ -22,7 +22,7 @@ const MobileMenu = (props: MobileMenuProps) => {
           {({ open }) => (
             <>
               <span className='rounded-md shadow-sm'>
-                <Menu.Button className='p-2 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-700 rounded-md'>
+                <Menu.Button className='p-2 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-700 rounded-md' aria-label='Menu'>
                   <Hamburger />
                 </Menu.Button>
               </span>

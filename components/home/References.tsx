@@ -36,13 +36,21 @@ const Testimony = (props: Reference) => {
             </h3>
 
             {linkedinUrl && (
-              <NextLink className='pt-[5px]' href={linkedinUrl}>
+              <NextLink
+                className='pt-[5px]'
+                href={linkedinUrl}
+                aria-label={`${name}'s LinkedIn Profile`}
+              >
                 <Linkedin />
               </NextLink>
             )}
 
             {email && (
-              <NextLink className='pt-[5px]' href={`mailto:${email}`}>
+              <NextLink
+                className='pt-[5px]'
+                href={`mailto:${email}`}
+                aria-label={`Contact ${name} via email`}
+              >
                 <Mail />
               </NextLink>
             )}

@@ -48,23 +48,25 @@ const ProjectCard = (props: ProjectCardProps) => {
           </h3>
           <div className='flex space-x-2 items-center'>
             {github && (
-              <NextLink href={github}>
-                <GitHub className='w-4 h-4' />
+              <NextLink href={github} aria-label={`GitHub for ${title}`}>
+                <GitHub className='w-4 h-4' aria-label='GitHub icon' />
               </NextLink>
             )}
 
             {url && (
-              <NextLink href={url}>
-                <Link className='w-5 h-5' />
+              <NextLink href={url} aria-label={`External Deployment for ${title}`}>
+                <Link className='w-5 h-5' aria-label='External URL icon' />
               </NextLink>
             )}
           </div>
         </div>
 
         <div className='text-left'>
-          <h4 className='font-medium text-sm tracking-wider'>
-            {subtitle}
-          </h4>
+          {subtitle && (
+            <h4 className='font-medium text-sm tracking-wider'>
+              {subtitle}
+            </h4>
+          )}
 
           <div className='flex flex-wrap mt-1'>
             {tech.map((tool) => (

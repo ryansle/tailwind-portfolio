@@ -44,14 +44,12 @@ const SocialMediaLink = (props: SocialMediaLinkProps) => {
   };
 
   return (
-    <button className='rounded mr-2 py-1.5 px-2 border border-teal-500 mb-2 transition ease-in-out duration-300 hover:scale-105'>
-      <NextLink href={url} className='flex items-center'>
-        {renderIcon(platform)}
-        <span className='ml-2 text-white tracking-wide font-medium hover:text-teal-500'>
-          {platform}
-        </span>
-      </NextLink>
-    </button>
+    <NextLink href={url} className='flex items-center rounded mr-2 py-1.5 px-2 border border-teal-500 mb-2 transition ease-in-out duration-300 hover:scale-105'>
+      {renderIcon(platform)}
+      <span className='ml-2 text-white tracking-wide font-medium hover:text-teal-500'>
+        {platform}
+      </span>
+    </NextLink>
   );
 };
 

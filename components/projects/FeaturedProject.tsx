@@ -77,13 +77,13 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
             </div>
             <div className={`${order ? 'justify-start' : 'justify-end'} flex items-center space-x-5 mt-4`}>
               {github && (
-                <NextLink href={github}>
+                <NextLink href={github} aria-label={`GitHub for ${title}`}>
                   <GitHub className='w-8 h-8' />
                 </NextLink>
               )}
 
               {url && (
-                <NextLink href={url}>
+                <NextLink href={url} aria-label={`External Deployment for ${title}`}>
                   <Link className='w-9 h-9' />
                 </NextLink>
               )}

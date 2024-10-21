@@ -47,6 +47,8 @@ const Company = (props: CompanyProps) => {
         return 'text-indigo-500';
       case 'Nelnet':
         return 'text-[#6FBA41]';
+      case 'Ryan Meetup':
+        return 'text-white';
       default:
         return;
     }
@@ -54,7 +56,7 @@ const Company = (props: CompanyProps) => {
 
   return (
     <li className='ml-6 xl:mb-10'>
-      <div className='relative h-40 w-full flex items-center justify-center lg:mb-6 xl:hidden'>
+      <div className='relative h-40 w-full flex items-center justify-center mb-6 xl:hidden'>
         <NextImage
           src={convertImageUrl(image)}
           fill

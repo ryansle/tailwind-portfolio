@@ -66,7 +66,7 @@ const Footer = () => {
                 Wanna meet other Ryans?
               </p>
               <p>
-                JOIN THE <NextLink className='text-teal-500 hover:underline' href='https://www.meetup.com/ryanmeetup/'>RYAN MEETUP</NextLink>!
+                JOIN THE <NextLink className='text-teal-500 hover:underline' href='https://ryanmeetup.com/'>RYAN MEETUP</NextLink>!
               </p>
             </div>
           </div>
@@ -85,6 +85,7 @@ const Footer = () => {
                     <NextLink
                       href={social.url as string}
                       className='hover:underline'
+                      aria-label={`My ${social.platform} profile`}
                     >
                       {social.platform as string}
                     </NextLink>
@@ -134,7 +135,11 @@ const Footer = () => {
           {/* Socials */}
           <div className='flex mt-4 space-x-6 sm:justify-center sm:mt-0'>
             {socials.map((social) => (
-              <NextLink key={social.platform as string} href={social.url as string}>
+              <NextLink
+                key={social.platform as string}
+                href={social.url as string}
+                aria-label={`My ${social.platform} profile`}
+              >
                 {renderIcon(social.platform as string)}
               </NextLink>
             ))}

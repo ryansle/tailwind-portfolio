@@ -29,7 +29,7 @@ const TableRow = (props: TableRowProps) => {
 
   return (
     <tr className='border-b border-b-gray-700'>
-      <td scope='col' className='py-3 h-full pr-4'>
+      <td className='py-3 h-full pr-4'>
         <div className='flex items-center space-x-3 '>
           <NextImage
             className={radii ? 'rounded-full' : ''}
