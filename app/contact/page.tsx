@@ -3,7 +3,29 @@ import { Layout } from '@/components/navigation';
 import { ContactForm } from '@/components/contact';
 
 // Types
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Ryan Le - Contact Me',
+  description: 'Get in contact with Ryan Le, UI Engineer based in Brooklyn, NY.',
+  keywords: ['ryan le', 'front-end developer', 'brooklyn software engineer', 'ryan le engineer', 'ryan le software', 'contact ryan le', 'ui engineer', 'ryan le ui engineer'],
+  openGraph: {
+    url: 'https://ryanle.dev/contact',
+    title: 'Ryan Le - Contact Me',
+    description: 'Get in contact with Ryan Le, UI Engineer based in Brooklyn, NY.',
+    siteName: 'Ryan Le\'s Portfolio',
+    images: [
+      {
+        url: 'https://ryanle.dev/seo/contact.png',
+        width: 2056,
+        height: 965,
+      }
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
 const ContactPage: NextPage = () => {
   return (

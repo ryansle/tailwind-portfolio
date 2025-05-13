@@ -7,7 +7,7 @@ const SEO = {
     description: 'Ryan Le is a Web Engineer based out of Brooklyn, New York. Working on all things front-end currently at CrowdStrike.',
     images: [
       {
-        url: '/seo.png',
+        url: '/seo/home.png',
         width: 2340,
         height: 1120,
         alt: 'Learn why you should consider Ryan Le for opportunities at your company.',

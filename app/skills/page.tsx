@@ -2,14 +2,35 @@
 import { Layout } from '@/components/navigation';
 import { SkillsTable } from '@/components/skills';
 import { Divider } from '@/components/global';
-import NextImage from 'next/image';
 import NextLink from 'next/link';
 
 // Types
 import type { Skill } from '@/lib/types';
+import type { Metadata } from 'next';
 
 // Utilities
 import { fetchSkills } from '@/data/fetch';
+
+export const metadata: Metadata = {
+  title: 'Ryan Le - Skills',
+  description: 'Learn more about what Ryan Le\'s skillsets as both an engineer and a creative',
+  keywords: ['ryan le', 'front-end developer', 'brooklyn software engineer', 'ryan le engineer', 'ryan le software', 'contact ryan le', 'ui engineer', 'ryan le ui engineer', 'ryan le frontend dev', 'ryan le crowdstrike', 'ryan le ryan meetup', 'ryan le american express', 'ryan le amex', 'ryan le hoffman strategy group', 'ryan le nelnet', 'ryan le re-logic'],
+  openGraph: {
+    url: 'https://ryanle.dev/skills',
+    title: 'Ryan Le - Skills',
+    description: 'Learn more about what Ryan Le\'s skillsets as both an engineer and a creative',
+    siteName: 'Ryan Le\'s Portfolio',
+    images: [
+      {
+        url: 'https://ryanle.dev/seo/skills.png',
+        width: 2056,
+        height: 1163,
+      }
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
 const SkillsPage = async () => {
   const skills = await fetchSkills();
