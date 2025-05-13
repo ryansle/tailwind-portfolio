@@ -81,7 +81,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
           <Divider margins='md' />
 
-          <p className='text-sm'>
+          <p className='text-sm text-gray-400'>
             {summary}
           </p>
         </div>

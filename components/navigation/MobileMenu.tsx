@@ -22,7 +22,7 @@ const MobileMenu = (props: MobileMenuProps) => {
           {({ open }) => (
             <>
               <span className='rounded-md shadow-sm'>
-                <Menu.Button className='p-2 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-700 rounded-md' aria-label='Menu'>
+                <Menu.Button className='p-2 text-black transition duration-150 ease-in-out bg-white border border-gray-700 rounded-md' aria-label='Menu'>
                   <Hamburger />
                 </Menu.Button>
               </span>
@@ -46,8 +46,8 @@ const MobileMenu = (props: MobileMenuProps) => {
                         {({ active }) => (
                           <NextLink
                             className={`${active
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-700'
+                              ? 'bg-gray-100'
+                              : 'text-black'
                               } flex w-full px-4 py-2 text-sm leading-5 text-left items-center gap-x-4`}
                             href={row.href}
                           >

@@ -45,7 +45,7 @@ const Hero = (props: HeroProps) => {
               A little about me...
             </h4>
 
-            <div className='text-gray-500 tracking-wide space-y-1 font-medium'>
+            <div className='text-gray-400 tracking-wide space-y-1 font-medium'>
               <p>🚀 &nbsp; Always exploring opportunities, side projects, freelancing and more.</p>
               <p>🎓 &nbsp; University of Nebraska-Lincoln Alumni. Degree in Software Engineering.</p>
               <p>🤝🏼 &nbsp; Cofounder of the <NextLink className='text-blue-400 hover:underline' href='https://ryanmeetup.com'>Ryan Meetup</NextLink>.</p>

@@ -63,6 +63,9 @@ const Footer = () => {
             </div>
             <div className='space-y-1 font-cooper tracking-widest mt-4'>
               <p>
+                Is your name Ryan?
+              </p>
+              <p>
                 Wanna meet other Ryans?
               </p>
               <p>
@@ -78,7 +81,7 @@ const Footer = () => {
           {/* Resources & Follow Us */}
           <div className='grid grid-cols-4 space-x-8'>
             <div className='col-span-1'>
-              <h2 className='mb-6 text-xs font-semibold text-gray-900 uppercase text-white sm:text-sm'>Follow Me</h2>
+              <h2 className='mb-6 text-xs font-semibold text-white uppercase text-white sm:text-sm'>Follow Me</h2>
               <ul className='text-gray-600 font-medium'>
                 {socials.map((social) => (
                   <li className='mb-2' key={social.platform as string}>
@@ -94,7 +97,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className='col-span-3'>
-              <h2 className='mb-6 text-xs font-semibold text-gray-900 uppercase text-white sm:text-sm'>Built With</h2>
+              <h2 className='mb-6 text-xs font-semibold text-white uppercase text-white sm:text-sm'>Built With</h2>
               <div className='grid grid-cols-2 space-x-4'>
                 <div className='col-span-1'>
                   <ul className='text-gray-600 font-medium'>
