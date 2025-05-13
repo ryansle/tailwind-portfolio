@@ -1,6 +1,9 @@
 // Components
 import { Layout } from '@/components/navigation';
 import { SkillsTable } from '@/components/skills';
+import { Divider } from '@/components/global';
+import NextImage from 'next/image';
+import NextLink from 'next/link';
 
 // Types
 import type { Skill } from '@/lib/types';
@@ -11,8 +14,10 @@ import { fetchSkills } from '@/data/fetch';
 const SkillsPage = async () => {
   const skills = await fetchSkills();
 
-  const primarySkills = skills.filter((skill) => skill.primary);
-  const restOfSkills = skills.filter((skill) => !skill.primary);
+  const webSkills = skills.filter((skill) => skill.type === 'web');
+  const creativeSkills = skills.filter((skill) => skill.type === 'creative');
+
+  const emphasis = 'text-teal-500 font-semibold';
 
   return (
     <Layout>
@@ -34,8 +39,43 @@ const SkillsPage = async () => {
           Here are a few of my favorite languages, frameworks, and technologies that I enjoy working with:
         </p>
         <SkillsTable
-          skills={[primarySkills, restOfSkills].flat() as Skill[]}
+          header='Technology'
+          skills={webSkills as Skill[]}
         />
+      </div>
+
+      <Divider margins='xl' />
+
+      <h2 className='font-bold text-3xl mb-4 tracking-wider'>
+        Creative Production & Community Building
+      </h2>
+      <div className='text-lg space-y-4 tracking-wide text-gray-400'>
+        <p>
+          Outside of writing code, I lead one of the most absurd event series in the country — Ryan Meetup, a national community built only for people named Ryan.
+        </p>
+        <p>
+          I handle concept creation, branding, programming, promotion, and partnerships for each of our 15+ events. From Ryan Raves to Ryan Summits, I bring people together through shared identity, inside jokes, and a deeply unserious sense of seriousness.
+        </p>
+        <p>
+          These projects have been featured in <NextLink className={emphasis} href='https://www.nytimes.com/2023/03/28/nyregion/ryan-meetup-nyc.html'>The New York Times</NextLink>, the <NextLink className={emphasis} href='https://www.latimes.com/california/newsletter/2023-09-11/at-the-dumb-and-wholesome-ryan-rave-everyone-belongs-and-everyones-ryan-essential-california'>Los Angeles Times</NextLink>, <NextLink className={emphasis} href='https://www.cbsnews.com/losangeles/video/rallying-ryans-host-meet-ups-around-the-world/'>CBS News</NextLink>, and <NextLink className={emphasis} href='https://abcnews.go.com/WNN/video/rytoberfest-weekend-104132029'>ABC News</NextLink>, just to name a few — and prove how far a ridiculous idea can go with the right execution.
+        </p>
+        <SkillsTable
+          header='Skill'
+          skills={creativeSkills as Skill[]}
+        />
+      </div>
+      <div className='flex justify-center items-center mt-8'>
+        <NextLink
+          className='transition ease-in-out text-center -space-y-4 font-cooper duration-300 hover:scale-105'
+          href='https://www.ryanmeetup.com/'
+        >
+          <h1 className='text-[100px]'>
+            RYAN MEETUP
+            </h1>
+          <h2 className='text-[45px]'>
+            NO BRYANS ALLOWED
+          </h2>
+        </NextLink>
       </div>
     </Layout>
   );

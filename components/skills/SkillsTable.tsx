@@ -1,6 +1,6 @@
 // Components
 import NextImage from 'next/image';
-import { CompanyTag } from '@/components/skills';
+// import { CompanyTag } from '@/components/skills';
 import { AiFillStar as Star } from 'react-icons/ai';
 
 // Types
@@ -11,10 +11,12 @@ import { convertImageUrl } from '@/utils/convert';
 
 type TableRowProps = {
   skill: Skill;
+  renderBottomBorder: boolean;
 }
 
 type SkillsTableProps = {
   skills: Skill[];
+  header: string;
 }
 
 const TableRow = (props: TableRowProps) => {
@@ -23,21 +25,25 @@ const TableRow = (props: TableRowProps) => {
     icon,
     confidence,
     radii,
-    experiences,
+    // experiences,
     uses,
   } = props.skill;
+  const { renderBottomBorder } = props;
 
   return (
-    <tr className='border-b border-b-gray-700'>
+    <tr className={`${renderBottomBorder && 'border-b'} border-b-gray-700`}>
       <td className='py-3 h-full pr-4'>
         <div className='flex items-center space-x-3 '>
-          <NextImage
-            className={radii ? 'rounded-full' : ''}
-            src={convertImageUrl(icon)}
-            height={30}
-            width={30}
-            alt={`${technology} Icon`}
-          />
+          {icon && (
+            <NextImage
+              className={radii ? 'rounded-full' : ''}
+              src={convertImageUrl(icon)}
+              height={30}
+              width={30}
+              alt={`${technology} Icon`}
+            />
+          )}
+          
 
           <p className='font-semibold tracking-wide text-base text-white pr-10'>
             {technology}
@@ -82,10 +88,10 @@ const TableRow = (props: TableRowProps) => {
 };
 
 const SkillsTable = (props: SkillsTableProps) => {
-  const { skills } = props;
+  const { skills, header } = props;
 
   const headers = [
-    'Technology',
+    header,
     'My Uses',
     // 'Experiences',
     'Confidence'
@@ -108,12 +114,13 @@ const SkillsTable = (props: SkillsTableProps) => {
           </tr>
         </thead>
         <tbody>
-          {skills.map((skill) => (
+          {skills.map((skill, index) => (
             <>
               {skill.visibility && (
                 <TableRow
                   key={skill.technology}
                   skill={skill}
+                  renderBottomBorder={index !== skills.length - 1}
                 />
               )}
             </>
