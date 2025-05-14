@@ -87,13 +87,13 @@ const SkillsPage = async () => {
       </div>
       <div className='flex justify-center items-center mt-8'>
         <NextLink
-          className='transition ease-in-out text-center -space-y-4 font-cooper duration-300 hover:scale-105'
+          className='transition ease-in-out text-center font-cooper duration-300 hover:scale-105 space-y-3'
           href='https://www.ryanmeetup.com/'
         >
-          <h1 className='text-[100px]'>
+          <h1 className='text-5xl xl:text-[100px]'>
             RYAN MEETUP
             </h1>
-          <h2 className='text-[45px]'>
+          <h2 className='text-xl xl:text-[45px]'>
             NO BRYANS ALLOWED
           </h2>
         </NextLink>

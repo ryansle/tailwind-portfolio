@@ -114,6 +114,12 @@ type Project = {
   }[];
   featured: boolean;
 }
+
+type Outlet = {
+  logo: ContentfulImage;
+  outlet: string;
+  href: string;
+}
 // #endregion
 
 export type {
@@ -124,4 +130,5 @@ export type {
   Experience,
   SocialMedia,
   Project,
+  Outlet,
 };

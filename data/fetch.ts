@@ -36,11 +36,18 @@ const fetchProjects = async () => {
   return data.items.map((entry) => entry.fields);
 };
 
+const fetchOutlets = async () => {
+  const data = await client.getEntries(({ content_type: 'newsCoverage'}));
+
+  return data.items.map((entry) => entry.fields);
+};
+
 export {
   fetchSocialMedia,
   fetchAccomplishments,
   fetchExperience,
   fetchSkills,
   fetchTestimonies,
-  fetchProjects
+  fetchProjects,
+  fetchOutlets,
 };

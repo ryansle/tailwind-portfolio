@@ -5,6 +5,7 @@ import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { Transition } from '@headlessui/react';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
+import { FaDownload as Download } from 'react-icons/fa6';
 
 // Utilities
 import { convertImageUrl } from '@/utils/convert';
@@ -51,6 +52,12 @@ const Hero = (props: HeroProps) => {
               <p>🤝🏼 &nbsp; Cofounder of the <NextLink className='text-blue-400 hover:underline' href='https://ryanmeetup.com'>Ryan Meetup</NextLink>.</p>
               <p>🏙️ &nbsp; Currently based out of New York City.</p>
             </div>
+
+            <a href='/resume.pdf' download='ryan-le-resume.pdf'>
+              <button className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'>
+                <Download className='mr-4' /> Download Resume
+              </button>
+            </a>
           </SlideUpWhenVisible>
         </div>
         <div className='col-span-0 xl:col-span-1' />
@@ -104,7 +111,6 @@ const Hero = (props: HeroProps) => {
               </div>
             ))}
           </div>
-
         </div>
       </SlideUpWhenVisible>
     </div>
