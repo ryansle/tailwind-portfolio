@@ -68,18 +68,24 @@ const Biography = (props: BiographyProps) => {
         <div className='col-span-12 xl:col-span-6'>
           <div className='space-y-3 text-gray-400 tracking-wide'>
             <p>
-              Hello! I&apos;m <span className={emphasis}>Ryan Le</span>, a passionate front-end web developer and 2021 graduate from the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. As a first-generation Vietnamese-American, I&apos;m proud to be the first in my family to attend and graduate from higher education.
-            </p>
-            <p>
-              During my time at the University of Nebraska-Lincoln, I gained extensive experience in software development, specializing in front-end web development. Using cutting-edge technologies like React.js, Next.js, Tailwind CSS, and TypeScript, I craft exceptional user interfaces and engaging experiences.
-            </p>
-            <p>
-              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, but these days I call <span className={emphasis}>Brooklyn, New York</span>, my home. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
-            </p>
-            <p>
-              When I&apos;m not coding, you&apos;ll find me exploring virtual worlds as an avid gamer or biking through city streets, embracing the thrill of adventure. With a personal goal of visiting all 50 states, I&apos;m eager to experience the diverse tapestry of the United States.
+              Hey! I&apos;m Ryan Le - a front-end developer, community builder, and co-founder of the wildly unnecessary but deeply meaningful phenomenon known as the <NextLink className='text-white font-semibold' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>.
             </p>
 
+            <p>
+              By day, I build clean, responsive, and delightful web experiences using tools like React.js, Next.js, Tailwind CSS, and TypeScript. I love crafting thoughtful interfaces and solving UI problems that make the web feel more intuitive and human. This portfolio was built with that same joy and curiosity after several iterations to get it just right. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
+            </p>
+
+            <p>
+              By night (and oftentimes, weekends), I co-run <span className='text-white font-semibold'>Ryan Meetup</span> - a national event series dedicated to bringing people named Ryan together in absurd, heartfelt, and often hilarious ways. From coordinating 100+ Ryans at a theater takeover to hosting our own Ryan-themed Game Show in San Diego, I&apos;ve learned a lot about creative production, logistics, and what makes people really feel like they belong.
+            </p>
+
+            <p>
+              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, and am a proud first-generation Vietnamese-American, as well as a graduate of the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. These days, I&apos;m based in <span className={emphasis}>Brooklyn, New York</span>, where I split by time between coding, biking, people-watching, and scheming up new ideas - digital and physical - that bring people together.
+            </p>
+
+            <p>
+              Whether it&apos;s through code or community, I&apos;m always chasing the same thing: building things that feel good to use and even better to be a part of.
+            </p>
 
             <h2 className='text-white text-3xl font-bold pt-6 pb-2 tracking-wider'>
               Follow me on...
