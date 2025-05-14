@@ -3,6 +3,7 @@ import { Layout } from '@/components/navigation';
 import { SkillsTable } from '@/components/skills';
 import { Divider } from '@/components/global';
 import NextLink from 'next/link';
+import { FaHandshake as Handshake } from 'react-icons/fa';
 
 // Types
 import type { Skill } from '@/lib/types';
@@ -85,6 +86,14 @@ const SkillsPage = async () => {
           skills={creativeSkills as Skill[]}
         />
       </div>
+
+      <NextLink 
+        className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'
+        href='/ryan-meetup'
+      >
+        <Handshake className='mr-4' /> Learn more about the Ryan Meetup
+      </NextLink>
+
       <div className='flex justify-center items-center mt-8'>
         <NextLink
           className='transition ease-in-out text-center font-cooper duration-300 hover:scale-105 space-y-3'

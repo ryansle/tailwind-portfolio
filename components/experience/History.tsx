@@ -3,6 +3,7 @@ import NextImage from 'next/image';
 import { List, TechLabel } from '@/components/experience';
 import { Divider } from '@/components/global';
 import NextLink from 'next/link';
+import { FaHandshake as Handshake } from 'react-icons/fa';
 
 // Types
 import { Experience } from '@/lib/types';
@@ -99,6 +100,15 @@ const Company = (props: CompanyProps) => {
                 />
               ))}
             </div>
+          )}
+
+          {company === 'Ryan Meetup' && (
+            <NextLink 
+              className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'
+              href='/ryan-meetup'
+            >
+              <Handshake className='mr-4' /> Learn more about the Ryan Meetup
+            </NextLink>
           )}
         </div>
 
