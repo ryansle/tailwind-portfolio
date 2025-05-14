@@ -40,7 +40,7 @@ const RyanRavePage = () => {
       <div className='text-gray-400 tracking-wide text-xl mt-8 text-center'>
         <div className='mb-8'>
           <p>
-            After a video about our 'Ryan Retreat' received 60 million views in less than a week, 
+            After a video about our &apos;Ryan Retreat&apos; received 60 million views in less than a week, 
             Ryans everywhere were begging us to host another event. We rysponded by throwing our 
             biggest Ryan Meetup of all time (576 Ryans). 
           </p>

@@ -100,7 +100,7 @@ const RyanMeetupPage = async () => {
 
         <div className='space-y-4'>
           <p>
-            I'm Co-Founder and Chief Operations Ryan of a non-profit organization called Ryan Meetup, which specializes in hosting exclusive events for people named Ryan. What started as 3 Ryans meeting because of a flyer has grown into a worldwide movement — with over 20,000 Ryans in over 60 countries. 
+            I&apos;m Co-Founder and Chief Operations Ryan of a non-profit organization called Ryan Meetup, which specializes in hosting exclusive events for people named Ryan. What started as 3 Ryans meeting because of a flyer has grown into a worldwide movement — with over 20,000 Ryans in over 60 countries. 
           </p>
           <p>
             If your name is Ryan, please join our group <NextLink className={emphasis} href='https://www.ryanmeetup.com/'>here</NextLink>. If your name is not Ryan, please change it to Ryan <NextLink href='https://www.nycourts.gov/forms/Name-SexDesignationChange/AdultName-SexDesignationChangePetition-fillable.pdf' className={emphasis}>here</NextLink>. If your name is Bryan, please leave my site and never come back. Below are some highlights from the past two years:
@@ -110,6 +110,7 @@ const RyanMeetupPage = async () => {
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 mt-8'>
           {tiles.map((tile) => (
             <MediaTile 
+              key={tile.title}
               href={tile.href}
               src={tile.src}
               title={tile.title}
@@ -123,11 +124,11 @@ const RyanMeetupPage = async () => {
 
         <div className='space-y-4'>
           <p>
-            In February 2023, Ryan Rose wanted to make friends in her Brooklyn neighborhood, so she hung up the original Ryan Meetup flyers. What she didn't know at the time was that she would be kickstarting a worldwide movement
-            and creating a community of Ryans from all over. Now, we at Ryan Meetup are all united in our goal to eventually break the world record for the <NextLink href='https://www.guinnessworldrecords.com/world-records/largest-same-name-gathering-first-name' className={emphasis}>largest same name gathering</NextLink>, and we'll stop at nothing to get there.
+            In February 2023, Ryan Rose wanted to make friends in her Brooklyn neighborhood, so she hung up the original Ryan Meetup flyers. What she didn&apos;t know at the time was that she would be kickstarting a worldwide movement
+            and creating a community of Ryans from all over. Now, we at Ryan Meetup are all united in our goal to eventually break the world record for the <NextLink href='https://www.guinnessworldrecords.com/world-records/largest-same-name-gathering-first-name' className={emphasis}>largest same name gathering</NextLink>, and we&apos;ll stop at nothing to get there.
           </p>
           <p>
-            Two years and 15+ events later, we've built something incredibly special and are still moving full speed ahead in our pursuit of that world record. It also helps that these events are very fun to host and attend.
+            Two years and 15+ events later, we&apos;ve built something incredibly special and are still moving full speed ahead in our pursuit of that world record. It also helps that these events are very fun to host and attend.
           </p>
         </div>
       </div>

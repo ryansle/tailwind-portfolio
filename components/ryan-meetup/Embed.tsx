@@ -27,7 +27,7 @@ const Embed = (props: EmbedProps) => {
         />
       )}
     </div>
-  )
+  );
 };
 
 export { Embed };

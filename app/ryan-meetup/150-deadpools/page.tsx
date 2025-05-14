@@ -55,7 +55,7 @@ const DeadpoolsPage = () => {
 
       <div className='text-gray-400 tracking-wide text-xl mt-8 text-center'>
         <p className='mb-4'>
-          The guy who plays Deadpool is named Ryan. So we filled a theater with 150 Ryans (and one special guest) to support his latest movie "Deadpool & Wolverine".  After our event went viral, many were convinced it was part of the movie's $100 million promotional campaign. But our bank account knows the truth.
+          The guy who plays Deadpool is named Ryan. So we filled a theater with 150 Ryans (and one special guest) to support his latest movie &ldquo;Deadpool & Wolverine&rdquo;.  After our event went viral, many were convinced it was part of the movie&apos;s $100 million promotional campaign. But our bank account knows the truth.
         </p>
 
         <p>
@@ -65,7 +65,7 @@ const DeadpoolsPage = () => {
         <div className='grid grid-cols-1 xl:grid-cols-3 gap-8 mt-8'>
           <div className='space-y-8 flex flex-col items-center justify-center'>
             {left.map((photo, index) => (
-              <div className='relative w-full h-24'>
+              <div className='relative w-full h-24' key={index}>
                 <NextImage 
                   src={photo.src}
                   alt={photo.alt}
@@ -84,7 +84,7 @@ const DeadpoolsPage = () => {
 
           <div className='space-y-8 flex flex-col items-center justify-center'>
             {right.map((photo, index) => (
-              <div className='relative w-full h-24'>
+              <div className='relative w-full h-24' key={index}>
                 <NextImage 
                   src={photo.src}
                   alt={photo.alt}

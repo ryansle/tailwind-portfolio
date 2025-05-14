@@ -55,7 +55,7 @@ const MintPage = () => {
       <div className='text-gray-400 tracking-wide text-xl mt-8 text-center'>
         <p className='mb-4'>
           Mint Mobile asked us to throw Ryan a birthday party on Oct. 23rd. 
-          We didn't know which Ryan they meant, so we threw a party for every 
+          We didn&apos;t know which Ryan they meant, so we threw a party for every 
           Ryan we could find with that birthday. Even though one of them never 
           said thank you...or anything for that matter.
         </p>
@@ -83,6 +83,7 @@ const MintPage = () => {
         <div className='grid grid-cols-1 xl:grid-cols-3 gap-4'>
           {assets.map((asset) => (
             <NextImage 
+              key={asset.alt}
               src={asset.src}
               alt={asset.alt}
               height={1564}

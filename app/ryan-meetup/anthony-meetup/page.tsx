@@ -44,7 +44,7 @@ const AnthonyPage = () => {
         </p>
 
         <p>
-          Posters mimicking our own started appearing around New York advertising an 'Anthony Meetup',
+          Posters mimicking our own started appearing around New York advertising an &apos;Anthony Meetup&apos;,
           tying back to a content creator known as <NextLink href='https://www.youtube.com/@anthpo' className={emphasis}>Anthpo</NextLink>, who was also previously responsible for bits such as{' '}
           <NextLink className={emphasis} href='https://www.youtube.com/watch?v=hHeV486B5iI&pp=0gcJCdgAo7VqN5tD'>the Cheeseball Man</NextLink>,{' '}
           <NextLink className={emphasis} href='https://www.nytimes.com/2024/10/28/nyregion/timothee-chalamet-lookalike-contest-new-york.html'>Timothy Chalamet Lookalike Contests</NextLink>, and more.

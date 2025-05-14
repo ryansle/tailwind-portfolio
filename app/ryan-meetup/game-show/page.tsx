@@ -35,22 +35,22 @@ const GameShowPage = () => {
         Ryan Meetup
       </NextLink>
       <h1 className='text-center font-cooper text-6xl'>
-        Ryan's Game Show
+        Ryan&apos;s Game Show
       </h1>
 
       <div className='text-gray-400 tracking-wide text-xl mt-8 text-center'>
         <div className='space-y-4'>
           <p>
             A YouTuber named <NextLink className={emphasis} href='https://www.youtube.com/channel/UC6yeqgmyqhDyMPzE4wwxQig'>Ryan Hailey</NextLink> reached out to us after attending our Ryan Rave back in September 2023, 
-            telling us about a YouTube series he used to host in his garage years back entitled <NextLink href='https://www.youtube.com/@RyansGameshowisthebestgameshow' className={emphasis}>Ryan's Game Show</NextLink>.
+            telling us about a YouTube series he used to host in his garage years back entitled <NextLink href='https://www.youtube.com/@RyansGameshowisthebestgameshow' className={emphasis}>Ryan&apos;s Game Show</NextLink>.
             After watching his series on YouTube, we knew we had to bring it back to life in the form of a Ryan 
             Meetup event.
           </p>
 
           <p>
-            Thus, Ryan's Game Show LIVE was born. Hosted by Ryan Hailey in collaboration with Ryan Meetup, 
+            Thus, Ryan&apos;s Game Show LIVE was born. Hosted by Ryan Hailey in collaboration with Ryan Meetup, 
             Ryans faced off against Ryan, Ryan, and Ryan in games like <span>The Price is Ryan</span>,{' '}
-            <span>Wheel of Ryan</span>, <span>Ryan's Got Talent</span>, and more.
+            <span>Wheel of Ryan</span>, <span>Ryan&apos;s Got Talent</span>, and more.
           </p>
         </div>
 

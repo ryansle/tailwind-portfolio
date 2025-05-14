@@ -34,13 +34,13 @@ const StRyansDayPage = () => {
         Ryan Meetup
       </NextLink>
       <h1 className='text-center font-cooper text-6xl'>
-        St. Ryan's Day
+        St. Ryan&apos;s Day
       </h1>
 
       <div className='text-gray-400 tracking-wide text-xl mt-8 text-center'>
         <p>
-          During the month of March, all we heard was "Patrick this", "Patrick that," 
-          "People are getting together for Patrick."  And that goes against everything we believe 
+          During the month of March, all we heard was &lsquo;Patrick this&rsquo;, &lsquo;Patrick that,&rsquo; 
+          &lsquo;People are getting together for Patrick.&rsquo;  And that goes against everything we believe 
           in at Ryan Meetup. So we made our own holiday, where people get together for Ryan.
         </p>        
       </div>

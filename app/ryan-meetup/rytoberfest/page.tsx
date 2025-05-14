@@ -39,9 +39,9 @@ const RytoberfestPage = () => {
 
       <div className='text-gray-400 tracking-wide text-xl mt-8 text-center'>
         <p>
-          For some reason, people kept commenting "sausage fest" on our Ryan Rave recap video. 
+          For some reason, people kept commenting &lsquo;sausage fest&rsquo; on our Ryan Rave recap video. 
           Which gave us the perfect idea for our next meetup — an event now widely known as{' '}
-          "The Greatest Beer and Sausage Fest of the Century."
+          &lsquo;The Greatest Beer and Sausage Fest of the Century.&rsquo;
         </p>        
       </div>
 
