@@ -95,14 +95,14 @@ const ContactForm = () => {
   const sendSuccessAlert = () => toast.custom((t) => (
     <div
       className={`${t.visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 text-black grid grid-cols-12 p-4 -pb-1 z-10`}
+        } ui-card pointer-events-auto grid w-full max-w-md grid-cols-12 p-4 text-white`}
     >
       <div className='col-span-1 flex items-center justify-center'>
         <Check className='h-8 w-8 fill-green-500 shrink-0' />
       </div>
       <div className='col-span-10 pl-4 pr-6'>
         <h1 className='text-lg text-semibold font-cooper'>Email sent!</h1>
-        <p className='text-sm tracking-wide'>
+        <p className='text-sm tracking-wide text-soft'>
           Expect an email back from me soon!
         </p>
       </div>
@@ -117,7 +117,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <form>
+      <form className='ui-card p-5 sm:p-6'>
         {!render && (
           <SkeletonForm />
         )}
@@ -197,11 +197,11 @@ const ContactForm = () => {
 
       <Toaster position='bottom-center' />
       <button
-        className='rounded-lg p-3 bg-black uppercase border border-gray-700 tracking-widest flex disabled:cursor-not-allowed disabled:text-gray-700'
+        className='ui-button-primary mt-4 uppercase disabled:cursor-not-allowed disabled:opacity-50'
         onClick={handleSubmit((data) => sendEmail(data as Form))}
         disabled={Object.keys(errors).length !== 0}
       >
-        <span className='mr-2 mt-1'>
+        <span className='mr-2 mt-0.5'>
           {loading ? <Loader /> : <Send />}
         </span>
         Send Message

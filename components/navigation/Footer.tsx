@@ -35,121 +35,118 @@ const Footer = () => {
   };
 
   return (
-    <footer className='border-t border-gray-700 px-6 h-20 mt-24 xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
-      <div className='w-full py-6 lg:py-8'>
-        <div className='md:flex md:justify-between'>
-          <div className='mb-6 mr-8 md:mb-0'>
-            <div className='block lg:items-center lg:flex'>
-              <NextLink href='/'>
-                <NextImage
-                  className='rounded-full mr-4 mb-2 lg:mb-0'
-                  height={40}
-                  width={40}
-                  src='/profile.png'
-                  alt='Ryan Le Headshot'
-                />
-              </NextLink>
-              <div>
-                <h4 className='tracking-wider font-medium text-xl'>RYAN S. LE</h4>
-                <h5 className='tracking-wide font-semibold'>
-                  <span className='text-teal-500'>
-                    UI Engineer II
-                  </span> @{' '}
-                  <NextLink className='hover:underline' href='https://www.crowdstrike.com/'>
-                    CrowdStrike
-                  </NextLink>
-                </h5>
-              </div>
-            </div>
-            <div className='space-y-1 font-cooper tracking-widest mt-4'>
-              <p>
-                Is your name Ryan?
-              </p>
-              <p>
-                Wanna meet other Ryans?
-              </p>
-              <p>
-                JOIN THE <NextLink className='text-teal-500 hover:underline' href='https://ryanmeetup.com/'>RYAN MEETUP</NextLink>!
-              </p>
-            </div>
-          </div>
-
-          <div className='block md:hidden'>
-            <Divider margins='md' />
-          </div>
-
-          {/* Resources & Follow Us */}
-          <div className='grid grid-cols-4 space-x-8'>
-            <div className='col-span-1'>
-              <h2 className='mb-6 text-xs font-semibold text-white uppercase text-white sm:text-sm'>Follow Me</h2>
-              <ul className='text-gray-600 font-medium'>
-                {socials.map((social) => (
-                  <li className='mb-2' key={social.platform as string}>
-                    <NextLink
-                      href={social.url as string}
-                      className='hover:underline'
-                      aria-label={`My ${social.platform} profile`}
-                    >
-                      {social.platform as string}
+    <footer className='pb-10 pt-8'>
+      <div className='app-container'>
+        <div className='ui-card px-6 py-8 sm:px-8'>
+          <div className='md:flex md:justify-between md:gap-10'>
+            <div className='mb-8 mr-8 md:mb-0'>
+              <div className='block lg:flex lg:items-center'>
+                <NextLink href='/'>
+                  <NextImage
+                    className='mb-3 rounded-full ring-1 ring-white/10 lg:mb-0 lg:mr-4'
+                    height={40}
+                    width={40}
+                    src='/profile.png'
+                    alt='Ryan Le Headshot'
+                  />
+                </NextLink>
+                <div>
+                  <h4 className='text-xl font-medium tracking-wider'>RYAN S. LE</h4>
+                  <h5 className='font-semibold tracking-wide text-soft'>
+                    <span className='text-teal-300'>
+                      UI Engineer II
+                    </span> @{' '}
+                    <NextLink className='hover:text-white hover:underline' href='https://www.crowdstrike.com/'>
+                      CrowdStrike
                     </NextLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className='col-span-3'>
-              <h2 className='mb-6 text-xs font-semibold text-white uppercase text-white sm:text-sm'>Built With</h2>
-              <div className='grid grid-cols-2 space-x-4'>
-                <div className='col-span-1'>
-                  <ul className='text-gray-600 font-medium'>
-                    <li className='mb-2'>
-                      <NextLink href='https://nextjs.org/' className='hover:underline'>Next.js</NextLink>
-                    </li>
-                    <li className='mb-2'>
-                      <NextLink href='https://react.dev/' className='hover:underline'>React.js</NextLink>
-                    </li>
-                    <li className='mb-2'>
-                      <NextLink href='https://tailwindcss.com/' className='hover:underline'>Tailwind CSS</NextLink>
-                    </li>
-                  </ul>
+                  </h5>
                 </div>
-                <div className='col-span-1'>
-                  <ul className='text-gray-600 font-medium'>
-                    <li className='mb-2'>
-                      <NextLink href='https://flowbite.com/' className='hover:underline'>Flowbite</NextLink>
+              </div>
+              <div className='mt-5 space-y-1 font-cooper tracking-widest text-soft'>
+                <p>Is your name Ryan?</p>
+                <p>Wanna meet other Ryans?</p>
+                <p>
+                  JOIN THE <NextLink className='text-teal-300 hover:text-teal-200 hover:underline' href='https://ryanmeetup.com/'>RYAN MEETUP</NextLink>!
+                </p>
+              </div>
+            </div>
+
+            <div className='block md:hidden'>
+              <Divider margins='md' />
+            </div>
+
+            <div className='grid grid-cols-1 gap-8 sm:grid-cols-4 sm:gap-10'>
+              <div className='sm:col-span-1'>
+                <h2 className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Follow Me</h2>
+                <ul className='font-medium text-muted'>
+                  {socials.map((social) => (
+                    <li className='mb-2' key={social.platform as string}>
+                      <NextLink
+                        href={social.url as string}
+                        className='hover:text-white hover:underline'
+                        aria-label={`My ${social.platform} profile`}
+                      >
+                        {social.platform as string}
+                      </NextLink>
                     </li>
-                    <li className='mb-2'>
-                      <NextLink href='https://headlessui.com/' className='hover:underline'>Headless UI</NextLink>
-                    </li>
-                    <li className='mb-2'>
-                      <NextLink href='https://www.contentful.com/' className='hover:underline'>Contentful</NextLink>
-                    </li>
-                  </ul>
+                  ))}
+                </ul>
+              </div>
+              <div className='sm:col-span-3'>
+                <h2 className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Built With</h2>
+                <div className='grid grid-cols-2 gap-4'>
+                  <div>
+                    <ul className='font-medium text-muted'>
+                      <li className='mb-2'>
+                        <NextLink href='https://nextjs.org/' className='hover:text-white hover:underline'>Next.js</NextLink>
+                      </li>
+                      <li className='mb-2'>
+                        <NextLink href='https://react.dev/' className='hover:text-white hover:underline'>React.js</NextLink>
+                      </li>
+                      <li className='mb-2'>
+                        <NextLink href='https://tailwindcss.com/' className='hover:text-white hover:underline'>Tailwind CSS</NextLink>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul className='font-medium text-muted'>
+                      <li className='mb-2'>
+                        <NextLink href='https://flowbite.com/' className='hover:text-white hover:underline'>Flowbite</NextLink>
+                      </li>
+                      <li className='mb-2'>
+                        <NextLink href='https://headlessui.com/' className='hover:text-white hover:underline'>Headless UI</NextLink>
+                      </li>
+                      <li className='mb-2'>
+                        <NextLink href='https://www.contentful.com/' className='hover:text-white hover:underline'>Contentful</NextLink>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <hr className='my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8' />
-        <div className='sm:flex sm:items-center sm:justify-between'>
-          <span className='text-sm text-gray-600 sm:text-center'>
-            © {new Date().getFullYear()} Ryan Le. All Rights Reserved.
-          </span>
 
-          {/* Socials */}
-          <div className='flex mt-4 space-x-6 sm:justify-center sm:mt-0'>
-            {socials.map((social) => (
-              <NextLink
-                key={social.platform as string}
-                href={social.url as string}
-                aria-label={`My ${social.platform} profile`}
-              >
-                {renderIcon(social.platform as string)}
-              </NextLink>
-            ))}
+          <hr className='ui-divider my-6 lg:my-8' />
+          <div className='sm:flex sm:items-center sm:justify-between'>
+            <span className='text-sm text-muted sm:text-center'>
+              © {new Date().getFullYear()} Ryan Le. All Rights Reserved.
+            </span>
+
+            <div className='mt-4 flex space-x-4 sm:mt-0 sm:justify-center'>
+              {socials.map((social) => (
+                <NextLink
+                  key={social.platform as string}
+                  href={social.url as string}
+                  aria-label={`My ${social.platform} profile`}
+                  className='ui-icon-button'
+                >
+                  {renderIcon(social.platform as string)}
+                </NextLink>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-
     </footer>
   );
 };

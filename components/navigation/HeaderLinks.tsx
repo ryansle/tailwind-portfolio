@@ -15,12 +15,12 @@ type HeaderLinksProps = {
 };
 
 const renderStyles = (path: string, href: string) => {
-  const styles = 'font-semibold tracking-wide p-2 transition ease-in-out duration-300 hover:bg-gray-900 hover:scale-105';
+  const styles = 'rounded-full px-4 py-2 text-sm font-semibold tracking-wide';
 
   return clsx([
     styles,
-    path === href && 'border-b-2 border-teal-500 text-teal-500 rounded-t',
-    path !== href && 'text-white rounded'
+    path === href && 'bg-teal-400/12 text-teal-300 ring-1 ring-teal-400/20',
+    path !== href && 'text-slate-200 hover:bg-white/5 hover:text-white'
   ]);
 };
 
@@ -30,21 +30,19 @@ const HeaderLinks = (props: HeaderLinksProps) => {
   const path = usePathname();
 
   return (
-    <div className='space-x-4 flex items-center'>
-      <div className='hidden xl:block space-x-4 flex items-center'>
+    <div className='flex items-center space-x-4'>
+      <div className='hidden items-center space-x-2 xl:flex'>
         {routes.map((route: Route) => (
-          <button
+          <NextLink
             className={renderStyles(path, route.href)}
+            href={route.href}
             key={route.text}
           >
-            <NextLink
-              className='flex items-center gap-x-2'
-              href={route.href}
-            >
+            <span className='flex items-center gap-x-2'>
               {route.icon}
               {route.text}
-            </NextLink>
-          </button>
+            </span>
+          </NextLink>
         ))}
       </div>
     </div>

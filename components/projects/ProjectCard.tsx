@@ -30,31 +30,31 @@ const ProjectCard = (props: ProjectCardProps) => {
   const tech = techStack.map((item) => item.fields);
 
   return (
-    <div className='rounded-xl border border-gray-700 mb-4 transition ease-in duration-300 hover:scale-102'>
-      <div className='relative w-full aspect-video'>
+    <div className='group ui-card surface-hover mb-4 overflow-hidden transition duration-300 ease-in-out hover:-translate-y-1'>
+      <div className='relative aspect-video w-full overflow-hidden'>
         <NextImage
           fill
-          className='rounded-t-xl'
+          className='rounded-t-[var(--radius-lg)] object-cover transition duration-500 ease-in-out group-hover:scale-[1.03]'
           src={convertImageUrl(image)}
           alt={`${title} Project`}
-          style={{ objectFit: 'cover' }}
         />
+        <div className='absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent' />
       </div>
 
-      <div className='p-4 tracking-wide'>
+      <div className='p-5 tracking-wide'>
         <div className='flex justify-between items-center'>
           <h3 className='font-semibold text-xl tracking-wider text-left'>
             {title}
           </h3>
           <div className='flex space-x-2 items-center'>
             {github && (
-              <NextLink href={github} aria-label={`GitHub for ${title}`}>
+              <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button'>
                 <GitHub className='w-4 h-4' aria-label='GitHub icon' />
               </NextLink>
             )}
 
             {url && (
-              <NextLink href={url} aria-label={`External Deployment for ${title}`}>
+              <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button'>
                 <Link className='w-5 h-5' aria-label='External URL icon' />
               </NextLink>
             )}
@@ -63,7 +63,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
         <div className='text-left'>
           {subtitle && (
-            <h4 className='font-medium text-sm tracking-wider'>
+            <h4 className='text-sm font-medium tracking-wider text-soft'>
               {subtitle}
             </h4>
           )}
@@ -81,7 +81,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
           <Divider margins='md' />
 
-          <p className='text-sm text-gray-400'>
+          <p className='text-sm text-muted'>
             {summary}
           </p>
         </div>
