@@ -54,7 +54,7 @@ const Hero = (props: HeroProps) => {
             </div>
 
             <a href='/resume.pdf' download='ryan-le-resume.pdf'>
-              <button className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'>
+              <button className='motion-lift motion-glow w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center hover:border-teal-500'>
                 <Download className='mr-4' /> Download Resume
               </button>
             </a>
@@ -62,7 +62,7 @@ const Hero = (props: HeroProps) => {
         </div>
         <div className='col-span-0 xl:col-span-1' />
         <div className='col-span-12 flex items-center justify-center mb-10 xl:col-span-4 xl:mt-10 xl:mb-0'>
-          <div className='relative aspect-square w-full max-h-full sm:max-h-[300px] sm:max-w-[300px] md:max-h-[400px] md:max-w-[400px]'>
+          <div className='motion-parent relative aspect-square w-full max-h-full sm:max-h-[300px] sm:max-w-[300px] md:max-h-[400px] md:max-w-[400px]'>
             <Transition
               appear={true}
               show={true}
@@ -79,7 +79,7 @@ const Hero = (props: HeroProps) => {
                 />
               </div>
               <NextImage
-                className='rounded-full drop-shadow-2xl z-20'
+                className='motion-media rounded-full drop-shadow-2xl z-20'
                 src='/profile.png'
                 fill
                 alt='Ryan Le - Headshot'

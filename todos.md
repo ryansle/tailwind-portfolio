@@ -55,21 +55,6 @@ Suggestions:
   - form card
   - testimonial card
 
-### 5. Improve Motion Design
-
-Current issue:
-- Motion exists, but mostly as fade/slide and hover scale.
-
-Suggestions:
-- Use staggered reveal timing at the section level instead of repeating similar animations per element.
-- Replace aggressive hover scaling with more premium motion:
-  - slight translate
-  - shadow/elevation shift
-  - border glow
-  - media zoom under overlay
-- Add `prefers-reduced-motion` support for decorative motion.
-- Make motion durations and easing consistent across the app.
-
 ### 6. Improve Responsive Rhythm
 
 Suggestions:

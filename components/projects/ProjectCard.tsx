@@ -30,11 +30,11 @@ const ProjectCard = (props: ProjectCardProps) => {
   const tech = techStack.map((item) => item.fields);
 
   return (
-    <div className='group ui-card surface-hover mb-4 overflow-hidden transition duration-300 ease-in-out hover:-translate-y-1'>
+    <div className='group motion-parent ui-card surface-hover motion-lift motion-glow mb-4 overflow-hidden'>
       <div className='relative aspect-video w-full overflow-hidden'>
         <NextImage
           fill
-          className='rounded-t-[var(--radius-lg)] object-cover transition duration-500 ease-in-out group-hover:scale-[1.03]'
+          className='motion-media rounded-t-[var(--radius-lg)] object-cover'
           src={convertImageUrl(image)}
           alt={`${title} Project`}
         />

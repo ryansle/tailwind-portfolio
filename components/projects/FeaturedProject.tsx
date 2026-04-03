@@ -42,14 +42,14 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
 
   return (
     <>
-      <Transition
-        appear={true}
-        show={true}
-        enter='transition-opacity ease-linear duration-1000'
-        enterFrom='opacity-0'
-        enterTo='opacity-100'
-      >
-        <div className='grid grid-cols-12 tracking-wide mb-10 transition ease-in duration-300 hover:scale-102 xl:mb-20 '>
+              <Transition
+                appear={true}
+                show={true}
+                enter='transition ease-out duration-500'
+                enterFrom='opacity-0 translate-y-4'
+                enterTo='opacity-100 translate-y-0'
+              >
+        <div className='motion-parent grid grid-cols-12 tracking-wide mb-10 xl:mb-20'>
           <div className={`${order ? 'pr-8 mt-4 order-last xl:order-first' : 'order-last pl-8 mt-4'} col-span-12 xl:col-span-5`}>
             <FeaturedTag order={order} />
             <div className={`${order ? 'text-left' : 'text-right'}`}>
@@ -60,7 +60,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
                 {subtitle}
               </h3>
             </div>
-            <div className='rounded-xl border bg-zinc-950 p-4 border-gray-700'>
+            <div className='motion-lift motion-glow rounded-xl border bg-zinc-950 p-4 border-gray-700'>
               <p className='text-gray-400'>
                 {summary}
               </p>
@@ -95,7 +95,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
               <NextLink href={(url ?? github) as string}>
                 <NextImage
                   fill
-                  className='rounded-xl'
+                  className='motion-media rounded-xl'
                   src={convertImageUrl(image)}
                   alt={`${title} Project`}
                   style={{ objectFit: 'cover' }}

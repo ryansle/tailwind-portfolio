@@ -88,7 +88,7 @@ const SkillsPage = async () => {
       </div>
 
       <NextLink 
-        className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'
+        className='motion-lift motion-glow w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center hover:border-teal-500'
         href='/ryan-meetup'
       >
         <Handshake className='mr-4' /> Learn more about the Ryan Meetup
@@ -96,7 +96,7 @@ const SkillsPage = async () => {
 
       <div className='flex justify-center items-center mt-8'>
         <NextLink
-          className='transition ease-in-out text-center font-cooper duration-300 hover:scale-105 space-y-3'
+          className='motion-link text-center font-cooper space-y-3'
           href='https://www.ryanmeetup.com/'
         >
           <h1 className='text-5xl xl:text-[100px]'>

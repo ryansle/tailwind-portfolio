@@ -196,6 +196,48 @@ body {
     transform: translateY(-1px);
   }
 
+  .motion-lift {
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard),
+      background-color var(--duration-base) var(--ease-standard);
+  }
+
+  .motion-lift:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 28px 56px rgba(2, 6, 23, 0.32);
+  }
+
+  .motion-glow:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 24px 52px rgba(2, 6, 23, 0.34),
+      0 0 0 1px rgba(45, 212, 191, 0.24);
+  }
+
+  .motion-media {
+    transition: transform var(--duration-slow) var(--ease-standard);
+    transform-origin: center center;
+  }
+
+  .motion-parent:hover .motion-media {
+    transform: scale(1.025);
+  }
+
+  .motion-link {
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      color var(--duration-base) var(--ease-standard);
+  }
+
+  .motion-link:hover {
+    transform: translateY(-1px);
+  }
+
   .ui-icon-button {
     @apply inline-flex items-center justify-center rounded-full p-2.5;
     background: rgba(15, 23, 42, 0.82);
@@ -305,5 +347,11 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .motion-parent:hover .motion-media,
+  .motion-lift:hover,
+  .motion-link:hover {
+    transform: none !important;
   }
 }
