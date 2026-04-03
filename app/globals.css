@@ -65,6 +65,10 @@ body {
     color: inherit;
   }
 
+  strong {
+    color: var(--text);
+  }
+
   a,
   button,
   input,
@@ -95,20 +99,38 @@ body {
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent 88%);
   }
 
+  .app-frame::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 24% 18%, rgba(45, 212, 191, 0.12), transparent 24%),
+      radial-gradient(circle at 80% 74%, rgba(56, 189, 248, 0.1), transparent 18%),
+      radial-gradient(circle at 52% 36%, rgba(45, 212, 191, 0.05), transparent 30%);
+    filter: blur(22px);
+    opacity: 0.9;
+  }
+
   .app-container {
     @apply mx-auto w-full max-w-[1600px] px-6 xs:px-10 lg:px-16 2xl:px-20;
   }
 
   .page-shell {
     @apply relative flex min-h-full flex-col overflow-x-hidden pt-12 pb-8;
+    isolation: isolate;
     padding-inline: var(--container-inline);
     gap: var(--section-space);
   }
 
   .ui-surface {
-    background: var(--surface);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 38%),
+      var(--surface);
     border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      var(--shadow);
     backdrop-filter: blur(18px);
   }
 
@@ -211,6 +233,63 @@ body {
   .surface-hover:hover {
     background: var(--surface-hover);
     border-color: var(--border-strong);
+  }
+
+  .section-panel {
+    @apply ui-card relative px-6 py-7 sm:px-8 sm:py-9;
+  }
+
+  .section-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 36%);
+  }
+
+  .subtle-panel {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%),
+      rgba(15, 23, 42, 0.46);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 18px 40px rgba(2, 6, 23, 0.22);
+    @apply rounded-[var(--radius-md)];
+  }
+
+  .surface-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.34), transparent);
+  }
+
+  .type-page-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    @apply font-semibold;
+  }
+
+  .type-section-title {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    @apply font-semibold;
+  }
+
+  .type-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    color: var(--text-soft);
+  }
+
+  .type-meta {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    letter-spacing: 0.18em;
+    @apply font-semibold uppercase text-muted;
   }
 }
 

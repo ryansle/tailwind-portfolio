@@ -1,5 +1,5 @@
 // Components
-import { MobileMenu } from '@/components/navigation';
+import { MobileMenu } from './MobileMenu';
 import { AiFillHome as Home } from 'react-icons/ai';
 import { IoPerson as Person } from 'react-icons/io5';
 import { HiAtSymbol as Contact } from 'react-icons/hi';
@@ -10,7 +10,7 @@ import {
 } from 'react-icons/md';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
-import { HeaderLinks } from '@/components/navigation';
+import { HeaderLinks } from './HeaderLinks';
 
 const Header = () => {
   const routes = [

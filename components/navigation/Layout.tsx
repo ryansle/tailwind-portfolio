@@ -1,5 +1,6 @@
 // Components
-import { Header, Footer } from '@/components/navigation';
+import { Header } from './Header';
+import { Footer } from './Footer';
 
 // Types
 import type { ReactNode } from 'react';

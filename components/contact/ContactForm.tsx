@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Components
 import { Input, Textarea } from '@/components/global';
-import { SkeletonForm } from './SkeletonForm';
 import { BiMailSend as Send } from 'react-icons/bi';
 import toast, { Toaster } from 'react-hot-toast';
 import { IoCloseSharp as Close } from 'react-icons/io5';
@@ -14,9 +13,6 @@ import { FaCheckCircle as Check } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { validateEmail } from '@/utils/validate';
 import emailjs from '@emailjs/browser';
-
-// Types
-import type { ReactNode } from 'react';
 
 type Form = {
   firstName: string;
@@ -39,58 +35,38 @@ const Loader = () => {
 
 const ContactForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [render, setRender] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-    setError,
-    clearErrors,
-  } = useForm();
+  } = useForm<Form>({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+  });
 
-  const sendEmail = (data: Form) => {
+  const sendEmail = async (data: Form) => {
     setLoading(true);
-
-    setTimeout(() => {
+    try {
       const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
       const userId = process.env.NEXT_PUBLIC_USER_ID;
       const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
 
-      emailjs.send(serviceId as string, templateId as string, data, userId);
-
+      await emailjs.send(serviceId as string, templateId as string, data, userId);
       sendSuccessAlert();
-      setLoading(false);
       reset();
-    }, 1500);
+    } finally {
+      setLoading(false);
+    }
   };
-
-  const checkEmail = (email: string) => {
-    const valid = validateEmail(email);
-
-    if (valid) clearErrors('email');
-    else setError('email', { message: 'Error: invalid email address' });
-  };
-
-  const toggleErrorFlags = () => {
-    setError('firstName', { message: 'Error: must provide a first name' });
-    setError('lastName', { message: 'Error: must provide a last name' });
-    setError('subject', { message: 'Error: must provide a subject' });
-    setError('message', { message: 'Error: must provide a message' });
-  };
-
-  useEffect(() => {
-    toggleErrorFlags();
-
-    setRender(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    toggleErrorFlags();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors]);
 
   const sendSuccessAlert = () => toast.custom((t) => (
     <div
@@ -101,7 +77,7 @@ const ContactForm = () => {
         <Check className='h-8 w-8 fill-green-500 shrink-0' />
       </div>
       <div className='col-span-10 pl-4 pr-6'>
-        <h1 className='text-lg text-semibold font-cooper'>Email sent!</h1>
+        <h1 className='text-lg font-semibold'>Email sent!</h1>
         <p className='text-sm tracking-wide text-soft'>
           Expect an email back from me soon!
         </p>
@@ -117,95 +93,104 @@ const ContactForm = () => {
 
   return (
     <>
-      <form className='ui-card p-5 sm:p-6'>
-        {!render && (
-          <SkeletonForm />
-        )}
+      <form className='ui-card p-5 sm:p-6' onSubmit={handleSubmit(sendEmail)}>
+        <div className='mb-6'>
+          <h2 className='type-section-title mb-2'>Send a message</h2>
+          <p className='text-sm text-soft'>
+            Share the role, project, or collaboration idea. I usually reply within 1 to 2 business days.
+          </p>
+        </div>
 
-        {render && (
-          <div>
-            <div className='grid grid-cols-2 gap-x-4 gap-y-4 mb-4'>
-              <div className='col-span-1'>
-                <Input
-                  label='First Name'
-                  placeholder='Ryan'
-                  required
-                  {...register('firstName', {
-                    onBlur: (event) => event.target.value === '' ?
-                      setError('firstName', { message: 'Error: must provide a first name' }) : clearErrors('firstName')
-                  })}
-                />
-              </div>
-
-              <div className='col-span-1'>
-                <Input
-                  label='Last Name'
-                  placeholder='Le'
-                  required
-                  {...register('lastName', {
-                    onBlur: (event) => event.target.value === '' ?
-                      setError('lastName', { message: 'Error: must provide a last name' }) : clearErrors('lastName')
-                  })}
-                />
-              </div>
-
-              <div className='col-span-2'>
-                <Input
-                  label='Email Address'
-                  placeholder='Where should I follow up?'
-                  type='text'
-                  required
-                  {...register('email', {
-                    onBlur: (event) => checkEmail(event.target.value)
-                  })}
-                />
-                {errors.email && (
-                  <p className='mt-2 text-red-500 text-xs'>
-                    {errors.email.message as ReactNode}
-                  </p>
-                )}
-              </div>
-
-              <div className='col-span-2'>
-                <Input
-                  label='Subject'
-                  placeholder='Career opportunites in...'
-                  required
-                  {...register('subject', {
-                    onBlur: (event) => event.target.value === '' ?
-                      setError('subject', { message: 'Error: must provide a subject' }) : clearErrors('subject')
-                  })}
-                />
-              </div>
-
-              <div className='col-span-2'>
-                <Textarea
-                  id='message'
-                  label='Message'
-                  placeholder='Hi Ryan! I hope you are having a great week so far! I just came across your profile and was very impressed with your background...'
-                  required
-                  {...register('message', {
-                    onBlur: (event) => event.target.value === '' ?
-                      setError('message', { message: 'Error: must provide a message' }) : clearErrors('message')
-                  })}
-                />
-              </div>
-            </div>
+        <div className='mb-4 grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2'>
+          <div className='col-span-1'>
+            <Input
+              label='First Name'
+              placeholder='Ryan'
+              required
+              error={errors.firstName?.message}
+              {...register('firstName', {
+                required: 'First name is required.',
+              })}
+            />
           </div>
-        )}
+
+          <div className='col-span-1'>
+            <Input
+              label='Last Name'
+              placeholder='Le'
+              required
+              error={errors.lastName?.message}
+              {...register('lastName', {
+                required: 'Last name is required.',
+              })}
+            />
+          </div>
+
+          <div className='col-span-1 sm:col-span-2'>
+            <Input
+              label='Email Address'
+              placeholder='Where should I follow up?'
+              type='email'
+              required
+              error={errors.email?.message}
+              {...register('email', {
+                required: 'Email address is required.',
+                validate: (value) => validateEmail(value) || 'Enter a valid email address.',
+              })}
+            />
+          </div>
+
+          <div className='col-span-1 sm:col-span-2'>
+            <Input
+              label='Subject'
+              placeholder='Career opportunities, freelance project, design system work...'
+              required
+              error={errors.subject?.message}
+              {...register('subject', {
+                required: 'Subject is required.',
+              })}
+            />
+          </div>
+
+          <div className='col-span-1 sm:col-span-2'>
+            <Textarea
+              id='message'
+              label='Message'
+              placeholder='Hi Ryan, I came across your work and wanted to reach out about...'
+              required
+              rows={6}
+              error={errors.message?.message}
+              {...register('message', {
+                required: 'Message is required.',
+                minLength: {
+                  value: 20,
+                  message: 'Add a little more context so I can respond usefully.',
+                },
+              })}
+            />
+          </div>
+        </div>
+
+        <div className='surface-rule mb-4' />
+
+        <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
+          <p className='text-sm text-muted'>
+            Prefer email? Reach me directly at <a className='text-teal-300 hover:underline' href='mailto:ryanle@live.com'>ryanle@live.com</a>.
+          </p>
+          <button
+            type='submit'
+            className='ui-button-primary uppercase disabled:cursor-not-allowed disabled:opacity-50'
+            disabled={loading}
+          >
+            <span className='mr-2 mt-0.5'>
+              {loading ? <Loader /> : <Send />}
+            </span>
+            {loading ? 'Sending...' : 'Send Message'}
+          </button>
+        </div>
       </form>
 
       <Toaster position='bottom-center' />
-      <button
-        className='ui-button-primary mt-4 uppercase disabled:cursor-not-allowed disabled:opacity-50'
-        onClick={handleSubmit((data) => sendEmail(data as Form))}
-        disabled={Object.keys(errors).length !== 0}
-      >
-        <span className='mr-2 mt-0.5'>
-          {loading ? <Loader /> : <Send />}
-        </span>
-        Send Message
-      </button>
     </>
   );
 };

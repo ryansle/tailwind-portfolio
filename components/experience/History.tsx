@@ -1,6 +1,7 @@
 // Components
 import NextImage from 'next/image';
-import { List, TechLabel } from '@/components/experience';
+import { List } from './List';
+import { TechLabel } from './TechLabel';
 import { Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';

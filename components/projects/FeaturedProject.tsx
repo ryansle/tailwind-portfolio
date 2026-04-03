@@ -3,7 +3,7 @@
 // Components
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import { TechLabel } from '@/components/experience';
+import { TechLabel } from '@/components/experience/TechLabel';
 import { AiFillGithub as GitHub } from 'react-icons/ai';
 import { HiExternalLink as Link } from 'react-icons/hi';
 import { Transition } from '@headlessui/react';
