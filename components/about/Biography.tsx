@@ -9,6 +9,10 @@ import {
   FaGithub as GitHub,
   FaInstagram as Instagram,
   FaStackOverflow as StackOverflow,
+  FaCompass as Compass,
+  FaPeopleGroup as People,
+  FaWandMagicSparkles as Sparkles,
+  FaCode as Code,
 } from 'react-icons/fa6';
 
 // Types
@@ -57,39 +61,62 @@ const Biography = (props: BiographyProps) => {
   const { socials } = props;
 
   const emphasis = 'text-teal-500 font-semibold';
+  const principles = [
+    {
+      title: 'Product clarity',
+      description: 'I care about interfaces that explain themselves and reduce decision friction.',
+      icon: <Compass className='h-4 w-4 text-teal-400' />,
+    },
+    {
+      title: 'Implementation craft',
+      description: 'Design systems, interaction polish, and maintainable front-end architecture are my home territory.',
+      icon: <Code className='h-4 w-4 text-teal-400' />,
+    },
+    {
+      title: 'Belonging',
+      description: 'Whether the medium is code or events, I want people to feel invited, oriented, and part of something.',
+      icon: <People className='h-4 w-4 text-teal-400' />,
+    },
+  ];
+  const moments = [
+    'Started contributing to Terraria as a kid, which gave me an early bias toward building things people genuinely enjoy.',
+    'Built product UI across agency, enterprise, startup, and community-led work.',
+    'Scaled Ryan Meetup from a joke premise into a nationally covered community brand.',
+  ];
 
   return (
-    <div>
-      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
-        About Me
-      </h1>
+    <div className='space-y-8'>
+      <div className='max-w-4xl'>
+        <p className='ui-eyebrow mb-3'>About</p>
+        <h1 className='page-title mb-4'>Front-end engineer, community builder, and creative operator.</h1>
+      </div>
 
-      <div className='grid grid-cols-12 flex items-center flex-wrap-reverse'>
+      <div className='grid grid-cols-12 gap-6 xl:items-start'>
         <div className='col-span-12 xl:col-span-6'>
-          <div className='space-y-3 text-gray-400 tracking-wide'>
+          <div className='space-y-4 text-soft tracking-wide'>
             <p>
-              Hey! I&apos;m Ryan Le - a front-end developer, community builder, and co-founder of the wildly unnecessary but deeply meaningful phenomenon known as the <NextLink className='text-white font-semibold' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>.
+              I&apos;m Ryan Le, a front-end engineer, community builder, and co-founder of <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series built around shared identity, humor, and belonging.
             </p>
 
             <p>
-              By day, I build clean, responsive, and delightful web experiences using tools like React.js, Next.js, Tailwind CSS, and TypeScript. I love crafting thoughtful interfaces and solving UI problems that make the web feel more intuitive and human. This portfolio was built with that same joy and curiosity after several iterations to get it just right. I&apos;ve been immersed in tech since a young age, joining the development team of the renowned indie game <span className={emphasis}>Terraria</span> at just 11 years old, sparking my passion for innovation and problem-solving.
+              Professionally, I focus on front-end systems, thoughtful UI, and responsive product experiences built with tools like React, Next.js, Tailwind CSS, and TypeScript. I like the work where design intent, engineering quality, and usability all have to line up. I&apos;ve been immersed in tech from an early age, including contributing to the development team behind <span className={emphasis}>Terraria</span> when I was 11, which set the tone for how I think about building things people genuinely enjoy.
             </p>
 
             <p>
-              By night (and oftentimes, weekends), I co-run <span className='text-white font-semibold'>Ryan Meetup</span> - a national event series dedicated to bringing people named Ryan together in absurd, heartfelt, and often hilarious ways. From coordinating 100+ Ryans at a theater takeover to hosting our own Ryan-themed Game Show in San Diego, I&apos;ve learned a lot about creative production, logistics, and what makes people really feel like they belong.
+              Outside of product work, I co-run <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series for people named Ryan. What started as a ridiculous idea turned into a real community, and it taught me as much about creative direction, logistics, programming, and storytelling as any formal role has.
             </p>
 
             <p>
-              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, and am a proud first-generation Vietnamese-American, as well as a graduate of the <span className='text-red-500 font-semibold'>University of Nebraska-Lincoln</span>. These days, I&apos;m based in <span className={emphasis}>Brooklyn, New York</span>, where I split by time between coding, biking, people-watching, and scheming up new ideas - digital and physical - that bring people together.
+              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, and I&apos;m a first-generation Vietnamese-American now based in <span className={emphasis}>Brooklyn, New York</span>. A lot of what I care about, in both code and community work, comes back to clarity, access, and making people feel included.
             </p>
 
             <p>
-              Whether it&apos;s through code or community, I&apos;m always chasing the same thing: building things that feel good to use and even better to be a part of.
+              Whether I&apos;m building a product surface or a community experience, I care about making it clear, memorable, and worth returning to.
             </p>
+          </div>
 
-            <h2 className='text-white text-3xl font-bold pt-6 pb-2 tracking-wider'>
-              Follow me on...
-            </h2>
+          <div className='mt-8 border-t border-white/10 pt-5'>
+            <h2 className='type-meta mb-4'>Find me online</h2>
             <div className='flex flex-wrap'>
               {socials.map((social) => (
                 <SocialMediaLink
@@ -100,12 +127,25 @@ const Biography = (props: BiographyProps) => {
               ))}
             </div>
           </div>
+
+          <div className='mt-8 grid gap-4 lg:grid-cols-3'>
+            {principles.map((principle) => (
+              <div key={principle.title} className='border-t border-white/10 pt-4'>
+                <div className='mb-3 flex items-center gap-2'>
+                  {principle.icon}
+                  <p className='type-meta'>{principle.title}</p>
+                </div>
+                <p className='text-sm leading-7 text-soft'>{principle.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className='col-span-0 xl:col-span-1' />
+        <div className='hidden xl:block xl:col-span-1' />
 
-        <div className='mb-10 col-span-12 order-first xl:col-span-5 xl:mt-0 xl:order-last'>
-          <div className='relative w-full h-[320px] xl:h-[500px]'>
+        <div className='col-span-12 xl:col-span-5 mr-8'>
+          <div className='mb-6'>
+            <div className='relative h-[320px] w-full overflow-visible xl:h-[500px]'>
             <Transition
               as='div'
               appear={true}
@@ -148,6 +188,19 @@ const Biography = (props: BiographyProps) => {
               />
               <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
             </Transition>
+          </div>
+        </div>
+
+          <div className='border-t border-white/10 pt-5'>
+            <div className='mb-4 flex items-center gap-2'>
+              <Sparkles className='h-4 w-4 text-teal-400' />
+              <p className='type-meta'>Notable career moments</p>
+            </div>
+            <div className='space-y-4 text-sm leading-7 text-soft'>
+              {moments.map((moment) => (
+                <p key={moment}>{moment}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>

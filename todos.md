@@ -73,23 +73,9 @@ Suggestions:
 Why it matters:
 - Project cards are better, but browsing is still mostly linear.
 
-### 6. Make About / Experience / Skills More Editorial
-
-Suggestions:
-- Introduce better section headers and transitions between biography, education, work history, and skills.
-- Use more deliberate timeline / milestone treatment in experience where appropriate.
-- Add highlight modules such as:
-  - principles I care about
-  - selected outcomes
-  - notable career moments
-- Reframe skills as grouped capabilities, not just inventory.
-
-Why it matters:
-- These pages contain strong content, but the structure still reads closer to “portfolio resume” than “designed narrative.”
-
 ## Content and Voice
 
-### 7. Reduce Casual UI Copy Where It Weakens Positioning
+### 6. Reduce Casual UI Copy Where It Weakens Positioning
 
 Suggestions:
 - Remove or reduce emoji-heavy copy in core professional sections.
@@ -99,7 +85,7 @@ Suggestions:
 Why it matters:
 - The design has become more premium; some copy still sounds more casual than the interface.
 
-### 8. Strengthen Proof Elements
+### 7. Strengthen Proof Elements
 
 Suggestions:
 - Add more concrete credibility signals:
@@ -115,7 +101,7 @@ Why it matters:
 
 ## Remaining Polish
 
-### 9. Review Decorative Assets
+### 8. Review Decorative Assets
 
 Suggestions:
 - Audit assets like `/dots.svg` and decide whether they still fit the direction.
@@ -130,6 +116,5 @@ Why it matters:
 1. Redesign the home hero.
 2. Improve homepage narrative flow.
 3. Improve project browsing and metadata.
-4. Make About / Experience / Skills more editorial.
-5. Tighten content voice and proof modules.
-6. Review and refine decorative assets.
+4. Tighten content voice and proof modules.
+5. Review and refine decorative assets.

@@ -38,6 +38,9 @@ const ExperiencePage = async () => {
       <h1 className='page-title mb-2'>
         Work Experience
       </h1>
+      <p className='type-body max-w-3xl'>
+        I&apos;ve worked across agency, enterprise, and self-directed projects, but the common thread is consistent: translating product intent into clear, scalable front-end systems with strong execution.
+      </p>
 
       <History experiences={experiences as Experience[]} />
     </Layout>

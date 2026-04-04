@@ -5,6 +5,7 @@ import { TechLabel } from './TechLabel';
 import { Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
+import { FaArrowTrendUp as Trend, FaLayerGroup as Systems, FaPeopleGroup as Community } from 'react-icons/fa6';
 
 // Types
 import { Experience } from '@/lib/types';
@@ -133,18 +134,57 @@ const Company = (props: CompanyProps) => {
 
 const History = (props: HistoryProps) => {
   const { experiences } = props;
+  const highlights = [
+    {
+      title: 'Selected outcomes',
+      description: 'Shipped responsive product surfaces, design-system work, and marketing experiences across multiple environments.',
+      icon: <Trend className='h-4 w-4 text-teal-400' />,
+    },
+    {
+      title: 'Implementation depth',
+      description: 'My strongest lane is front-end execution where UX, system design, and maintainability all need to hold together.',
+      icon: <Systems className='h-4 w-4 text-teal-400' />,
+    },
+    {
+      title: 'Narrative range',
+      description: 'From enterprise UI to Ryan Meetup, I know how to build things that are both useful and memorable.',
+      icon: <Community className='h-4 w-4 text-teal-400' />,
+    },
+  ];
 
   return (
-    <div className='mt-2'>
-      <ol className='relative border-l border-gray-700'>
-        {experiences.map((job, index) => (
-          <Company
-            key={job.company}
-            experience={job}
-            renderDivider={index !== experiences.length - 1}
-          />
+    <div className='mt-4 space-y-8'>
+      <div className='grid gap-4 lg:grid-cols-3'>
+        {highlights.map((highlight) => (
+          <div key={highlight.title} className='border-t border-white/10 pt-4'>
+            <div className='mb-3 flex items-center gap-2'>
+              {highlight.icon}
+              <p className='type-meta'>{highlight.title}</p>
+            </div>
+            <p className='text-sm leading-7 text-soft'>{highlight.description}</p>
+          </div>
         ))}
-      </ol>
+      </div>
+
+      <div>
+        <div className='mb-6 max-w-3xl'>
+          <p className='ui-eyebrow mb-3'>Timeline</p>
+          <h2 className='type-section-title mb-3'>A career shaped by product UI, systems thinking, and community-led experiments.</h2>
+          <p className='type-body'>
+            Each role taught a different version of the same lesson: strong front-end work is equal parts craft, clarity, and follow-through.
+          </p>
+        </div>
+
+        <ol className='relative border-l border-gray-700'>
+          {experiences.map((job, index) => (
+            <Company
+              key={job.company}
+              experience={job}
+              renderDivider={index !== experiences.length - 1}
+            />
+          ))}
+        </ol>
+      </div>
     </div>
   );
 };

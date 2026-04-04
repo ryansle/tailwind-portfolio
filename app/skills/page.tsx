@@ -38,6 +38,20 @@ const SkillsPage = async () => {
 
   const webSkills = skills.filter((skill) => skill.type === 'web');
   const creativeSkills = skills.filter((skill) => skill.type === 'creative');
+  const capabilityGroups = [
+    {
+      title: 'Product UI systems',
+      description: 'Design systems, component architecture, interaction polish, and implementation consistency.',
+    },
+    {
+      title: 'Shipping front-end work',
+      description: 'Responsive marketing surfaces, app UI, production-ready code, and close collaboration with design.',
+    },
+    {
+      title: 'Creative direction',
+      description: 'Branding, programming, partnerships, and experiential storytelling through Ryan Meetup.',
+    },
+  ];
 
   const emphasis = 'text-teal-500 font-semibold';
 
@@ -46,10 +60,25 @@ const SkillsPage = async () => {
       <h1 className='page-title mb-2'>
         My Skillsets
       </h1>
+      <p className='type-body max-w-3xl'>
+        I think less in terms of isolated tools and more in terms of capabilities: building interface systems, shipping polished product work, and creating experiences people remember.
+      </p>
 
-      <h2 className='section-title mb-2'>
+      <div className='grid gap-4 lg:grid-cols-3'>
+        {capabilityGroups.map((group) => (
+          <div key={group.title} className='border-t border-white/10 pt-4'>
+            <p className='type-meta mb-3'>{group.title}</p>
+            <p className='text-sm leading-7 text-soft'>{group.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className='max-w-3xl'>
+        <p className='ui-eyebrow mb-3'>Web engineering</p>
+        <h2 className='section-title mb-2'>
         Web Engineering
-      </h2>
+        </h2>
+      </div>
       <div className='mb-6 space-y-4 text-lg tracking-wide text-gray-400'>
         <p>
           Throughout my career, I have primarily focused on front-end web development, specializing in the creation of design systems and web components that bring life to diverse applications. The front-end realm is where I truly excel as a developer.
@@ -68,9 +97,12 @@ const SkillsPage = async () => {
 
       <Divider margins='xl' />
 
-      <h2 className='section-title mb-2'>
+      <div className='max-w-3xl'>
+        <p className='ui-eyebrow mb-3'>Creative production</p>
+        <h2 className='section-title mb-2'>
         Creative Production & Community Building
-      </h2>
+        </h2>
+      </div>
       <div className='mb-6 space-y-4 text-lg tracking-wide text-gray-400'>
         <p>
           Outside of writing code, I lead one of the most absurd event series in the country — Ryan Meetup, a national community built only for people named Ryan.
