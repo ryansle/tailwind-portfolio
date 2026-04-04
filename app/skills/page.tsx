@@ -1,7 +1,7 @@
 // Components
 import { Layout } from '@/components/navigation/Layout';
 import { SkillsTable } from '@/components/skills/SkillsTable';
-import { Divider } from '@/components/global';
+import { Button, Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
 
@@ -119,12 +119,15 @@ const SkillsPage = async () => {
         skills={creativeSkills as Skill[]}
       />
 
-      <NextLink 
-        className='motion-lift motion-glow w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center hover:border-teal-500'
+      <Button
+        className='mt-4'
+        fullWidth
         href='/ryan-meetup'
+        icon={<Handshake />}
+        variant='outline'
       >
-        <Handshake className='mr-4' /> Learn more about the Ryan Meetup
-      </NextLink>
+        Learn more about the Ryan Meetup
+      </Button>
     </Layout>
   );
 };

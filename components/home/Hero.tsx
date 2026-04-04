@@ -4,6 +4,7 @@
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { Transition } from '@headlessui/react';
+import { Button } from '@/components/global';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 import { FaDownload as Download } from 'react-icons/fa6';
 
@@ -53,11 +54,16 @@ const Hero = (props: HeroProps) => {
               <p>🏙️ &nbsp; Currently based out of New York City.</p>
             </div>
 
-            <a href='/resume.pdf' download='ryan-le-resume.pdf'>
-              <button className='motion-lift motion-glow w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center hover:border-teal-500'>
-                <Download className='mr-4' /> Download Resume
-              </button>
-            </a>
+            <Button
+              className='mt-4'
+              download='ryan-le-resume.pdf'
+              fullWidth
+              href='/resume.pdf'
+              icon={<Download />}
+              variant='outline'
+            >
+              Download Resume
+            </Button>
           </SlideUpWhenVisible>
         </div>
         <div className='col-span-0 xl:col-span-1' />

@@ -1,37 +1,78 @@
 'use client';
 
 // Components
-import NextLink from 'next/link';
+import { Button } from '@/components/global';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
+import { FaArrowRightLong as ArrowRight } from 'react-icons/fa6';
+import { HiSparkles as Sparkles } from 'react-icons/hi2';
+import { MdOutlineDevices as Devices, MdOutlineGroups as Collaboration, MdOutlineAutoAwesomeMotion as Motion, MdOutlineCode as Code } from 'react-icons/md';
 
 const HiringBlurb = () => {
+  const strengths = [
+    {
+      title: 'Product UI implementation',
+      description: 'Design systems, app surfaces, and scalable front-end architecture that hold up in production.',
+      icon: <Devices className='h-5 w-5 text-teal-400' />,
+    },
+    {
+      title: 'Cross-functional collaboration',
+      description: 'I work closely with design, product, and engineering partners to ship clear decisions quickly and keep momentum high.',
+      icon: <Collaboration className='h-5 w-5 text-teal-400' />,
+    },
+    {
+      title: 'Craft and polish',
+      description: 'The details matter: hierarchy, motion, responsiveness, and the feeling of using the thing once it ships.',
+      icon: <Motion className='h-5 w-5 text-teal-400' />,
+    },
+    {
+      title: 'Modern front-end delivery',
+      description: 'Deep comfort with React, Next.js, TypeScript, Tailwind CSS, and the workflows needed to move from concept to launch.',
+      icon: <Code className='h-5 w-5 text-teal-400' />,
+    },
+  ];
+
   return (
     <SlideUpWhenVisible delay={1.2} duration={0.8}>
-      <div className='tracking-wide flex flex-col items-center'>
-        <h1 className='text-display3 font-bold tracking-wider mb-2 text-center'>
-          Looking to expand your team?
-        </h1>
-        <h2 className='mb-10 font-semibold tracking-wider'>
-          or just hire a freelance engineer?
-        </h2>
-        <div className='text-center space-y-4 font-medium text-gray-400 tracking-wide xl:px-32'>
-          <p>
-            I&apos;m a front-end engineer working primarily with Next.js, React.js, and Tailwind CSS. With my expertise in these cutting-edge technologies, I create stunning and user-friendly websites and applications.
-          </p>
-          <p>
-            I believe in the power of collaboration and teamwork. Working closely with designers, backend engineers, and stakeholders, I bring ideas to life and create remarkable digital experiences.
-          </p>
-          <p>
-            If you&apos;re looking for a front-end engineer with a passion for delivering exceptional results, let&apos;s connect - I&apos;m always on the lookout for exciting new opportunities!
-          </p>
-          <p>
-            Check out some of my <NextLink className='text-teal-500 font-medium hover:underline' href='/projects'>previous work</NextLink>, and contact me today to discuss your project.
-          </p>
-          <p>
-            Let&apos;s create something amazing together!
-          </p>
+      <section className='grid gap-10 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-center'>
+        <div className='grid gap-4'>
+          {strengths.map((strength) => (
+            <div key={strength.title} className='border-t border-white/10 pt-4'>
+              <div className='mb-3 flex items-center gap-3'>
+                {strength.icon}
+                <p className='type-meta'>{strength.title}</p>
+              </div>
+              <p className='text-sm leading-7 text-soft'>
+                {strength.description}
+              </p>
+            </div>
+          ))}
         </div>
-      </div>
+
+        <div className='max-w-4xl xl:justify-self-end'>
+          <p className='ui-eyebrow mb-3'>Work together</p>
+          <h2 className='page-title mb-4'>Need a front-end engineer who can turn product intent into polished UI?</h2>
+          <p className='type-body'>
+            I take on full-time opportunities, freelance builds, and focused front-end engagements where strong implementation quality matters. The best fit is product work that needs clarity, craft, and clean execution.
+          </p>
+
+          <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
+            <Button
+              href='/contact'
+              icon={<Sparkles />}
+              variant='primary'
+            >
+              Start a conversation
+            </Button>
+            <Button
+              href='/projects'
+              icon={<ArrowRight />}
+              variant='outline'
+            >
+              View selected work
+            </Button>
+          </div>
+        </div>
+      </section>
     </SlideUpWhenVisible>
   );
 };

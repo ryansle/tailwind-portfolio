@@ -2,7 +2,7 @@
 import NextImage from 'next/image';
 import { List } from './List';
 import { TechLabel } from './TechLabel';
-import { Divider } from '@/components/global';
+import { Button, Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
 import { FaArrowTrendUp as Trend, FaLayerGroup as Systems, FaPeopleGroup as Community } from 'react-icons/fa6';
@@ -105,12 +105,15 @@ const Company = (props: CompanyProps) => {
           )}
 
           {company === 'Ryan Meetup' && (
-            <NextLink 
-              className='motion-lift motion-glow w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center hover:border-teal-500'
+            <Button
+              className='mt-4'
+              fullWidth
               href='/ryan-meetup'
+              icon={<Handshake />}
+              variant='outline'
             >
-              <Handshake className='mr-4' /> Learn more about the Ryan Meetup
-            </NextLink>
+              Learn more about the Ryan Meetup
+            </Button>
           )}
         </div>
 
