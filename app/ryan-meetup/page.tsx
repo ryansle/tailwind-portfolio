@@ -1,5 +1,5 @@
 // Components
-import { Layout } from '@/components/navigation';
+import { Layout } from '@/components/navigation/Layout';
 import { FeaturedIn, MediaTile } from '@/components/ryan-meetup';
 import { Divider } from '@/components/global';
 import NextLink from 'next/link';

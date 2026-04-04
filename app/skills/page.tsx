@@ -1,6 +1,6 @@
 // Components
-import { Layout } from '@/components/navigation';
-import { SkillsTable } from '@/components/skills';
+import { Layout } from '@/components/navigation/Layout';
+import { SkillsTable } from '@/components/skills/SkillsTable';
 import { Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
@@ -43,14 +43,14 @@ const SkillsPage = async () => {
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
+      <h1 className='page-title mb-2'>
         My Skillsets
       </h1>
 
-      <h2 className='font-bold text-3xl mb-4 tracking-wider'>
+      <h2 className='section-title mb-2'>
         Web Engineering
       </h2>
-      <div className='text-lg space-y-4 mb-6 tracking-wide text-gray-400'>
+      <div className='mb-6 space-y-4 text-lg tracking-wide text-gray-400'>
         <p>
           Throughout my career, I have primarily focused on front-end web development, specializing in the creation of design systems and web components that bring life to diverse applications. The front-end realm is where I truly excel as a developer.
         </p>
@@ -60,18 +60,18 @@ const SkillsPage = async () => {
         <p>
           Here are a few of my favorite languages, frameworks, and technologies that I enjoy working with:
         </p>
-        <SkillsTable
-          header='Technology'
-          skills={webSkills as Skill[]}
-        />
       </div>
+      <SkillsTable
+        header='Technology'
+        skills={webSkills as Skill[]}
+      />
 
       <Divider margins='xl' />
 
-      <h2 className='font-bold text-3xl mb-4 tracking-wider'>
+      <h2 className='section-title mb-2'>
         Creative Production & Community Building
       </h2>
-      <div className='text-lg space-y-4 tracking-wide text-gray-400'>
+      <div className='mb-6 space-y-4 text-lg tracking-wide text-gray-400'>
         <p>
           Outside of writing code, I lead one of the most absurd event series in the country — Ryan Meetup, a national community built only for people named Ryan.
         </p>
@@ -81,11 +81,11 @@ const SkillsPage = async () => {
         <p>
           These projects have been featured in <NextLink className={emphasis} href='https://www.nytimes.com/2023/03/28/nyregion/ryan-meetup-nyc.html'>The New York Times</NextLink>, the <NextLink className={emphasis} href='https://www.latimes.com/california/newsletter/2023-09-11/at-the-dumb-and-wholesome-ryan-rave-everyone-belongs-and-everyones-ryan-essential-california'>Los Angeles Times</NextLink>, <NextLink className={emphasis} href='https://www.cbsnews.com/losangeles/video/rallying-ryans-host-meet-ups-around-the-world/'>CBS News</NextLink>, and <NextLink className={emphasis} href='https://abcnews.go.com/WNN/video/rytoberfest-weekend-104132029'>ABC News</NextLink>, just to name a few — and prove how far a ridiculous idea can go with the right execution.
         </p>
-        <SkillsTable
-          header='Skill'
-          skills={creativeSkills as Skill[]}
-        />
       </div>
+      <SkillsTable
+        header='Skill'
+        skills={creativeSkills as Skill[]}
+      />
 
       <NextLink 
         className='motion-lift motion-glow w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center hover:border-teal-500'
@@ -93,20 +93,6 @@ const SkillsPage = async () => {
       >
         <Handshake className='mr-4' /> Learn more about the Ryan Meetup
       </NextLink>
-
-      <div className='flex justify-center items-center mt-8'>
-        <NextLink
-          className='motion-link text-center font-cooper space-y-3'
-          href='https://www.ryanmeetup.com/'
-        >
-          <h1 className='text-5xl xl:text-[100px]'>
-            RYAN MEETUP
-            </h1>
-          <h2 className='text-xl xl:text-[45px]'>
-            NO BRYANS ALLOWED
-          </h2>
-        </NextLink>
-      </div>
     </Layout>
   );
 };

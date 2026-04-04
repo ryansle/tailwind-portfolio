@@ -43,6 +43,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
   return (
     <>
               <Transition
+                as='div'
                 appear={true}
                 show={true}
                 enter='transition ease-out duration-500'
@@ -77,14 +78,14 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
             </div>
             <div className={`${order ? 'justify-start' : 'justify-end'} flex items-center space-x-5 mt-4`}>
               {github && (
-                <NextLink href={github} aria-label={`GitHub for ${title}`}>
-                  <GitHub className='w-8 h-8' />
+                <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
+                  <GitHub className='w-5 h-5' />
                 </NextLink>
               )}
 
               {url && (
-                <NextLink href={url} aria-label={`External Deployment for ${title}`}>
-                  <Link className='w-9 h-9' />
+                <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
+                  <Link className='w-5 h-5' />
                 </NextLink>
               )}
             </div>

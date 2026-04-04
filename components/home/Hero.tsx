@@ -64,6 +64,7 @@ const Hero = (props: HeroProps) => {
         <div className='col-span-12 flex items-center justify-center mb-10 xl:col-span-4 xl:mt-10 xl:mb-0'>
           <div className='motion-parent relative aspect-square w-full max-h-full sm:max-h-[300px] sm:max-w-[300px] md:max-h-[400px] md:max-w-[400px]'>
             <Transition
+              as='div'
               appear={true}
               show={true}
               enter='transition-opacity ease-linear duration-1000'

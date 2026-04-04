@@ -17,7 +17,7 @@ const Layout = (props: LayoutProps) => {
   return (
     <main className='app-frame'>
       <Header />
-      <section className='app-container pt-28'>
+      <section className='page-wrap'>
         <div className={`${className ?? ''} page-shell ${fullscreen ? '' : ''}`}>
           {children}
         </div>

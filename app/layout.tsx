@@ -6,9 +6,20 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 // import seo from '@/seo.config';
 
+// Types
+import type { Metadata } from 'next';
+
 const inter = Inter({ subsets: ['latin'] });
 
 // export const metadata = seo;
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://ryanle.dev'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -17,8 +28,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
-      <Analytics />
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 };

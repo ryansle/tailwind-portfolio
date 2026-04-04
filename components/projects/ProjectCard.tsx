@@ -30,7 +30,7 @@ const ProjectCard = (props: ProjectCardProps) => {
   const tech = techStack.map((item) => item.fields);
 
   return (
-    <div className='group motion-parent ui-card surface-hover motion-lift motion-glow mb-4 overflow-hidden'>
+    <div className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow mb-4 overflow-hidden'>
       <div className='relative aspect-video w-full overflow-hidden'>
         <NextImage
           fill
@@ -48,13 +48,13 @@ const ProjectCard = (props: ProjectCardProps) => {
           </h3>
           <div className='flex space-x-2 items-center'>
             {github && (
-              <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button'>
+              <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
                 <GitHub className='w-4 h-4' aria-label='GitHub icon' />
               </NextLink>
             )}
 
             {url && (
-              <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button'>
+              <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
                 <Link className='w-5 h-5' aria-label='External URL icon' />
               </NextLink>
             )}

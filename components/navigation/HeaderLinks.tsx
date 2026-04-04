@@ -15,12 +15,12 @@ type HeaderLinksProps = {
 };
 
 const renderStyles = (path: string, href: string) => {
-  const styles = 'rounded-full px-4 py-2 text-sm font-semibold tracking-wide';
+  const styles = 'interactive-link rounded-full px-4 py-2 text-sm font-semibold tracking-wide';
 
   return clsx([
     styles,
     path === href && 'bg-teal-400/12 text-teal-300 ring-1 ring-teal-400/20',
-    path !== href && 'text-slate-200 hover:bg-white/5 hover:text-white'
+    path !== href && 'text-slate-100 hover:bg-white/5 hover:text-white focus-visible:bg-white/5 focus-visible:text-white'
   ]);
 };
 

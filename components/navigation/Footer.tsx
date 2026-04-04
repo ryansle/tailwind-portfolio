@@ -37,7 +37,7 @@ const Footer = () => {
   return (
     <footer className='pb-10 pt-8'>
       <div className='app-container'>
-        <div className='ui-card px-6 py-8 sm:px-8'>
+        <div className='surface-shell px-6 py-8 sm:px-8'>
           <div className='md:flex md:justify-between md:gap-10'>
             <div className='mb-8 mr-8 md:mb-0'>
               <div className='block lg:flex lg:items-center'>

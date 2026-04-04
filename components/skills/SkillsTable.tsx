@@ -115,15 +115,13 @@ const SkillsTable = (props: SkillsTableProps) => {
         </thead>
         <tbody>
           {skills.map((skill, index) => (
-            <>
-              {skill.visibility && (
-                <TableRow
-                  key={skill.technology}
-                  skill={skill}
-                  renderBottomBorder={index !== skills.length - 1}
-                />
-              )}
-            </>
+            skill.visibility ? (
+              <TableRow
+                key={skill.technology}
+                skill={skill}
+                renderBottomBorder={index !== skills.length - 1}
+              />
+            ) : null
           ))}
         </tbody>
       </table>

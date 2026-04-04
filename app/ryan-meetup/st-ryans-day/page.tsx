@@ -1,5 +1,5 @@
 // Components
-import { Layout } from '@/components/navigation';
+import { Layout } from '@/components/navigation/Layout';
 import { Embed } from '@/components/ryan-meetup';
 import NextLink from 'next/link';
 import NextImage from 'next/image';

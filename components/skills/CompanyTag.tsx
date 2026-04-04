@@ -50,7 +50,7 @@ const CompanyTag = (props: CompanyTagProps) => {
   };
 
   return (
-    <div className={`${renderClasses(company)} flex items-center rounded-lg border w-fit p-1 mr-1 mb-1`}>
+    <div className={`${renderClasses(company)} mr-1 mb-1 flex w-fit items-center rounded-full border px-2 py-1`}>
       <NextImage
         className={`${renderRounded(company)} mr-1`}
         src={renderImage(company)}
@@ -59,7 +59,7 @@ const CompanyTag = (props: CompanyTagProps) => {
         height={20}
       />
 
-      <p className='uppercase text-xs font-medium'>
+      <p className='text-xs font-medium uppercase tracking-wide'>
         {company}
       </p>
     </div>

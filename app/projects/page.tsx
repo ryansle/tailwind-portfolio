@@ -1,6 +1,6 @@
 // Components
-import { Layout } from '@/components/navigation';
-import { ProjectsList } from '@/components/projects';
+import { Layout } from '@/components/navigation/Layout';
+import { ProjectsList } from '@/components/projects/ProjectsList';
 
 // Types
 import type { Project } from '@/lib/types';
@@ -35,7 +35,7 @@ const ProjectsPage = async () => {
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
+      <h1 className='page-title mb-2'>
         Things I&apos;ve Built
       </h1>
 

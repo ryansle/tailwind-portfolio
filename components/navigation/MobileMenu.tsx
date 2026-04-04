@@ -22,7 +22,7 @@ const MobileMenu = (props: MobileMenuProps) => {
           {({ open }) => (
             <>
               <span className='rounded-md shadow-sm'>
-                <Menu.Button className='p-2 text-black transition duration-150 ease-in-out bg-white border border-gray-700 rounded-md' aria-label='Menu'>
+                <Menu.Button className='interactive-link rounded-md border border-gray-700 bg-white p-2 text-black transition duration-150 ease-in-out focus-visible:shadow-[0_0_0_4px_rgba(45,212,191,0.28)]' aria-label='Menu'>
                   <Hamburger />
                 </Menu.Button>
               </span>
@@ -38,7 +38,7 @@ const MobileMenu = (props: MobileMenuProps) => {
               >
                 <Menu.Items
                   static
-                  className='absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none'
+                  className='absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md border border-gray-200 bg-white shadow-lg outline-none'
                 >
                   <div className='py-1'>
                     {content.map((row) => (
@@ -48,7 +48,7 @@ const MobileMenu = (props: MobileMenuProps) => {
                             className={`${active
                               ? 'bg-gray-100'
                               : 'text-black'
-                              } flex w-full px-4 py-2 text-sm leading-5 text-left items-center gap-x-4`}
+                              } interactive-link flex w-full items-center gap-x-4 px-4 py-2 text-left text-sm leading-5 focus-visible:bg-gray-100`}
                             href={row.href}
                           >
                             {row.icon}

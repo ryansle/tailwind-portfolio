@@ -1,6 +1,7 @@
 // Components
-import { Layout } from '@/components/navigation';
-import { Biography, Education } from '@/components/about';
+import { Layout } from '@/components/navigation/Layout';
+import { Biography } from '@/components/about/Biography';
+import { Education } from '@/components/about/Education';
 import { Divider } from '@/components/global';
 
 // Types

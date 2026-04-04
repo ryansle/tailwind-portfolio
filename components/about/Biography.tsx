@@ -107,6 +107,7 @@ const Biography = (props: BiographyProps) => {
         <div className='mb-10 col-span-12 order-first xl:col-span-5 xl:mt-0 xl:order-last'>
           <div className='relative w-full h-[320px] xl:h-[500px]'>
             <Transition
+              as='div'
               appear={true}
               show={true}
               enter='transition-opacity ease-linear duration-1200'

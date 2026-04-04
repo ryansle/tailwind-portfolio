@@ -17,7 +17,7 @@ const TechLabel = (props: TechLabelProps) => {
   const { name, icon, radii } = props;
 
   return (
-    <div className='mt-1 bg-gray-800 text-xs font-medium px-2 py-1 rounded flex items-center mr-2'>
+    <div className='ui-badge ui-badge-brand mt-1 mr-2'>
       <NextImage
         className={radii ? 'rounded-full' : 'rounded-none'}
         src={convertImageUrl(icon)}
@@ -25,7 +25,7 @@ const TechLabel = (props: TechLabelProps) => {
         height={15}
         alt={name}
       />
-      <p className='text-white ml-1.5'>{name}</p>
+      <p className='ml-1.5 text-white'>{name}</p>
     </div>
   );
 };

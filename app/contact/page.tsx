@@ -1,6 +1,6 @@
 // Components
-import { Layout } from '@/components/navigation';
-import { ContactForm } from '@/components/contact';
+import { Layout } from '@/components/navigation/Layout';
+import { ContactForm } from '@/components/contact/ContactForm';
 import { FaGithub as GitHub, FaLinkedin as LinkedIn } from 'react-icons/fa6';
 import { HiOutlineMail, HiOutlineSparkles, HiOutlineClock, HiOutlineBriefcase } from 'react-icons/hi';
 

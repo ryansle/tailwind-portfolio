@@ -1,6 +1,6 @@
 // Components
-import { Layout } from '@/components/navigation';
-import { History } from '@/components/experience';
+import { Layout } from '@/components/navigation/Layout';
+import { History } from '@/components/experience/History';
 
 // Types
 import type { Experience } from '@/lib/types';
@@ -35,7 +35,7 @@ const ExperiencePage = async () => {
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2 tracking-wider'>
+      <h1 className='page-title mb-2'>
         Work Experience
       </h1>
 

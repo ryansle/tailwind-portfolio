@@ -1,5 +1,5 @@
 // Components
-import { Layout } from '@/components/navigation';
+import { Layout } from '@/components/navigation/Layout';
 import NextLink from 'next/link';
 
 // Types

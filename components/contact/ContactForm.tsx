@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Input, Textarea } from '@/components/global';
 import { BiMailSend as Send } from 'react-icons/bi';
 import toast, { Toaster } from 'react-hot-toast';
+import type { Toast } from 'react-hot-toast';
 import { IoCloseSharp as Close } from 'react-icons/io5';
 import { FaCheckCircle as Check } from 'react-icons/fa';
 
@@ -68,7 +69,7 @@ const ContactForm = () => {
     }
   };
 
-  const sendSuccessAlert = () => toast.custom((t) => (
+  const sendSuccessAlert = () => toast.custom((t: Toast) => (
     <div
       className={`${t.visible ? 'animate-enter' : 'animate-leave'
         } ui-card pointer-events-auto grid w-full max-w-md grid-cols-12 p-4 text-white`}
