@@ -35,12 +35,15 @@ const ExperiencePage = async () => {
 
   return (
     <Layout>
-      <h1 className='page-title mb-2'>
-        Work Experience
-      </h1>
-      <p className='type-body'>
-        My work centers on front-end implementation: product UI, design systems, responsive marketing surfaces, and the details that make interfaces feel clear and production-ready. I&apos;ve done that across enterprise teams, agency environments, and self-directed ventures, and the throughline is consistent: teams can expect strong execution, thoughtful collaboration, and a high bar for polish.
-      </p>
+      <div className='max-w-4xl'>
+        <p className='ui-eyebrow mb-3'>Experience</p>
+        <h1 className='page-title mb-4'>
+          Work Experience
+        </h1>
+        <p className='type-body'>
+          My work centers on front-end implementation: product UI, design systems, responsive marketing surfaces, and the details that make interfaces feel clear and production-ready. I&apos;ve done that across enterprise teams, agency environments, and self-directed ventures, and the throughline is consistent: teams can expect strong execution, thoughtful collaboration, and a high bar for polish.
+        </p>
+      </div>
 
       <History experiences={experiences as Experience[]} />
     </Layout>

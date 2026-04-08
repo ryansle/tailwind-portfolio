@@ -35,9 +35,12 @@ const ProjectsPage = async () => {
 
   return (
     <Layout>
-      <h1 className='page-title mb-2'>
-        Things I&apos;ve Built
-      </h1>
+      <div className='max-w-4xl'>
+        <p className='ui-eyebrow mb-3'>Projects</p>
+        <h1 className='page-title mb-4'>
+          Things I&apos;ve Built
+        </h1>
+      </div>
 
       <ProjectsList projects={projects as Project[]} />
     </Layout>
