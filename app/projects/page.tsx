@@ -35,11 +35,14 @@ const ProjectsPage = async () => {
 
   return (
     <Layout>
-      <div className='max-w-4xl'>
+      <div className='max-w-6xl'>
         <p className='ui-eyebrow mb-3'>Projects</p>
         <h1 className='page-title mb-4'>
           Things I&apos;ve Built
         </h1>
+        <p className='type-body'>
+          A selection of product, engineering, and creative work across professional teams, freelance engagements, and self-directed projects. The featured work below highlights the projects that best reflect how I think, build, and ship.
+        </p>
       </div>
 
       <ProjectsList projects={projects as Project[]} />

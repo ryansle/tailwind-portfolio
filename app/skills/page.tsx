@@ -59,7 +59,7 @@ const SkillsPage = async () => {
 
   return (
     <Layout>
-      <div className='max-w-4xl'>
+      <div className='max-w-6xl'>
         <p className='ui-eyebrow mb-3'>Skills</p>
         <h1 className='page-title mb-4'>
           My Skillsets

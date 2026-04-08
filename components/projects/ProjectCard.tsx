@@ -1,7 +1,6 @@
 // Components
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import { Divider } from '@/components/global';
 import { TechLabel } from '@/components/experience/TechLabel';
 import { AiFillGithub as GitHub } from 'react-icons/ai';
 import { HiExternalLink as Link } from 'react-icons/hi';
@@ -16,6 +15,12 @@ type ProjectCardProps = {
   project: Project;
 }
 
+const categoryBadgeClasses: Record<Project['category'], string> = {
+  Professional: 'border-sky-400/25 bg-sky-400/10 text-sky-100',
+  Personal: 'border-amber-300/25 bg-amber-300/10 text-amber-100',
+  Freelance: 'border-emerald-400/25 bg-emerald-400/10 text-emerald-100',
+};
+
 const ProjectCard = (props: ProjectCardProps) => {
   const {
     title,
@@ -24,13 +29,14 @@ const ProjectCard = (props: ProjectCardProps) => {
     image,
     github,
     url,
+    category,
     techStack,
   } = props.project;
 
-  const tech = techStack.map((item) => item.fields);
+  const tech = techStack.map((item) => item.fields).slice(0, 4);
 
   return (
-    <div className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow mb-4 overflow-hidden'>
+    <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow overflow-hidden'>
       <div className='relative aspect-video w-full overflow-hidden'>
         <NextImage
           fill
@@ -42,33 +48,26 @@ const ProjectCard = (props: ProjectCardProps) => {
       </div>
 
       <div className='p-5 tracking-wide'>
-        <div className='flex justify-between items-center'>
-          <h3 className='font-semibold text-xl tracking-wider text-left'>
-            {title}
-          </h3>
-          <div className='flex space-x-2 items-center'>
-            {github && (
-              <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
-                <GitHub className='w-4 h-4' aria-label='GitHub icon' />
-              </NextLink>
-            )}
-
-            {url && (
-              <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
-                <Link className='w-5 h-5' aria-label='External URL icon' />
-              </NextLink>
-            )}
-          </div>
-        </div>
-
         <div className='text-left'>
+          <div className='mb-2 flex flex-wrap items-center gap-3'>
+            <h3 className='text-xl font-semibold tracking-[-0.02em] text-white'>
+              {title}
+            </h3>
+            <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
+              {category}
+            </span>
+          </div>
           {subtitle && (
             <h4 className='text-sm font-medium tracking-wider text-soft'>
               {subtitle}
             </h4>
           )}
 
-          <div className='flex flex-wrap mt-1'>
+          <p className='mt-3 text-sm leading-6 text-muted'>
+            {summary}
+          </p>
+
+          <div className='mt-4 flex flex-wrap'>
             {tech.map((tool) => (
               <TechLabel
                 key={tool.technology}
@@ -79,14 +78,24 @@ const ProjectCard = (props: ProjectCardProps) => {
             ))}
           </div>
 
-          <Divider margins='md' />
+          {(github || url) && (
+            <div className='mt-5 flex items-center gap-3'>
+              {github && (
+                <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
+                  <GitHub className='h-4 w-4' aria-label='GitHub icon' />
+                </NextLink>
+              )}
 
-          <p className='text-sm text-muted'>
-            {summary}
-          </p>
+              {url && (
+                <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
+                  <Link className='h-5 w-5' aria-label='External URL icon' />
+                </NextLink>
+              )}
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
