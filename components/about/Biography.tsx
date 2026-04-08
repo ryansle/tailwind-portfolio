@@ -59,7 +59,7 @@ const Biography = (props: BiographyProps) => {
         <h1 className='page-title mb-4'>Front-end engineer, community builder, and creative operator.</h1>
       </div>
 
-      <div className='grid grid-cols-12 gap-6 xl:items-start'>
+      <div className='flex flex-col-reverse gap-6 xl:grid xl:grid-cols-12 xl:items-start'>
         <div className='col-span-12 xl:col-span-6'>
           <div className='space-y-4 text-soft tracking-wide'>
             <p>
@@ -99,8 +99,8 @@ const Biography = (props: BiographyProps) => {
 
         <div className='hidden xl:block xl:col-span-1' />
 
-        <div className='col-span-12 xl:col-span-5 mr-8'>
-          <div className='mb-6'>
+        <div className='col-span-12 xl:col-span-5 xl:mr-8'>
+          <div className='mb-6 px-3 pb-3 pt-5 sm:px-4 sm:pb-4 sm:pt-6 xl:p-0'>
             <div className='relative h-[320px] w-full overflow-visible xl:h-[500px]'>
               <Transition
                 as='div'
@@ -110,7 +110,7 @@ const Biography = (props: BiographyProps) => {
                 enterFrom='opacity-0'
                 enterTo='opacity-100'
               >
-                <div className='absolute h-60 w-60 -top-6 -left-12 xl:-top-20'>
+                <div className='absolute left-3 top-0 h-24 w-24 sm:h-60 sm:w-60 sm:-top-6 sm:-left-12 xl:-top-20'>
                   <NextImage
                     className='z-10'
                     alt='dots'
@@ -142,7 +142,7 @@ const Biography = (props: BiographyProps) => {
                   src='/athens.png'
                   style={{ objectFit: 'cover' }}
                 />
-                <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
+                <div className='absolute left-2 top-2 z-0 h-full w-full rounded-xl border-4 border-teal-500 sm:left-3 sm:top-3 xl:left-4 xl:top-4' />
               </Transition>
             </div>
           </div>

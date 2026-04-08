@@ -32,9 +32,9 @@ export const metadata: Metadata = {
 const ContactPage: NextPage = () => {
   return (
     <Layout>
-      <div className='grid gap-8 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] xl:items-start'>
-        <div className='space-y-6'>
-          <div className='section-panel'>
+      <div className='flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] xl:items-start'>
+        <div className='order-2 space-y-6 xl:order-1'>
+          <div className='section-panel hidden xl:block'>
             <p className='ui-eyebrow mb-3'>Contact</p>
             <h1 className='mb-5 whitespace-nowrap text-[clamp(2.1rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.04em]'>
               Let&apos;s Collaborate!
@@ -78,7 +78,17 @@ const ContactPage: NextPage = () => {
           </div>
         </div>
 
-        <div className='space-y-6 xl:sticky xl:top-0 xl:self-start'>
+        <div className='order-1 space-y-6 xl:order-2 xl:sticky xl:top-0 xl:self-start'>
+          <div className='section-panel xl:hidden'>
+            <p className='ui-eyebrow mb-3'>Contact</p>
+            <h1 className='mb-4 text-[clamp(2rem,9vw,2.8rem)] font-semibold leading-none tracking-[-0.04em]'>
+              Let&apos;s Collaborate!
+            </h1>
+            <p className='text-sm leading-7 text-soft'>
+              Share the project, role, or collaboration idea below. If it&apos;s a strong fit, I usually reply within 1 to 2 business days.
+            </p>
+          </div>
+
           <ContactForm />
 
           <div className='section-panel !py-5'>

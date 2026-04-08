@@ -37,7 +37,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
   return (
     <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow overflow-hidden'>
-      <div className='relative aspect-video w-full overflow-hidden'>
+      <div className='relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 sm:aspect-video'>
         <NextImage
           fill
           className='motion-media rounded-t-[var(--radius-lg)] object-cover'

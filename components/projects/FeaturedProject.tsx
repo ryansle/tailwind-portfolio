@@ -52,7 +52,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
     >
       <article className='ui-card motion-parent overflow-hidden'>
         <div className='grid gap-0 xl:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)] xl:items-stretch'>
-          <div className={`relative min-h-[280px] overflow-hidden xl:h-full ${reverse ? 'xl:order-2' : 'xl:order-1'}`}>
+          <div className={`relative aspect-[16/10] overflow-hidden border-b border-white/10 sm:min-h-[280px] sm:aspect-auto xl:h-full xl:border-b-0 ${reverse ? 'xl:order-2' : 'xl:order-1'}`}>
             <NextLink href={(url ?? github) as string} className='absolute inset-0'>
               <NextImage
                 fill

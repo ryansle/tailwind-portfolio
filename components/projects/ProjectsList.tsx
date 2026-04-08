@@ -79,7 +79,7 @@ const ProjectsList = (props: ProjectsListProps) => {
           </p>
         </div>
 
-        <div className='flex flex-wrap gap-3'>
+        <div className='flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0'>
           {filterOptions.map((option) => {
             const isActive = activeFilter === option;
 
@@ -88,7 +88,7 @@ const ProjectsList = (props: ProjectsListProps) => {
                 key={option}
                 type='button'
                 onClick={() => setActiveFilter(option)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium tracking-wide transition ${
+                className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition sm:px-4 sm:text-sm sm:tracking-wide ${
                   isActive
                     ? 'border-teal-400/40 bg-teal-400/12 text-teal-100'
                     : 'border-white/10 bg-white/[0.03] text-soft hover:border-white/20 hover:bg-white/[0.05] hover:text-white'

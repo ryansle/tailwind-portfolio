@@ -17,6 +17,10 @@ import type { Metadata } from 'next';
 // Utilities
 import { fetchSkills } from '@/data/fetch';
 
+type SkillEntry = Skill & {
+  type: 'web' | 'creative';
+};
+
 export const metadata: Metadata = {
   title: 'Ryan Le - Skills',
   description: 'Learn more about what Ryan Le\'s skillsets as both an engineer and a creative',
@@ -39,10 +43,12 @@ export const metadata: Metadata = {
 };
 
 const SkillsPage = async () => {
-  const skills = await fetchSkills();
+  const skills = await fetchSkills() as SkillEntry[];
 
-  const webSkills = skills.filter((skill) => skill.type === 'web');
-  const creativeSkills = skills.filter((skill) => skill.type === 'creative');
+  const sortByConfidence = (a: SkillEntry, b: SkillEntry) => b.confidence - a.confidence;
+
+  const webSkills = skills.filter((skill) => skill.type === 'web').sort(sortByConfidence);
+  const creativeSkills = skills.filter((skill) => skill.type === 'creative').sort(sortByConfidence);
   const visibleWebSkills = webSkills.filter((skill) => skill.visibility);
   const visibleCreativeSkills = creativeSkills.filter((skill) => skill.visibility);
   const capabilityGroups = [
