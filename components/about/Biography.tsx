@@ -7,10 +7,6 @@ import { Transition } from '@headlessui/react';
 import {
   FaLinkedin as LinkedIn,
   FaGithub as GitHub,
-  FaCompass as Compass,
-  FaPeopleGroup as People,
-  FaWandMagicSparkles as Sparkles,
-  FaCode as Code,
 } from 'react-icons/fa6';
 
 // Types
@@ -55,28 +51,6 @@ const Biography = (props: BiographyProps) => {
   const { socials } = props;
 
   const emphasis = 'text-teal-500 font-semibold';
-  const principles = [
-    {
-      title: 'Product clarity',
-      description: 'I care about interfaces that explain themselves and reduce decision friction.',
-      icon: <Compass className='h-4 w-4 text-teal-400' />,
-    },
-    {
-      title: 'Implementation craft',
-      description: 'Design systems, interaction polish, and maintainable front-end architecture are my home territory.',
-      icon: <Code className='h-4 w-4 text-teal-400' />,
-    },
-    {
-      title: 'Belonging',
-      description: 'Whether the medium is code or events, I want people to feel invited, oriented, and part of something.',
-      icon: <People className='h-4 w-4 text-teal-400' />,
-    },
-  ];
-  const moments = [
-    'Started contributing to Terraria as a kid, which gave me an early bias toward building things people genuinely enjoy.',
-    'Built product UI across agency, enterprise, startup, and community-led work.',
-    'Scaled Ryan Meetup from a joke premise into a nationally covered community brand.',
-  ];
 
   return (
     <div className='space-y-8'>
@@ -121,18 +95,6 @@ const Biography = (props: BiographyProps) => {
               ))}
             </div>
           </div>
-
-          <div className='mt-8 grid gap-4 lg:grid-cols-3'>
-            {principles.map((principle) => (
-              <div key={principle.title} className='border-t border-white/10 pt-4'>
-                <div className='mb-3 flex items-center gap-2'>
-                  {principle.icon}
-                  <p className='type-meta'>{principle.title}</p>
-                </div>
-                <p className='text-sm leading-7 text-soft'>{principle.description}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         <div className='hidden xl:block xl:col-span-1' />
@@ -140,60 +102,48 @@ const Biography = (props: BiographyProps) => {
         <div className='col-span-12 xl:col-span-5 mr-8'>
           <div className='mb-6'>
             <div className='relative h-[320px] w-full overflow-visible xl:h-[500px]'>
-            <Transition
-              as='div'
-              appear={true}
-              show={true}
-              enter='transition-opacity ease-linear duration-1200'
-              enterFrom='opacity-0'
-              enterTo='opacity-100'
-            >
-              <div className='absolute h-60 w-60 -top-6 -left-12 xl:-top-20'>
+              <Transition
+                as='div'
+                appear={true}
+                show={true}
+                enter='transition-opacity ease-linear duration-1200'
+                enterFrom='opacity-0'
+                enterTo='opacity-100'
+              >
+                <div className='absolute h-60 w-60 -top-6 -left-12 xl:-top-20'>
+                  <NextImage
+                    className='z-10'
+                    alt='dots'
+                    fill
+                    src='/dots.svg'
+                  />
+                </div>
+
                 <NextImage
-                  className='z-10'
-                  alt='dots'
+                  className='rounded-xl z-10 block sm:hidden'
+                  alt='Ryan Le - Portrait'
                   fill
-                  src='/dots.svg'
+                  src='/athens.png'
+                  style={{ objectFit: 'cover' }}
                 />
-              </div>
 
-              <NextImage
-                className='rounded-xl z-10 block sm:hidden'
-                alt='Ryan Le - Portrait'
-                fill
-                src='/athens.png'
-                style={{ objectFit: 'cover' }}
-              />
+                <NextImage
+                  className='rounded-xl z-10 hidden sm:block xl:hidden'
+                  alt='Ryan Le - Portrait'
+                  fill
+                  src='/athens-longer.png'
+                  style={{ objectFit: 'cover' }}
+                />
 
-              <NextImage
-                className='rounded-xl z-10 hidden sm:block xl:hidden'
-                alt='Ryan Le - Portrait'
-                fill
-                src='/athens-longer.png'
-                style={{ objectFit: 'cover' }}
-              />
-
-              <NextImage
-                className='rounded-xl z-10 hidden xl:block'
-                alt='Ryan Le - Portrait'
-                fill
-                src='/athens.png'
-                style={{ objectFit: 'cover' }}
-              />
-              <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
-            </Transition>
-          </div>
-        </div>
-
-          <div className='border-t border-white/10 pt-5'>
-            <div className='mb-4 flex items-center gap-2'>
-              <Sparkles className='h-4 w-4 text-teal-400' />
-              <p className='type-meta'>Notable career moments</p>
-            </div>
-            <div className='space-y-4 text-sm leading-7 text-soft'>
-              {moments.map((moment) => (
-                <p key={moment}>{moment}</p>
-              ))}
+                <NextImage
+                  className='rounded-xl z-10 hidden xl:block'
+                  alt='Ryan Le - Portrait'
+                  fill
+                  src='/athens.png'
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className='w-full h-full left-3 top-3 border border-4 rounded-xl border-teal-500 absolute z-0 xl:left-4 xl:top-4' />
+              </Transition>
             </div>
           </div>
         </div>
