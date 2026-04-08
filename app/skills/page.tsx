@@ -4,6 +4,11 @@ import { SkillsTable } from '@/components/skills/SkillsTable';
 import { Button, Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
+import {
+  FaLayerGroup as LayerGroup,
+  FaLaptopCode as LaptopCode,
+  FaWandMagicSparkles as Sparkles,
+} from 'react-icons/fa6';
 
 // Types
 import type { Skill } from '@/lib/types';
@@ -44,14 +49,17 @@ const SkillsPage = async () => {
     {
       title: 'Product UI systems',
       description: 'Design systems, component architecture, interaction polish, and implementation consistency.',
+      icon: <LayerGroup className='h-4 w-4 text-teal-400' />,
     },
     {
       title: 'Shipping front-end work',
       description: 'Responsive marketing surfaces, app UI, production-ready code, and close collaboration with design.',
+      icon: <LaptopCode className='h-4 w-4 text-teal-400' />,
     },
     {
       title: 'Creative direction',
       description: 'Branding, programming, partnerships, and experiential storytelling through Ryan Meetup.',
+      icon: <Sparkles className='h-4 w-4 text-teal-400' />,
     },
   ];
 
@@ -72,7 +80,10 @@ const SkillsPage = async () => {
       <div className='grid gap-4 lg:grid-cols-3'>
         {capabilityGroups.map((group) => (
           <div key={group.title} className='subtle-panel p-5'>
-            <p className='type-meta mb-3'>{group.title}</p>
+            <div className='mb-3 flex items-center gap-2'>
+              {group.icon}
+              <p className='type-meta'>{group.title}</p>
+            </div>
             <p className='text-sm leading-7 text-soft'>{group.description}</p>
           </div>
         ))}

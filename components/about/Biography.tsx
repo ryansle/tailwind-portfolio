@@ -7,8 +7,6 @@ import { Transition } from '@headlessui/react';
 import {
   FaLinkedin as LinkedIn,
   FaGithub as GitHub,
-  FaInstagram as Instagram,
-  FaStackOverflow as StackOverflow,
   FaCompass as Compass,
   FaPeopleGroup as People,
   FaWandMagicSparkles as Sparkles,
@@ -38,10 +36,6 @@ const SocialMediaLink = (props: SocialMediaLinkProps) => {
         return <LinkedIn className={iconStyle} />;
       case 'GitHub':
         return <GitHub className={iconStyle} />;
-      case 'Instagram':
-        return <Instagram className={iconStyle} />;
-      case 'Stack Overflow':
-        return <StackOverflow className={iconStyle} />;
       default:
         return;
     }

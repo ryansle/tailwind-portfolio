@@ -4,17 +4,13 @@ import NextImage from 'next/image';
 import {
   FaLinkedin as LinkedIn,
   FaGithub as GitHub,
-  FaInstagram as Instagram,
-  FaStackOverflow as StackOverflow,
 } from 'react-icons/fa6';
 import { Divider } from '@/components/global';
 
 const Footer = () => {
   const socials = [
     { url: 'https://www.linkedin.com/in/ryansle/', platform: 'LinkedIn' },
-    { url: 'https://stackoverflow.com/users/11599714/ryansle', platform: 'Stack Overflow' },
     { url: 'https://github.com/ryansle', platform: 'GitHub' },
-    { url: 'https://www.instagram.com/ryansle/', platform: 'Instagram' },
   ];
 
   const renderIcon = (platform: string) => {
@@ -25,10 +21,6 @@ const Footer = () => {
         return <LinkedIn className={iconStyle} />;
       case 'GitHub':
         return <GitHub className={iconStyle} />;
-      case 'Instagram':
-        return <Instagram className={iconStyle} />;
-      case 'Stack Overflow':
-        return <StackOverflow className={iconStyle} />;
       default:
         return;
     }
@@ -36,7 +28,7 @@ const Footer = () => {
 
   return (
     <footer className='pb-10 pt-8'>
-      <div className='app-container'>
+      <div className='header-container'>
         <div className='surface-shell px-6 py-8 sm:px-8'>
           <div className='md:flex md:justify-between md:gap-10'>
             <div className='mb-8 mr-8 md:mb-0'>

@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header className='fixed inset-x-0 top-0 z-50 pt-4'>
-      <div className='app-container'>
+      <div className='header-container'>
         <div className='surface-shell surface-shell-inset flex items-center justify-between'>
           <NextLink href='/' className='flex items-center justify-center gap-4'>
             <NextImage
