@@ -147,7 +147,9 @@ const Company = (props: CompanyProps) => {
             <Button
               className='mt-4'
               fullWidth
-              href='/ryan-meetup'
+              href='https://www.ryanmeetup.com/about'
+              target='_blank'
+              rel='noreferrer'
               icon={<Handshake />}
               variant='outline'
             >
