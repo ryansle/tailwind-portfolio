@@ -21,6 +21,12 @@ type SocialMediaLinkProps = {
   platform: string;
 }
 
+type ProofStat = {
+  value: string;
+  label: string;
+  detail: string;
+}
+
 const SocialMediaLink = (props: SocialMediaLinkProps) => {
   const { url, platform } = props;
 
@@ -47,10 +53,44 @@ const SocialMediaLink = (props: SocialMediaLinkProps) => {
   );
 };
 
+const ProofStatCard = (props: ProofStat) => {
+  const { value, label, detail } = props;
+
+  return (
+    <div className='subtle-panel px-5 py-5 sm:px-6'>
+      <p className='text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl'>{value}</p>
+      <p className='mt-2 text-xs font-semibold uppercase tracking-[0.24em] text-teal-300'>{label}</p>
+      <p className='mt-3 text-sm leading-6 text-soft'>{detail}</p>
+    </div>
+  );
+};
+
 const Biography = (props: BiographyProps) => {
   const { socials } = props;
 
   const emphasis = 'text-teal-500 font-semibold';
+  const proofStats: ProofStat[] = [
+    {
+      value: '5+',
+      label: 'Years Shipping',
+      detail: 'Professional front-end work across product, marketing, and design-system surfaces since 2021.',
+    },
+    {
+      value: 'Web Engineer',
+      label: 'Current Role',
+      detail: 'Building front-end product experiences at CrowdStrike with a strong bias toward clarity, craft, and execution.',
+    },
+    {
+      value: 'Co-Founder',
+      label: 'Community Builder',
+      detail: 'Built Ryan Meetup into a recurring community experience rooted in identity, humor, and belonging.',
+    },
+    {
+      value: 'Since 2010',
+      label: 'Early Start',
+      detail: 'Started contributing to the team behind Terraria as a kid, which shaped how I think about building things people genuinely enjoy.',
+    },
+  ];
 
   return (
     <div className='space-y-8'>
@@ -59,8 +99,19 @@ const Biography = (props: BiographyProps) => {
         <h1 className='page-title mb-4'>Front-end engineer, community builder, and creative operator.</h1>
       </div>
 
+      <div className='grid gap-4 sm:grid-cols-2 2xl:grid-cols-4'>
+        {proofStats.map((stat) => (
+          <ProofStatCard
+            key={stat.label}
+            value={stat.value}
+            label={stat.label}
+            detail={stat.detail}
+          />
+        ))}
+      </div>
+
       <div className='flex flex-col-reverse gap-6 xl:grid xl:grid-cols-12 xl:items-start'>
-        <div className='col-span-12 xl:col-span-6'>
+        <div className='col-span-12 xl:col-span-5'>
           <div className='space-y-4 text-soft tracking-wide'>
             <p>
               I&apos;m Ryan Le, a front-end engineer, community builder, and co-founder of <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series built around shared identity, humor, and belonging.
@@ -99,51 +150,51 @@ const Biography = (props: BiographyProps) => {
 
         <div className='hidden xl:block xl:col-span-1' />
 
-        <div className='col-span-12 xl:col-span-5 xl:mr-8'>
-          <div className='mb-6 px-3 pb-3 pt-5 sm:px-4 sm:pb-4 sm:pt-6 xl:p-0'>
-            <div className='relative h-[320px] w-full overflow-visible xl:h-[500px]'>
-              <Transition
-                as='div'
-                appear={true}
-                show={true}
-                enter='transition-opacity ease-linear duration-1200'
-                enterFrom='opacity-0'
-                enterTo='opacity-100'
-              >
-                <div className='absolute left-3 top-0 h-24 w-24 sm:h-60 sm:w-60 sm:-top-6 sm:-left-12 xl:-top-20'>
+        <div className='col-span-12 xl:col-span-6'>
+          <div className='section-panel overflow-hidden'>
+            <div className='mb-5'>
+              <div>
+                <p className='type-meta mb-2'>Portrait</p>
+                <h2 className='type-section-title'>Product-minded engineer with community-builder range.</h2>
+              </div>
+            </div>
+
+            <div className='px-1 pb-1 pt-2 sm:px-2 sm:pb-2 sm:pt-3'>
+              <div className='relative h-[320px] w-full overflow-visible xl:h-[500px]'>
+                <Transition
+                  as='div'
+                  appear={true}
+                  show={true}
+                  enter='transition-opacity ease-linear duration-1200'
+                  enterFrom='opacity-0'
+                  enterTo='opacity-100'
+                >
                   <NextImage
-                    className='z-10'
-                    alt='dots'
+                    className='rounded-xl z-10 block sm:hidden'
+                    alt='Ryan Le - Portrait'
                     fill
-                    src='/dots.svg'
+                    src='/athens.png'
+                    style={{ objectFit: 'cover' }}
                   />
-                </div>
 
-                <NextImage
-                  className='rounded-xl z-10 block sm:hidden'
-                  alt='Ryan Le - Portrait'
-                  fill
-                  src='/athens.png'
-                  style={{ objectFit: 'cover' }}
-                />
+                  <NextImage
+                    className='rounded-xl z-10 hidden sm:block xl:hidden'
+                    alt='Ryan Le - Portrait'
+                    fill
+                    src='/athens-longer.png'
+                    style={{ objectFit: 'cover' }}
+                  />
 
-                <NextImage
-                  className='rounded-xl z-10 hidden sm:block xl:hidden'
-                  alt='Ryan Le - Portrait'
-                  fill
-                  src='/athens-longer.png'
-                  style={{ objectFit: 'cover' }}
-                />
-
-                <NextImage
-                  className='rounded-xl z-10 hidden xl:block'
-                  alt='Ryan Le - Portrait'
-                  fill
-                  src='/athens.png'
-                  style={{ objectFit: 'cover' }}
-                />
-                <div className='absolute left-2 top-2 z-0 h-full w-full rounded-xl border-4 border-teal-500 sm:left-3 sm:top-3 xl:left-4 xl:top-4' />
-              </Transition>
+                  <NextImage
+                    className='rounded-xl z-10 hidden xl:block'
+                    alt='Ryan Le - Portrait'
+                    fill
+                    src='/athens.png'
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <div className='absolute left-2 top-2 z-0 h-full w-full rounded-xl border-4 border-teal-500 sm:left-3 sm:top-3 xl:left-4 xl:top-4' />
+                </Transition>
+              </div>
             </div>
           </div>
         </div>

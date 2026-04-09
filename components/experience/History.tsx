@@ -246,7 +246,7 @@ const History = (props: HistoryProps) => {
   return (
     <div className='mt-2'>
       <ExperienceSection
-        title='Current and recent work'
+        title='Current work'
         experiences={recentExperiences}
         recentCount={recentCount}
         startIndex={0}

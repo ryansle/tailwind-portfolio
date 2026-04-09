@@ -26,23 +26,6 @@ Next improvements:
 Why it matters:
 - The app is visually stronger when pages feel like they belong to the same editorial system, not just the same color palette.
 
-### 2. Refine Header and Footer Framing
-
-Current state:
-- Header and footer widths are more aligned now, but the chrome still needs a final polish pass against the page body.
-
-Next improvements:
-- Verify header/footer width balance against the page container at all breakpoints.
-- Check whether the fixed header height and page top padding feel equally good on:
-  - desktop
-  - tablet
-  - mobile
-- Tighten navigation spacing so the header feels deliberate rather than just wide.
-- Consider whether the footer needs a slightly clearer internal hierarchy now that it frames the site more strongly.
-
-Why it matters:
-- The outer chrome is now a bigger part of the experience, so small misalignments are more noticeable.
-
 ## Page-Level Work
 
 ### 3. Home Page Needs a More Intentional Story Arc
@@ -66,23 +49,6 @@ Next improvements:
 
 Why it matters:
 - This is still the highest-leverage page in the portfolio.
-
-### 4. About Page Could Use Stronger Visual Proof
-
-Current state:
-- The about page has solid writing and structure, but some of the strongest credibility signals are still embedded in paragraphs.
-
-Next improvements:
-- Turn key biography proof points into more visual modules.
-- Consider one compact stats/proof strip for:
-  - years in front-end work
-  - notable companies
-  - Ryan Meetup scale
-  - early Terraria contribution
-- Review whether the portrait section and “notable career moments” block feel equally weighted.
-
-Why it matters:
-- The page is strong on personality and values; it can still do more with proof.
 
 ### 5. Experience Page Should Read More Like a Career Narrative
 
