@@ -419,6 +419,22 @@ body {
     max-width: 68ch;
   }
 
+  .section-intro {
+    @apply max-w-5xl;
+  }
+
+  .section-intro-tight {
+    @apply max-w-4xl;
+  }
+
+  .section-heading {
+    @apply mb-3;
+  }
+
+  .section-copy {
+    @apply type-body;
+  }
+
   .section-panel {
     @apply ui-card relative px-6 py-7 sm:px-8 sm:py-9;
   }
@@ -441,6 +457,22 @@ body {
       inset 0 1px 0 rgba(255, 255, 255, 0.04),
       0 18px 40px rgba(2, 6, 23, 0.22);
     @apply rounded-[var(--radius-md)];
+  }
+
+  .panel-stack {
+    @apply grid gap-4;
+  }
+
+  .proof-grid {
+    @apply grid gap-4 sm:grid-cols-2 2xl:grid-cols-4;
+  }
+
+  .proof-card {
+    @apply subtle-panel px-5 py-5 sm:px-6;
+  }
+
+  .media-panel {
+    @apply section-panel overflow-hidden;
   }
 
   .surface-rule {

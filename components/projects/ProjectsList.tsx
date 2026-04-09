@@ -46,10 +46,10 @@ const ProjectsList = (props: ProjectsListProps) => {
   return (
     <div className='space-y-10'>
       <section className='space-y-6'>
-        <div className='max-w-5xl'>
-          <p className='type-meta mb-3'>Featured Work</p>
+        <div className='section-intro-tight'>
+          <p className='type-meta section-heading'>Featured Work</p>
           <h2 className='section-title mb-3'>Projects that best represent my product and engineering range.</h2>
-          <p className='type-body'>
+          <p className='section-copy'>
             These are the projects I&apos;d point to first when someone wants to understand how I approach UI quality, implementation detail, and the tradeoffs behind real shipped work.
           </p>
         </div>
@@ -71,10 +71,10 @@ const ProjectsList = (props: ProjectsListProps) => {
       <Divider />
 
       <section className='space-y-6'>
-        <div className='max-w-5xl'>
-          <p className='type-meta mb-3'>More Builds</p>
+        <div className='section-intro-tight'>
+          <p className='type-meta section-heading'>More Builds</p>
           <h2 className='section-title mb-3'>Additional work across professional, freelance, and personal contexts.</h2>
-          <p className='type-body'>
+          <p className='section-copy'>
             Not every project needs a case-study treatment. This grid is meant to be scanned quickly, with category badges and concise summaries doing most of the work.
           </p>
         </div>

@@ -2,7 +2,7 @@
 import { Layout } from '@/components/navigation/Layout';
 import { Biography } from '@/components/about/Biography';
 import { Education } from '@/components/about/Education';
-import { Divider } from '@/components/global';
+import { Divider, PageIntro } from '@/components/global';
 
 // Types
 import type { SocialMedia } from '@/lib/types';
@@ -37,6 +37,11 @@ const AboutPage = async () => {
 
   return (
     <Layout>
+      <PageIntro
+        eyebrow='About'
+        title='Front-end engineer, community builder, and creative operator.'
+        subtitle='A closer look at the work, background, and community projects that shape how I build product UI, front-end systems, and audience-facing experiences.'
+      />
       <Biography socials={socials as SocialMedia[]} />
       <Divider />
       <Education />

@@ -6,7 +6,8 @@ import NextLink from 'next/link';
 import { Transition } from '@headlessui/react';
 import { Button } from '@/components/global';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
-import { FaDownload as Download } from 'react-icons/fa6';
+import { FaArrowRightLong as ArrowRight, FaDownload as Download } from 'react-icons/fa6';
+import { HiSparkles as Sparkles } from 'react-icons/hi2';
 
 // Utilities
 import { convertImageUrl } from '@/utils/convert';
@@ -48,22 +49,39 @@ const Hero = (props: HeroProps) => {
             </h4>
 
             <div className='text-gray-400 tracking-wide space-y-1 font-medium'>
-              <p>🚀 &nbsp; Always exploring opportunities, side projects, freelancing and more.</p>
+              <p>🚀 &nbsp; Best on front-end systems, product UI, and implementation-heavy builds.</p>
               <p>🎓 &nbsp; University of Nebraska-Lincoln graduate in Software Engineering.</p>
               <p>🤝🏼 &nbsp; Co-founder of the <NextLink className='text-blue-400 hover:underline' href='https://ryanmeetup.com'>Ryan Meetup</NextLink>.</p>
               <p>🏙️ &nbsp; Based in New York City.</p>
             </div>
 
-            <Button
-              className='mt-4'
-              download='ryan-le-resume.pdf'
-              fullWidth
-              href='/resume.pdf'
-              icon={<Download />}
-              variant='outline'
-            >
-              Download Resume
-            </Button>
+            <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
+              <Button
+                className='w-full sm:w-auto'
+                href='/projects'
+                icon={<ArrowRight />}
+                variant='primary'
+              >
+                View selected work
+              </Button>
+              <Button
+                className='w-full sm:w-auto'
+                href='/contact'
+                icon={<Sparkles />}
+                variant='outline'
+              >
+                Start a conversation
+              </Button>
+              <Button
+                className='w-full sm:w-auto'
+                download='ryan-le-resume.pdf'
+                href='/resume.pdf'
+                icon={<Download />}
+                variant='outline'
+              >
+                Download Resume
+              </Button>
+            </div>
           </SlideUpWhenVisible>
         </div>
         <div className='col-span-0 xl:col-span-1' />
@@ -98,23 +116,28 @@ const Hero = (props: HeroProps) => {
       </div>
 
       <SlideUpWhenVisible duration={0.9} delay={0.9}>
-        <div className='flex items-start mt-8 flex-col xl:flex-row xl:items-center'>
-          <h4 className='mb-2 text-xl font-medium tracking-wider xl:mb-0'>
+        <div className='mt-8 flex flex-col items-start gap-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-5 sm:px-6 xl:flex-row xl:items-center'>
+          <h4 className='text-xl font-medium tracking-wider'>
             Currently Working With
           </h4>
-          <div className='mx-8 mb-4 w-0.5 border border-white h-10 hidden xl:block xl:mb-0' />
-          <div className='flex flex-wrap'>
+          <div className='hidden h-10 w-px border border-white/10 xl:block' />
+          <div className='flex flex-wrap gap-3 sm:gap-4'>
             {skills.map((skill) => (
               <div
                 key={skill.technology as string}
-                className='relative w-10 h-10 mr-8 mb-3'
+                className='subtle-panel group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-[0.95rem] border-white/10 p-2 sm:h-14 sm:w-14 sm:p-2.5'
+                title={skill.technology as string}
               >
-                <NextImage
-                  src={convertImageUrl(skill.icon as ContentfulImage)}
-                  fill
-                  alt={skill.technology as string}
-                  style={{ objectFit: 'contain' }}
-                />
+                <div className='relative h-6 w-6 sm:h-7 sm:w-7'>
+                  <NextImage
+                    src={convertImageUrl(skill.icon as ContentfulImage)}
+                    fill
+                    className='object-contain opacity-80 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100'
+                    alt={skill.technology as string}
+                    sizes='56px'
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
               </div>
             ))}
           </div>

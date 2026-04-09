@@ -1,7 +1,7 @@
 // Components
 import { Layout } from '@/components/navigation/Layout';
 import { SkillsTable } from '@/components/skills/SkillsTable';
-import { Button, Divider } from '@/components/global';
+import { Button, Divider, PageIntro } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
 import {
@@ -73,19 +73,15 @@ const SkillsPage = async () => {
 
   return (
     <Layout>
-      <div className='max-w-6xl'>
-        <p className='ui-eyebrow mb-3'>Skills</p>
-        <h1 className='page-title mb-4'>
-          My Skillsets
-        </h1>
-        <p className='type-body'>
-          I think less in terms of tool inventory and more in terms of capability: interface systems, product UI delivery, and creative operations that can actually be executed.
-        </p>
-      </div>
+      <PageIntro
+        eyebrow='Skills'
+        title='My Skillsets'
+        subtitle='I think less in terms of tool inventory and more in terms of capability: interface systems, product UI delivery, and creative operations that can actually be executed.'
+      />
 
       <div className='grid gap-4 lg:grid-cols-3'>
         {capabilityGroups.map((group) => (
-          <div key={group.title} className='subtle-panel p-5'>
+          <div key={group.title} className='proof-card'>
             <div className='mb-3 flex items-center gap-2'>
               {group.icon}
               <p className='type-meta'>{group.title}</p>

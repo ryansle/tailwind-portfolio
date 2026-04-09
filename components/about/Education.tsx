@@ -16,8 +16,8 @@ const Education = () => {
   const emphasis = 'text-teal-500 font-semibold';
   return (
     <div>
-      <div className='mb-6'>
-        <p className='ui-eyebrow mb-3'>Education</p>
+      <div className='section-intro-tight mb-6'>
+        <p className='ui-eyebrow section-heading'>Education</p>
         <h2 className='page-title mb-4'>Built on engineering fundamentals and early leadership.</h2>
       </div>
 

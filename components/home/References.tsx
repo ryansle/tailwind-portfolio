@@ -73,10 +73,10 @@ const References = (props: ReferencesProps) => {
 
   return (
     <section className='space-y-10 tracking-wide'>
-      <div className='max-w-4xl'>
-        <p className='ui-eyebrow mb-3'>References</p>
+      <div className='section-intro-tight'>
+        <p className='ui-eyebrow section-heading'>References</p>
         <h2 className='page-title mb-4'>What it&apos;s like to work with me.</h2>
-        <p className='type-body'>
+        <p className='section-copy'>
           The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.
         </p>
       </div>

@@ -57,7 +57,7 @@ const ProofStatCard = (props: ProofStat) => {
   const { value, label, detail } = props;
 
   return (
-    <div className='subtle-panel px-5 py-5 sm:px-6'>
+    <div className='proof-card'>
       <p className='text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl'>{value}</p>
       <p className='mt-2 text-xs font-semibold uppercase tracking-[0.24em] text-teal-300'>{label}</p>
       <p className='mt-3 text-sm leading-6 text-soft'>{detail}</p>
@@ -94,12 +94,7 @@ const Biography = (props: BiographyProps) => {
 
   return (
     <div className='flex flex-col gap-8'>
-      <div className='max-w-4xl order-1'>
-        <p className='ui-eyebrow mb-3'>About</p>
-        <h1 className='page-title mb-4'>Front-end engineer, community builder, and creative operator.</h1>
-      </div>
-
-      <div className='order-3 grid gap-4 sm:grid-cols-2 lg:order-2 2xl:grid-cols-4'>
+      <div className='proof-grid order-2 lg:order-1'>
         {proofStats.map((stat) => (
           <ProofStatCard
             key={stat.label}
@@ -110,7 +105,7 @@ const Biography = (props: BiographyProps) => {
         ))}
       </div>
 
-      <div className='order-2 flex flex-col-reverse gap-6 lg:order-3 lg:grid lg:grid-cols-12 lg:items-start lg:gap-8'>
+      <div className='order-1 flex flex-col-reverse gap-6 lg:order-2 lg:grid lg:grid-cols-12 lg:items-start lg:gap-8'>
         <div className='col-span-12 lg:col-span-6 xl:col-span-5'>
           <div className='max-w-[68ch] space-y-4 text-soft tracking-wide'>
             <p>
@@ -151,7 +146,7 @@ const Biography = (props: BiographyProps) => {
         <div className='hidden xl:block xl:col-span-1' />
 
         <div className='col-span-12 lg:col-span-6'>
-          <div className='section-panel overflow-hidden'>
+          <div className='media-panel'>
             <div className='mb-5'>
               <div>
                 <p className='type-meta mb-2'>Portrait</p>

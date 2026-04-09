@@ -1,6 +1,7 @@
 // Components
 import { Layout } from '@/components/navigation/Layout';
 import { History } from '@/components/experience/History';
+import { PageIntro } from '@/components/global';
 
 // Types
 import type { Experience } from '@/lib/types';
@@ -35,15 +36,11 @@ const ExperiencePage = async () => {
 
   return (
     <Layout>
-      <div className='max-w-6xl'>
-        <p className='ui-eyebrow mb-3'>Experience</p>
-        <h1 className='page-title mb-4'>
-          Front-end work shaped by product demands, interface systems, and range.
-        </h1>
-        <p className='type-body'>
-          My career has moved across enterprise teams, agency work, and self-directed ventures, but the throughline is consistent: front-end systems, product UI, and execution that holds up once the work leaves design files.
-        </p>
-      </div>
+      <PageIntro
+        eyebrow='Experience'
+        title='Front-end work shaped by product demands, interface systems, and range.'
+        subtitle='My career has moved across enterprise teams, agency work, and self-directed ventures, but the throughline is consistent: front-end systems, product UI, and execution that holds up once the work leaves design files.'
+      />
 
       <History experiences={experiences as Experience[]} />
     </Layout>
