@@ -1,10 +1,10 @@
 const SEO = {
-  title: 'Ryan Le - Web Engineer',
-  description: 'Ryan Le is a Web Engineer based out of Brooklyn, New York. Working on all things front-end at CrowdStrike.',
+  title: 'Ryan Le | Web Engineer and Community Builder',
+  description: 'Ryan Le is a New York web engineer and community builder creating thoughtful digital experiences.',
   openGraph: {
     url: 'https://ryanle.dev',
-    title: 'Ryan Le - Web Engineer',
-    description: 'Ryan Le is a Web Engineer based out of Brooklyn, New York. Working on all things front-end currently at CrowdStrike.',
+    title: 'Ryan Le | Web Engineer and Community Builder',
+    description: 'Ryan Le is a New York web engineer and community builder creating thoughtful digital experiences.',
     images: [
       {
         url: '/seo/home.png',

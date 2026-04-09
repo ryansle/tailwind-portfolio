@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 const siteName = 'Ryan Le';
 const siteUrl = 'https://ryanle.dev';
-const defaultTitle = 'UI Engineer building front-end systems and product UI';
-const defaultDescription = 'Ryan Le is a UI Engineer based in New York, building front-end systems, product UI, and audience-facing experiences at CrowdStrike and beyond.';
+const defaultTitle = 'Web Engineer and Community Builder';
+const defaultDescription = 'Ryan Le is a Brooklyn-based Web Engineer and Community Builder creating thoughtful digital experiences.';
 const defaultOgImage = '/seo/home.png';
 const defaultResolvedTitle = `${siteName} | ${defaultTitle}`;
 

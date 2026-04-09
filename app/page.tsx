@@ -14,7 +14,7 @@ import { fetchSkills, fetchTestimonies } from '@/data/fetch';
 import { createPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
-  description: 'Ryan Le is a UI Engineer in New York building front-end systems, product UI, and implementation-heavy experiences at CrowdStrike and beyond.',
+  description: 'Ryan Le is a New York web engineer and community builder creating thoughtful digital experiences.',
   path: '/',
   image: '/seo/home.png',
 });
