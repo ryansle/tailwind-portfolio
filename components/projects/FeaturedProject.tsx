@@ -51,8 +51,8 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
       enterTo='opacity-100 translate-y-0'
     >
       <article className='ui-card motion-parent overflow-hidden'>
-        <div className='grid gap-0 xl:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)] xl:items-stretch'>
-          <div className={`relative aspect-[16/10] overflow-hidden border-b border-white/10 sm:min-h-[280px] sm:aspect-auto xl:h-full xl:border-b-0 ${reverse ? 'xl:order-2' : 'xl:order-1'}`}>
+        <div className='grid gap-0 lg:grid-cols-[minmax(300px,0.9fr)_minmax(0,1.1fr)] lg:items-stretch xl:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)]'>
+          <div className={`relative aspect-[16/10] overflow-hidden border-b border-white/10 sm:min-h-[280px] sm:aspect-auto lg:min-h-[340px] lg:border-b-0 ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
             <NextLink href={(url ?? github) as string} className='absolute inset-0'>
               <NextImage
                 fill
@@ -64,14 +64,14 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
             <div className='absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/10 to-transparent' />
           </div>
 
-          <div className={`flex flex-col justify-between p-6 tracking-wide sm:p-7 ${reverse ? 'xl:order-1' : 'xl:order-2'}`}>
+          <div className={`flex flex-col justify-between p-6 tracking-wide sm:p-7 ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
             <div>
               <div className='mb-4 flex flex-wrap gap-2'>
                 <span className='ui-badge ui-badge-brand'>Featured</span>
               </div>
 
-              <div className='mb-2 flex flex-wrap items-center gap-3'>
-                <h3 className='text-3xl font-semibold tracking-[-0.03em] text-white'>
+              <div className='mb-2 flex flex-wrap items-center gap-2.5'>
+                <h3 className='text-[clamp(2rem,3.6vw,3rem)] font-semibold tracking-[-0.03em] text-white lg:max-w-[16ch]'>
                   {title}
                 </h3>
                 <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
@@ -101,7 +101,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
             </div>
 
             {(github || url) && (
-              <div className='mt-6 flex items-center gap-3'>
+              <div className='mt-6 flex flex-wrap items-center gap-3'>
                 {github && (
                   <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
                     <GitHub className='w-5 h-5' />

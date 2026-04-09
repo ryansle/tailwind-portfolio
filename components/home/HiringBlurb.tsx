@@ -11,22 +11,22 @@ const HiringBlurb = () => {
   const strengths = [
     {
       title: 'Product UI implementation',
-      description: 'Design systems, app surfaces, and scalable front-end architecture that hold up in production.',
+      description: 'Design systems, app surfaces, and front-end architecture that stay usable as products grow.',
       icon: <Devices className='h-5 w-5 text-teal-400' />,
     },
     {
       title: 'Cross-functional collaboration',
-      description: 'I work closely with design, product, and engineering partners to ship clear decisions quickly and keep momentum high.',
+      description: 'I work closely with design, product, and engineering to keep scope sharp and implementation moving.',
       icon: <Collaboration className='h-5 w-5 text-teal-400' />,
     },
     {
       title: 'Craft and polish',
-      description: 'The details matter: hierarchy, motion, responsiveness, and the feeling of using the thing once it ships.',
+      description: 'Hierarchy, motion, responsiveness, and interaction states that make interfaces feel considered.',
       icon: <Motion className='h-5 w-5 text-teal-400' />,
     },
     {
       title: 'Modern front-end delivery',
-      description: 'Deep comfort with React, Next.js, TypeScript, Tailwind CSS, and the workflows needed to move from concept to launch.',
+      description: 'Strong delivery in React, Next.js, TypeScript, and Tailwind from concept through launch.',
       icon: <Code className='h-5 w-5 text-teal-400' />,
     },
   ];
@@ -34,9 +34,12 @@ const HiringBlurb = () => {
   return (
     <SlideUpWhenVisible delay={1.2} duration={0.8}>
       <section className='grid gap-10 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-center'>
-        <div className='grid gap-4'>
-          {strengths.map((strength) => (
-            <div key={strength.title} className='border-t border-white/10 pt-4'>
+        <div className='order-2 grid gap-4 xl:order-1'>
+          {strengths.map((strength, index) => (
+            <div
+              key={strength.title}
+              className={`${index === 0 ? 'pt-0 border-t-0' : 'border-t border-white/10 pt-4'}`}
+            >
               <div className='mb-3 flex items-center gap-3'>
                 {strength.icon}
                 <p className='type-meta'>{strength.title}</p>
@@ -48,15 +51,16 @@ const HiringBlurb = () => {
           ))}
         </div>
 
-        <div className='max-w-4xl xl:justify-self-end'>
+        <div className='order-1 max-w-4xl xl:order-2 xl:justify-self-end'>
           <p className='ui-eyebrow mb-3'>Work together</p>
-          <h2 className='page-title mb-4'>Need a front-end engineer who can turn product intent into polished UI?</h2>
+          <h2 className='page-title mb-4'>Need a front-end engineer who can make product decisions hold up in the interface?</h2>
           <p className='type-body'>
-            I take on full-time opportunities, freelance builds, and focused front-end engagements where strong implementation quality matters. The best fit is product work that needs clarity, craft, and clean execution.
+            I take on full-time roles, freelance builds, and focused front-end engagements where implementation quality matters. The best fit is work that needs strong systems thinking, reliable execution, and a high bar for interface detail.
           </p>
 
           <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
             <Button
+              className='w-full sm:w-auto'
               href='/contact'
               icon={<Sparkles />}
               variant='primary'
@@ -64,6 +68,7 @@ const HiringBlurb = () => {
               Start a conversation
             </Button>
             <Button
+              className='w-full sm:w-auto'
               href='/projects'
               icon={<ArrowRight />}
               variant='outline'

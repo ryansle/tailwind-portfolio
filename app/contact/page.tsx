@@ -42,10 +42,10 @@ const ContactPage: NextPage = () => {
 
             <div className='type-body space-y-4'>
               <p>
-                Looking for a skilled front-end web developer? Need help with a product surface, design system, or polished marketing site? I&apos;m open to the right full-time role, freelance build, or creative collaboration.
+                Need help with a product surface, design system, or implementation-heavy marketing build? I&apos;m open to the right full-time role, freelance engagement, or creative collaboration.
               </p>
               <p>
-                The best outreach includes a little context: what you&apos;re building, what stage you&apos;re in, what support you need, and the rough timeline.
+                The best outreach includes context: what you&apos;re building, what stage it&apos;s in, what support you need, and the timeline you&apos;re working against.
               </p>
             </div>
           </div>
@@ -72,7 +72,7 @@ const ContactPage: NextPage = () => {
                   <HiOutlineBriefcase className='h-4 w-4 text-teal-300' />
                   <p className='type-meta'>Best Fit</p>
                 </div>
-                <p>Front-end engineering, UI implementation, design systems, motion polish, and product marketing surfaces.</p>
+                <p>Front-end systems, product UI implementation, design systems, interaction polish, and product marketing surfaces.</p>
               </div>
             </div>
           </div>

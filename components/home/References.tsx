@@ -77,7 +77,7 @@ const References = (props: ReferencesProps) => {
         <p className='ui-eyebrow mb-3'>References</p>
         <h2 className='page-title mb-4'>What it&apos;s like to work with me.</h2>
         <p className='type-body'>
-          The strongest signal usually comes from the people who have seen the work up close: collaborators, managers, and partners who know how I operate in real product environments.
+          The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.
         </p>
       </div>
 

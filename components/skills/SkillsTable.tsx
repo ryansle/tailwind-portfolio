@@ -31,9 +31,9 @@ const TableRow = (props: TableRowProps) => {
   const { renderBottomBorder } = props;
 
   return (
-    <tr className={`${renderBottomBorder ? 'border-b border-white/10' : ''} block px-4 py-5 transition-colors hover:bg-white/[0.02] sm:table-row sm:px-0 sm:py-0`}>
-      <td className='block h-full px-0 py-0 align-middle sm:table-cell sm:px-5 sm:py-5 sm:pr-4'>
-        <div className='flex items-center space-x-3 '>
+    <tr className={`${renderBottomBorder ? 'border-b border-white/10' : ''} block px-4 py-5 transition-colors hover:bg-white/[0.02] lg:table-row lg:px-0 lg:py-0`}>
+      <td className='block h-full px-0 py-0 align-middle lg:table-cell lg:px-5 lg:py-5 lg:pr-4'>
+        <div className='flex items-center space-x-3'>
           {icon && (
             <NextImage
               className={radii ? 'rounded-full' : ''}
@@ -45,15 +45,15 @@ const TableRow = (props: TableRowProps) => {
           )}
           
 
-          <p className='text-base font-semibold tracking-wide text-white sm:pr-10'>
+          <p className='text-base font-semibold tracking-wide text-white lg:pr-10'>
             {technology}
           </p>
         </div>
-        <p className='mt-3 block max-w-none pr-2 text-sm leading-6 text-soft sm:hidden'>
+        <p className='mt-3 block max-w-none pr-2 text-sm leading-6 text-soft lg:hidden'>
           {uses}
         </p>
       </td>
-      <td className='hidden w-[300px] px-5 align-middle text-xs sm:table-cell'>
+      <td className='hidden w-[300px] px-5 align-middle text-xs lg:table-cell'>
         <p className='pr-3 text-sm leading-6 text-soft'>{uses}</p>
       </td>
       {/* <td className='py-2 w-[1000px]'>
@@ -66,8 +66,8 @@ const TableRow = (props: TableRowProps) => {
           ))}
         </div>
       </td> */}
-      <td className='mt-4 block px-0 align-middle sm:mt-0 sm:table-cell sm:px-5'>
-        <div className='mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted sm:hidden'>
+      <td className='mt-4 block px-0 align-middle lg:mt-0 lg:table-cell lg:px-5'>
+        <div className='mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted lg:hidden'>
           Confidence
         </div>
         <div className='flex items-center'>
@@ -103,13 +103,13 @@ const SkillsTable = (props: SkillsTableProps) => {
   return (
     <div className='ui-card relative overflow-hidden'>
       <table className='w-full text-left text-sm text-gray-400'>
-        <thead className='hidden border-b border-white/10 text-xs uppercase tracking-widest text-gray-400 sm:table-header-group'>
+        <thead className='hidden border-b border-white/10 text-xs uppercase tracking-widest text-gray-400 lg:table-header-group'>
           <tr>
             {headers.map((title) => (
               <th
                 key={title}
                 scope='col'
-                className={`${title === 'My Uses' ? 'hidden sm:table-cell' : 'table-cell'} w-40 px-5 py-4 pr-4 first:pl-5 last:pr-5`}
+                className={`${title === 'My Uses' ? 'hidden lg:table-cell' : 'table-cell'} w-40 px-5 py-4 pr-4 first:pl-5 last:pr-5`}
               >
                 {title}
               </th>

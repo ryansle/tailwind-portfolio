@@ -37,7 +37,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
   return (
     <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow overflow-hidden'>
-      <div className='relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 sm:aspect-video'>
+      <div className='relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 sm:aspect-video md:min-h-[220px]'>
         <NextImage
           fill
           className='motion-media rounded-t-[var(--radius-lg)] object-cover'
@@ -49,8 +49,8 @@ const ProjectCard = (props: ProjectCardProps) => {
 
       <div className='p-5 tracking-wide'>
         <div className='text-left'>
-          <div className='mb-2 flex flex-wrap items-center gap-3'>
-            <h3 className='text-xl font-semibold tracking-[-0.02em] text-white'>
+          <div className='mb-2 flex flex-wrap items-center gap-2.5'>
+            <h3 className='text-xl font-semibold tracking-[-0.02em] text-white md:max-w-[20ch]'>
               {title}
             </h3>
             <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
@@ -79,7 +79,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           </div>
 
           {(github || url) && (
-            <div className='mt-5 flex items-center gap-3'>
+            <div className='mt-5 flex flex-wrap items-center gap-3'>
               {github && (
                 <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
                   <GitHub className='h-4 w-4' aria-label='GitHub icon' />

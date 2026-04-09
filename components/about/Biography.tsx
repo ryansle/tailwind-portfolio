@@ -44,7 +44,7 @@ const SocialMediaLink = (props: SocialMediaLinkProps) => {
   };
 
   return (
-    <NextLink href={url} className='flex items-center rounded mr-2 py-1.5 px-2 border border-teal-500 mb-2 transition ease-in-out duration-300 hover:scale-105'>
+    <NextLink href={url} className='inline-flex items-center rounded border border-teal-500 px-2 py-1.5 transition ease-in-out duration-300 hover:scale-105'>
       {renderIcon(platform)}
       <span className='ml-2 text-white tracking-wide font-medium hover:text-teal-500'>
         {platform}
@@ -93,13 +93,13 @@ const Biography = (props: BiographyProps) => {
   ];
 
   return (
-    <div className='space-y-8'>
-      <div className='max-w-4xl'>
+    <div className='flex flex-col gap-8'>
+      <div className='max-w-4xl order-1'>
         <p className='ui-eyebrow mb-3'>About</p>
         <h1 className='page-title mb-4'>Front-end engineer, community builder, and creative operator.</h1>
       </div>
 
-      <div className='grid gap-4 sm:grid-cols-2 2xl:grid-cols-4'>
+      <div className='order-3 grid gap-4 sm:grid-cols-2 lg:order-2 2xl:grid-cols-4'>
         {proofStats.map((stat) => (
           <ProofStatCard
             key={stat.label}
@@ -110,9 +110,9 @@ const Biography = (props: BiographyProps) => {
         ))}
       </div>
 
-      <div className='flex flex-col-reverse gap-6 xl:grid xl:grid-cols-12 xl:items-start'>
-        <div className='col-span-12 xl:col-span-5'>
-          <div className='space-y-4 text-soft tracking-wide'>
+      <div className='order-2 flex flex-col-reverse gap-6 lg:order-3 lg:grid lg:grid-cols-12 lg:items-start lg:gap-8'>
+        <div className='col-span-12 lg:col-span-6 xl:col-span-5'>
+          <div className='max-w-[68ch] space-y-4 text-soft tracking-wide'>
             <p>
               I&apos;m Ryan Le, a front-end engineer, community builder, and co-founder of <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series built around shared identity, humor, and belonging.
             </p>
@@ -136,7 +136,7 @@ const Biography = (props: BiographyProps) => {
 
           <div className='mt-8 border-t border-white/10 pt-5'>
             <h2 className='type-meta mb-4'>Find me online</h2>
-            <div className='flex flex-wrap'>
+            <div className='flex flex-wrap gap-2'>
               {socials.map((social) => (
                 <SocialMediaLink
                   key={social.platform}
@@ -150,7 +150,7 @@ const Biography = (props: BiographyProps) => {
 
         <div className='hidden xl:block xl:col-span-1' />
 
-        <div className='col-span-12 xl:col-span-6'>
+        <div className='col-span-12 lg:col-span-6'>
           <div className='section-panel overflow-hidden'>
             <div className='mb-5'>
               <div>
@@ -160,7 +160,7 @@ const Biography = (props: BiographyProps) => {
             </div>
 
             <div className='px-1 pb-1 pt-2 sm:px-2 sm:pb-2 sm:pt-3'>
-              <div className='relative h-[320px] w-full overflow-visible xl:h-[500px]'>
+              <div className='relative h-[320px] w-full overflow-visible sm:h-[380px] lg:h-[440px] xl:h-[500px]'>
                 <Transition
                   as='div'
                   appear={true}

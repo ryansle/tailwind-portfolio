@@ -38,20 +38,20 @@ const Hero = (props: HeroProps) => {
               I&apos;m currently a <span className='text-teal-500 font-semibold'>UI Engineer II</span> at{' '}
               <NextLink className='text-red-500 hover:underline underline-offset-2' href='https://www.crowdstrike.com/'>
                 CrowdStrike
-              </NextLink>, working on all things front-end.
+              </NextLink>, building product UI and front-end systems.
             </h4>
           </SlideUpWhenVisible>
 
           <SlideUpWhenVisible duration={0.9} delay={0.9}>
             <h4 className='mt-8 mb-1 text-xl font-bold'>
-              A little about me...
+              Quick context
             </h4>
 
             <div className='text-gray-400 tracking-wide space-y-1 font-medium'>
               <p>🚀 &nbsp; Always exploring opportunities, side projects, freelancing and more.</p>
-              <p>🎓 &nbsp; University of Nebraska-Lincoln Alumni. Degree in Software Engineering.</p>
-              <p>🤝🏼 &nbsp; Cofounder of the <NextLink className='text-blue-400 hover:underline' href='https://ryanmeetup.com'>Ryan Meetup</NextLink>.</p>
-              <p>🏙️ &nbsp; Currently based out of New York City.</p>
+              <p>🎓 &nbsp; University of Nebraska-Lincoln graduate in Software Engineering.</p>
+              <p>🤝🏼 &nbsp; Co-founder of the <NextLink className='text-blue-400 hover:underline' href='https://ryanmeetup.com'>Ryan Meetup</NextLink>.</p>
+              <p>🏙️ &nbsp; Based in New York City.</p>
             </div>
 
             <Button

@@ -80,7 +80,7 @@ const ProjectsList = (props: ProjectsListProps) => {
         </div>
 
         <div className='subtle-panel px-4 py-4 sm:px-5'>
-          <div className='mb-3 flex flex-wrap items-center justify-between gap-3'>
+          <div className='mb-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3'>
             <p className='type-meta text-teal-200'>Filter By Project Type</p>
             <p className='text-sm text-soft'>
               {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} shown
@@ -122,9 +122,9 @@ const ProjectsList = (props: ProjectsListProps) => {
           ))}
         </div>
 
-        <div className='hidden gap-5 md:grid xl:hidden md:grid-cols-2'>
+        <div className='hidden gap-4 md:grid xl:hidden md:grid-cols-2'>
           {twoColumnProjects.map((column, columnIndex) => (
-            <div key={columnIndex} className='space-y-5'>
+            <div key={columnIndex} className='space-y-4'>
               {column.map((project) => (
                 <ProjectCard
                   key={project.title}
@@ -135,9 +135,9 @@ const ProjectsList = (props: ProjectsListProps) => {
           ))}
         </div>
 
-        <div className='hidden gap-5 xl:grid xl:grid-cols-3'>
+        <div className='hidden gap-4 xl:grid xl:grid-cols-3'>
           {threeColumnProjects.map((column, columnIndex) => (
-            <div key={columnIndex} className='space-y-5'>
+            <div key={columnIndex} className='space-y-4'>
               {column.map((project) => (
                 <ProjectCard
                   key={project.title}

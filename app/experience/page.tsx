@@ -38,10 +38,10 @@ const ExperiencePage = async () => {
       <div className='max-w-6xl'>
         <p className='ui-eyebrow mb-3'>Experience</p>
         <h1 className='page-title mb-4'>
-          Work Experience
+          Front-end work shaped by product demands, interface systems, and range.
         </h1>
         <p className='type-body'>
-          My work centers on front-end implementation: product UI, design systems, responsive marketing surfaces, and the details that make interfaces feel clear and production-ready. I&apos;ve done that across enterprise teams, agency environments, and self-directed ventures, and the throughline is consistent: teams can expect strong execution, thoughtful collaboration, and a high bar for polish.
+          My career has moved across enterprise teams, agency work, and self-directed ventures, but the throughline is consistent: front-end systems, product UI, and execution that holds up once the work leaves design files.
         </p>
       </div>
 

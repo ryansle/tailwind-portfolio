@@ -41,7 +41,7 @@ const ProjectsPage = async () => {
           Things I&apos;ve Built
         </h1>
         <p className='type-body'>
-          A selection of product, engineering, and creative work across professional teams, freelance engagements, and self-directed projects. The featured work below highlights the projects that best reflect how I think, build, and ship.
+          A selection of product, engineering, and creative work across team-based delivery, freelance engagements, and self-directed builds. The featured work below is the quickest read on how I approach implementation, interface quality, and shipped outcomes.
         </p>
       </div>
 

@@ -77,7 +77,7 @@ const Company = (props: CompanyProps) => {
   };
 
   return (
-    <li className='relative ml-6 xl:mb-10'>
+    <li className='relative ml-5 lg:ml-6 xl:mb-10'>
       {milestoneLabel && (
         <div className='mb-8 ml-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4'>
           <div className='flex items-center gap-4'>
@@ -86,7 +86,7 @@ const Company = (props: CompanyProps) => {
           </div>
         </div>
       )}
-      <div className='relative h-40 w-full flex items-center justify-center mb-6 xl:hidden'>
+      <div className='relative mb-6 flex h-32 w-full items-center justify-center sm:h-36 xl:hidden'>
         <NextImage
           src={convertImageUrl(image)}
           fill
@@ -95,7 +95,7 @@ const Company = (props: CompanyProps) => {
         />
       </div>
       <div className={`absolute -left-2 mt-1.5 rounded-full border border-gray-900 ${isCurrent ? 'h-4 w-4 bg-teal-400 shadow-[0_0_0_4px_rgba(45,212,191,0.12)]' : isRecent ? 'h-3.5 w-3.5 bg-slate-300' : 'h-3 w-3 bg-gray-700'}`} />
-      <div className='grid grid-cols-10 flex items-center'>
+      <div className='grid grid-cols-10 items-center'>
         <div className='col-span-10 xl:col-span-6'>
           <div className='mb-3 flex flex-wrap items-center gap-3'>
             <time className={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${isCurrent ? 'border-teal-400/35 bg-teal-400/10 text-teal-200' : isRecent ? 'border-white/15 bg-white/[0.04] text-soft' : 'border-white/10 bg-white/[0.03] text-muted'}`}>
@@ -112,7 +112,7 @@ const Company = (props: CompanyProps) => {
               </span>
             )}
           </div>
-          <h3 className='text-3xl mb-4 tracking-wider'>
+          <h3 className='mb-4 text-[clamp(1.8rem,4vw,3rem)] tracking-wider'>
             <span className='text-teal-500 font-semibold break-words'>{title}</span>
             {' '}@{' '}
             <NextLink href={companyUrl}>
@@ -121,11 +121,11 @@ const Company = (props: CompanyProps) => {
               </span>
             </NextLink>
           </h3>
-          <p className='mb-4 text-base font-normal text-white'>
+          <p className='mb-4 max-w-[68ch] text-base font-normal text-white'>
             {summary}
           </p>
 
-          <h4 className='text-teal-500 font-semibold text-xl tracking-wider mb-2'>
+          <h4 className='mb-2 text-xl font-semibold tracking-wider text-teal-500'>
             {header}
           </h4>
 
@@ -158,9 +158,9 @@ const Company = (props: CompanyProps) => {
           )}
         </div>
 
-        <div className='col-span-1' />
+        <div className='hidden xl:block xl:col-span-1' />
 
-        <div className='relative h-full w-full col-span-3'>
+        <div className='relative hidden h-full w-full xl:col-span-3 xl:block'>
           <NextLink href={companyUrl}>
             <NextImage
               src={convertImageUrl(image)}
