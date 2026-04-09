@@ -1,5 +1,6 @@
 // Components
-import { Header, Footer } from '@/components/navigation';
+import { Header } from './Header';
+import { Footer } from './Footer';
 
 // Types
 import type { ReactNode } from 'react';
@@ -14,10 +15,12 @@ const Layout = (props: LayoutProps) => {
   const { className, children, fullscreen = false } = props;
 
   return (
-    <main>
+    <main className='app-frame'>
       <Header />
-      <section className={`${className} text-white min-h-full pt-12 pb-8 px-6 flex flex-col overflow-hidden bg-gradient-to-b from-neutral-900 to-black ${fullscreen ? '' : 'xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'}`}>
-        {children}
+      <section className='page-wrap'>
+        <div className={`${className ?? ''} page-shell ${fullscreen ? '' : ''}`}>
+          {children}
+        </div>
       </section>
       <Footer />
     </main>

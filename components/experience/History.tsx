@@ -1,9 +1,17 @@
+'use client';
+
 // Components
 import NextImage from 'next/image';
-import { List, TechLabel } from '@/components/experience';
-import { Divider } from '@/components/global';
+import { Transition } from '@headlessui/react';
+import { List } from './List';
+import { TechLabel } from './TechLabel';
+import { Button, Divider } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
+import { FaChevronDown as ChevronDown } from 'react-icons/fa6';
+
+// Built-in Types
+import { useState } from 'react';
 
 // Types
 import { Experience } from '@/lib/types';
@@ -17,7 +25,20 @@ type HistoryProps = {
 
 type CompanyProps = {
   experience: Experience;
+  index: number;
+  isCurrent: boolean;
+  isRecent: boolean;
+  milestoneLabel?: string;
   renderDivider: boolean;
+}
+
+type ExperienceSectionProps = {
+  title: string;
+  defaultOpen?: boolean;
+  experiences: Experience[];
+  recentCount: number;
+  startIndex: number;
+  milestoneIndex?: number;
 }
 
 const Company = (props: CompanyProps) => {
@@ -32,7 +53,7 @@ const Company = (props: CompanyProps) => {
     techStack,
     companyUrl
   } = props.experience;
-  const { renderDivider } = props;
+  const { index, isCurrent, isRecent, milestoneLabel, renderDivider } = props;
 
   const tech = techStack?.map((data) => data.fields);
 
@@ -56,8 +77,16 @@ const Company = (props: CompanyProps) => {
   };
 
   return (
-    <li className='ml-6 xl:mb-10'>
-      <div className='relative h-40 w-full flex items-center justify-center mb-6 xl:hidden'>
+    <li className='relative ml-5 lg:ml-6 xl:mb-10'>
+      {milestoneLabel && (
+        <div className='mb-8 ml-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4'>
+          <div className='flex items-center gap-4'>
+            <span className='type-meta whitespace-nowrap text-teal-300'>{milestoneLabel}</span>
+            <span className='h-px flex-1 bg-gradient-to-r from-white/20 to-transparent' />
+          </div>
+        </div>
+      )}
+      <div className='relative mb-6 flex h-32 w-full items-center justify-center sm:h-36 xl:hidden'>
         <NextImage
           src={convertImageUrl(image)}
           fill
@@ -65,13 +94,25 @@ const Company = (props: CompanyProps) => {
           style={{ objectFit: 'contain' }}
         />
       </div>
-      <div className='absolute w-3 h-3 rounded-full mt-1.5 -left-1.5 border border-gray-900 bg-gray-700' />
-      <div className='grid grid-cols-10 flex items-center'>
+      <div className={`absolute -left-2 mt-1.5 rounded-full border border-gray-900 ${isCurrent ? 'h-4 w-4 bg-teal-400 shadow-[0_0_0_4px_rgba(45,212,191,0.12)]' : isRecent ? 'h-3.5 w-3.5 bg-slate-300' : 'h-3 w-3 bg-gray-700'}`} />
+      <div className='grid grid-cols-10 items-center'>
         <div className='col-span-10 xl:col-span-6'>
-          <time className='mb-1 text-lg font-normal leading-none text-gray-400'>
-            {datesEmployed}
-          </time>
-          <h3 className='text-3xl mb-4 tracking-wider'>
+          <div className='mb-3 flex flex-wrap items-center gap-3'>
+            <time className={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${isCurrent ? 'border-teal-400/35 bg-teal-400/10 text-teal-200' : isRecent ? 'border-white/15 bg-white/[0.04] text-soft' : 'border-white/10 bg-white/[0.03] text-muted'}`}>
+              {datesEmployed}
+            </time>
+            {isCurrent && (
+              <span className='rounded-full border border-teal-400/30 bg-teal-400/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-200'>
+                Current
+              </span>
+            )}
+            {!isCurrent && index === 1 && (
+              <span className='rounded-full border border-white/12 bg-white/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-soft'>
+                Recent
+              </span>
+            )}
+          </div>
+          <h3 className='mb-4 text-[clamp(1.8rem,4vw,3rem)] tracking-wider'>
             <span className='text-teal-500 font-semibold break-words'>{title}</span>
             {' '}@{' '}
             <NextLink href={companyUrl}>
@@ -80,11 +121,11 @@ const Company = (props: CompanyProps) => {
               </span>
             </NextLink>
           </h3>
-          <p className='mb-4 text-base font-normal text-white'>
+          <p className='mb-4 max-w-[68ch] text-base font-normal text-white'>
             {summary}
           </p>
 
-          <h4 className='text-teal-500 font-semibold text-xl tracking-wider mb-2'>
+          <h4 className='mb-2 text-xl font-semibold tracking-wider text-teal-500'>
             {header}
           </h4>
 
@@ -103,18 +144,23 @@ const Company = (props: CompanyProps) => {
           )}
 
           {company === 'Ryan Meetup' && (
-            <NextLink 
-              className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'
-              href='/ryan-meetup'
+            <Button
+              className='mt-4'
+              fullWidth
+              href='https://www.ryanmeetup.com/about'
+              target='_blank'
+              rel='noreferrer'
+              icon={<Handshake />}
+              variant='outline'
             >
-              <Handshake className='mr-4' /> Learn more about the Ryan Meetup
-            </NextLink>
+              Learn more about the Ryan Meetup
+            </Button>
           )}
         </div>
 
-        <div className='col-span-1' />
+        <div className='hidden xl:block xl:col-span-1' />
 
-        <div className='relative h-full w-full col-span-3'>
+        <div className='relative hidden h-full w-full xl:col-span-3 xl:block'>
           <NextLink href={companyUrl}>
             <NextImage
               src={convertImageUrl(image)}
@@ -130,20 +176,91 @@ const Company = (props: CompanyProps) => {
   );
 };
 
+const ExperienceSection = (props: ExperienceSectionProps) => {
+  const {
+    title,
+    defaultOpen = true,
+    experiences,
+    recentCount,
+    startIndex,
+    milestoneIndex = -1
+  } = props;
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <section className='mb-8'>
+      <button
+        type='button'
+        onClick={() => setIsOpen((open) => !open)}
+        className='mb-5 flex w-full items-center gap-4 rounded-2xl border border-teal-400/15 bg-teal-400/[0.05] px-5 py-4 text-left hover:border-teal-400/30 hover:bg-teal-400/[0.08]'
+        aria-expanded={isOpen}
+      >
+        <span className={`flex h-10 w-10 items-center justify-center rounded-full border ${isOpen ? 'border-teal-300/30 bg-teal-300/12 text-teal-100' : 'border-white/10 bg-white/[0.04] text-slate-300'}`}>
+          <ChevronDown className={`text-sm transition-transform ${isOpen ? 'rotate-0' : '-rotate-90'}`} />
+        </span>
+        <div className='flex min-w-0 flex-1 items-center gap-4'>
+          <span className='type-meta whitespace-nowrap text-teal-200'>{title}</span>
+          <span className='h-px flex-1 bg-gradient-to-r from-teal-400/30 to-transparent' />
+        </div>
+      </button>
+
+      <Transition
+        as='div'
+        show={isOpen}
+        enter='transition-all duration-300 ease-out'
+        enterFrom='opacity-0 -translate-y-3 scale-[0.98]'
+        enterTo='opacity-100 translate-y-0 scale-100'
+        leave='transition-all duration-200 ease-in'
+        leaveFrom='opacity-100 translate-y-0 scale-100'
+        leaveTo='opacity-0 -translate-y-2 scale-[0.98]'
+        className='origin-top overflow-hidden'
+      >
+        <ol className='relative border-l border-gray-700 pt-1'>
+          {experiences.map((job, sectionIndex) => {
+            const index = startIndex + sectionIndex;
+
+            return (
+              <Company
+                key={job.company}
+                experience={job}
+                index={index}
+                isCurrent={/now|present/i.test(job.datesEmployed)}
+                isRecent={index < recentCount}
+                milestoneLabel={index === milestoneIndex ? 'Earlier work' : undefined}
+                renderDivider={sectionIndex !== experiences.length - 1}
+              />
+            );
+          })}
+        </ol>
+      </Transition>
+    </section>
+  );
+};
+
 const History = (props: HistoryProps) => {
   const { experiences } = props;
+  const recentCount = experiences.length > 3 ? 2 : experiences.length;
+  const recentExperiences = experiences.slice(0, recentCount);
+  const earlierExperiences = experiences.slice(recentCount);
 
   return (
     <div className='mt-2'>
-      <ol className='relative border-l border-gray-700'>
-        {experiences.map((job, index) => (
-          <Company
-            key={job.company}
-            experience={job}
-            renderDivider={index !== experiences.length - 1}
-          />
-        ))}
-      </ol>
+      <ExperienceSection
+        title='Current work'
+        experiences={recentExperiences}
+        recentCount={recentCount}
+        startIndex={0}
+        defaultOpen
+      />
+      {earlierExperiences.length > 0 && (
+        <ExperienceSection
+          title='Earlier work'
+          experiences={earlierExperiences}
+          recentCount={recentCount}
+          startIndex={recentCount}
+          defaultOpen={false}
+        />
+      )}
     </div>
   );
 };

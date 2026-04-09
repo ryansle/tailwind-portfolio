@@ -1,6 +1,8 @@
 // Components
-import { Hero, HiringBlurb, References } from '@/components/home';
-import { Layout } from '@/components/navigation';
+import { Hero } from '@/components/home/Hero';
+import { HiringBlurb } from '@/components/home/HiringBlurb';
+import { References } from '@/components/home/References';
+import { Layout } from '@/components/navigation/Layout';
 import { Divider } from '@/components/global';
 
 // Types

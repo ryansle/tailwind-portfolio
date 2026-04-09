@@ -1,9 +1,14 @@
 // Components
-import { Layout } from '@/components/navigation';
-import { SkillsTable } from '@/components/skills';
-import { Divider } from '@/components/global';
+import { Layout } from '@/components/navigation/Layout';
+import { SkillsTable } from '@/components/skills/SkillsTable';
+import { Button, Divider, PageIntro } from '@/components/global';
 import NextLink from 'next/link';
 import { FaHandshake as Handshake } from 'react-icons/fa';
+import {
+  FaLayerGroup as LayerGroup,
+  FaLaptopCode as LaptopCode,
+  FaWandMagicSparkles as Sparkles,
+} from 'react-icons/fa6';
 
 // Types
 import type { Skill } from '@/lib/types';
@@ -11,6 +16,10 @@ import type { Metadata } from 'next';
 
 // Utilities
 import { fetchSkills } from '@/data/fetch';
+
+type SkillEntry = Skill & {
+  type: 'web' | 'creative';
+};
 
 export const metadata: Metadata = {
   title: 'Ryan Le - Skills',
@@ -34,79 +43,117 @@ export const metadata: Metadata = {
 };
 
 const SkillsPage = async () => {
-  const skills = await fetchSkills();
+  const skills = await fetchSkills() as SkillEntry[];
 
-  const webSkills = skills.filter((skill) => skill.type === 'web');
-  const creativeSkills = skills.filter((skill) => skill.type === 'creative');
+  const sortByConfidence = (a: SkillEntry, b: SkillEntry) => b.confidence - a.confidence;
+
+  const webSkills = skills.filter((skill) => skill.type === 'web').sort(sortByConfidence);
+  const creativeSkills = skills.filter((skill) => skill.type === 'creative').sort(sortByConfidence);
+  const visibleWebSkills = webSkills.filter((skill) => skill.visibility);
+  const visibleCreativeSkills = creativeSkills.filter((skill) => skill.visibility);
+  const capabilityGroups = [
+    {
+      title: 'Product UI systems',
+      description: 'Component architecture, interaction patterns, and UI systems built to stay coherent as products evolve.',
+      icon: <LayerGroup className='h-4 w-4 text-teal-400' />,
+    },
+    {
+      title: 'Shipping front-end work',
+      description: 'App UI, responsive marketing surfaces, and implementation work that translates design accurately under real constraints.',
+      icon: <LaptopCode className='h-4 w-4 text-teal-400' />,
+    },
+    {
+      title: 'Creative direction',
+      description: 'Programming, partnerships, branding, and experiential storytelling through Ryan Meetup and related work.',
+      icon: <Sparkles className='h-4 w-4 text-teal-400' />,
+    },
+  ];
 
   const emphasis = 'text-teal-500 font-semibold';
 
   return (
     <Layout>
-      <h1 className='font-bold text-display2 mb-6 tracking-wider'>
-        My Skillsets
-      </h1>
+      <PageIntro
+        eyebrow='Skills'
+        title='My Skillsets'
+        subtitle='I think less in terms of tool inventory and more in terms of capability: interface systems, product UI delivery, and creative operations that can actually be executed.'
+      />
 
-      <h2 className='font-bold text-3xl mb-4 tracking-wider'>
-        Web Engineering
-      </h2>
-      <div className='text-lg space-y-4 mb-6 tracking-wide text-gray-400'>
-        <p>
-          Throughout my career, I have primarily focused on front-end web development, specializing in the creation of design systems and web components that bring life to diverse applications. The front-end realm is where I truly excel as a developer.
-        </p>
-        <p>
-          While my experiences as a full-stack developer have been limited, I embrace the opportunity to expand my skill set. I am eager to grow and become as proficient in building APIs as I am in crafting front-end solutions.
-        </p>
-        <p>
-          Here are a few of my favorite languages, frameworks, and technologies that I enjoy working with:
-        </p>
+      <div className='grid gap-4 lg:grid-cols-3'>
+        {capabilityGroups.map((group) => (
+          <div key={group.title} className='proof-card'>
+            <div className='mb-3 flex items-center gap-2'>
+              {group.icon}
+              <p className='type-meta'>{group.title}</p>
+            </div>
+            <p className='text-sm leading-7 text-soft'>{group.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <section className='section-panel'>
+        <div className='mb-6 space-y-4'>
+          <div className='flex flex-wrap items-center justify-between gap-4'>
+            <h2 className='section-title'>
+              Web Engineering
+            </h2>
+            <span className='ui-badge ui-badge-brand'>
+              {visibleWebSkills.length} core tools
+            </span>
+          </div>
+          <div className='space-y-4 type-body'>
+            <p>
+              My strongest engineering work is front-end product development: design systems, reusable components, responsive UI, and the implementation decisions that keep products usable as they scale.
+            </p>
+            <p>
+              I&apos;m best when design direction needs to become shipped software in React, Next.js, TypeScript, and Tailwind, with enough structure that the work remains maintainable after launch.
+            </p>
+          </div>
+        </div>
         <SkillsTable
           header='Technology'
           skills={webSkills as Skill[]}
         />
-      </div>
+      </section>
 
-      <Divider margins='xl' />
+      <Divider />
 
-      <h2 className='font-bold text-3xl mb-4 tracking-wider'>
-        Creative Production & Community Building
-      </h2>
-      <div className='text-lg space-y-4 tracking-wide text-gray-400'>
-        <p>
-          Outside of writing code, I lead one of the most absurd event series in the country — Ryan Meetup, a national community built only for people named Ryan.
-        </p>
-        <p>
-          I handle concept creation, branding, programming, promotion, and partnerships for each of our 15+ events. From Ryan Raves to Ryan Summits, I bring people together through shared identity, inside jokes, and a deeply unserious sense of seriousness.
-        </p>
-        <p>
-          These projects have been featured in <NextLink className={emphasis} href='https://www.nytimes.com/2023/03/28/nyregion/ryan-meetup-nyc.html'>The New York Times</NextLink>, the <NextLink className={emphasis} href='https://www.latimes.com/california/newsletter/2023-09-11/at-the-dumb-and-wholesome-ryan-rave-everyone-belongs-and-everyones-ryan-essential-california'>Los Angeles Times</NextLink>, <NextLink className={emphasis} href='https://www.cbsnews.com/losangeles/video/rallying-ryans-host-meet-ups-around-the-world/'>CBS News</NextLink>, and <NextLink className={emphasis} href='https://abcnews.go.com/WNN/video/rytoberfest-weekend-104132029'>ABC News</NextLink>, just to name a few — and prove how far a ridiculous idea can go with the right execution.
-        </p>
+      <section className='section-panel'>
+        <div className='mb-6 space-y-4'>
+          <div className='flex flex-wrap items-center justify-between gap-4'>
+            <h2 className='section-title'>
+              Creative Production & Community Building
+            </h2>
+            <span className='ui-badge ui-badge-brand'>
+              {visibleCreativeSkills.length} creative capabilities
+            </span>
+          </div>
+          <div className='space-y-4 type-body'>
+            <p>
+              Outside engineering, I help run Ryan Meetup, a community brand and event series built around shared identity, humor, and intentionally ridiculous programming.
+            </p>
+            <p>
+              That work spans concept development, creative direction, partnerships, promotion, and live execution, with coverage from <NextLink className={emphasis} href='https://www.nytimes.com/2023/03/28/nyregion/ryan-meetup-nyc.html'>The New York Times</NextLink>, the <NextLink className={emphasis} href='https://www.latimes.com/california/newsletter/2023-09-11/at-the-dumb-and-wholesome-ryan-rave-everyone-belongs-and-everyones-ryan-essential-california'>Los Angeles Times</NextLink>, <NextLink className={emphasis} href='https://www.cbsnews.com/losangeles/video/rallying-ryans-host-meet-ups-around-the-world/'>CBS News</NextLink>, and <NextLink className={emphasis} href='https://abcnews.go.com/WNN/video/rytoberfest-weekend-104132029'>ABC News</NextLink>.
+            </p>
+          </div>
+        </div>
         <SkillsTable
           header='Skill'
           skills={creativeSkills as Skill[]}
         />
-      </div>
 
-      <NextLink 
-        className='w-full border mt-4 border-gray-400 rounded-xl py-2 flex items-center justify-center transition duration-300 ease-in-out hover:scale-102 hover:border-teal-500'
-        href='/ryan-meetup'
-      >
-        <Handshake className='mr-4' /> Learn more about the Ryan Meetup
-      </NextLink>
-
-      <div className='flex justify-center items-center mt-8'>
-        <NextLink
-          className='transition ease-in-out text-center font-cooper duration-300 hover:scale-105 space-y-3'
-          href='https://www.ryanmeetup.com/'
+        <Button
+          className='mt-6'
+          fullWidth
+          href='https://www.ryanmeetup.com/about'
+          target='_blank'
+          rel='noreferrer'
+          icon={<Handshake />}
+          variant='outline'
         >
-          <h1 className='text-5xl xl:text-[100px]'>
-            RYAN MEETUP
-            </h1>
-          <h2 className='text-xl xl:text-[45px]'>
-            NO BRYANS ALLOWED
-          </h2>
-        </NextLink>
-      </div>
+          Learn more about the Ryan Meetup
+        </Button>
+      </section>
     </Layout>
   );
 };

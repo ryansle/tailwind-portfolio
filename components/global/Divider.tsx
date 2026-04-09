@@ -17,7 +17,7 @@ const Divider = (props: DividerProps) => {
   };
 
   return (
-    <div className={`${renderMargin(margins)} h-[1px] border-t border-gray-700`} />
+    <div className={`${renderMargin(margins)} ui-divider h-px`} />
   );
 };
 

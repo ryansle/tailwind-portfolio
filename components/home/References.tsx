@@ -18,9 +18,9 @@ const Testimony = (props: Reference) => {
   const { name, jobTitle, avatar, testimony, linkedinUrl, email } = props;
 
   return (
-    <div className='rounded border border-gray-700 p-4 mb-4 break-inside-avoid-column'>
-      <div className='flex space-x-4 mb-4'>
-        <div className='relative w-12 h-12 aspect-square'>
+    <article className='mb-4 break-inside-avoid-column rounded-[1.25rem] border border-white/10 bg-[rgba(9,16,30,0.52)] p-5 shadow-[0_18px_40px_rgba(2,6,23,0.16)]'>
+      <div className='mb-4 flex items-start gap-4'>
+        <div className='relative h-12 w-12 aspect-square'>
           <NextImage
             className='rounded-full shadow'
             src={convertImageUrl(avatar)}
@@ -29,15 +29,15 @@ const Testimony = (props: Reference) => {
           />
         </div>
 
-        <div>
-          <div className='flex space-x-3'>
-            <h3 className='font-medium mb-1 text-base'>
+        <div className='min-w-0'>
+          <div className='mb-1 flex flex-wrap items-center gap-3'>
+            <h3 className='text-base font-semibold text-white'>
               {name}
             </h3>
 
             {linkedinUrl && (
               <NextLink
-                className='pt-[5px]'
+                className='ui-icon-button !rounded-[0.7rem] !p-2'
                 href={linkedinUrl}
                 aria-label={`${name}'s LinkedIn Profile`}
               >
@@ -47,7 +47,7 @@ const Testimony = (props: Reference) => {
 
             {email && (
               <NextLink
-                className='pt-[5px]'
+                className='ui-icon-button !rounded-[0.7rem] !p-2'
                 href={`mailto:${email}`}
                 aria-label={`Contact ${name} via email`}
               >
@@ -55,16 +55,16 @@ const Testimony = (props: Reference) => {
               </NextLink>
             )}
           </div>
-          <p className='font-light text-xs'>
+          <p className='text-sm text-soft'>
             {jobTitle}
           </p>
         </div>
       </div>
 
-      <p className='font-normal text-sm text-gray-400'>
+      <p className='text-sm leading-7 text-soft'>
         {testimony}
       </p>
-    </div >
+    </article>
   );
 };
 
@@ -72,29 +72,26 @@ const References = (props: ReferencesProps) => {
   const { references } = props;
 
   return (
-    <div className='tracking-wide flex flex-col items-center h-full'>
-      <h1 className='text-display3 font-bold tracking-wider mb-4'>
-        Professional References
-      </h1>
-
-      <p className='text-gray-400 font-medium mb-10 text-center'>
-        Don&apos;t believe me? Hear from people I&apos;ve worked with in the past:
-      </p>
-
-      <div className='columns-1 sm:columns-2 xl:columns-3'>
-        {references.map((reference) => (
-          <Testimony
-            key={reference.name}
-            name={reference.name}
-            jobTitle={reference.jobTitle}
-            avatar={reference.avatar}
-            testimony={reference.testimony}
-            linkedinUrl={reference.linkedinUrl}
-            email={reference.email}
-          />
-        ))}
+    <section className='space-y-10 tracking-wide'>
+      <div className='section-intro-tight'>
+        <p className='ui-eyebrow section-heading'>References</p>
+        <h2 className='page-title mb-4'>What it&apos;s like to work with me.</h2>
+        <p className='section-copy'>
+          The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.
+        </p>
       </div>
-    </div>
+
+      <div>
+        <div className='columns-1 gap-4 sm:columns-2 xl:columns-3'>
+          {references.map((reference) => (
+            <Testimony
+              key={reference.name}
+              {...reference}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

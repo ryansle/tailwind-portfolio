@@ -1,8 +1,8 @@
 const InputSkeleton = () => {
   return (
     <div>
-      <div className='h-4 bg-gray-700 rounded-full w-28 mb-1 animate-pulse mb-1' />
-      <div className='h-10 bg-gray-700 rounded-md w-full animate-pulse' />
+      <div className='mb-2 h-4 w-28 animate-pulse rounded-full bg-slate-700/70' />
+      <div className='h-12 w-full animate-pulse rounded-[var(--radius-sm)] bg-slate-800/80' />
     </div>
   );
 };
@@ -32,12 +32,12 @@ const SkeletonForm = () => {
         </div>
 
         <div className='col-span-2'>
-          <div className='h-4 bg-gray-700 rounded-full w-28 mb-1 animate-pulse mb-1' />
-          <div className='h-40 bg-gray-700 rounded-md w-full animate-pulse' />
+          <div className='mb-2 h-4 w-28 animate-pulse rounded-full bg-slate-700/70' />
+          <div className='h-40 w-full animate-pulse rounded-[var(--radius-sm)] bg-slate-800/80' />
         </div>
       </div>
-      <div className=''>
-        <div className='h-10 bg-gray-700 rounded-md w-36 animate-pulse float-right' />
+      <div>
+        <div className='float-right h-12 w-40 animate-pulse rounded-[var(--radius-sm)] bg-slate-700/80' />
       </div>
     </>
   );

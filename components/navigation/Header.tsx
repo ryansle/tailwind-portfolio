@@ -1,5 +1,5 @@
 // Components
-import { MobileMenu } from '@/components/navigation';
+import { MobileMenu } from './MobileMenu';
 import { AiFillHome as Home } from 'react-icons/ai';
 import { IoPerson as Person } from 'react-icons/io5';
 import { HiAtSymbol as Contact } from 'react-icons/hi';
@@ -10,7 +10,7 @@ import {
 } from 'react-icons/md';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
-import { HeaderLinks } from '@/components/navigation';
+import { HeaderLinks } from './HeaderLinks';
 
 const Header = () => {
   const routes = [
@@ -23,22 +23,29 @@ const Header = () => {
   ];
 
   return (
-    <header className='flex justify-between items-center py-5 px-6 border-b border-gray-700 bg-black sticky relative z-50 top-0 right-0 left-0 z-10 xs:px-20 lg:px-48 2xl:px-72 3xl:px-[400px] 4xl:px-[500px]'>
-      <NextLink href='/' className='flex justify-center items-center'>
-        <NextImage
-          className='rounded-full mr-4'
-          height={40}
-          width={40}
-          src='/profile.png'
-          alt='Ryan Le Headshot'
-        />
-        <h4 className='tracking-wider font-medium text-xl'>RYAN S. LE</h4>
-      </NextLink>
+    <header className='fixed inset-x-0 top-0 z-50 pt-4'>
+      <div className='header-container'>
+        <div className='surface-shell surface-shell-inset flex items-center justify-between'>
+          <NextLink href='/' className='flex items-center justify-center gap-4'>
+            <NextImage
+              className='rounded-full ring-1 ring-white/10'
+              height={40}
+              width={40}
+              src='/profile.png'
+              alt='Ryan Le Headshot'
+            />
+            <div>
+              <p className='text-xs font-semibold uppercase tracking-[0.24em] text-teal-300/80'>Portfolio</p>
+              <h4 className='text-lg font-semibold tracking-[0.16em]'>RYAN S. LE</h4>
+            </div>
+          </NextLink>
 
-      <HeaderLinks routes={routes} />
+          <HeaderLinks routes={routes} />
 
-      <div className='xl:hidden'>
-        <MobileMenu content={routes} />
+          <div className='xl:hidden'>
+            <MobileMenu content={routes} />
+          </div>
+        </div>
       </div>
     </header>
   );
