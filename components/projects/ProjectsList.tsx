@@ -79,26 +79,38 @@ const ProjectsList = (props: ProjectsListProps) => {
           </p>
         </div>
 
-        <div className='flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0'>
-          {filterOptions.map((option) => {
-            const isActive = activeFilter === option;
+        <div className='subtle-panel px-4 py-4 sm:px-5'>
+          <div className='mb-3 flex flex-wrap items-center justify-between gap-3'>
+            <p className='type-meta text-teal-200'>Filter By Project Type</p>
+            <p className='text-sm text-soft'>
+              {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} shown
+            </p>
+          </div>
 
-            return (
-              <button
-                key={option}
-                type='button'
-                onClick={() => setActiveFilter(option)}
-                className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition sm:px-4 sm:text-sm sm:tracking-wide ${
-                  isActive
-                    ? 'border-teal-400/40 bg-teal-400/12 text-teal-100'
-                    : 'border-white/10 bg-white/[0.03] text-soft hover:border-white/20 hover:bg-white/[0.05] hover:text-white'
-                }`}
-                aria-pressed={isActive}
-              >
-                {option}
-              </button>
-            );
-          })}
+          <div className='flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0'>
+            {filterOptions.map((option) => {
+              const isActive = activeFilter === option;
+              const count = option === 'All'
+                ? otherProjects.length
+                : otherProjects.filter((project) => project.category === option).length;
+
+              return (
+                <button
+                  key={option}
+                  type='button'
+                  onClick={() => setActiveFilter(option)}
+                  className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition sm:px-4 sm:text-sm sm:tracking-wide ${
+                    isActive
+                      ? 'border-teal-400/40 bg-teal-400/12 text-teal-100'
+                      : 'border-white/10 bg-white/[0.03] text-soft hover:border-white/20 hover:bg-white/[0.05] hover:text-white'
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  {option} <span className='ml-1 text-white/55'>{count}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <div className='space-y-5 md:hidden'>
