@@ -9,27 +9,14 @@ import type { Metadata } from 'next';
 
 // Utilities
 import { fetchProjects } from '@/data/fetch';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Ryan Le - Projects',
-  description: 'Learn more about what Ryan Le\'s has built.',
-  keywords: ['ryan le', 'front-end developer', 'brooklyn software engineer', 'ryan le engineer', 'ryan le software', 'contact ryan le', 'ui engineer', 'ryan le ui engineer', 'ryan le frontend dev', 'ryan le crowdstrike', 'ryan le ryan meetup', 'ryan le american express', 'ryan le amex', 'ryan le hoffman strategy group', 'ryan le nelnet', 'ryan le re-logic'],
-  openGraph: {
-    url: 'https://ryanle.dev/projects',
-    title: 'Ryan Le - Projects',
-    description: 'Learn more about what Ryan Le\'s has built.',
-    siteName: 'Ryan Le\'s Portfolio',
-    images: [
-      {
-        url: 'https://ryanle.dev/seo/projects.png',
-        width: 2056,
-        height: 1160,
-      }
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = createPageMetadata({
+  title: 'Projects',
+  description: 'Browse selected projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work.',
+  path: '/projects',
+  image: '/seo/projects.png',
+});
 
 const ProjectsPage = async () => {
   const projects = await fetchProjects();

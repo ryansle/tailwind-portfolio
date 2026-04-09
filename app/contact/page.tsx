@@ -7,27 +7,14 @@ import { HiOutlineMail, HiOutlineSparkles, HiOutlineClock, HiOutlineBriefcase } 
 // Types
 import type { NextPage } from 'next';
 import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Ryan Le - Contact Me',
-  description: 'Get in contact with Ryan Le, UI Engineer based in Brooklyn, NY.',
-  keywords: ['ryan le', 'front-end developer', 'brooklyn software engineer', 'ryan le engineer', 'ryan le software', 'contact ryan le', 'ui engineer', 'ryan le ui engineer'],
-  openGraph: {
-    url: 'https://ryanle.dev/contact',
-    title: 'Ryan Le - Contact Me',
-    description: 'Get in contact with Ryan Le, UI Engineer based in Brooklyn, NY.',
-    siteName: 'Ryan Le\'s Portfolio',
-    images: [
-      {
-        url: 'https://ryanle.dev/seo/contact.png',
-        width: 2056,
-        height: 965,
-      }
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = createPageMetadata({
+  title: 'Contact',
+  description: 'Contact Ryan Le about front-end systems, product UI implementation, design systems, freelance work, or full-time opportunities.',
+  path: '/contact',
+  image: '/seo/contact.png',
+});
 
 const ContactPage: NextPage = () => {
   return (

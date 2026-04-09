@@ -1,0 +1,16 @@
+{
+  "name": "Ryan Le",
+  "short_name": "Ryan Le",
+  "description": "Portfolio of Ryan Le, UI Engineer building front-end systems and product UI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#050816",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

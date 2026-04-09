@@ -16,31 +16,18 @@ import type { Metadata } from 'next';
 
 // Utilities
 import { fetchSkills } from '@/data/fetch';
+import { createPageMetadata } from '@/lib/seo';
 
 type SkillEntry = Skill & {
   type: 'web' | 'creative';
 };
 
-export const metadata: Metadata = {
-  title: 'Ryan Le - Skills',
-  description: 'Learn more about what Ryan Le\'s skillsets as both an engineer and a creative',
-  keywords: ['ryan le', 'front-end developer', 'brooklyn software engineer', 'ryan le engineer', 'ryan le software', 'contact ryan le', 'ui engineer', 'ryan le ui engineer', 'ryan le frontend dev', 'ryan le crowdstrike', 'ryan le ryan meetup', 'ryan le american express', 'ryan le amex', 'ryan le hoffman strategy group', 'ryan le nelnet', 'ryan le re-logic'],
-  openGraph: {
-    url: 'https://ryanle.dev/skills',
-    title: 'Ryan Le - Skills',
-    description: 'Learn more about what Ryan Le\'s skillsets as both an engineer and a creative',
-    siteName: 'Ryan Le\'s Portfolio',
-    images: [
-      {
-        url: 'https://ryanle.dev/seo/skills.png',
-        width: 2056,
-        height: 1163,
-      }
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = createPageMetadata({
+  title: 'Skills',
+  description: 'See Ryan Le’s capabilities across front-end systems, product UI delivery, React, Next.js, TypeScript, Tailwind, and creative operations through Ryan Meetup.',
+  path: '/skills',
+  image: '/seo/skills.png',
+});
 
 const SkillsPage = async () => {
   const skills = await fetchSkills() as SkillEntry[];
