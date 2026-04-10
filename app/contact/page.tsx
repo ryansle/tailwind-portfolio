@@ -13,7 +13,6 @@ export const metadata: Metadata = createPageMetadata({
   title: 'Contact',
   description: 'Contact Ryan Le about front-end systems, product UI implementation, design systems, freelance work, or full-time opportunities.',
   path: '/contact',
-  image: '/seo/contact.png',
 });
 
 const ContactPage: NextPage = () => {

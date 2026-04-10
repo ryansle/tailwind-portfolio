@@ -7,9 +7,9 @@ const SEO = {
     description: 'Ryan Le is a New York web engineer and community builder creating thoughtful digital experiences.',
     images: [
       {
-        url: '/seo/home.png',
-        width: 2340,
-        height: 1120,
+        url: '/seo/SEO.png',
+        width: 1200,
+        height: 630,
         alt: 'Learn why you should consider Ryan Le for opportunities at your company.',
       },
     ],

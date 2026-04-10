@@ -4,7 +4,7 @@ const siteName = 'Ryan Le';
 const siteUrl = 'https://ryanle.dev';
 const defaultTitle = 'Web Engineer and Community Builder';
 const defaultDescription = 'Ryan Le is a Brooklyn-based Web Engineer and Community Builder creating thoughtful digital experiences.';
-const defaultOgImage = '/seo/home.png';
+const defaultOgImage = '/seo/SEO.png';
 const defaultResolvedTitle = `${siteName} | ${defaultTitle}`;
 
 type CreateMetadataOptions = {
@@ -61,8 +61,8 @@ const createPageMetadata = (options: CreateMetadataOptions = {}): Metadata => {
       images: [
         {
           url: ogImage,
-          width: 2056,
-          height: 1160,
+          width: 1200,
+          height: 630,
           alt: resolvedTitle,
         },
       ],
@@ -120,8 +120,8 @@ const siteMetadata: Metadata = {
     images: [
       {
         url: absoluteUrl(defaultOgImage),
-        width: 2340,
-        height: 1120,
+        width: 1200,
+        height: 630,
         alt: `${siteName} portfolio homepage`,
       },
     ],

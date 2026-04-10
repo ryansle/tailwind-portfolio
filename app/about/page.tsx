@@ -14,9 +14,8 @@ import { createPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'About',
-  description: 'Learn more about Ryan Le: front-end engineer, community builder, Ryan Meetup co-founder, and Software Engineering graduate based in New York.',
+  description: 'Learn more about Ryan Le: front-end engineer, community builder, Ryan Meetup co-founder, and Software Engineering graduate based in Brooklyn, NY.',
   path: '/about',
-  image: '/seo/about.png',
 });
 
 const AboutPage = async () => {

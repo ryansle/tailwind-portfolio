@@ -15,7 +15,6 @@ export const metadata: Metadata = createPageMetadata({
   title: 'Experience',
   description: 'Explore Ryan Le’s experience across CrowdStrike, American Express, agency environments, and community-led work focused on front-end systems and product UI.',
   path: '/experience',
-  image: '/seo/experience.png',
 });
 
 const ExperiencePage = async () => {

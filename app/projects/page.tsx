@@ -15,7 +15,6 @@ export const metadata: Metadata = createPageMetadata({
   title: 'Projects',
   description: 'Browse selected projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work.',
   path: '/projects',
-  image: '/seo/projects.png',
 });
 
 const ProjectsPage = async () => {

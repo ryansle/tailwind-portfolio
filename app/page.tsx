@@ -16,7 +16,6 @@ import { createPageMetadata } from '@/lib/seo';
 export const metadata: Metadata = createPageMetadata({
   description: 'Ryan Le is a New York web engineer and community builder creating thoughtful digital experiences.',
   path: '/',
-  image: '/seo/home.png',
 });
 
 const Home = async () => {

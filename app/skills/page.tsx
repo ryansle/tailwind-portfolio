@@ -26,7 +26,6 @@ export const metadata: Metadata = createPageMetadata({
   title: 'Skills',
   description: 'See Ryan Le’s capabilities across front-end systems, product UI delivery, React, Next.js, TypeScript, Tailwind, and creative operations through Ryan Meetup.',
   path: '/skills',
-  image: '/seo/skills.png',
 });
 
 const SkillsPage = async () => {
