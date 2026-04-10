@@ -93,7 +93,7 @@ const Biography = (props: BiographyProps) => {
   ];
 
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='flex flex-col gap-8 -mt-4'>
       <div className='proof-grid order-2 lg:order-1'>
         {proofStats.map((stat) => (
           <ProofStatCard

@@ -117,11 +117,11 @@ body {
   }
 
   .app-container {
-    @apply mx-auto w-full max-w-[1600px] px-6 xs:px-10 lg:px-16 2xl:px-20;
+    @apply mx-auto w-full max-w-[1550px] px-6 xs:px-10 lg:px-14 2xl:px-16;
   }
 
   .header-container {
-    @apply mx-auto w-full max-w-[1720px] px-4 xs:px-8 lg:px-10 2xl:px-14;
+    @apply mx-auto w-full max-w-[1640px] px-4 xs:px-8 lg:px-10 2xl:px-12;
   }
 
   .page-wrap {

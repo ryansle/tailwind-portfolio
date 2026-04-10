@@ -13,7 +13,7 @@ import { createPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Projects',
-  description: 'Browse selected projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work.',
+  description: 'Browse projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work.',
   path: '/projects',
 });
 
