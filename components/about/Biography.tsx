@@ -4,22 +4,13 @@
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { Transition } from '@headlessui/react';
-import {
-  FaLinkedin as LinkedIn,
-  FaGithub as GitHub,
-} from 'react-icons/fa6';
+import { Button } from '@/components/global';
+
+// Utilities
+import { socials, socialIcons } from '@/lib/socials';
 
 // Types
-import type { SocialMedia } from '@/lib/types';
-
-type BiographyProps = {
-  socials: SocialMedia[];
-}
-
-type SocialMediaLinkProps = {
-  url: string;
-  platform: string;
-}
+import type { Social } from '@/lib/socials';
 
 type ProofStat = {
   value: string;
@@ -27,29 +18,20 @@ type ProofStat = {
   detail: string;
 }
 
-const SocialMediaLink = (props: SocialMediaLinkProps) => {
+const SocialMediaLink = (props: Social) => {
   const { url, platform } = props;
 
-  const renderIcon = (platform: string) => {
-    const iconStyle = 'w-5 h-5 fill-teal-500';
-
-    switch (platform) {
-      case 'LinkedIn':
-        return <LinkedIn className={iconStyle} />;
-      case 'GitHub':
-        return <GitHub className={iconStyle} />;
-      default:
-        return;
-    }
-  };
+  const Icon = socialIcons[platform];
 
   return (
-    <NextLink href={url} className='inline-flex items-center rounded border border-teal-500 px-2 py-1.5 transition ease-in-out duration-300 hover:scale-105'>
-      {renderIcon(platform)}
-      <span className='ml-2 text-white tracking-wide font-medium hover:text-teal-500'>
-        {platform}
-      </span>
-    </NextLink>
+    <Button
+      href={url}
+      icon={<Icon className='w-5 h-5' />}
+      size='sm'
+      variant='secondary'
+    >
+      {platform}
+    </Button>
   );
 };
 
@@ -65,10 +47,7 @@ const ProofStatCard = (props: ProofStat) => {
   );
 };
 
-const Biography = (props: BiographyProps) => {
-  const { socials } = props;
-
-  const emphasis = 'text-teal-500 font-semibold';
+const Biography = () => {
   const proofStats: ProofStat[] = [
     {
       value: '5+',
@@ -113,7 +92,7 @@ const Biography = (props: BiographyProps) => {
             </p>
 
             <p>
-              Professionally, I focus on front-end systems, thoughtful UI, and responsive product experiences built with tools like React, Next.js, Tailwind CSS, and TypeScript. I like the work where design intent, engineering quality, and usability all have to line up. I&apos;ve been immersed in tech from an early age, including contributing to the development team behind <span className={emphasis}>Terraria</span> when I was 11, which set the tone for how I think about building things people genuinely enjoy.
+              Professionally, I focus on front-end systems, thoughtful UI, and responsive product experiences built with tools like React, Next.js, Tailwind CSS, and TypeScript. I like the work where design intent, engineering quality, and usability all have to line up. I&apos;ve been immersed in tech from an early age, including contributing to the development team behind <span className='text-emphasis'>Terraria</span> when I was 11, which set the tone for how I think about building things people genuinely enjoy.
             </p>
 
             <p>
@@ -121,7 +100,7 @@ const Biography = (props: BiographyProps) => {
             </p>
 
             <p>
-              I&apos;m originally from <span className={emphasis}>Sioux Falls, South Dakota</span>, and I&apos;m a first-generation Vietnamese-American now based in <span className={emphasis}>Brooklyn, New York</span>. A lot of what I care about, in both code and community work, comes back to clarity, access, and making people feel included.
+              I&apos;m originally from <span className='text-emphasis'>Sioux Falls, South Dakota</span>, and I&apos;m a first-generation Vietnamese-American now based in <span className='text-emphasis'>Brooklyn, New York</span>. A lot of what I care about, in both code and community work, comes back to clarity, access, and making people feel included.
             </p>
 
             <p>

@@ -1,7 +1,7 @@
 'use client';
 
 // Components
-import { Button } from '@/components/global';
+import { Button, PageIntro } from '@/components/global';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 import { FaArrowRightLong as ArrowRight } from 'react-icons/fa6';
 import { HiSparkles as Sparkles } from 'react-icons/hi2';
@@ -52,11 +52,12 @@ const HiringBlurb = () => {
         </div>
 
         <div className='order-1 max-w-4xl xl:order-2 xl:justify-self-end'>
-          <p className='ui-eyebrow mb-3'>Work together</p>
-          <h2 className='page-title mb-4'>Need a front-end engineer who can make product decisions hold up in the interface?</h2>
-          <p className='type-body'>
-            I take on full-time roles, freelance builds, and focused front-end engagements where implementation quality matters. The best fit is work that needs strong systems thinking, reliable execution, and a high bar for interface detail.
-          </p>
+          <PageIntro
+            as='h2'
+            eyebrow='Work together'
+            title='Need a front-end engineer who can make product decisions hold up in the interface?'
+            subtitle='I take on full-time roles, freelance builds, and focused front-end engagements where implementation quality matters. The best fit is work that needs strong systems thinking, reliable execution, and a high bar for interface detail.'
+          />
 
           <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
             <Button

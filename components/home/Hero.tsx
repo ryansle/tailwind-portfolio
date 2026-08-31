@@ -27,7 +27,7 @@ const Hero = (props: HeroProps) => {
       <div className='grid grid-cols-12 flex items-center flex-wrap-reverse'>
         <div className='col-span-12 order-last xl:col-span-7 xl:order-first'>
           <SlideUpWhenVisible duration={0.4} delay={0.4}>
-            <h2 className='text-teal-500 text-display3 font-medium mb-[-20px] flex'>
+            <h2 className='text-accent text-display3 font-medium mb-[-20px] flex'>
               <div className='animate-wave mr-4'>👋🏼</div> Hey there, I&apos;m...
             </h2>
             <h1 className='text-display font-bold'>
@@ -36,7 +36,7 @@ const Hero = (props: HeroProps) => {
           </SlideUpWhenVisible>
           <SlideUpWhenVisible duration={0.8} delay={0.7}>
             <h4 className='text-2xl font-medium'>
-              I&apos;m currently a <span className='text-teal-500 font-semibold'>UI Engineer II</span> at{' '}
+              I&apos;m currently a <span className='text-emphasis'>UI Engineer II</span> at{' '}
               <NextLink className='text-red-500 hover:underline underline-offset-2' href='https://www.crowdstrike.com/'>
                 CrowdStrike
               </NextLink>, building product UI and front-end systems.

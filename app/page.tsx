@@ -2,11 +2,9 @@
 import { Hero } from '@/components/home/Hero';
 import { HiringBlurb } from '@/components/home/HiringBlurb';
 import { References } from '@/components/home/References';
-import { Layout } from '@/components/navigation/Layout';
 import { Divider } from '@/components/global';
 
 // Types
-import type { Skill, Reference } from '@/lib/types';
 import type { Metadata } from 'next';
 
 // Utilities
@@ -25,16 +23,14 @@ const Home = async () => {
   const currentStack = skills.filter((skill) => skill.primary);
 
   return (
-    <Layout>
-      <Hero skills={currentStack as Skill[]} />
+    <>
+      <Hero skills={currentStack} />
       <Divider />
       <HiringBlurb />
       <Divider />
-      <References references={references as Reference[]} />
-    </Layout>
+      <References references={references} />
+    </>
   );
 };
 
 export default Home;
-
-export const revalidate = 30;

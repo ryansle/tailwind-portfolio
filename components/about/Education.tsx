@@ -1,4 +1,5 @@
 // Components
+import { PageIntro } from '@/components/global';
 import NextImage from 'next/image';
 import { MdVerified as Check } from 'react-icons/md';
 import { FaGraduationCap as Grad } from 'react-icons/fa6';
@@ -13,13 +14,14 @@ const Education = () => {
     'Vice President of Communications, Engineering Student Advisory Board (2020 - 2021)',
   ];
 
-  const emphasis = 'text-teal-500 font-semibold';
   return (
     <div>
-      <div className='section-intro-tight mb-6'>
-        <p className='ui-eyebrow section-heading'>Education</p>
-        <h2 className='page-title mb-4'>Built on engineering fundamentals and early leadership.</h2>
-      </div>
+      <PageIntro
+        as='h2'
+        className='mb-6'
+        eyebrow='Education'
+        title='Built on engineering fundamentals and early leadership.'
+      />
 
       <div className='grid grid-cols-12 gap-6 xl:items-center'>
         <div className='flex items-center justify-center col-span-12 xl:col-span-5'>
@@ -38,13 +40,13 @@ const Education = () => {
 
           <div className='mb-5 space-y-1 text-base tracking-wide text-soft'>
             <p>
-              B.S. in <span className={emphasis}>Software Engineering</span>, with a minor in <span className={emphasis}>Mathematics.</span>
+              B.S. in <span className='text-emphasis'>Software Engineering</span>, with a minor in <span className='text-emphasis'>Mathematics.</span>
             </p>
             <p>
-              <span className={emphasis}>GPA</span>: 3.64 / 4.00
+              <span className='text-emphasis'>GPA</span>: 3.64 / 4.00
             </p>
             <p className='flex'>
-              <span className={emphasis}>Graduated</span>: May 8, 2021 <Grad className='mt-1 ml-2' />
+              <span className='text-emphasis'>Graduated</span>: May 8, 2021 <Grad className='mt-1 ml-2' />
             </p>
           </div>
 

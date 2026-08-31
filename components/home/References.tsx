@@ -1,4 +1,5 @@
 // Components
+import { PageIntro } from '@/components/global';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { FaLinkedin as Linkedin } from 'react-icons/fa';
@@ -73,13 +74,12 @@ const References = (props: ReferencesProps) => {
 
   return (
     <section className='space-y-10 tracking-wide'>
-      <div className='section-intro-tight'>
-        <p className='ui-eyebrow section-heading'>References</p>
-        <h2 className='page-title mb-4'>What it&apos;s like to work with me.</h2>
-        <p className='section-copy'>
-          The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.
-        </p>
-      </div>
+      <PageIntro
+        as='h2'
+        eyebrow='References'
+        title="What it's like to work with me."
+        subtitle='The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.'
+      />
 
       <div>
         <div className='columns-1 gap-4 sm:columns-2 xl:columns-3'>
