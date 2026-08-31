@@ -1,13 +1,16 @@
 // Components
-import { Layout } from '@/components/navigation/Layout';
 import { ContactForm } from '@/components/contact/ContactForm';
-import { FaGithub as GitHub, FaLinkedin as LinkedIn } from 'react-icons/fa6';
+import { Button } from '@/components/global';
 import { HiOutlineMail, HiOutlineSparkles, HiOutlineClock, HiOutlineBriefcase } from 'react-icons/hi';
 
 // Types
 import type { NextPage } from 'next';
 import type { Metadata } from 'next';
+
+// Utilities
 import { createPageMetadata } from '@/lib/seo';
+import { socials, socialIcons } from '@/lib/socials';
+import { contactEmailHref } from '@/lib/constants';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Contact',
@@ -17,25 +20,25 @@ export const metadata: Metadata = createPageMetadata({
 
 const ContactPage: NextPage = () => {
   return (
-    <Layout>
-      <div className='flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] xl:items-start'>
-        <div className='order-2 space-y-6 xl:order-1'>
-          <div className='section-panel hidden xl:block'>
-            <p className='ui-eyebrow mb-3'>Contact</p>
-            <h1 className='mb-5 whitespace-nowrap text-[clamp(2.1rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.04em]'>
-              Let&apos;s Collaborate!
-            </h1>
+    <>
+      <div className='flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] xl:items-start xl:gap-y-6'>
+        <div className='section-panel order-1 xl:col-start-1 xl:row-start-1'>
+          <p className='ui-eyebrow mb-3'>Contact</p>
+          <h1 className='mb-4 text-[clamp(2rem,9vw,2.8rem)] font-semibold leading-none tracking-[-0.04em] xl:mb-5 xl:whitespace-nowrap xl:text-[clamp(2.1rem,4vw,3.4rem)]'>
+            Let&apos;s Collaborate!
+          </h1>
 
-            <div className='type-body space-y-4'>
-              <p>
-                Need help with a product surface, design system, or implementation-heavy marketing build? I&apos;m open to the right full-time role, freelance engagement, or creative collaboration.
-              </p>
-              <p>
-                The best outreach includes context: what you&apos;re building, what stage it&apos;s in, what support you need, and the timeline you&apos;re working against.
-              </p>
-            </div>
+          <div className='type-body space-y-4'>
+            <p>
+              Need help with a product surface, design system, or implementation-heavy marketing build? I&apos;m open to the right full-time role, freelance engagement, or creative collaboration.
+            </p>
+            <p>
+              The best outreach includes context: what you&apos;re building, what stage it&apos;s in, what support you need, and the timeline you&apos;re working against.
+            </p>
           </div>
+        </div>
 
+        <div className='order-3 xl:col-start-1 xl:row-start-2'>
           <div className='section-panel'>
             <h2 className='type-section-title mb-4'>What to expect</h2>
             <div className='space-y-4 text-sm text-soft'>
@@ -64,40 +67,41 @@ const ContactPage: NextPage = () => {
           </div>
         </div>
 
-        <div className='order-1 space-y-6 xl:order-2 xl:sticky xl:top-0 xl:self-start'>
-          <div className='section-panel xl:hidden'>
-            <p className='ui-eyebrow mb-3'>Contact</p>
-            <h1 className='mb-4 text-[clamp(2rem,9vw,2.8rem)] font-semibold leading-none tracking-[-0.04em]'>
-              Let&apos;s Collaborate!
-            </h1>
-            <p className='text-sm leading-7 text-soft'>
-              Share the project, role, or collaboration idea below. If it&apos;s a strong fit, I usually reply within 1 to 2 business days.
-            </p>
-          </div>
-
+        <div className='order-2 space-y-6 xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:sticky xl:top-0 xl:self-start'>
           <ContactForm />
 
           <div className='section-panel !py-5'>
             <h2 className='type-section-title mb-4'>Quick Contact</h2>
 
             <div className='flex flex-wrap gap-3'>
-              <a className='ui-button-secondary gap-2' href='mailto:hello@ryanle.dev'>
-                <HiOutlineMail className='h-4 w-4' />
+              <Button
+                href={contactEmailHref}
+                icon={<HiOutlineMail className='h-4 w-4' />}
+                size='sm'
+                variant='secondary'
+              >
                 Email
-              </a>
-              <a className='ui-button-secondary gap-2' href='https://www.linkedin.com/in/ryansle/'>
-                <LinkedIn className='h-4 w-4' />
-                LinkedIn
-              </a>
-              <a className='ui-button-secondary gap-2' href='https://github.com/ryansle'>
-                <GitHub className='h-4 w-4' />
-                GitHub
-              </a>
+              </Button>
+              {socials.map((social) => {
+                const Icon = socialIcons[social.platform];
+
+                return (
+                  <Button
+                    key={social.platform}
+                    href={social.url}
+                    icon={<Icon className='h-4 w-4' />}
+                    size='sm'
+                    variant='secondary'
+                  >
+                    {social.platform}
+                  </Button>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
