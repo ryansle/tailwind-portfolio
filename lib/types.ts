@@ -1,6 +1,3 @@
-// Built-in Types
-import type { ReactNode } from 'react';
-
 // #region Contentful Types
 type ContentfulSys = {
   id: string;
@@ -48,19 +45,14 @@ type ContentfulImage = {
 // #endregion
 
 // #region Custom Types
-type Route = {
-  text: string;
-  href: string;
-  icon: ReactNode;
-}
-
 type Skill = {
   technology: string;
-  icon: ContentfulImage,
+  icon: ContentfulImage;
   confidence: number;
+  type: 'web' | 'creative';
   radii: boolean;
   visibility: boolean;
-  primary: string;
+  primary: boolean;
   uses: string;
   experiences: string[];
 }
@@ -92,11 +84,6 @@ type Experience = {
   companyUrl: string;
 }
 
-type SocialMedia = {
-  url: string;
-  platform: string;
-}
-
 type Project = {
   title: string;
   subtitle?: string;
@@ -115,20 +102,12 @@ type Project = {
   featured: boolean;
 }
 
-type Outlet = {
-  logo: ContentfulImage;
-  outlet: string;
-  href: string;
-}
 // #endregion
 
 export type {
   ContentfulImage,
   Skill,
-  Route,
   Reference,
   Experience,
-  SocialMedia,
   Project,
-  Outlet,
 };
