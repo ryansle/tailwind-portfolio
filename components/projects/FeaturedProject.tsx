@@ -66,18 +66,16 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
 
           <div className={`flex flex-col justify-between p-6 tracking-wide sm:p-7 ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
             <div>
-              <div className='mb-4 flex flex-wrap gap-2'>
+              <div className='mb-4 flex flex-wrap items-center gap-2'>
                 <span className='ui-badge ui-badge-brand'>Featured</span>
-              </div>
-
-              <div className='mb-2 flex flex-wrap items-center gap-2.5'>
-                <h3 className='text-[clamp(2rem,3.6vw,3rem)] font-semibold tracking-[-0.03em] text-white lg:max-w-[16ch]'>
-                  {title}
-                </h3>
                 <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
                   {category}
                 </span>
               </div>
+
+              <h3 className='mb-2 min-w-0 max-w-full text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-white [overflow-wrap:anywhere]'>
+                {title}
+              </h3>
               {subtitle && (
                 <p className='mb-4 text-sm font-medium tracking-wide text-soft'>
                   {subtitle}

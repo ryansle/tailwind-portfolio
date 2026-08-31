@@ -50,7 +50,7 @@ const ProjectCard = (props: ProjectCardProps) => {
       <div className='p-5 tracking-wide'>
         <div className='text-left'>
           <div className='mb-2 flex flex-wrap items-center gap-2.5'>
-            <h3 className='text-xl font-semibold tracking-[-0.02em] text-white md:max-w-[20ch]'>
+            <h3 className='text-xl font-semibold tracking-[-0.02em] text-white'>
               {title}
             </h3>
             <span className={`ui-badge ${categoryBadgeClasses[category]}`}>

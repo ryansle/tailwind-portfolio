@@ -121,7 +121,7 @@ const Company = (props: CompanyProps) => {
               </span>
             </NextLink>
           </h3>
-          <p className='mb-4 max-w-[68ch] text-base font-normal text-white'>
+          <p className='mb-4 text-base font-normal text-white'>
             {summary}
           </p>
 

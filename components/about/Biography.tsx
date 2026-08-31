@@ -107,7 +107,7 @@ const Biography = (props: BiographyProps) => {
 
       <div className='order-1 flex flex-col-reverse gap-6 lg:order-2 lg:grid lg:grid-cols-12 lg:items-start lg:gap-8'>
         <div className='col-span-12 lg:col-span-6 xl:col-span-5'>
-          <div className='max-w-[68ch] space-y-4 text-soft tracking-wide'>
+          <div className='space-y-4 text-soft tracking-wide'>
             <p>
               I&apos;m Ryan Le, a front-end engineer, community builder, and co-founder of <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series built around shared identity, humor, and belonging.
             </p>

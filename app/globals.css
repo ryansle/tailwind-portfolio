@@ -420,11 +420,11 @@ body {
   }
 
   .section-intro {
-    @apply max-w-5xl;
+    @apply w-full;
   }
 
   .section-intro-tight {
-    @apply max-w-4xl;
+    @apply w-full;
   }
 
   .section-heading {
