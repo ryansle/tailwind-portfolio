@@ -1,5 +1,7 @@
 import { forwardRef } from 'react';
-import clsx from 'clsx';
+
+// Components
+import { Field } from './Field';
 
 // Types
 import type { ChangeEvent } from 'react';
@@ -27,31 +29,25 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) 
   } = props;
 
   return (
-    <div className='flex flex-col'>
-      <label
-        className='ui-label'
-        htmlFor={name}
-      >
-        {label} {required && <span className='text-red-500'>*</span>}
-      </label>
-      <input
-        className={clsx('ui-input', error && 'border-red-400/70 focus:border-red-400 focus:shadow-[0_0_0_4px_rgba(248,113,113,0.18)]')}
-        id={name}
-        name={name}
-        placeholder={placeholder}
-        onChange={onChange}
-        required={required}
-        type={type}
-        aria-invalid={Boolean(error)}
-        {...rest}
-        ref={ref}
-      />
-      {error && (
-        <p className='mt-2 text-xs text-red-300/90'>
-          {error}
-        </p>
+    <Field
+      label={label}
+      name={name}
+      required={required}
+      error={error}
+    >
+      {(field) => (
+        <input
+          {...field}
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+          required={required}
+          type={type}
+          {...rest}
+          ref={ref}
+        />
       )}
-    </div>
+    </Field>
   );
 });
 

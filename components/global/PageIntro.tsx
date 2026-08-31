@@ -6,10 +6,9 @@ type PageIntroProps = {
   eyebrow: string;
   title: ReactNode;
   subtitle?: ReactNode;
-  supporting?: ReactNode;
+  as?: 'h1' | 'h2';
+  size?: 'page' | 'section';
   className?: string;
-  titleClassName?: string;
-  width?: 'page' | 'section';
 };
 
 const PageIntro = (props: PageIntroProps) => {
@@ -17,27 +16,26 @@ const PageIntro = (props: PageIntroProps) => {
     eyebrow,
     title,
     subtitle,
-    supporting,
+    as: Heading = 'h1',
+    size = 'page',
     className,
-    titleClassName,
-    width = 'page',
   } = props;
 
   return (
-    <div className={clsx(width === 'page' ? 'section-intro' : 'section-intro-tight', className)}>
-      <p className='ui-eyebrow section-heading'>{eyebrow}</p>
-      <h1 className={clsx('page-title', subtitle ? 'mb-4' : undefined, titleClassName)}>
+    <div className={clsx('section-intro', className)}>
+      <p className={clsx(size === 'page' ? 'ui-eyebrow' : 'type-meta', 'section-heading')}>{eyebrow}</p>
+      <Heading
+        className={clsx(
+          size === 'page' ? 'type-page-title' : 'type-section-title',
+          subtitle ? (size === 'page' ? 'mb-4' : 'mb-3') : undefined,
+        )}
+      >
         {title}
-      </h1>
+      </Heading>
       {subtitle && (
         <p className='section-copy'>
           {subtitle}
         </p>
-      )}
-      {supporting && (
-        <div className='mt-6'>
-          {supporting}
-        </div>
       )}
     </div>
   );

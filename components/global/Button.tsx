@@ -3,13 +3,16 @@ import clsx from 'clsx';
 
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'outline';
+type ButtonVariant = 'primary' | 'secondary' | 'outline';
+
+type ButtonSize = 'sm' | 'md';
 
 type SharedProps = {
   children: ReactNode;
   className?: string;
   fullWidth?: boolean;
   icon?: ReactNode;
+  size?: ButtonSize;
   variant?: ButtonVariant;
 };
 
@@ -28,8 +31,12 @@ type ButtonProps = LinkButtonProps | NativeButtonProps;
 const variantClasses: Record<ButtonVariant, string> = {
   primary: 'ui-button-primary',
   secondary: 'ui-button-secondary',
-  ghost: 'ui-button-ghost',
   outline: 'ui-button-outline',
+};
+
+const sizeClasses: Record<ButtonSize, string> = {
+  sm: 'px-3.5 py-2 text-sm gap-2',
+  md: 'gap-3',
 };
 
 const content = (children: ReactNode, icon?: ReactNode) => (
@@ -39,10 +46,11 @@ const content = (children: ReactNode, icon?: ReactNode) => (
   </>
 );
 
-const sharedClassName = (variant: ButtonVariant, fullWidth?: boolean, className?: string) =>
+const sharedClassName = (variant: ButtonVariant, size: ButtonSize, fullWidth?: boolean, className?: string) =>
   clsx(
     variantClasses[variant],
-    'gap-3',
+    sizeClasses[size],
+    'disabled:cursor-not-allowed disabled:opacity-50',
     fullWidth && 'w-full',
     className,
   );
@@ -53,11 +61,12 @@ const Button = (props: ButtonProps) => {
     className,
     fullWidth,
     icon,
+    size = 'md',
     variant = 'primary',
     ...rest
   } = props;
 
-  const classes = sharedClassName(variant, fullWidth, className);
+  const classes = sharedClassName(variant, size, fullWidth, className);
 
   if ('href' in props && props.href) {
     const { href, ...anchorProps } = rest as LinkButtonProps;
