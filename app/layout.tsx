@@ -1,5 +1,7 @@
 // Components
 import { Analytics } from '@vercel/analytics/react';
+import { Toaster } from '@/components/global';
+import { Layout } from '@/components/navigation/Layout';
 
 // Utilities
 import { Inter } from 'next/font/google';
@@ -13,6 +15,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = siteMetadata;
 
+// Applies to every page below this layout. Next only accepts a literal here,
+// so it cannot be lifted into a shared constant.
+export const revalidate = 30;
+
 export default function RootLayout({
   children,
 }: {
@@ -21,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        {children}
+        <Layout>
+          {children}
+        </Layout>
+        <Toaster />
         <Analytics />
       </body>
     </html>

@@ -1,30 +1,13 @@
 // Components
 import NextLink from 'next/link';
 import NextImage from 'next/image';
-import {
-  FaLinkedin as LinkedIn,
-  FaGithub as GitHub,
-} from 'react-icons/fa6';
 import { Divider } from '@/components/global';
 
+// Utilities
+import { socials, socialIcons } from '@/lib/socials';
+
 const Footer = () => {
-  const socials = [
-    { url: 'https://www.linkedin.com/in/ryansle/', platform: 'LinkedIn' },
-    { url: 'https://github.com/ryansle', platform: 'GitHub' },
-  ];
-
-  const renderIcon = (platform: string) => {
-    const iconStyle = 'w-5 h-5 fill-gray-400 transition ease-in-out duration-300 hover:fill-teal-500';
-
-    switch (platform) {
-      case 'LinkedIn':
-        return <LinkedIn className={iconStyle} />;
-      case 'GitHub':
-        return <GitHub className={iconStyle} />;
-      default:
-        return;
-    }
-  };
+  const iconStyle = 'w-5 h-5 fill-gray-400 transition ease-in-out duration-300 hover:fill-teal-500';
 
   return (
     <footer className='pb-10 pt-8'>
@@ -72,13 +55,13 @@ const Footer = () => {
                 <h2 className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Follow Me</h2>
                 <ul className='font-medium text-muted'>
                   {socials.map((social) => (
-                    <li className='mb-2' key={social.platform as string}>
+                    <li className='mb-2' key={social.platform}>
                       <NextLink
-                        href={social.url as string}
+                        href={social.url}
                         className='hover:text-white hover:underline'
                         aria-label={`My ${social.platform} profile`}
                       >
-                        {social.platform as string}
+                        {social.platform}
                       </NextLink>
                     </li>
                   ))}
@@ -125,16 +108,20 @@ const Footer = () => {
             </span>
 
             <div className='mt-4 flex space-x-4 sm:mt-0 sm:justify-center'>
-              {socials.map((social) => (
-                <NextLink
-                  key={social.platform as string}
-                  href={social.url as string}
-                  aria-label={`My ${social.platform} profile`}
-                  className='ui-icon-button'
-                >
-                  {renderIcon(social.platform as string)}
-                </NextLink>
-              ))}
+              {socials.map((social) => {
+                const Icon = socialIcons[social.platform];
+
+                return (
+                  <NextLink
+                    key={social.platform}
+                    href={social.url}
+                    aria-label={`My ${social.platform} profile`}
+                    className='ui-icon-button'
+                  >
+                    <Icon className={iconStyle} />
+                  </NextLink>
+                );
+              })}
             </div>
           </div>
         </div>

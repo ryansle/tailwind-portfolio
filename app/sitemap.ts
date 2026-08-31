@@ -1,22 +1,18 @@
 import type { MetadataRoute } from 'next';
 
 import { siteUrl } from '@/lib/seo';
-
-const routes = [
-  '',
-  '/about',
-  '/experience',
-  '/skills',
-  '/projects',
-  '/contact',
-];
+import { routes } from '@/lib/routes';
 
 const sitemap = (): MetadataRoute.Sitemap =>
-  routes.map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : 0.8,
-  }));
+  routes.map(({ href }) => {
+    const isHome = href === '/';
+
+    return {
+      url: isHome ? siteUrl : `${siteUrl}${href}`,
+      lastModified: new Date(),
+      changeFrequency: isHome ? 'weekly' : 'monthly',
+      priority: isHome ? 1 : 0.8,
+    };
+  });
 
 export default sitemap;

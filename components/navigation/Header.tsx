@@ -1,27 +1,10 @@
 // Components
 import { MobileMenu } from './MobileMenu';
-import { AiFillHome as Home } from 'react-icons/ai';
-import { IoPerson as Person } from 'react-icons/io5';
-import { HiAtSymbol as Contact } from 'react-icons/hi';
-import {
-  MdWork as Work,
-  MdCode as Code,
-  MdLaptopMac as Mac,
-} from 'react-icons/md';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
 import { HeaderLinks } from './HeaderLinks';
 
 const Header = () => {
-  const routes = [
-    { text: 'Home', href: '/', icon: <Home /> },
-    { text: 'About', href: '/about', icon: <Person /> },
-    { text: 'Experience', href: '/experience', icon: <Work /> },
-    { text: 'Skills', href: '/skills', icon: <Code /> },
-    { text: 'Projects', href: '/projects', icon: <Mac /> },
-    { text: 'Contact', href: '/contact', icon: <Contact /> }
-  ];
-
   return (
     <header className='fixed inset-x-0 top-0 z-50 pt-4'>
       <div className='header-container'>
@@ -40,10 +23,10 @@ const Header = () => {
             </div>
           </NextLink>
 
-          <HeaderLinks routes={routes} />
+          <HeaderLinks />
 
           <div className='xl:hidden'>
-            <MobileMenu content={routes} />
+            <MobileMenu />
           </div>
         </div>
       </div>

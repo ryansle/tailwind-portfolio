@@ -4,3 +4,4 @@ export * from './Textarea';
 export * from './Skeleton';
 export * from './Button';
 export * from './PageIntro';
+export * from './Toaster';

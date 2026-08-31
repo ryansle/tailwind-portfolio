@@ -3,16 +3,13 @@
 // Components
 import NextLink from 'next/link';
 
-// Types
-import type { Route } from '@/lib/types';
-
 // Utilities
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import { routes } from '@/lib/routes';
 
-type HeaderLinksProps = {
-  routes: Route[];
-};
+// Types
+import type { Route } from '@/lib/routes';
 
 const renderStyles = (path: string, href: string) => {
   const styles = 'interactive-link rounded-full px-4 py-2 text-sm font-semibold tracking-wide';
@@ -24,9 +21,7 @@ const renderStyles = (path: string, href: string) => {
   ]);
 };
 
-const HeaderLinks = (props: HeaderLinksProps) => {
-  const { routes } = props;
-
+const HeaderLinks = () => {
   const path = usePathname();
 
   return (
@@ -39,7 +34,7 @@ const HeaderLinks = (props: HeaderLinksProps) => {
             key={route.text}
           >
             <span className='flex items-center gap-x-2'>
-              {route.icon}
+              <route.icon />
               {route.text}
             </span>
           </NextLink>
