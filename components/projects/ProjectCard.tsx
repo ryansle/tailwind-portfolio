@@ -8,18 +8,15 @@ import { HiExternalLink as Link } from 'react-icons/hi';
 // Types
 import type { Project } from '@/lib/types';
 
+// Constants
+import { categoryBadgeClasses } from '@/lib/projects';
+
 // Utilities
 import { convertImageUrl } from '@/utils/convert';
 
 type ProjectCardProps = {
   project: Project;
 }
-
-const categoryBadgeClasses: Record<Project['category'], string> = {
-  Professional: 'border-sky-400/25 bg-sky-400/10 text-sky-100',
-  Personal: 'border-amber-300/25 bg-amber-300/10 text-amber-100',
-  Freelance: 'border-emerald-400/25 bg-emerald-400/10 text-emerald-100',
-};
 
 const ProjectCard = (props: ProjectCardProps) => {
   const {
@@ -36,7 +33,7 @@ const ProjectCard = (props: ProjectCardProps) => {
   const tech = techStack.map((item) => item.fields).slice(0, 4);
 
   return (
-    <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow overflow-hidden'>
+    <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow mb-4 break-inside-avoid-column overflow-hidden'>
       <div className='relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 sm:aspect-video md:min-h-[220px]'>
         <NextImage
           fill

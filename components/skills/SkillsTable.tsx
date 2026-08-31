@@ -1,6 +1,5 @@
 // Components
 import NextImage from 'next/image';
-// import { CompanyTag } from '@/components/skills';
 import { AiFillStar as Star } from 'react-icons/ai';
 
 // Types
@@ -25,7 +24,6 @@ const TableRow = (props: TableRowProps) => {
     icon,
     confidence,
     radii,
-    // experiences,
     uses,
   } = props.skill;
   const { renderBottomBorder } = props;
@@ -43,7 +41,6 @@ const TableRow = (props: TableRowProps) => {
               alt={`${technology} Icon`}
             />
           )}
-          
 
           <p className='text-base font-semibold tracking-wide text-white lg:pr-10'>
             {technology}
@@ -56,16 +53,6 @@ const TableRow = (props: TableRowProps) => {
       <td className='hidden w-[300px] px-5 align-middle text-xs lg:table-cell'>
         <p className='pr-3 text-sm leading-6 text-soft'>{uses}</p>
       </td>
-      {/* <td className='py-2 w-[1000px]'>
-        <div className='flex flex-wrap'>
-          {experiences.map((company) => (
-            <CompanyTag
-              key={company}
-              company={company}
-            />
-          ))}
-        </div>
-      </td> */}
       <td className='mt-4 block px-0 align-middle lg:mt-0 lg:table-cell lg:px-5'>
         <div className='mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted lg:hidden'>
           Confidence
@@ -96,7 +83,6 @@ const SkillsTable = (props: SkillsTableProps) => {
   const headers = [
     header,
     'My Uses',
-    // 'Experiences',
     'Confidence'
   ];
 
@@ -118,13 +104,11 @@ const SkillsTable = (props: SkillsTableProps) => {
         </thead>
         <tbody>
           {skills.map((skill, index) => (
-            skill.visibility ? (
-              <TableRow
-                key={skill.technology}
-                skill={skill}
-                renderBottomBorder={index !== skills.filter((item) => item.visibility).length - 1}
-              />
-            ) : null
+            <TableRow
+              key={skill.technology}
+              skill={skill}
+              renderBottomBorder={index !== skills.length - 1}
+            />
           ))}
         </tbody>
       </table>

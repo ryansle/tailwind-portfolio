@@ -1,9 +1,7 @@
 // Components
-import { Layout } from '@/components/navigation/Layout';
 import { SkillsTable } from '@/components/skills/SkillsTable';
-import { Button, Divider, PageIntro } from '@/components/global';
+import { Divider, PageIntro, RyanMeetupCta } from '@/components/global';
 import NextLink from 'next/link';
-import { FaHandshake as Handshake } from 'react-icons/fa';
 import {
   FaLayerGroup as LayerGroup,
   FaLaptopCode as LaptopCode,
@@ -18,10 +16,6 @@ import type { Metadata } from 'next';
 import { fetchSkills } from '@/data/fetch';
 import { createPageMetadata } from '@/lib/seo';
 
-type SkillEntry = Skill & {
-  type: 'web' | 'creative';
-};
-
 export const metadata: Metadata = createPageMetadata({
   title: 'Skills',
   description: 'See Ryan Le’s capabilities across front-end systems, product UI delivery, React, Next.js, TypeScript, Tailwind, and creative operations through Ryan Meetup.',
@@ -29,14 +23,14 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 const SkillsPage = async () => {
-  const skills = await fetchSkills() as SkillEntry[];
+  const skills = await fetchSkills();
 
-  const sortByConfidence = (a: SkillEntry, b: SkillEntry) => b.confidence - a.confidence;
+  const sortByConfidence = (a: Skill, b: Skill) => b.confidence - a.confidence;
 
-  const webSkills = skills.filter((skill) => skill.type === 'web').sort(sortByConfidence);
-  const creativeSkills = skills.filter((skill) => skill.type === 'creative').sort(sortByConfidence);
-  const visibleWebSkills = webSkills.filter((skill) => skill.visibility);
-  const visibleCreativeSkills = creativeSkills.filter((skill) => skill.visibility);
+  const visibleSkills = skills.filter((skill) => skill.visibility);
+
+  const webSkills = visibleSkills.filter((skill) => skill.type === 'web').sort(sortByConfidence);
+  const creativeSkills = visibleSkills.filter((skill) => skill.type === 'creative').sort(sortByConfidence);
   const capabilityGroups = [
     {
       title: 'Product UI systems',
@@ -55,10 +49,8 @@ const SkillsPage = async () => {
     },
   ];
 
-  const emphasis = 'text-teal-500 font-semibold';
-
   return (
-    <Layout>
+    <>
       <PageIntro
         eyebrow='Skills'
         title='My Skillsets'
@@ -80,11 +72,11 @@ const SkillsPage = async () => {
       <section className='section-panel'>
         <div className='mb-6 space-y-4'>
           <div className='flex flex-wrap items-center justify-between gap-4'>
-            <h2 className='section-title'>
+            <h2 className='type-section-title'>
               Web Engineering
             </h2>
             <span className='ui-badge ui-badge-brand'>
-              {visibleWebSkills.length} core tools
+              {webSkills.length} core tools
             </span>
           </div>
           <div className='space-y-4 type-body'>
@@ -98,7 +90,7 @@ const SkillsPage = async () => {
         </div>
         <SkillsTable
           header='Technology'
-          skills={webSkills as Skill[]}
+          skills={webSkills}
         />
       </section>
 
@@ -107,11 +99,11 @@ const SkillsPage = async () => {
       <section className='section-panel'>
         <div className='mb-6 space-y-4'>
           <div className='flex flex-wrap items-center justify-between gap-4'>
-            <h2 className='section-title'>
+            <h2 className='type-section-title'>
               Creative Production & Community Building
             </h2>
             <span className='ui-badge ui-badge-brand'>
-              {visibleCreativeSkills.length} creative capabilities
+              {creativeSkills.length} creative capabilities
             </span>
           </div>
           <div className='space-y-4 type-body'>
@@ -119,31 +111,19 @@ const SkillsPage = async () => {
               Outside engineering, I help run Ryan Meetup, a community brand and event series built around shared identity, humor, and intentionally ridiculous programming.
             </p>
             <p>
-              That work spans concept development, creative direction, partnerships, promotion, and live execution, with coverage from <NextLink className={emphasis} href='https://www.nytimes.com/2023/03/28/nyregion/ryan-meetup-nyc.html'>The New York Times</NextLink>, the <NextLink className={emphasis} href='https://www.latimes.com/california/newsletter/2023-09-11/at-the-dumb-and-wholesome-ryan-rave-everyone-belongs-and-everyones-ryan-essential-california'>Los Angeles Times</NextLink>, <NextLink className={emphasis} href='https://www.cbsnews.com/losangeles/video/rallying-ryans-host-meet-ups-around-the-world/'>CBS News</NextLink>, and <NextLink className={emphasis} href='https://abcnews.go.com/WNN/video/rytoberfest-weekend-104132029'>ABC News</NextLink>.
+              That work spans concept development, creative direction, partnerships, promotion, and live execution, with coverage from <NextLink className='text-emphasis' href='https://www.nytimes.com/2023/03/28/nyregion/ryan-meetup-nyc.html'>The New York Times</NextLink>, the <NextLink className='text-emphasis' href='https://www.latimes.com/california/newsletter/2023-09-11/at-the-dumb-and-wholesome-ryan-rave-everyone-belongs-and-everyones-ryan-essential-california'>Los Angeles Times</NextLink>, <NextLink className='text-emphasis' href='https://www.cbsnews.com/losangeles/video/rallying-ryans-host-meet-ups-around-the-world/'>CBS News</NextLink>, and <NextLink className='text-emphasis' href='https://abcnews.go.com/WNN/video/rytoberfest-weekend-104132029'>ABC News</NextLink>.
             </p>
           </div>
         </div>
         <SkillsTable
           header='Skill'
-          skills={creativeSkills as Skill[]}
+          skills={creativeSkills}
         />
 
-        <Button
-          className='mt-6'
-          fullWidth
-          href='https://www.ryanmeetup.com/about'
-          target='_blank'
-          rel='noreferrer'
-          icon={<Handshake />}
-          variant='outline'
-        >
-          Learn more about the Ryan Meetup
-        </Button>
+        <RyanMeetupCta className='mt-6' />
       </section>
-    </Layout>
+    </>
   );
 };
 
 export default SkillsPage;
-
-export const revalidate = 30;

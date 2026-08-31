@@ -2,10 +2,10 @@
 
 // Components
 import { FeaturedProject, ProjectCard } from '@/components/projects';
-import { Divider } from '@/components/global';
+import { Divider, PageIntro } from '@/components/global';
 
 // Built-in Types
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 // Types
 import type { Project } from '@/lib/types';
@@ -21,38 +21,20 @@ const ProjectsList = (props: ProjectsListProps) => {
   const featured = projects.filter((project) => project.featured);
   const otherProjects = projects.filter((project) => !project.featured);
   const filterOptions: Array<Project['category'] | 'All'> = ['All', 'Professional', 'Personal', 'Freelance'];
-  const filteredProjects = useMemo(
-    () => activeFilter === 'All'
-      ? otherProjects
-      : otherProjects.filter((project) => project.category === activeFilter),
-    [activeFilter, otherProjects],
-  );
-  const twoColumnProjects = useMemo(
-    () => [
-      filteredProjects.filter((_, index) => index % 2 === 0),
-      filteredProjects.filter((_, index) => index % 2 === 1),
-    ],
-    [filteredProjects],
-  );
-  const threeColumnProjects = useMemo(
-    () => [
-      filteredProjects.filter((_, index) => index % 3 === 0),
-      filteredProjects.filter((_, index) => index % 3 === 1),
-      filteredProjects.filter((_, index) => index % 3 === 2),
-    ],
-    [filteredProjects],
-  );
+  const filteredProjects = activeFilter === 'All'
+    ? otherProjects
+    : otherProjects.filter((project) => project.category === activeFilter);
 
   return (
     <div className='space-y-10'>
       <section className='space-y-6'>
-        <div className='section-intro-tight'>
-          <p className='type-meta section-heading'>Featured Work</p>
-          <h2 className='section-title mb-3'>Projects that best represent my product and engineering range.</h2>
-          <p className='section-copy'>
-            These are the projects I&apos;d point to first when someone wants to understand how I approach UI quality, implementation detail, and the tradeoffs behind real shipped work.
-          </p>
-        </div>
+        <PageIntro
+          as='h2'
+          size='section'
+          eyebrow='Featured Work'
+          title='Projects that best represent my product and engineering range.'
+          subtitle="These are the projects I'd point to first when someone wants to understand how I approach UI quality, implementation detail, and the tradeoffs behind real shipped work."
+        />
 
       {featured.map((project: Project, index: number) => (
         <div key={project.title}>
@@ -71,13 +53,13 @@ const ProjectsList = (props: ProjectsListProps) => {
       <Divider />
 
       <section className='space-y-6'>
-        <div className='section-intro-tight'>
-          <p className='type-meta section-heading'>More Builds</p>
-          <h2 className='section-title mb-3'>Additional work across professional, freelance, and personal contexts.</h2>
-          <p className='section-copy'>
-            Not every project needs a case-study treatment. This grid is meant to be scanned quickly, with category badges and concise summaries doing most of the work.
-          </p>
-        </div>
+        <PageIntro
+          as='h2'
+          size='section'
+          eyebrow='More Builds'
+          title='Additional work across professional, freelance, and personal contexts.'
+          subtitle='Not every project needs a case-study treatment. This grid is meant to be scanned quickly, with category badges and concise summaries doing most of the work.'
+        />
 
         <div className='subtle-panel px-4 py-4 sm:px-5'>
           <div className='mb-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3'>
@@ -113,38 +95,12 @@ const ProjectsList = (props: ProjectsListProps) => {
           </div>
         </div>
 
-        <div className='space-y-5 md:hidden'>
+        <div className='columns-1 gap-4 md:columns-2 xl:columns-3'>
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.title}
               project={project}
             />
-          ))}
-        </div>
-
-        <div className='hidden gap-4 md:grid xl:hidden md:grid-cols-2'>
-          {twoColumnProjects.map((column, columnIndex) => (
-            <div key={columnIndex} className='space-y-4'>
-              {column.map((project) => (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-
-        <div className='hidden gap-4 xl:grid xl:grid-cols-3'>
-          {threeColumnProjects.map((column, columnIndex) => (
-            <div key={columnIndex} className='space-y-4'>
-              {column.map((project) => (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                />
-              ))}
-            </div>
           ))}
         </div>
       </section>

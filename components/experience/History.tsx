@@ -5,9 +5,8 @@ import NextImage from 'next/image';
 import { Transition } from '@headlessui/react';
 import { List } from './List';
 import { TechLabel } from './TechLabel';
-import { Button, Divider } from '@/components/global';
+import { Divider, RYAN_MEETUP_COMPANY, RyanMeetupCta } from '@/components/global';
 import NextLink from 'next/link';
-import { FaHandshake as Handshake } from 'react-icons/fa';
 import { FaChevronDown as ChevronDown } from 'react-icons/fa6';
 
 // Built-in Types
@@ -69,7 +68,7 @@ const Company = (props: CompanyProps) => {
         return 'text-indigo-500';
       case 'Nelnet':
         return 'text-[#6FBA41]';
-      case 'Ryan Meetup':
+      case RYAN_MEETUP_COMPANY:
         return 'text-white';
       default:
         return;
@@ -113,7 +112,7 @@ const Company = (props: CompanyProps) => {
             )}
           </div>
           <h3 className='mb-4 text-[clamp(1.8rem,4vw,3rem)] tracking-wider'>
-            <span className='text-teal-500 font-semibold break-words'>{title}</span>
+            <span className='text-emphasis break-words'>{title}</span>
             {' '}@{' '}
             <NextLink href={companyUrl}>
               <span className={`${renderCompanyColor(company)} font-semibold underline-offset-4 hover:underline`}>
@@ -125,7 +124,7 @@ const Company = (props: CompanyProps) => {
             {summary}
           </p>
 
-          <h4 className='mb-2 text-xl font-semibold tracking-wider text-teal-500'>
+          <h4 className='mb-2 text-xl tracking-wider text-emphasis'>
             {header}
           </h4>
 
@@ -143,19 +142,7 @@ const Company = (props: CompanyProps) => {
             </div>
           )}
 
-          {company === 'Ryan Meetup' && (
-            <Button
-              className='mt-4'
-              fullWidth
-              href='https://www.ryanmeetup.com/about'
-              target='_blank'
-              rel='noreferrer'
-              icon={<Handshake />}
-              variant='outline'
-            >
-              Learn more about the Ryan Meetup
-            </Button>
-          )}
+          {company === RYAN_MEETUP_COMPANY && <RyanMeetupCta className='mt-4' />}
         </div>
 
         <div className='hidden xl:block xl:col-span-1' />
