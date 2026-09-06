@@ -27,7 +27,7 @@ const InitiativesPreview = () => {
         <div className='grid gap-5 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)]'>
           <article className='ui-card overflow-hidden'>
             <RotatingGallery
-              className='relative aspect-[16/9] border-b border-white/10 sm:aspect-[16/8]'
+              className='relative aspect-video border-b border-white/10 sm:aspect-16/8'
               items={ryanMeetupGallery}
             />
             <div className='p-6 sm:p-7'>

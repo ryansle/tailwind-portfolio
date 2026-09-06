@@ -33,7 +33,7 @@ const transitionClasses = {
 };
 
 /* Solid enough to stay readable over a bright photo, which `ui-badge` alone isn't. */
-const overlayChrome = 'border-white/20 bg-slate-950/75 backdrop-blur';
+const overlayChrome = 'border-white/20 bg-slate-950/75 backdrop-blur-sm';
 
 const RotatingGallery = (props: RotatingGalleryProps) => {
   const {
@@ -95,7 +95,7 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
               sizes={sizes}
               alt={slide.alt}
             />
-            <div className='absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent' />
+            <div className='absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/10 to-transparent' />
           </div>
         </Transition>
       ))}
@@ -149,7 +149,7 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
                 type='button'
                 aria-label={`Show photo ${index + 1} of ${slideCount}`}
                 aria-current={currentIndex === index}
-                className='group/dot flex h-3 items-center justify-center rounded-full px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300/70'
+                className='group/dot flex h-3 items-center justify-center rounded-full px-0.5 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-teal-300/70'
                 onClick={() => setActiveSlide(index)}
               >
                 <span

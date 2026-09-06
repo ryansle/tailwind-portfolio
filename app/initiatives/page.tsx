@@ -80,7 +80,7 @@ const InitiativesPage = () => {
               sizes='(min-width: 1024px) 46vw, 100vw'
               alt='A room full of Ryans posing together under a Ryan Meetup banner'
             />
-            <div className='absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/10' />
+            <div className='absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-slate-950/10' />
             <div className='absolute inset-x-5 bottom-5 sm:inset-x-7 sm:bottom-7'>
               <span className='ui-badge border-white/20 bg-slate-950/70 text-white'>Established 2023</span>
             </div>
@@ -215,7 +215,7 @@ const InitiativesPage = () => {
             </div>
           </div>
 
-          <div className='subtle-panel divide-y divide-white/[0.06] overflow-hidden'>
+          <div className='subtle-panel divide-y divide-white/6 overflow-hidden'>
             <p className='type-meta px-5 py-4 sm:px-6'>What I&apos;m up for</p>
 
             {collaborations.map((item) => (

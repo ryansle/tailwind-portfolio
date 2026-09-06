@@ -82,10 +82,10 @@ const Company = (props: CompanyProps) => {
   return (
     <li className='relative ml-5 lg:ml-6 xl:mb-10'>
       {milestoneLabel && (
-        <div className='mb-8 ml-2 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4'>
+        <div className='mb-8 ml-2 rounded-2xl border border-white/10 bg-white/3 px-4 py-4'>
           <div className='flex items-center gap-4'>
             <span className='type-meta whitespace-nowrap text-teal-300'>{milestoneLabel}</span>
-            <span className='h-px flex-1 bg-gradient-to-r from-white/20 to-transparent' />
+            <span className='h-px flex-1 bg-linear-to-r from-white/20 to-transparent' />
           </div>
         </div>
       )}
@@ -129,7 +129,7 @@ const Company = (props: CompanyProps) => {
             )}
           </div>
           <h2 className='mb-4 text-[clamp(1.8rem,4vw,3rem)] tracking-wider'>
-            <span className='text-emphasis break-words'>{title}</span>
+            <span className='text-emphasis wrap-break-word'>{title}</span>
             {' '}@{' '}
             <NextLink href={companyUrl}>
               <span className={`${renderCompanyColor(company)} font-semibold underline-offset-4 hover:underline`}>
@@ -199,15 +199,15 @@ const ExperienceSection = (props: ExperienceSectionProps) => {
       <button
         type='button'
         onClick={() => setIsOpen((open) => !open)}
-        className='mb-5 flex w-full items-center gap-4 rounded-2xl border border-teal-400/15 bg-teal-400/[0.05] px-5 py-4 text-left hover:border-teal-400/30 hover:bg-teal-400/[0.08]'
+        className='mb-5 flex w-full items-center gap-4 rounded-2xl border border-teal-400/15 bg-teal-400/5 px-5 py-4 text-left hover:border-teal-400/30 hover:bg-teal-400/8'
         aria-expanded={isOpen}
       >
-        <span className={`flex h-10 w-10 items-center justify-center rounded-full border ${isOpen ? 'border-teal-300/30 bg-teal-300/12 text-teal-100' : 'border-white/10 bg-white/[0.04] text-slate-300'}`}>
+        <span className={`flex h-10 w-10 items-center justify-center rounded-full border ${isOpen ? 'border-teal-300/30 bg-teal-300/12 text-teal-100' : 'border-white/10 bg-white/4 text-slate-300'}`}>
           <ChevronDown className={`text-sm transition-transform ${isOpen ? 'rotate-0' : '-rotate-90'}`} />
         </span>
         <div className='flex min-w-0 flex-1 items-center gap-4'>
           <span className='type-meta whitespace-nowrap text-teal-200'>{title}</span>
-          <span className='h-px flex-1 bg-gradient-to-r from-teal-400/30 to-transparent' />
+          <span className='h-px flex-1 bg-linear-to-r from-teal-400/30 to-transparent' />
         </div>
       </button>
 

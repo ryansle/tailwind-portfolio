@@ -30,7 +30,7 @@ const MobileMenu = () => {
               >
                 <Menu.Items
                   static
-                  className='ui-card absolute right-0 mt-2 w-56 origin-top-right overflow-hidden outline-none'
+                  className='ui-card absolute right-0 mt-2 w-56 origin-top-right overflow-hidden outline-hidden'
                 >
                   <div className='p-1'>
                     {routes.map((row) => (

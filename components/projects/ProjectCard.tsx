@@ -34,7 +34,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 
   return (
     <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow flex h-full min-w-0 flex-col overflow-hidden'>
-      <div className='relative aspect-[16/10] w-full shrink-0 overflow-hidden border-b border-white/10 sm:aspect-video'>
+      <div className='relative aspect-16/10 w-full shrink-0 overflow-hidden border-b border-white/10 sm:aspect-video'>
         <ProjectScreenshot title={title} image={image} />
       </div>
 
@@ -42,7 +42,7 @@ const ProjectCard = (props: ProjectCardProps) => {
         <div className='text-left'>
           <div className='mb-2 flex items-start justify-between gap-3'>
             <div className='flex min-w-0 flex-wrap items-center gap-2.5'>
-              <h3 className='min-w-0 text-xl font-semibold tracking-[-0.02em] text-white [overflow-wrap:anywhere]'>
+              <h3 className='min-w-0 text-xl font-semibold tracking-[-0.02em] text-white wrap-anywhere'>
                 {title}
               </h3>
               <span className={`ui-badge ${categoryBadgeClasses[category]}`}>

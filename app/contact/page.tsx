@@ -68,7 +68,7 @@ const ContactPage: NextPage = () => {
         <div className='order-2 space-y-6 xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:sticky xl:top-0 xl:self-start'>
           <ContactForm />
 
-          <div className='section-panel !py-5'>
+          <div className='section-panel py-5!'>
             <h2 className='type-section-title mb-4'>Quick Contact</h2>
 
             <div className='flex flex-wrap gap-3'>

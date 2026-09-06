@@ -27,7 +27,7 @@ const ProjectScreenshot = ({ title, image, featured = false }: ProjectScreenshot
         onClick={() => setOpen(true)}
         aria-label={`Enlarge ${title} screenshot`}
         aria-haspopup='dialog'
-        className={`group/screenshot relative block w-full cursor-zoom-in overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-teal-300 ${featured ? 'rounded-xl' : 'h-full'}`}
+        className={`group/screenshot relative block w-full cursor-zoom-in overflow-hidden focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-teal-300 ${featured ? 'rounded-xl' : 'h-full'}`}
       >
         <NextImage
           src={src}
@@ -41,21 +41,21 @@ const ProjectScreenshot = ({ title, image, featured = false }: ProjectScreenshot
           className={`transition duration-300 group-hover/screenshot:brightness-110 group-focus-visible/screenshot:brightness-110 motion-safe:group-hover/screenshot:scale-[1.02] motion-safe:group-focus-visible/screenshot:scale-[1.02] ${featured ? 'h-auto w-full' : 'object-cover'}`}
         />
         {!featured && (
-          <span aria-hidden className='pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent' />
+          <span aria-hidden className='pointer-events-none absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/20 to-transparent' />
         )}
-        <span aria-hidden className='pointer-events-none absolute bottom-3 right-3 flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/85 px-3 py-2 text-xs font-medium text-white shadow-lg backdrop-blur-sm transition duration-200 sm:opacity-0 sm:group-hover/screenshot:opacity-100 sm:group-focus-visible/screenshot:opacity-100'>
+        <span aria-hidden className='pointer-events-none absolute bottom-3 right-3 flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/85 px-3 py-2 text-xs font-medium text-white shadow-lg backdrop-blur-xs transition duration-200 sm:opacity-0 sm:group-hover/screenshot:opacity-100 sm:group-focus-visible/screenshot:opacity-100'>
           <HiOutlineZoomIn className='h-4 w-4' />
           View screenshot
         </span>
       </button>
 
-      <Dialog open={open} onClose={() => setOpen(false)} className='fixed inset-0 z-[60]'>
-        <DialogBackdrop transition className='fixed inset-0 bg-slate-950/90 backdrop-blur-sm transition duration-200 data-[closed]:opacity-0 motion-reduce:transition-none' />
+      <Dialog open={open} onClose={() => setOpen(false)} className='fixed inset-0 z-60'>
+        <DialogBackdrop transition className='fixed inset-0 bg-slate-950/90 backdrop-blur-xs transition duration-200 data-closed:opacity-0 motion-reduce:transition-none' />
         <div className='fixed inset-0 overflow-y-auto p-3 sm:p-6'>
           <div className='flex min-h-full items-center justify-center'>
-            <DialogPanel transition className='flex max-h-[calc(100dvh-1.5rem)] w-full max-w-[1600px] flex-col overflow-hidden rounded-2xl border border-white/15 bg-slate-950 shadow-2xl transition duration-200 data-[closed]:opacity-0 motion-reduce:transition-none sm:max-h-[calc(100dvh-3rem)]'>
+            <DialogPanel transition className='flex max-h-[calc(100dvh-1.5rem)] w-full max-w-[1600px] flex-col overflow-hidden rounded-2xl border border-white/15 bg-slate-950 shadow-2xl transition duration-200 data-closed:opacity-0 motion-reduce:transition-none sm:max-h-[calc(100dvh-3rem)]'>
               <div className='flex shrink-0 items-center justify-between gap-4 border-b border-white/10 px-4 py-3 sm:px-5'>
-                <DialogTitle className='min-w-0 text-sm font-semibold text-white [overflow-wrap:anywhere] sm:text-base'>
+                <DialogTitle className='min-w-0 text-sm font-semibold text-white wrap-anywhere sm:text-base'>
                   {title}
                 </DialogTitle>
                 <button

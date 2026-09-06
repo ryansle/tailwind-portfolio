@@ -56,7 +56,7 @@ const Education = () => {
           <ul className='space-y-2 border-t border-white/10 pt-4 text-soft list-inside'>
             {accomplishments.map((accomplishment) => (
               <li key={accomplishment} className='flex'>
-                <Check className='fill-teal-500 w-4 h-4 flex-shrink-0 mt-1' />
+                <Check className='fill-teal-500 w-4 h-4 shrink-0 mt-1' />
                 <p className='ml-3 tracking-wide'>
                   {accomplishment}
                 </p>

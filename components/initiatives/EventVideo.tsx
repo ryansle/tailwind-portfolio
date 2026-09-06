@@ -41,13 +41,13 @@ const EventVideo = (props: EventVideoProps) => {
           >
             <NextImage
               fill
-              className='motion-media object-cover opacity-80 transition-opacity duration-[var(--duration-base)] group-hover:opacity-100'
+              className='motion-media object-cover opacity-80 transition-opacity duration-(--duration-base) group-hover:opacity-100'
               src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
               sizes='(min-width: 640px) 20rem, 100vw'
               alt=''
             />
             <span className='absolute inset-0 bg-slate-950/30' />
-            <span className='ui-icon-button absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-white group-hover:text-[color:var(--accent)]'>
+            <span className='ui-icon-button absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-white group-hover:text-accent'>
               <Play className='h-3.5 w-3.5 translate-x-px' aria-hidden />
             </span>
           </button>

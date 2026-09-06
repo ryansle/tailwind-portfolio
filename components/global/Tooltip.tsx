@@ -56,7 +56,7 @@ const Tooltip = (props: TooltipProps) => {
     >
       <div
         aria-describedby={open ? tooltipId : undefined}
-        className='rounded-[0.95rem] outline-none ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/30'
+        className='rounded-[0.95rem] outline-hidden ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/30'
         tabIndex={0}
       >
         {children}
@@ -70,7 +70,7 @@ const Tooltip = (props: TooltipProps) => {
         role='tooltip'
         style={{ transform: `translate(calc(-50% + ${offset}px), ${open ? '0' : '-0.25rem'})` }}
       >
-        <div className='rounded-[var(--radius-md)] border border-[var(--border-strong)] bg-[var(--surface-strong)] px-3.5 py-2.5 text-left shadow-[var(--shadow)]'>
+        <div className='rounded-md border border-(--border-strong) bg-(--surface-strong) px-3.5 py-2.5 text-left shadow-(--shadow)'>
           <p className='text-sm font-semibold tracking-wide text-white'>
             {label}
           </p>

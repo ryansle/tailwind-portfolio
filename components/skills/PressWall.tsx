@@ -38,7 +38,7 @@ const PressWall = (props: PressWallProps) => {
           <NextLink
             key={feature.outlet}
             aria-label={`${feature.outlet} coverage of Ryan Meetup`}
-            className='interactive-link flex h-24 items-center sm:h-28 justify-center rounded-[var(--radius-md)] border-2 border-white/[0.12] bg-white/[0.02] px-4 transition hover:border-white/20 hover:bg-white/[0.05]'
+            className='interactive-link flex h-24 items-center sm:h-28 justify-center rounded-md border-2 border-white/12 bg-white/2 px-4 transition hover:border-white/20 hover:bg-white/5'
             href={feature.href}
           >
             <NextImage

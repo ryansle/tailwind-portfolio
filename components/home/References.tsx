@@ -37,7 +37,7 @@ const Testimony = (props: Reference) => {
         {avatarUrl && (
           <div className='relative h-12 w-12 aspect-square'>
             <NextImage
-              className='rounded-full shadow'
+              className='rounded-full shadow-sm'
               src={avatarUrl}
               fill
               sizes='48px'
@@ -55,7 +55,7 @@ const Testimony = (props: Reference) => {
             <div className='flex items-center gap-1.5'>
               {linkedinUrl && (
                 <NextLink
-                  className='ui-icon-button h-7 w-7 !rounded-lg !p-0 text-sm'
+                  className='ui-icon-button h-7 w-7 rounded-lg! p-0! text-sm'
                   href={linkedinUrl}
                   aria-label={`${name}'s LinkedIn Profile`}
                 >
@@ -65,7 +65,7 @@ const Testimony = (props: Reference) => {
 
               {email && (
                 <NextLink
-                  className='ui-icon-button h-7 w-7 !rounded-lg !p-0 text-sm'
+                  className='ui-icon-button h-7 w-7 rounded-lg! p-0! text-sm'
                   href={`mailto:${email}`}
                   aria-label={`Contact ${name} via email`}
                 >

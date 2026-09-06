@@ -49,7 +49,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
     >
       <article className='ui-card overflow-hidden'>
         <div className='grid gap-0 lg:grid-cols-2 lg:items-stretch'>
-          <div className={`flex min-w-0 items-center justify-center border-b border-white/10 bg-gradient-to-br from-teal-950/30 via-slate-950/40 to-slate-900/60 p-4 sm:p-6 lg:border-b-0 lg:p-7 ${reverse ? 'lg:order-2 lg:border-l' : 'lg:order-1 lg:border-r'}`}>
+          <div className={`flex min-w-0 items-center justify-center border-b border-white/10 bg-linear-to-br from-teal-950/30 via-slate-950/40 to-slate-900/60 p-4 sm:p-6 lg:border-b-0 lg:p-7 ${reverse ? 'lg:order-2 lg:border-l' : 'lg:order-1 lg:border-r'}`}>
             <div className='w-full max-w-[640px] overflow-hidden rounded-xl border border-white/10 bg-slate-950 shadow-2xl'>
               <ProjectScreenshot title={title} image={image} featured />
             </div>
@@ -81,7 +81,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
                 )}
               </div>
 
-              <h3 className='mb-2 min-w-0 max-w-full text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-white [overflow-wrap:anywhere]'>
+              <h3 className='mb-2 min-w-0 max-w-full text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-white wrap-anywhere'>
                 {title}
               </h3>
               {subtitle && (

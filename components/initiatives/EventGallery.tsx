@@ -72,10 +72,10 @@ const EventGallery = (props: EventGalleryProps) => {
             key={event.src}
             type='button'
             aria-haspopup='dialog'
-            className='ui-card motion-parent ui-focus-inset group relative overflow-hidden text-left transition duration-[var(--duration-base)] hover:-translate-y-0.5'
+            className='ui-card motion-parent ui-focus-inset group relative overflow-hidden text-left transition duration-(--duration-base) hover:-translate-y-0.5'
             onClick={() => openEvent(index)}
           >
-            <div className='relative aspect-[16/9] overflow-hidden'>
+            <div className='relative aspect-video overflow-hidden'>
               <NextImage
                 fill
                 className='motion-media object-cover'
@@ -83,9 +83,9 @@ const EventGallery = (props: EventGalleryProps) => {
                 alt={event.alt}
                 sizes='(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw'
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent' />
+              <div className='absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent' />
 
-              <span className='ui-icon-button absolute right-3 top-3 p-2 opacity-0 transition duration-[var(--duration-base)] group-hover:opacity-100 group-focus-visible:opacity-100'>
+              <span className='ui-icon-button absolute right-3 top-3 p-2 opacity-0 transition duration-(--duration-base) group-hover:opacity-100 group-focus-visible:opacity-100'>
                 <Expand className='h-3 w-3' aria-hidden />
               </span>
 
@@ -100,7 +100,7 @@ const EventGallery = (props: EventGalleryProps) => {
       <Dialog open={open} onClose={() => setOpen(false)} className='relative z-50'>
         <DialogBackdrop
           transition
-          className='fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition duration-[var(--duration-base)] ease-[var(--ease-standard)] data-[closed]:opacity-0'
+          className='fixed inset-0 bg-slate-950/80 backdrop-blur-xs transition duration-(--duration-base) ease-(--ease-standard) data-closed:opacity-0'
         />
 
         <div className='fixed inset-0 overflow-y-auto p-4 sm:p-6'>
@@ -112,7 +112,7 @@ const EventGallery = (props: EventGalleryProps) => {
             */}
             <DialogPanel
               transition
-              className='ui-card relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden transition duration-[var(--duration-base)] ease-[var(--ease-standard)] data-[closed]:translate-y-2 data-[closed]:opacity-0'
+              className='ui-card relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden transition duration-(--duration-base) ease-(--ease-standard) data-closed:translate-y-2 data-closed:opacity-0'
             >
               <button
                 type='button'
@@ -132,18 +132,18 @@ const EventGallery = (props: EventGalleryProps) => {
                 */}
                 {/* Every poster is roughly 16:9, so the middle box matches the artwork rather than cropping it. */}
                 <div className='relative flex h-52 w-full shrink-0 items-center justify-center overflow-hidden bg-slate-950 sm:h-60 lg:h-64'>
-                  <div className='poster-bleed-left relative aspect-[16/9] h-full shrink-0'>
+                  <div className='poster-bleed-left relative aspect-video h-full shrink-0'>
                     <NextImage
                       fill
                       aria-hidden
-                      className='object-cover blur-lg [transform:scaleX(-1.15)_scaleY(1.15)]'
+                      className='object-cover blur-lg transform-[scaleX(-1.15)_scaleY(1.15)]'
                       src={activeEvent.src}
                       alt=''
                       sizes='(min-width: 768px) 30rem, 100vw'
                     />
                   </div>
 
-                  <div className='relative aspect-[16/9] h-full shrink-0'>
+                  <div className='relative aspect-video h-full shrink-0'>
                     <NextImage
                       fill
                       className='object-cover'
@@ -153,11 +153,11 @@ const EventGallery = (props: EventGalleryProps) => {
                     />
                   </div>
 
-                  <div className='poster-bleed-right relative aspect-[16/9] h-full shrink-0'>
+                  <div className='poster-bleed-right relative aspect-video h-full shrink-0'>
                     <NextImage
                       fill
                       aria-hidden
-                      className='object-cover blur-lg [transform:scaleX(-1.15)_scaleY(1.15)]'
+                      className='object-cover blur-lg transform-[scaleX(-1.15)_scaleY(1.15)]'
                       src={activeEvent.src}
                       alt=''
                       sizes='(min-width: 768px) 30rem, 100vw'
@@ -234,7 +234,7 @@ const EventGallery = (props: EventGalleryProps) => {
               </div>
 
               {activeEvent.sources && activeEvent.sources.length > 0 && (
-                <footer className='shrink-0 border-t border-white/10 bg-[var(--surface-strong)] px-6 py-3 sm:px-8 lg:px-10'>
+                <footer className='shrink-0 border-t border-white/10 bg-(--surface-strong) px-6 py-3 sm:px-8 lg:px-10'>
                   <nav aria-label='Event articles and useful links' className='flex flex-wrap gap-x-6'>
                     {activeEvent.sources.map((source) => (
                       <a

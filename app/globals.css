@@ -1,50 +1,691 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --bg: #050816;
-  --bg-elevated: #0b1220;
-  --surface: rgba(15, 23, 42, 0.72);
-  --surface-hover: rgba(30, 41, 59, 0.86);
-  --surface-strong: #111827;
-  --text: #f8fafc;
-  --text-muted: #a8b5c9;
-  --text-soft: #cbd5e1;
-  --accent: #2dd4bf;
-  --accent-soft: rgba(45, 212, 191, 0.14);
-  --border: rgba(148, 163, 184, 0.18);
-  --border-strong: rgba(148, 163, 184, 0.32);
-  --ring: rgba(45, 212, 191, 0.45);
-  --shadow: 0 24px 80px rgba(2, 6, 23, 0.45);
-  --radius-sm: 0.625rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
-  --container-inline: clamp(1.5rem, 3vw, 3rem);
-  --section-space: clamp(1.5rem, 2.5vw, 2.75rem);
-  --duration-fast: 180ms;
-  --duration-base: 260ms;
-  --duration-slow: 420ms;
-  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+@theme {
+  --breakpoint-xs: 470px;
+  --breakpoint-3xl: 1800px;
+  --breakpoint-4xl: 2100px;
+
+  --text-display: calc(5rem + ((1vw - 7.68px) * 1.7361111111111112));
+  --text-display2: calc(2.25rem + ((1vw - 7.68px) * 1.0416666666666667));
+  --text-display3: calc(1.5rem + ((1vw - 7.68px) * 1.0416666666666667));
+  --text-display4: calc(1rem + ((1vw - 7.68px) * 0.6944444444444444));
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  /*
+    The panel radii. These live under their own names because Tailwind 4
+    resolves rounded-sm/md/lg/xl through --radius-sm/md/lg/xl: reusing those
+    names would silently resize every stock rounded-* utility in the markup.
+  */
+  --radius-field: 0.625rem;
+  --radius-surface: 1rem;
+  --radius-card: 1.5rem;
+  --radius-shell: 2rem;
+
+  --scale-101: 1.01;
+  --scale-102: 1.02;
+
+  --animate-wave: wave 1.5s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-drift: drift 9s ease-in-out infinite;
+
+  --font-cooper: Cooper, sans-serif;
+
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    15% {
+      transform: rotate(14deg);
+    }
+    30% {
+      transform: rotate(-8deg);
+    }
+    40% {
+      transform: rotate(14deg);
+    }
+    50% {
+      transform: rotate(-4deg);
+    }
+    60% {
+      transform: rotate(10deg);
+    }
+    70% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.015);
+    }
+  }
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(-6px, -9px);
+    }
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-body {
-  min-height: 100vh;
+@utility app-frame {
+  @apply relative overflow-x-hidden;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.45),
+      transparent 88%
+    );
+  }
+
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        circle at 24% 18%,
+        rgba(45, 212, 191, 0.12),
+        transparent 24%
+      ),
+      radial-gradient(
+        circle at 80% 74%,
+        rgba(56, 189, 248, 0.1),
+        transparent 18%
+      ),
+      radial-gradient(
+        circle at 52% 36%,
+        rgba(45, 212, 191, 0.05),
+        transparent 30%
+      );
+    filter: blur(22px);
+    opacity: 0.9;
+  }
+}
+
+@utility app-container {
+  @apply mx-auto w-full max-w-[1550px] px-6 xs:px-10 lg:px-14 2xl:px-16;
+}
+
+@utility header-container {
+  @apply mx-auto w-full max-w-[1640px] px-4 xs:px-8 lg:px-10 2xl:px-12;
+}
+
+@utility page-wrap {
+  @apply app-container pt-28 sm:pt-32;
+}
+
+@utility skip-link {
+  /*
+    Visible only on keyboard focus. The header is fixed, so the link parks
+    below it rather than under it.
+  */
+  @apply sr-only;
+
+  &:focus-visible {
+    @apply not-sr-only fixed left-6 top-6 z-100 rounded-full border border-teal-400/40 bg-slate-950 px-5 py-3 text-sm font-semibold text-teal-200;
+    outline: 2px solid var(--color-teal-300);
+    outline-offset: 2px;
+  }
+}
+
+@utility page-shell {
+  @apply relative flex min-h-full flex-col pt-4 pb-8;
+  /*
+      Guards against sideways bleed. `clip` rather than `hidden` so the y axis
+      stays visible instead of becoming a scroll container. It clips hard at the
+      padding edge - Chromium ignores `overflow-clip-margin` unless both axes
+      clip - so anything decorative has to stay inside the shell, not straddle it.
+    */
+  overflow-x: clip;
+  isolation: isolate;
+  gap: var(--section-space);
+}
+
+@utility surface-shell {
+  @apply ui-surface rounded-shell;
+}
+
+@utility surface-shell-inset {
+  @apply px-5 py-4 sm:px-6;
+}
+
+@utility ui-surface {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 38%),
+    var(--surface);
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+@utility ui-card {
+  @apply ui-surface rounded-card;
+}
+
+@utility ui-divider {
+  border-top: 1px solid var(--border);
+}
+
+@utility ui-label {
+  color: var(--text-soft);
+  @apply mb-2 text-sm font-medium tracking-wide;
+}
+
+@utility ui-input {
+  background: rgba(15, 23, 42, 0.78);
+  color: var(--text);
+  border: 1px solid var(--border);
+  @apply w-full rounded-field px-4 py-3 text-sm outline-hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:hover {
+    border-color: var(--border-strong);
+    background: rgba(15, 23, 42, 0.92);
+  }
+
+  &:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+
+  &:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+}
+
+@utility ui-button-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #14b8a6 100%);
+  color: #042f2e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 44px rgba(20, 184, 166, 0.28);
+  @apply inline-flex items-center justify-center rounded-field px-5 py-3 font-semibold tracking-wide;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 24px 50px rgba(20, 184, 166, 0.34);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 18px 44px rgba(20, 184, 166, 0.28),
+      0 0 0 4px var(--ring);
+  }
+}
+
+@utility ui-button-secondary {
   color: var(--text);
   background:
-    radial-gradient(circle at top, rgba(45, 212, 191, 0.12), transparent 30%),
-    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.08), transparent 24%),
-    linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+    linear-gradient(180deg, rgba(45, 212, 191, 0.06), transparent 48%),
+    rgba(8, 15, 28, 0.76);
+  border: 1px solid rgba(45, 212, 191, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 34px rgba(2, 6, 23, 0.22);
+  backdrop-filter: blur(14px);
+  @apply inline-flex items-center justify-center rounded-field px-5 py-3 font-medium tracking-wide;
+
+  & svg {
+    color: var(--accent);
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--accent);
+    background:
+      linear-gradient(180deg, rgba(45, 212, 191, 0.12), transparent 48%),
+      rgba(10, 19, 34, 0.88);
+    border-color: var(--accent);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 22px 42px rgba(2, 6, 23, 0.28),
+      0 0 0 1px rgba(45, 212, 191, 0.28);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    border-color: var(--accent);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 14px 34px rgba(2, 6, 23, 0.22),
+      0 0 0 4px var(--ring);
+  }
 }
 
-::selection {
-  background: rgba(45, 212, 191, 0.28);
+@utility ui-button-outline {
   color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(45, 212, 191, 0.06), transparent 48%),
+    rgba(8, 15, 28, 0.76);
+  border: 1px solid rgba(45, 212, 191, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 14px 34px rgba(2, 6, 23, 0.22);
+  backdrop-filter: blur(14px);
+  @apply inline-flex items-center justify-center rounded-field px-5 py-3 font-medium tracking-wide;
+
+  & svg {
+    color: var(--accent);
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--accent);
+    background:
+      linear-gradient(180deg, rgba(45, 212, 191, 0.12), transparent 48%),
+      rgba(10, 19, 34, 0.88);
+    border-color: var(--accent);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 22px 42px rgba(2, 6, 23, 0.28),
+      0 0 0 1px rgba(45, 212, 191, 0.28);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    border-color: var(--accent);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 14px 34px rgba(2, 6, 23, 0.22),
+      0 0 0 4px var(--ring);
+  }
+}
+
+@utility motion-lift {
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 28px 56px rgba(2, 6, 23, 0.32);
+  }
+}
+
+@utility motion-glow {
+  &:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 24px 52px rgba(2, 6, 23, 0.34),
+      0 0 0 1px rgba(45, 212, 191, 0.24);
+  }
+}
+
+@utility motion-media {
+  transition: transform var(--duration-slow) var(--ease-standard);
+  transform-origin: center center;
+
+  .motion-parent:hover & {
+    transform: scale(1.025);
+  }
+}
+
+@utility motion-parent {
+  &:hover .motion-media {
+    transform: scale(1.025);
+  }
+}
+
+@utility ui-icon-button {
+  @apply inline-flex items-center justify-center rounded-full p-2.5;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+
+  &:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-strong);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+}
+
+@utility ui-focus-inset {
+  /*
+    `.page-shell` clips the x axis, so a normal focus ring on a card sitting at
+    the edge of a full-width grid gets sliced in half. This draws the indicator
+    just inside the element instead, where nothing can clip it, and above any
+    image filling the card.
+  */
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 z-30 rounded-[inherit];
+    border: 2px solid var(--accent);
+    box-shadow: inset 0 0 0 4px var(--ring);
+  }
+}
+
+@utility poster-bleed-left {
+  /*
+    Posters get letterboxed in the modal banner rather than cropped, which
+    leaves space to fill on either side. Blurring a copy of the whole poster
+    only ever averages out to grey, so each side gets a mirrored copy instead:
+    its edge is the poster's own edge reflected, so the colours line up exactly
+    at the seam and then fades out. It keeps the poster's own brightness at the
+    seam - dimming it there is what makes a bright poster show a hard step - and
+    is blurred so no one reads the reversed artwork as a second poster.
+  */
+  @apply overflow-hidden;
+  -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 78%);
+  mask-image: linear-gradient(to left, #000 0%, transparent 78%);
+}
+
+@utility poster-bleed-right {
+  @apply overflow-hidden;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 78%);
+  mask-image: linear-gradient(to right, #000 0%, transparent 78%);
+}
+
+@utility section-icon {
+  @apply inline-flex shrink-0 items-center justify-center rounded-xl;
+  height: 2.25rem;
+  width: 2.25rem;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  color: var(--accent);
+}
+
+@utility ui-badge {
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text-soft);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  @apply inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium tracking-wide;
+}
+
+@utility ui-badge-brand {
+  background: rgba(45, 212, 191, 0.08);
+  border-color: rgba(45, 212, 191, 0.2);
+}
+
+@utility ui-badge-live {
+  /*
+    A live status, so it is filled rather than outlined like the date beside it.
+    Gold is the one warm note on a page of teal and slate - a tinted fill in a
+    cool hue washed out here, since a low-alpha shift disappears on this ground.
+  */
+  background: linear-gradient(135deg, #fde68a 0%, #f0b429 55%, #d99a17 100%);
+  border-color: rgba(253, 230, 138, 0.65);
+  color: #422006;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 0 0 3px rgba(240, 180, 41, 0.14);
+  @apply font-semibold;
+}
+
+@utility ui-eyebrow {
+  color: var(--accent);
+  @apply text-sm font-semibold uppercase tracking-[0.24em];
+}
+
+@utility text-emphasis {
+  color: var(--accent);
+  @apply font-semibold;
+}
+
+@utility text-accent {
+  color: var(--accent);
+}
+
+@utility text-muted {
+  color: var(--text-muted);
+}
+
+@utility text-soft {
+  color: var(--text-soft);
+}
+
+@utility surface-hover {
+  &:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-strong);
+  }
+}
+
+@utility interactive-link {
+  @apply rounded-[0.875rem];
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px var(--ring);
+  }
+}
+
+@utility interactive-card {
+  @apply rounded-card;
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 24px 52px rgba(2, 6, 23, 0.34),
+      0 0 0 4px var(--ring);
+  }
+}
+
+@utility section-intro {
+  @apply w-full;
+}
+
+@utility section-heading {
+  @apply mb-3;
+}
+
+@utility section-copy {
+  @apply type-body;
+}
+
+@utility section-panel {
+  @apply ui-card relative px-6 py-7 sm:px-8 sm:py-9;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.06),
+      transparent 36%
+    );
+  }
+}
+
+@utility cta-panel {
+  /*
+    The closing call to action. Same panel as everything else, warmed with the
+    accent so the last block on a page reads as an invitation instead of one
+    more section.
+  */
+  @apply section-panel px-6 py-8 sm:px-10 sm:py-10;
+  border-color: rgba(45, 212, 191, 0.28);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      radial-gradient(
+        75% 120% at 0% 0%,
+        rgba(45, 212, 191, 0.16),
+        transparent 58%
+      ),
+      radial-gradient(
+        65% 120% at 100% 100%,
+        rgba(56, 189, 248, 0.1),
+        transparent 62%
+      );
+  }
+}
+
+@utility subtle-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%),
+    rgba(15, 23, 42, 0.46);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 40px rgba(2, 6, 23, 0.22);
+  @apply rounded-surface;
+}
+
+@utility proof-grid {
+  @apply grid gap-4 sm:grid-cols-2 2xl:grid-cols-4;
+}
+
+@utility proof-card {
+  @apply subtle-panel px-5 py-5 sm:px-6;
+}
+
+@utility media-panel {
+  @apply section-panel overflow-hidden;
+}
+
+@utility surface-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(148, 163, 184, 0.34),
+    transparent
+  );
+}
+
+@utility type-page-title {
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  @apply font-semibold;
+}
+
+@utility type-section-title {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  @apply font-semibold;
+}
+
+@utility type-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  color: var(--text-soft);
+}
+
+@utility type-meta {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  letter-spacing: 0.18em;
+  @apply font-semibold uppercase text-muted;
+}
+
+@layer utilities {
+  :root {
+    --bg: #050816;
+    --bg-elevated: #0b1220;
+    --surface: rgba(15, 23, 42, 0.72);
+    --surface-hover: rgba(30, 41, 59, 0.86);
+    --surface-strong: #111827;
+    --text: #f8fafc;
+    --text-muted: #a8b5c9;
+    --text-soft: #cbd5e1;
+    --accent: #2dd4bf;
+    --accent-soft: rgba(45, 212, 191, 0.14);
+    --border: rgba(148, 163, 184, 0.18);
+    --border-strong: rgba(148, 163, 184, 0.32);
+    --ring: rgba(45, 212, 191, 0.45);
+    --shadow: 0 24px 80px rgba(2, 6, 23, 0.45);
+    --container-inline: clamp(1.5rem, 3vw, 3rem);
+    --section-space: clamp(1.5rem, 2.5vw, 2.75rem);
+    --duration-fast: 180ms;
+    --duration-base: 260ms;
+    --duration-slow: 420ms;
+    --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top, rgba(45, 212, 191, 0.12), transparent 30%),
+      radial-gradient(
+        circle at 20% 20%,
+        rgba(56, 189, 248, 0.08),
+        transparent 24%
+      ),
+      linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+  }
+
+  ::selection {
+    background: rgba(45, 212, 191, 0.28);
+    color: var(--text);
+  }
 }
 
 @layer base {
@@ -83,474 +724,6 @@ body {
 
   :focus-visible {
     outline: none;
-  }
-}
-
-@layer components {
-  .app-frame {
-    @apply relative overflow-x-hidden;
-  }
-
-  .app-frame::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
-    background-size: 72px 72px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent 88%);
-  }
-
-  .app-frame::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at 24% 18%, rgba(45, 212, 191, 0.12), transparent 24%),
-      radial-gradient(circle at 80% 74%, rgba(56, 189, 248, 0.1), transparent 18%),
-      radial-gradient(circle at 52% 36%, rgba(45, 212, 191, 0.05), transparent 30%);
-    filter: blur(22px);
-    opacity: 0.9;
-  }
-
-  .app-container {
-    @apply mx-auto w-full max-w-[1550px] px-6 xs:px-10 lg:px-14 2xl:px-16;
-  }
-
-  .header-container {
-    @apply mx-auto w-full max-w-[1640px] px-4 xs:px-8 lg:px-10 2xl:px-12;
-  }
-
-  .page-wrap {
-    @apply app-container pt-28 sm:pt-32;
-  }
-
-  /*
-    Visible only on keyboard focus. The header is fixed, so the link parks
-    below it rather than under it.
-  */
-  .skip-link {
-    @apply sr-only;
-  }
-
-  .skip-link:focus-visible {
-    @apply not-sr-only fixed left-6 top-6 z-[100] rounded-full border border-teal-400/40 bg-slate-950 px-5 py-3 text-sm font-semibold text-teal-200;
-    outline: 2px solid theme('colors.teal.300');
-    outline-offset: 2px;
-  }
-
-  .page-shell {
-    @apply relative flex min-h-full flex-col pt-4 pb-8;
-    /*
-      Guards against sideways bleed. `clip` rather than `hidden` so the y axis
-      stays visible instead of becoming a scroll container. It clips hard at the
-      padding edge - Chromium ignores `overflow-clip-margin` unless both axes
-      clip - so anything decorative has to stay inside the shell, not straddle it.
-    */
-    overflow-x: clip;
-    isolation: isolate;
-    gap: var(--section-space);
-  }
-
-  .surface-shell {
-    @apply ui-surface rounded-[var(--radius-xl)];
-  }
-
-  .surface-shell-inset {
-    @apply px-5 py-4 sm:px-6;
-  }
-
-  .ui-surface {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 38%),
-      var(--surface);
-    border: 1px solid var(--border);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      var(--shadow);
-    backdrop-filter: blur(18px);
-  }
-
-  .ui-card {
-    @apply ui-surface rounded-[var(--radius-lg)];
-  }
-
-  .ui-divider {
-    border-top: 1px solid var(--border);
-  }
-
-  .ui-label {
-    color: var(--text-soft);
-    @apply mb-2 text-sm font-medium tracking-wide;
-  }
-
-  .ui-input {
-    background: rgba(15, 23, 42, 0.78);
-    color: var(--text);
-    border: 1px solid var(--border);
-    @apply w-full rounded-[var(--radius-sm)] px-4 py-3 text-sm outline-none;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  }
-
-  .ui-input::placeholder {
-    color: var(--text-muted);
-  }
-
-  .ui-input:hover {
-    border-color: var(--border-strong);
-    background: rgba(15, 23, 42, 0.92);
-  }
-
-  .ui-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px var(--ring);
-  }
-
-  .ui-input:focus-visible {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px var(--ring);
-  }
-
-  .ui-button-primary {
-    background: linear-gradient(135deg, var(--accent) 0%, #14b8a6 100%);
-    color: #042f2e;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 18px 44px rgba(20, 184, 166, 0.28);
-    @apply inline-flex items-center justify-center rounded-[var(--radius-sm)] px-5 py-3 font-semibold tracking-wide;
-  }
-
-  .ui-button-primary:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: 0 24px 50px rgba(20, 184, 166, 0.34);
-  }
-
-  .ui-button-primary:focus-visible {
-    box-shadow:
-      0 18px 44px rgba(20, 184, 166, 0.28),
-      0 0 0 4px var(--ring);
-  }
-
-  .ui-button-secondary,
-  .ui-button-outline {
-    color: var(--text);
-    background:
-      linear-gradient(180deg, rgba(45, 212, 191, 0.06), transparent 48%),
-      rgba(8, 15, 28, 0.76);
-    border: 1px solid rgba(45, 212, 191, 0.42);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 14px 34px rgba(2, 6, 23, 0.22);
-    backdrop-filter: blur(14px);
-    @apply inline-flex items-center justify-center rounded-[var(--radius-sm)] px-5 py-3 font-medium tracking-wide;
-  }
-
-  .ui-button-secondary svg,
-  .ui-button-outline svg {
-    color: var(--accent);
-  }
-
-  .ui-button-secondary:hover:not(:disabled),
-  .ui-button-outline:hover:not(:disabled) {
-    color: var(--accent);
-    background:
-      linear-gradient(180deg, rgba(45, 212, 191, 0.12), transparent 48%),
-      rgba(10, 19, 34, 0.88);
-    border-color: var(--accent);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 22px 42px rgba(2, 6, 23, 0.28),
-      0 0 0 1px rgba(45, 212, 191, 0.28);
-    transform: translateY(-1px);
-  }
-
-  .ui-button-secondary:focus-visible,
-  .ui-button-outline:focus-visible {
-    border-color: var(--accent);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 14px 34px rgba(2, 6, 23, 0.22),
-      0 0 0 4px var(--ring);
-  }
-
-  .motion-lift {
-    transition:
-      transform var(--duration-base) var(--ease-standard),
-      box-shadow var(--duration-base) var(--ease-standard),
-      border-color var(--duration-base) var(--ease-standard),
-      background-color var(--duration-base) var(--ease-standard);
-  }
-
-  .motion-lift:hover {
-    transform: translateY(-2px);
-    border-color: var(--border-strong);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 28px 56px rgba(2, 6, 23, 0.32);
-  }
-
-  .motion-glow:hover {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 24px 52px rgba(2, 6, 23, 0.34),
-      0 0 0 1px rgba(45, 212, 191, 0.24);
-  }
-
-  .motion-media {
-    transition: transform var(--duration-slow) var(--ease-standard);
-    transform-origin: center center;
-  }
-
-  .motion-parent:hover .motion-media {
-    transform: scale(1.025);
-  }
-
-  .ui-icon-button {
-    @apply inline-flex items-center justify-center rounded-full p-2.5;
-    background: rgba(15, 23, 42, 0.82);
-    border: 1px solid var(--border);
-    color: var(--text-soft);
-  }
-
-  .ui-icon-button:hover {
-    background: var(--surface-hover);
-    border-color: var(--border-strong);
-    color: var(--accent);
-    transform: translateY(-1px);
-  }
-
-  .ui-icon-button:focus-visible {
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: 0 0 0 4px var(--ring);
-  }
-
-  /*
-    `.page-shell` clips the x axis, so a normal focus ring on a card sitting at
-    the edge of a full-width grid gets sliced in half. This draws the indicator
-    just inside the element instead, where nothing can clip it, and above any
-    image filling the card.
-  */
-  .ui-focus-inset:focus-visible {
-    outline: none;
-  }
-
-  .ui-focus-inset:focus-visible::after {
-    content: '';
-    @apply pointer-events-none absolute inset-0 z-30 rounded-[inherit];
-    border: 2px solid var(--accent);
-    box-shadow: inset 0 0 0 4px var(--ring);
-  }
-
-  /*
-    Posters get letterboxed in the modal banner rather than cropped, which
-    leaves space to fill on either side. Blurring a copy of the whole poster
-    only ever averages out to grey, so each side gets a mirrored copy instead:
-    its edge is the poster's own edge reflected, so the colours line up exactly
-    at the seam and then fades out. It keeps the poster's own brightness at the
-    seam - dimming it there is what makes a bright poster show a hard step - and
-    is blurred so no one reads the reversed artwork as a second poster.
-  */
-  .poster-bleed-left,
-  .poster-bleed-right {
-    @apply overflow-hidden;
-  }
-
-  .poster-bleed-left {
-    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 78%);
-    mask-image: linear-gradient(to left, #000 0%, transparent 78%);
-  }
-
-  .poster-bleed-right {
-    -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 78%);
-    mask-image: linear-gradient(to right, #000 0%, transparent 78%);
-  }
-
-  .section-icon {
-    @apply inline-flex shrink-0 items-center justify-center rounded-xl;
-    height: 2.25rem;
-    width: 2.25rem;
-    background: rgba(45, 212, 191, 0.08);
-    border: 1px solid rgba(45, 212, 191, 0.2);
-    color: var(--accent);
-  }
-
-  .ui-badge {
-    background: rgba(15, 23, 42, 0.7);
-    color: var(--text-soft);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    @apply inline-flex items-center rounded-full px-3 py-1.5 text-xs font-medium tracking-wide;
-  }
-
-  .ui-badge-brand {
-    background: rgba(45, 212, 191, 0.08);
-    border-color: rgba(45, 212, 191, 0.2);
-  }
-
-  /*
-    A live status, so it is filled rather than outlined like the date beside it.
-    Gold is the one warm note on a page of teal and slate - a tinted fill in a
-    cool hue washed out here, since a low-alpha shift disappears on this ground.
-  */
-  .ui-badge-live {
-    background: linear-gradient(135deg, #fde68a 0%, #f0b429 55%, #d99a17 100%);
-    border-color: rgba(253, 230, 138, 0.65);
-    color: #422006;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.45),
-      0 0 0 3px rgba(240, 180, 41, 0.14);
-    @apply font-semibold;
-  }
-
-  .ui-eyebrow {
-    color: var(--accent);
-    @apply text-sm font-semibold uppercase tracking-[0.24em];
-  }
-
-  .text-emphasis {
-    color: var(--accent);
-    @apply font-semibold;
-  }
-
-  .text-accent {
-    color: var(--accent);
-  }
-
-  .text-muted {
-    color: var(--text-muted);
-  }
-
-  .text-soft {
-    color: var(--text-soft);
-  }
-
-  .surface-hover:hover {
-    background: var(--surface-hover);
-    border-color: var(--border-strong);
-  }
-
-  .interactive-link {
-    @apply rounded-[0.875rem];
-  }
-
-  .interactive-link:focus-visible {
-    box-shadow: 0 0 0 4px var(--ring);
-  }
-
-  .interactive-card {
-    @apply rounded-[var(--radius-lg)];
-  }
-
-  .interactive-card:focus-visible {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 24px 52px rgba(2, 6, 23, 0.34),
-      0 0 0 4px var(--ring);
-  }
-
-  .section-intro {
-    @apply w-full;
-  }
-
-  .section-heading {
-    @apply mb-3;
-  }
-
-  .section-copy {
-    @apply type-body;
-  }
-
-  .section-panel {
-    @apply ui-card relative px-6 py-7 sm:px-8 sm:py-9;
-  }
-
-  .section-panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 36%);
-  }
-
-  /*
-    The closing call to action. Same panel as everything else, warmed with the
-    accent so the last block on a page reads as an invitation instead of one
-    more section.
-  */
-  .cta-panel {
-    @apply section-panel px-6 py-8 sm:px-10 sm:py-10;
-    border-color: rgba(45, 212, 191, 0.28);
-  }
-
-  .cta-panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background:
-      radial-gradient(75% 120% at 0% 0%, rgba(45, 212, 191, 0.16), transparent 58%),
-      radial-gradient(65% 120% at 100% 100%, rgba(56, 189, 248, 0.1), transparent 62%);
-  }
-
-  .subtle-panel {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%),
-      rgba(15, 23, 42, 0.46);
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 18px 40px rgba(2, 6, 23, 0.22);
-    @apply rounded-[var(--radius-md)];
-  }
-
-  .proof-grid {
-    @apply grid gap-4 sm:grid-cols-2 2xl:grid-cols-4;
-  }
-
-  .proof-card {
-    @apply subtle-panel px-5 py-5 sm:px-6;
-  }
-
-  .media-panel {
-    @apply section-panel overflow-hidden;
-  }
-
-  .surface-rule {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.34), transparent);
-  }
-
-  .type-page-title {
-    font-size: clamp(2.25rem, 4.2vw, 3.5rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    @apply font-semibold;
-  }
-
-  .type-section-title {
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    @apply font-semibold;
-  }
-
-  .type-body {
-    font-size: 1rem;
-    line-height: 1.75;
-    letter-spacing: -0.01em;
-    color: var(--text-soft);
-  }
-
-  .type-meta {
-    font-size: 0.8rem;
-    line-height: 1.3;
-    letter-spacing: 0.18em;
-    @apply font-semibold uppercase text-muted;
   }
 }
 

@@ -82,9 +82,9 @@ const ProjectsList = (props: ProjectsListProps) => {
                   key={option}
                   type='button'
                   onClick={() => setActiveFilter(option)}
-                  className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition hover:brightness-125 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-current sm:px-4 sm:text-sm sm:tracking-wide ${
+                  className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition hover:brightness-125 focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-current sm:px-4 sm:text-sm sm:tracking-wide ${
                     option === 'All'
-                      ? 'border-teal-400/40 bg-teal-400/[0.15] text-teal-200'
+                      ? 'border-teal-400/40 bg-teal-400/15 text-teal-200'
                       : categoryBadgeClasses[option]
                   } ${
                     isActive

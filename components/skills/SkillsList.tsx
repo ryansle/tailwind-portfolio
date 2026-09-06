@@ -30,7 +30,7 @@ const SkillsList = (props: SkillsListProps) => {
     .map((skill) => ({ skill, iconUrl: convertImageUrl(skill.icon) }));
 
   return (
-    <div className='subtle-panel divide-y divide-white/[0.06] overflow-hidden'>
+    <div className='subtle-panel divide-y divide-white/6 overflow-hidden'>
       {sortedSkills.map(({ skill, iconUrl }) => (
         <div
           key={skill.technology}

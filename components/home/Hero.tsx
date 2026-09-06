@@ -136,7 +136,7 @@ const Hero = (props: HeroProps) => {
       </div>
 
       <div>
-        <div className='mt-8 flex flex-col items-start gap-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-5 sm:px-6 xl:flex-row xl:items-center'>
+        <div className='mt-8 flex flex-col items-start gap-4 rounded-3xl border border-white/10 bg-white/3 px-5 py-5 sm:px-6 xl:flex-row xl:items-center'>
           <h2 className='text-xl font-medium tracking-wider'>
             Engineering toolkit
           </h2>
