@@ -1,8 +1,8 @@
 'use client';
 
 // Components
-import NextImage from 'next/image';
 import NextLink from 'next/link';
+import { ProjectScreenshot } from './ProjectScreenshot';
 import { TechLabel } from '@/components/experience/TechLabel';
 import { AiFillGithub as GitHub } from 'react-icons/ai';
 import { HiExternalLink as Link } from 'react-icons/hi';
@@ -15,7 +15,7 @@ import type { Project } from '@/lib/types';
 import { categoryBadgeClasses } from '@/lib/projects';
 
 // Utilities
-import { convertImageUrl } from '@/utils/convert';
+import { convertTechStack } from '@/utils/convert';
 
 type FeaturedProjectProps = {
   project: Project;
@@ -35,7 +35,7 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
   } = props.project;
   const { index } = props;
 
-  const tech = techStack.map((item) => item.fields);
+  const tech = convertTechStack(techStack);
   const reverse = index % 2 !== 0;
 
   return (
@@ -47,27 +47,38 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
       enterFrom='opacity-0 translate-y-4'
       enterTo='opacity-100 translate-y-0'
     >
-      <article className='ui-card motion-parent overflow-hidden'>
-        <div className='grid gap-0 lg:grid-cols-[minmax(300px,0.9fr)_minmax(0,1.1fr)] lg:items-stretch xl:grid-cols-[minmax(340px,0.85fr)_minmax(0,1.15fr)]'>
-          <div className={`relative aspect-[16/10] overflow-hidden border-b border-white/10 sm:min-h-[280px] sm:aspect-auto lg:min-h-[340px] lg:border-b-0 ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
-            <NextLink href={(url ?? github) as string} className='absolute inset-0'>
-              <NextImage
-                fill
-                className='motion-media object-cover'
-                src={convertImageUrl(image)}
-                alt={`${title} Project`}
-              />
-            </NextLink>
-            <div className='absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-950/10 to-transparent' />
+      <article className='ui-card overflow-hidden'>
+        <div className='grid gap-0 lg:grid-cols-2 lg:items-stretch'>
+          <div className={`flex min-w-0 items-center justify-center border-b border-white/10 bg-gradient-to-br from-teal-950/30 via-slate-950/40 to-slate-900/60 p-4 sm:p-6 lg:border-b-0 lg:p-7 ${reverse ? 'lg:order-2 lg:border-l' : 'lg:order-1 lg:border-r'}`}>
+            <div className='w-full max-w-[640px] overflow-hidden rounded-xl border border-white/10 bg-slate-950 shadow-2xl'>
+              <ProjectScreenshot title={title} image={image} featured />
+            </div>
           </div>
 
-          <div className={`flex flex-col justify-between p-6 tracking-wide sm:p-7 ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
+          <div className={`flex min-w-0 flex-col p-6 tracking-wide sm:p-7 ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
             <div>
-              <div className='mb-4 flex flex-wrap items-center gap-2'>
-                <span className='ui-badge ui-badge-brand'>Featured</span>
-                <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
-                  {category}
-                </span>
+              <div className='mb-4 flex items-start justify-between gap-3'>
+                <div className='flex min-w-0 flex-wrap items-center gap-2'>
+                  <span className='ui-badge ui-badge-brand'>Featured</span>
+                  <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
+                    {category}
+                  </span>
+                </div>
+                {(github || url) && (
+                  <div className='ml-auto flex shrink-0 items-center gap-2'>
+                    {github && (
+                      <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
+                        <GitHub className='w-5 h-5' />
+                      </NextLink>
+                    )}
+
+                    {url && (
+                      <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
+                        <Link className='w-5 h-5' />
+                      </NextLink>
+                    )}
+                  </div>
+                )}
               </div>
 
               <h3 className='mb-2 min-w-0 max-w-full text-[clamp(2rem,3.6vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-white [overflow-wrap:anywhere]'>
@@ -79,37 +90,21 @@ const FeaturedProject = (props: FeaturedProjectProps) => {
                 </p>
               )}
 
-              <p className='type-body mb-5'>
+              <p className='type-body'>
                 {summary}
               </p>
-
-              <div className='flex flex-wrap'>
-                {tech.map((tool) => (
-                  <TechLabel
-                    key={tool.technology}
-                    name={tool.technology}
-                    icon={tool.icon}
-                    radii={tool.radii}
-                  />
-                ))}
-              </div>
             </div>
 
-            {(github || url) && (
-              <div className='mt-6 flex flex-wrap items-center gap-3'>
-                {github && (
-                  <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
-                    <GitHub className='w-5 h-5' />
-                  </NextLink>
-                )}
-
-                {url && (
-                  <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
-                    <Link className='w-5 h-5' />
-                  </NextLink>
-                )}
-              </div>
-            )}
+            <div className='mt-auto flex flex-wrap pt-5'>
+              {tech.map((tool) => (
+                <TechLabel
+                  key={tool.technology}
+                  name={tool.technology}
+                  icon={tool.icon}
+                  radii={tool.radii}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </article>
