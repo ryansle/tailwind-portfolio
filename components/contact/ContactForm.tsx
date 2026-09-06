@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
 // Components
@@ -16,6 +16,8 @@ import { useForm } from 'react-hook-form';
 import { validateEmail } from '@/utils/validate';
 import emailjs from '@emailjs/browser';
 import { contactEmail, contactEmailHref } from '@/lib/constants';
+import { contactIntents, isContactIntentId } from '@/lib/contact';
+import type { ContactIntent } from '@/lib/contact';
 
 type Form = {
   firstName: string;
@@ -71,10 +73,16 @@ const AlertToast = ({ toast: t, icon, title, description }: AlertProps) => {
 const ContactForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
+  // CTAs elsewhere on the site link here as /contact?intent=hiring and friends.
+  // Read after mount rather than with useSearchParams, which would force the whole
+  // page out of static rendering and leave the form blank until hydration.
+  const [intent, setIntent] = useState<ContactIntent>();
+
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<Form>({
     mode: 'onBlur',
@@ -87,6 +95,15 @@ const ContactForm = () => {
       message: '',
     },
   });
+
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get('intent');
+
+    if (!isContactIntentId(param)) return;
+
+    setIntent(contactIntents[param]);
+    setValue('subject', contactIntents[param].subject);
+  }, [setValue]);
 
   const sendEmail = async (data: Form) => {
     setLoading(true);
@@ -130,6 +147,11 @@ const ContactForm = () => {
         <p className='text-sm text-soft'>
           Share the role, project, or collaboration idea. I usually reply within 1 to 2 business days.
         </p>
+        {intent && (
+          <p className='ui-eyebrow mt-3'>
+            Starting from: {intent.label}
+          </p>
+        )}
       </div>
 
       <div className='mb-4 grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2'>
@@ -186,7 +208,7 @@ const ContactForm = () => {
         <div className='col-span-1 sm:col-span-2'>
           <Textarea
             label='Message'
-            placeholder='Hi Ryan, I came across your work and wanted to reach out about...'
+            placeholder={intent?.messagePlaceholder ?? 'Hi Ryan, I came across your work and wanted to reach out about...'}
             required
             rows={6}
             error={errors.message?.message}
