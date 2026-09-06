@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 
 // Utilities
@@ -18,7 +20,7 @@ type SlideProps = {
 const SlideUpWhenVisible = (props: SlideProps) => {
   const {
     children,
-    threshold = 0.35,
+    threshold = 0.15,
     delay = 0,
     duration = 0.48,
     distance = 24,
