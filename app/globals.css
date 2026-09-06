@@ -128,8 +128,29 @@ body {
     @apply app-container pt-28 sm:pt-32;
   }
 
+  /*
+    Visible only on keyboard focus. The header is fixed, so the link parks
+    below it rather than under it.
+  */
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus-visible {
+    @apply not-sr-only fixed left-6 top-6 z-[100] rounded-full border border-teal-400/40 bg-slate-950 px-5 py-3 text-sm font-semibold text-teal-200;
+    outline: 2px solid theme('colors.teal.300');
+    outline-offset: 2px;
+  }
+
   .page-shell {
-    @apply relative flex min-h-full flex-col overflow-x-hidden pt-4 pb-8;
+    @apply relative flex min-h-full flex-col pt-4 pb-8;
+    /*
+      Guards against sideways bleed. `clip` rather than `hidden` so the y axis
+      stays visible instead of becoming a scroll container. It clips hard at the
+      padding edge - Chromium ignores `overflow-clip-margin` unless both axes
+      clip - so anything decorative has to stay inside the shell, not straddle it.
+    */
+    overflow-x: clip;
     isolation: isolate;
     gap: var(--section-space);
   }
@@ -306,6 +327,56 @@ body {
     box-shadow: 0 0 0 4px var(--ring);
   }
 
+  /*
+    `.page-shell` clips the x axis, so a normal focus ring on a card sitting at
+    the edge of a full-width grid gets sliced in half. This draws the indicator
+    just inside the element instead, where nothing can clip it, and above any
+    image filling the card.
+  */
+  .ui-focus-inset:focus-visible {
+    outline: none;
+  }
+
+  .ui-focus-inset:focus-visible::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 z-30 rounded-[inherit];
+    border: 2px solid var(--accent);
+    box-shadow: inset 0 0 0 4px var(--ring);
+  }
+
+  /*
+    Posters get letterboxed in the modal banner rather than cropped, which
+    leaves space to fill on either side. Blurring a copy of the whole poster
+    only ever averages out to grey, so each side gets a mirrored copy instead:
+    its edge is the poster's own edge reflected, so the colours line up exactly
+    at the seam and then fades out. It keeps the poster's own brightness at the
+    seam - dimming it there is what makes a bright poster show a hard step - and
+    is blurred so no one reads the reversed artwork as a second poster.
+  */
+  .poster-bleed-left,
+  .poster-bleed-right {
+    @apply overflow-hidden;
+  }
+
+  .poster-bleed-left {
+    -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 78%);
+    mask-image: linear-gradient(to left, #000 0%, transparent 78%);
+  }
+
+  .poster-bleed-right {
+    -webkit-mask-image: linear-gradient(to right, #000 0%, transparent 78%);
+    mask-image: linear-gradient(to right, #000 0%, transparent 78%);
+  }
+
+  .section-icon {
+    @apply inline-flex shrink-0 items-center justify-center rounded-xl;
+    height: 2.25rem;
+    width: 2.25rem;
+    background: rgba(45, 212, 191, 0.08);
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    color: var(--accent);
+  }
+
   .ui-badge {
     background: rgba(15, 23, 42, 0.7);
     color: var(--text-soft);
@@ -317,6 +388,21 @@ body {
   .ui-badge-brand {
     background: rgba(45, 212, 191, 0.08);
     border-color: rgba(45, 212, 191, 0.2);
+  }
+
+  /*
+    A live status, so it is filled rather than outlined like the date beside it.
+    Gold is the one warm note on a page of teal and slate - a tinted fill in a
+    cool hue washed out here, since a low-alpha shift disappears on this ground.
+  */
+  .ui-badge-live {
+    background: linear-gradient(135deg, #fde68a 0%, #f0b429 55%, #d99a17 100%);
+    border-color: rgba(253, 230, 138, 0.65);
+    color: #422006;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      0 0 0 3px rgba(240, 180, 41, 0.14);
+    @apply font-semibold;
   }
 
   .ui-eyebrow {
@@ -388,6 +474,27 @@ body {
     pointer-events: none;
     border-radius: inherit;
     background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 36%);
+  }
+
+  /*
+    The closing call to action. Same panel as everything else, warmed with the
+    accent so the last block on a page reads as an invitation instead of one
+    more section.
+  */
+  .cta-panel {
+    @apply section-panel px-6 py-8 sm:px-10 sm:py-10;
+    border-color: rgba(45, 212, 191, 0.28);
+  }
+
+  .cta-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      radial-gradient(75% 120% at 0% 0%, rgba(45, 212, 191, 0.16), transparent 58%),
+      radial-gradient(65% 120% at 100% 100%, rgba(56, 189, 248, 0.1), transparent 62%);
   }
 
   .subtle-panel {

@@ -11,6 +11,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -44,10 +45,22 @@ module.exports = {
           '60%': { transform: 'rotate(10deg)' },
           '70%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(0deg)' },
-        }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) scale(1)' },
+          '50%': { transform: 'translateY(-10px) scale(1.015)' },
+        },
+        // Diagonal so the exposed corner of the grid clearly shifts, and on a
+        // longer period than `float` so the two never lock into step.
+        drift: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(-6px, -9px)' },
+        },
       },
       animation: {
-        wave: 'wave 1.5s infinite'
+        wave: 'wave 1.5s infinite',
+        float: 'float 6s ease-in-out infinite',
+        drift: 'drift 9s ease-in-out infinite',
       },
       fontFamily: {
         cooper: ['Cooper', 'sans-serif']
