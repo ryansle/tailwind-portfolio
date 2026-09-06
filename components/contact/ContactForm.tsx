@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import type { ReactNode } from 'react';
 
 // Components
@@ -18,6 +18,15 @@ import emailjs from '@emailjs/browser';
 import { contactEmail, contactEmailHref } from '@/lib/constants';
 import { contactIntents, isContactIntentId } from '@/lib/contact';
 import type { ContactIntent } from '@/lib/contact';
+
+/**
+ * The intent only changes on a navigation, which remounts the form, so there is
+ * nothing to subscribe to. Both functions are module-level to keep their
+ * identities stable across renders.
+ */
+const subscribeToIntent = () => () => {};
+const readIntent = () => new URLSearchParams(window.location.search).get('intent');
+const readIntentOnServer = () => null;
 
 type Form = {
   firstName: string;
@@ -74,9 +83,13 @@ const ContactForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // CTAs elsewhere on the site link here as /contact?intent=hiring and friends.
-  // Read after mount rather than with useSearchParams, which would force the whole
-  // page out of static rendering and leave the form blank until hydration.
-  const [intent, setIntent] = useState<ContactIntent>();
+  // Read through useSyncExternalStore rather than useSearchParams, which would
+  // force the whole page out of static rendering. The server snapshot is null,
+  // so the prerendered markup matches what React hydrates against.
+  const intentParam = useSyncExternalStore(subscribeToIntent, readIntent, readIntentOnServer);
+  const intent: ContactIntent | undefined = isContactIntentId(intentParam)
+    ? contactIntents[intentParam]
+    : undefined;
 
   const {
     register,
@@ -97,13 +110,8 @@ const ContactForm = () => {
   });
 
   useEffect(() => {
-    const param = new URLSearchParams(window.location.search).get('intent');
-
-    if (!isContactIntentId(param)) return;
-
-    setIntent(contactIntents[param]);
-    setValue('subject', contactIntents[param].subject);
-  }, [setValue]);
+    if (intent) setValue('subject', intent.subject);
+  }, [intent, setValue]);
 
   const sendEmail = async (data: Form) => {
     setLoading(true);
