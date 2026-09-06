@@ -1,18 +1,19 @@
 import type { MetadataRoute } from 'next';
 
-import { siteUrl } from '@/lib/seo';
-import { routes } from '@/lib/routes';
+import { pages } from '@/lib/pages';
+import { absoluteUrl } from '@/lib/seo';
 
+/**
+ * Derived entirely from the page registry, so a new route reaches the sitemap
+ * the moment it reaches the nav. `absoluteUrl` is the same helper the canonical
+ * tags use - the two can no longer advertise different URLs for one page.
+ */
 const sitemap = (): MetadataRoute.Sitemap =>
-  routes.map(({ href }) => {
-    const isHome = href === '/';
-
-    return {
-      url: isHome ? siteUrl : `${siteUrl}${href}`,
-      lastModified: new Date(),
-      changeFrequency: isHome ? 'weekly' : 'monthly',
-      priority: isHome ? 1 : 0.8,
-    };
-  });
+  Object.entries(pages).map(([href, page]) => ({
+    url: absoluteUrl(href),
+    lastModified: new Date(page.updated),
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
+  }));
 
 export default sitemap;

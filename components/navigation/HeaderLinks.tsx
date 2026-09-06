@@ -6,10 +6,10 @@ import NextLink from 'next/link';
 // Utilities
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { routes } from '@/lib/routes';
+import { routes } from '@/lib/pages';
 
 // Types
-import type { Route } from '@/lib/routes';
+import type { Route } from '@/lib/pages';
 
 const renderStyles = (path: string, href: string) => {
   const styles = 'interactive-link rounded-full px-4 py-2 text-sm font-semibold tracking-wide';

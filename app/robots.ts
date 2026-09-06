@@ -8,7 +8,6 @@ const robots = (): MetadataRoute.Robots => ({
     allow: '/',
   },
   sitemap: `${siteUrl}/sitemap.xml`,
-  host: siteUrl,
 });
 
 export default robots;

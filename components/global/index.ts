@@ -6,3 +6,4 @@ export * from './Button';
 export * from './PageIntro';
 export * from './Toaster';
 export * from './RyanMeetupCta';
+export * from './JsonLd';

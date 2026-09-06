@@ -6,7 +6,7 @@ import NextLink from 'next/link';
 import { GiHamburgerMenu as Hamburger } from 'react-icons/gi';
 
 // Utilities
-import { routes } from '@/lib/routes';
+import { routes } from '@/lib/pages';
 
 const MobileMenu = () => {
   return (
