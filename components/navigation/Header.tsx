@@ -19,15 +19,17 @@ const Header = () => {
             />
             <div>
               <p className='text-xs font-semibold uppercase tracking-[0.24em] text-teal-300/80'>Portfolio</p>
-              <h4 className='text-lg font-semibold tracking-[0.16em]'>RYAN S. LE</h4>
+              <p className='text-lg font-semibold tracking-[0.16em]'>RYAN S. LE</p>
             </div>
           </NextLink>
 
-          <HeaderLinks />
+          <nav aria-label='Primary' className='flex items-center'>
+            <HeaderLinks />
 
-          <div className='xl:hidden'>
-            <MobileMenu />
-          </div>
+            <div className='xl:hidden'>
+              <MobileMenu />
+            </div>
+          </nav>
         </div>
       </div>
     </header>

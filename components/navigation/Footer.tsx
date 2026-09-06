@@ -26,15 +26,15 @@ const Footer = () => {
                   />
                 </NextLink>
                 <div>
-                  <h4 className='text-xl font-medium tracking-wider'>RYAN S. LE</h4>
-                  <h5 className='font-semibold tracking-wide text-soft'>
+                  <p className='text-xl font-medium tracking-wider'>RYAN S. LE</p>
+                  <p className='font-semibold tracking-wide text-soft'>
                     <span className='text-teal-300'>
                       UI Engineer II
                     </span> @{' '}
                     <NextLink className='hover:text-white hover:underline' href='https://www.crowdstrike.com/'>
                       CrowdStrike
                     </NextLink>
-                  </h5>
+                  </p>
                 </div>
               </div>
               <div className='mt-5 space-y-1 font-cooper tracking-widest text-soft'>
@@ -50,9 +50,9 @@ const Footer = () => {
               <Divider margins='md' />
             </div>
 
-            <div className='grid grid-cols-1 gap-8 sm:grid-cols-4 sm:gap-10'>
-              <div className='sm:col-span-1'>
-                <h2 className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Follow Me</h2>
+            <nav aria-label='Footer' className='grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-12'>
+              <div>
+                <p className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Follow Me</p>
                 <ul className='font-medium text-muted'>
                   {socials.map((social) => (
                     <li className='mb-2' key={social.platform}>
@@ -67,38 +67,38 @@ const Footer = () => {
                   ))}
                 </ul>
               </div>
-              <div className='sm:col-span-3'>
-                <h2 className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Built With</h2>
+              <div>
+                <p className='mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-soft'>Explore</p>
                 <div className='grid grid-cols-2 gap-4'>
                   <div>
                     <ul className='font-medium text-muted'>
                       <li className='mb-2'>
-                        <NextLink href='https://nextjs.org/' className='hover:text-white hover:underline'>Next.js</NextLink>
+                        <NextLink href='/initiatives' className='hover:text-white hover:underline'>Initiatives</NextLink>
                       </li>
                       <li className='mb-2'>
-                        <NextLink href='https://react.dev/' className='hover:text-white hover:underline'>React.js</NextLink>
+                        <NextLink href='/projects' className='hover:text-white hover:underline'>Projects</NextLink>
                       </li>
                       <li className='mb-2'>
-                        <NextLink href='https://tailwindcss.com/' className='hover:text-white hover:underline'>Tailwind CSS</NextLink>
+                        <NextLink href='/experience' className='hover:text-white hover:underline'>Experience</NextLink>
                       </li>
                     </ul>
                   </div>
                   <div>
                     <ul className='font-medium text-muted'>
                       <li className='mb-2'>
-                        <NextLink href='https://flowbite.com/' className='hover:text-white hover:underline'>Flowbite</NextLink>
+                        <NextLink href='/about' className='hover:text-white hover:underline'>About</NextLink>
                       </li>
                       <li className='mb-2'>
-                        <NextLink href='https://headlessui.com/' className='hover:text-white hover:underline'>Headless UI</NextLink>
+                        <NextLink href='/skills' className='hover:text-white hover:underline'>Skills</NextLink>
                       </li>
                       <li className='mb-2'>
-                        <NextLink href='https://www.contentful.com/' className='hover:text-white hover:underline'>Contentful</NextLink>
+                        <NextLink href='/contact' className='hover:text-white hover:underline'>Contact</NextLink>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-            </div>
+            </nav>
           </div>
 
           <hr className='ui-divider my-6 lg:my-8' />
