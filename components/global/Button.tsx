@@ -7,11 +7,14 @@ type ButtonVariant = 'primary' | 'secondary' | 'outline';
 
 type ButtonSize = 'sm' | 'md';
 
+type IconPosition = 'leading' | 'trailing';
+
 type SharedProps = {
   children: ReactNode;
   className?: string;
   fullWidth?: boolean;
   icon?: ReactNode;
+  iconPosition?: IconPosition;
   size?: ButtonSize;
   variant?: ButtonVariant;
 };
@@ -39,12 +42,17 @@ const sizeClasses: Record<ButtonSize, string> = {
   md: 'gap-3',
 };
 
-const content = (children: ReactNode, icon?: ReactNode) => (
-  <>
-    {icon && <span className='shrink-0 text-base'>{icon}</span>}
-    <span>{children}</span>
-  </>
-);
+const content = (children: ReactNode, icon?: ReactNode, iconPosition: IconPosition = 'leading') => {
+  const iconNode = icon && <span className='shrink-0 text-base'>{icon}</span>;
+
+  return (
+    <>
+      {iconPosition === 'leading' && iconNode}
+      <span>{children}</span>
+      {iconPosition === 'trailing' && iconNode}
+    </>
+  );
+};
 
 const sharedClassName = (variant: ButtonVariant, size: ButtonSize, fullWidth?: boolean, className?: string) =>
   clsx(
@@ -61,6 +69,7 @@ const Button = (props: ButtonProps) => {
     className,
     fullWidth,
     icon,
+    iconPosition = 'leading',
     size = 'md',
     variant = 'primary',
     ...rest
@@ -77,21 +86,21 @@ const Button = (props: ButtonProps) => {
     if (shouldUseAnchor) {
       return (
         <a href={resolvedHref} className={classes} {...anchorProps}>
-          {content(children, icon)}
+          {content(children, icon, iconPosition)}
         </a>
       );
     }
 
     return (
       <NextLink href={resolvedHref} className={classes}>
-        {content(children, icon)}
+        {content(children, icon, iconPosition)}
       </NextLink>
     );
   }
 
   return (
     <button className={classes} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
-      {content(children, icon)}
+      {content(children, icon, iconPosition)}
     </button>
   );
 };
