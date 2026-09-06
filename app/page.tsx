@@ -9,12 +9,9 @@ import type { Metadata } from 'next';
 
 // Utilities
 import { fetchSkills, fetchTestimonies } from '@/data/fetch';
-import { createPageMetadata } from '@/lib/seo';
+import { metadataFor } from '@/lib/seo';
 
-export const metadata: Metadata = createPageMetadata({
-  description: 'Ryan Le is a New York web engineer and community builder creating thoughtful digital experiences.',
-  path: '/',
-});
+export const metadata: Metadata = metadataFor('/');
 
 const Home = async () => {
   const skills = await fetchSkills();

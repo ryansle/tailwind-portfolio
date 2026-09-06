@@ -7,13 +7,9 @@ import type { Metadata } from 'next';
 
 // Utilities
 import { fetchProjects } from '@/data/fetch';
-import { createPageMetadata } from '@/lib/seo';
+import { metadataFor } from '@/lib/seo';
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Projects',
-  description: 'Browse projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work.',
-  path: '/projects',
-});
+export const metadata: Metadata = metadataFor('/projects');
 
 const ProjectsPage = async () => {
   const projects = await fetchProjects();

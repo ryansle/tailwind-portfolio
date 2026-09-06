@@ -7,13 +7,9 @@ import type { Metadata } from 'next';
 
 // Utilities
 import { fetchExperience } from '@/data/fetch';
-import { createPageMetadata } from '@/lib/seo';
+import { metadataFor } from '@/lib/seo';
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Experience',
-  description: 'Explore Ryan Le’s experience across CrowdStrike, American Express, agency environments, and community-led work focused on front-end systems and product UI.',
-  path: '/experience',
-});
+export const metadata: Metadata = metadataFor('/experience');
 
 const ExperiencePage = async () => {
   const experiences = await fetchExperience();

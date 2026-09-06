@@ -1,6 +1,6 @@
 // Components
 import { ContactForm } from '@/components/contact/ContactForm';
-import { Button } from '@/components/global';
+import { Button, JsonLd } from '@/components/global';
 import { HiOutlineMail, HiOutlineSparkles, HiOutlineClock, HiOutlineBriefcase } from 'react-icons/hi';
 
 // Types
@@ -8,19 +8,17 @@ import type { NextPage } from 'next';
 import type { Metadata } from 'next';
 
 // Utilities
-import { createPageMetadata } from '@/lib/seo';
+import { metadataFor } from '@/lib/seo';
+import { pageSchema } from '@/lib/schema';
 import { socials, socialIcons } from '@/lib/socials';
 import { contactEmailHref } from '@/lib/constants';
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Contact',
-  description: 'Contact Ryan Le about front-end systems, product UI implementation, design systems, freelance work, or full-time opportunities.',
-  path: '/contact',
-});
+export const metadata: Metadata = metadataFor('/contact');
 
 const ContactPage: NextPage = () => {
   return (
     <>
+      <JsonLd data={pageSchema('/contact', 'ContactPage')} />
       <div className='flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)] xl:items-start xl:gap-y-6'>
         <div className='section-panel order-1 xl:col-start-1 xl:row-start-1'>
           <p className='ui-eyebrow mb-3'>Contact</p>
