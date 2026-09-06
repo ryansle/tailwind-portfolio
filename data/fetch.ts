@@ -3,6 +3,9 @@ import client from './contentful';
 // Types
 import type { Experience, Project, Reference, Skill } from '@/lib/types';
 
+// Utilities
+import { convertStartDate } from '@/utils/convert';
+
 /**
  * Contentful returns loosely-typed entries, so the cast happens once here at the
  * boundary rather than at every call site.
@@ -13,7 +16,16 @@ const fetchEntries = async <T>(contentType: string): Promise<T[]> => {
   return data.items.map((entry) => entry.fields as T);
 };
 
-const fetchExperience = () => fetchEntries<Experience>('experience');
+/**
+ * Contentful hands entries back in `-sys.updatedAt` order, so touching an old
+ * role would shove it to the top of the timeline. Sort by when each role
+ * actually started instead, newest first.
+ */
+const fetchExperience = async () => {
+  const experiences = await fetchEntries<Experience>('experience');
+
+  return experiences.sort((a, b) => convertStartDate(b.datesEmployed) - convertStartDate(a.datesEmployed));
+};
 
 const fetchSkills = () => fetchEntries<Skill>('skills');
 
