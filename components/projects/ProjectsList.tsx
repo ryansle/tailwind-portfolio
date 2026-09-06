@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 // Types
 import type { Project } from '@/lib/types';
+import { categoryBadgeClasses } from '@/lib/projects';
 
 type ProjectsListProps = {
   projects: Project[];
@@ -56,9 +57,9 @@ const ProjectsList = (props: ProjectsListProps) => {
         <PageIntro
           as='h2'
           size='section'
-          eyebrow='More Builds'
+          eyebrow='More Projects'
           title='Additional work across professional, freelance, and personal contexts.'
-          subtitle='Not every project needs a case-study treatment. This grid is meant to be scanned quickly, with category badges and concise summaries doing most of the work.'
+          subtitle="Products, platforms, and tools I've built for teams, clients, and my own ideas."
         />
 
         <div className='subtle-panel px-4 py-4 sm:px-5'>
@@ -81,21 +82,25 @@ const ProjectsList = (props: ProjectsListProps) => {
                   key={option}
                   type='button'
                   onClick={() => setActiveFilter(option)}
-                  className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition sm:px-4 sm:text-sm sm:tracking-wide ${
+                  className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium tracking-[0.02em] transition hover:brightness-125 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-current sm:px-4 sm:text-sm sm:tracking-wide ${
+                    option === 'All'
+                      ? 'border-teal-400/40 bg-teal-400/[0.15] text-teal-200'
+                      : categoryBadgeClasses[option]
+                  } ${
                     isActive
-                      ? 'border-teal-400/40 bg-teal-400/12 text-teal-100'
-                      : 'border-white/10 bg-white/[0.03] text-soft hover:border-white/20 hover:bg-white/[0.05] hover:text-white'
+                      ? 'ring-2 ring-inset ring-current'
+                      : ''
                   }`}
                   aria-pressed={isActive}
                 >
-                  {option} <span className='ml-1 text-white/55'>{count}</span>
+                  {option} <span className='ml-1 opacity-75'>{count}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className='columns-1 gap-4 md:columns-2 xl:columns-3'>
+        <div className='grid grid-cols-1 items-stretch gap-6 md:grid-cols-2'>
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.title}
