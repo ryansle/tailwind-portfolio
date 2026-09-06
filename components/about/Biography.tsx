@@ -143,10 +143,17 @@ const Biography = () => {
                   enterFrom='opacity-0'
                   enterTo='opacity-100'
                 >
+                  {/*
+                    Each `sizes` matches the breakpoint range its variant is
+                    actually visible at. Without it Next assumes 100vw and every
+                    one of these pulls its widest candidate - roughly 3840px of a
+                    9MB source for a slot that is never above ~680px.
+                  */}
                   <NextImage
                     className='rounded-xl z-10 block sm:hidden'
                     alt='Ryan Le - Portrait'
                     fill
+                    sizes='92vw'
                     src='/athens.png'
                     style={{ objectFit: 'cover' }}
                   />
@@ -155,6 +162,7 @@ const Biography = () => {
                     className='rounded-xl z-10 hidden sm:block xl:hidden'
                     alt='Ryan Le - Portrait'
                     fill
+                    sizes='(min-width: 1024px) 45vw, 92vw'
                     src='/athens-longer.png'
                     style={{ objectFit: 'cover' }}
                   />
@@ -163,6 +171,7 @@ const Biography = () => {
                     className='rounded-xl z-10 hidden xl:block'
                     alt='Ryan Le - Portrait'
                     fill
+                    sizes='(min-width: 1550px) 680px, 45vw'
                     src='/athens.png'
                     style={{ objectFit: 'cover' }}
                   />
