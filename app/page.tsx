@@ -1,6 +1,8 @@
 // Components
 import { Hero } from '@/components/home/Hero';
+import { DeliveryPreview } from '@/components/home/DeliveryPreview';
 import { HiringBlurb } from '@/components/home/HiringBlurb';
+import { InitiativesPreview } from '@/components/home/InitiativesPreview';
 import { References } from '@/components/home/References';
 import { Divider } from '@/components/global';
 
@@ -22,6 +24,10 @@ const Home = async () => {
   return (
     <>
       <Hero skills={currentStack} />
+      <Divider />
+      <DeliveryPreview />
+      <Divider />
+      <InitiativesPreview />
       <Divider />
       <HiringBlurb />
       <Divider />
