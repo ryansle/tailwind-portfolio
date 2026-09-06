@@ -1,5 +1,5 @@
 // Components
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { JsonLd, Toaster } from '@/components/global';
 import { Layout } from '@/components/navigation/Layout';
 
