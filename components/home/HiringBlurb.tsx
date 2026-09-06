@@ -5,7 +5,10 @@ import { Button, PageIntro } from '@/components/global';
 import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 import { FaArrowRightLong as ArrowRight } from 'react-icons/fa6';
 import { HiSparkles as Sparkles } from 'react-icons/hi2';
-import { MdOutlineDevices as Devices, MdOutlineGroups as Collaboration, MdOutlineAutoAwesomeMotion as Motion, MdOutlineCode as Code } from 'react-icons/md';
+import { MdOutlineDevices as Devices, MdOutlineGroups as Collaboration, MdOutlineCampaign as Campaign, MdOutlineRoute as Route } from 'react-icons/md';
+
+// Utilities
+import { contactHref } from '@/lib/contact';
 
 const HiringBlurb = () => {
   const strengths = [
@@ -15,24 +18,24 @@ const HiringBlurb = () => {
       icon: <Devices className='h-5 w-5 text-teal-400' />,
     },
     {
-      title: 'Cross-functional collaboration',
-      description: 'I work closely with design, product, and engineering to keep scope sharp and implementation moving.',
+      title: 'Community & event programming',
+      description: 'Formats, rituals, and live experiences that make participation easy and give people a reason to return.',
       icon: <Collaboration className='h-5 w-5 text-teal-400' />,
     },
     {
-      title: 'Craft and polish',
-      description: 'Hierarchy, motion, responsiveness, and interaction states that make interfaces feel considered.',
-      icon: <Motion className='h-5 w-5 text-teal-400' />,
+      title: 'From idea to execution',
+      description: 'The planning, systems, logistics, and follow-through needed to turn a promising concept into something real.',
+      icon: <Route className='h-5 w-5 text-teal-400' />,
     },
     {
-      title: 'Modern front-end delivery',
-      description: 'Strong delivery in React, Next.js, TypeScript, and Tailwind from concept through launch.',
-      icon: <Code className='h-5 w-5 text-teal-400' />,
+      title: 'Brand, stories & partnerships',
+      description: 'A recognizable voice, clear story, and thoughtful collaborations that help good ideas travel further.',
+      icon: <Campaign className='h-5 w-5 text-teal-400' />,
     },
   ];
 
   return (
-    <SlideUpWhenVisible delay={1.2} duration={0.8}>
+    <SlideUpWhenVisible>
       <section className='grid gap-10 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-center'>
         <div className='order-2 grid gap-4 xl:order-1'>
           {strengths.map((strength, index) => (
@@ -55,14 +58,14 @@ const HiringBlurb = () => {
           <PageIntro
             as='h2'
             eyebrow='Work together'
-            title='Need a front-end engineer who can make product decisions hold up in the interface?'
-            subtitle='I take on full-time roles, freelance builds, and focused front-end engagements where implementation quality matters. The best fit is work that needs strong systems thinking, reliable execution, and a high bar for interface detail.'
+            title='Looking for someone who can build the thing—and help people care about it?'
+            subtitle='I work best where product thinking, creative direction, and practical execution overlap. That might be a polished interface, a community initiative, an event people talk about afterward, or the systems connecting all three.'
           />
 
           <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
             <Button
               className='w-full sm:w-auto'
-              href='/contact'
+              href={contactHref('hiring')}
               icon={<Sparkles />}
               variant='primary'
             >
@@ -70,11 +73,12 @@ const HiringBlurb = () => {
             </Button>
             <Button
               className='w-full sm:w-auto'
-              href='/projects'
+              href='/initiatives'
               icon={<ArrowRight />}
+              iconPosition='trailing'
               variant='outline'
             >
-              View selected work
+              Explore initiatives
             </Button>
           </div>
         </div>

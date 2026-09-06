@@ -18,8 +18,8 @@ const AboutPage = () => {
       <JsonLd data={pageSchema('/about', 'ProfilePage')} />
       <PageIntro
         eyebrow='About'
-        title='Front-end engineer, community builder, and creative operator.'
-        subtitle='A closer look at the work, background, and community projects that shape how I build product UI, front-end systems, and audience-facing experiences.'
+        title='Engineer, organizer, and enthusiastic starter of things.'
+        subtitle='A closer look at the product work, events, communities, and slightly unusual ideas that shape how I build—and what I choose to build in the first place.'
       />
       <Biography />
       <Divider />

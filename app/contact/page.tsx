@@ -28,7 +28,7 @@ const ContactPage: NextPage = () => {
 
           <div className='type-body space-y-4'>
             <p>
-              Need help with a product surface, design system, or implementation-heavy marketing build? I&apos;m open to the right full-time role, freelance engagement, or creative collaboration.
+              Building a product, planning an initiative, or trying to turn a good idea into something people will actually join? I&apos;m open to the right full-time role, freelance engagement, event concept, or creative collaboration.
             </p>
             <p>
               The best outreach includes context: what you&apos;re building, what stage it&apos;s in, what support you need, and the timeline you&apos;re working against.
@@ -45,7 +45,7 @@ const ContactPage: NextPage = () => {
                   <HiOutlineSparkles className='h-4 w-4 text-teal-300' />
                   <p className='type-meta'>Availability</p>
                 </div>
-                <p>Open to selective freelance work, contract support, and strong product-focused full-time opportunities.</p>
+                <p>Open to selective freelance work, community and event collaborations, and strong full-time opportunities.</p>
               </div>
               <div className='subtle-panel p-4'>
                 <div className='mb-2 flex items-center gap-2'>
@@ -59,7 +59,7 @@ const ContactPage: NextPage = () => {
                   <HiOutlineBriefcase className='h-4 w-4 text-teal-300' />
                   <p className='type-meta'>Best Fit</p>
                 </div>
-                <p>Front-end systems, product UI implementation, design systems, interaction polish, and product marketing surfaces.</p>
+                <p>Product UI, community initiatives, event programming, creative operations, and work that needs both technical and human judgment.</p>
               </div>
             </div>
           </div>

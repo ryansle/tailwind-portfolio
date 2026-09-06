@@ -18,8 +18,8 @@ const ExperiencePage = async () => {
     <>
       <PageIntro
         eyebrow='Experience'
-        title='Front-end work shaped by product demands, interface systems, and range.'
-        subtitle='My career has moved across enterprise teams, agency work, and self-directed ventures, but the throughline is consistent: front-end systems, product UI, and execution that holds up once the work leaves design files.'
+        title='Work shaped by products, people, and the systems connecting them.'
+        subtitle='My experience spans enterprise product teams, agency work, community initiatives, and self-directed ventures. The throughline is practical: take an idea seriously, give it structure, and carry it through execution.'
       />
 
       <History experiences={experiences} />

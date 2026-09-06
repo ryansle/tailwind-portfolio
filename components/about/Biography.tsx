@@ -55,14 +55,14 @@ const Biography = () => {
       detail: 'Professional front-end work across product, marketing, and design-system surfaces since 2021.',
     },
     {
-      value: 'Web Engineer',
-      label: 'Current Role',
-      detail: 'Building front-end product experiences at CrowdStrike with a strong bias toward clarity, craft, and execution.',
+      value: '3.5+',
+      label: 'Years Organizing',
+      detail: 'Building Ryan Meetup through events, chapters, partnerships, stories, and the systems behind them.',
     },
     {
-      value: 'Co-Founder',
-      label: 'Community Builder',
-      detail: 'Built Ryan Meetup into a recurring community experience rooted in identity, humor, and belonging.',
+      value: '25+',
+      label: 'Events Hosted',
+      detail: 'Helping create gatherings that range from neighborhood meetups to national, multi-day experiences.',
     },
     {
       value: 'Since 2010',
@@ -88,7 +88,7 @@ const Biography = () => {
         <div className='col-span-12 lg:col-span-6 xl:col-span-5'>
           <div className='space-y-4 text-soft tracking-wide'>
             <p>
-              I&apos;m Ryan Le, a front-end engineer, community builder, and co-founder of <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series built around shared identity, humor, and belonging.
+              I&apos;m Ryan Le, a UI engineer who also likes starting slightly ridiculous ideas and turning them into real things. I build product interfaces at CrowdStrike, co-run <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, and help create local connection through CrowdNeighborhoods.
             </p>
 
             <p>
@@ -96,7 +96,7 @@ const Biography = () => {
             </p>
 
             <p>
-              Outside of product work, I co-run <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, a national event series for people named Ryan. What started as a ridiculous idea turned into a real community, and it taught me as much about creative direction, logistics, programming, and storytelling as any formal role has.
+              With Ryan Meetup, I move between event concepts, creative direction, logistics, partnerships, storytelling, and the software behind the operation. What started as a Brooklyn meetup became something people travel across the country to attend. It has taught me as much about making ideas usable as any product role has.
             </p>
 
             <p>
@@ -104,7 +104,7 @@ const Biography = () => {
             </p>
 
             <p>
-              Whether I&apos;m building a product surface or a community experience, I care about making it clear, memorable, and worth returning to.
+              Whether I&apos;m building a product surface or planning something people will attend in person, I care about making it clear, memorable, and worth returning to.
             </p>
           </div>
 
@@ -129,7 +129,7 @@ const Biography = () => {
             <div className='mb-5'>
               <div>
                 <p className='type-meta mb-2'>Portrait</p>
-                <h2 className='type-section-title'>Product-minded engineer with community-builder range.</h2>
+                <h2 className='type-section-title'>An engineer who also likes getting people in the room.</h2>
               </div>
             </div>
 
