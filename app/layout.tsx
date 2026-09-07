@@ -1,25 +1,17 @@
-// Components
 import { Analytics } from '@vercel/analytics/next';
 import { JsonLd, Toaster } from '@/components/global';
 import { Layout } from '@/components/navigation/Layout';
 
-// Utilities
-import { Inter } from 'next/font/google';
+import '@fontsource-variable/inter';
 import './globals.css';
 import { siteMetadata, siteViewport } from '@/lib/seo';
+import { isFixtureMode } from '@/lib/fixture-mode';
 import { siteSchema } from '@/lib/schema';
 
-// Types
 import type { Metadata, Viewport } from 'next';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = siteMetadata;
 export const viewport: Viewport = siteViewport;
-
-// Applies to every page below this layout. Next only accepts a literal here,
-// so it cannot be lifted into a shared constant.
-export const revalidate = 30;
 
 export default function RootLayout({
   children,
@@ -28,13 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' data-scroll-behavior='smooth'>
-      <body className={inter.className}>
+      <body style={{ fontFamily: '"Inter Variable", sans-serif' }}>
+        {isFixtureMode() && <p className='bg-slate-800 p-3 text-center text-sm text-teal-200'>Demo mode — CMS content is fictional. Contact submissions stay in this browser.</p>}
         <Layout>
           {children}
         </Layout>
         <JsonLd data={siteSchema} />
         <Toaster />
-        <Analytics />
+        {!isFixtureMode() && <Analytics />}
       </body>
     </html>
   );

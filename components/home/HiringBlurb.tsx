@@ -1,13 +1,9 @@
-'use client';
-
-// Components
+import clsx from 'clsx';
 import { Button, PageIntro } from '@/components/global';
-import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
 import { FaArrowRightLong as ArrowRight } from 'react-icons/fa6';
 import { HiSparkles as Sparkles } from 'react-icons/hi2';
 import { MdOutlineDevices as Devices, MdOutlineGroups as Collaboration, MdOutlineCampaign as Campaign, MdOutlineRoute as Route } from 'react-icons/md';
 
-// Utilities
 import { contactHref } from '@/lib/contact';
 
 const HiringBlurb = () => {
@@ -35,55 +31,53 @@ const HiringBlurb = () => {
   ];
 
   return (
-    <SlideUpWhenVisible>
-      <section className='grid gap-10 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-center'>
-        <div className='order-2 grid gap-4 xl:order-1'>
-          {strengths.map((strength, index) => (
-            <div
-              key={strength.title}
-              className={`${index === 0 ? 'pt-0 border-t-0' : 'border-t border-white/10 pt-4'}`}
-            >
-              <div className='mb-3 flex items-center gap-3'>
-                {strength.icon}
-                <p className='type-meta'>{strength.title}</p>
-              </div>
-              <p className='text-sm leading-7 text-soft'>
-                {strength.description}
-              </p>
+    <section className='grid gap-10 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:items-center'>
+      <div className='order-2 grid gap-4 xl:order-1'>
+        {strengths.map((strength, index) => (
+          <div
+            key={strength.title}
+            className={clsx(index === 0 ? 'pt-0 border-t-0' : 'border-t border-white/10 pt-4')}
+          >
+            <div className='mb-3 flex items-center gap-3'>
+              {strength.icon}
+              <p className='type-meta'>{strength.title}</p>
             </div>
-          ))}
-        </div>
-
-        <div className='order-1 max-w-4xl xl:order-2 xl:justify-self-end'>
-          <PageIntro
-            as='h2'
-            eyebrow='Work together'
-            title='Looking for someone who can build the thing—and help people care about it?'
-            subtitle='I work best where product thinking, creative direction, and practical execution overlap. That might be a polished interface, a community initiative, an event people talk about afterward, or the systems connecting all three.'
-          />
-
-          <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
-            <Button
-              className='w-full sm:w-auto'
-              href={contactHref('hiring')}
-              icon={<Sparkles />}
-              variant='primary'
-            >
-              Start a conversation
-            </Button>
-            <Button
-              className='w-full sm:w-auto'
-              href='/initiatives'
-              icon={<ArrowRight />}
-              iconPosition='trailing'
-              variant='outline'
-            >
-              Explore initiatives
-            </Button>
+            <p className='text-sm leading-7 text-soft'>
+              {strength.description}
+            </p>
           </div>
+        ))}
+      </div>
+
+      <div className='order-1 max-w-4xl xl:order-2 xl:justify-self-end'>
+        <PageIntro
+          as='h2'
+          eyebrow='Work together'
+          title='Looking for someone who can build the thing—and help people care about it?'
+          subtitle='I work best where product thinking, creative direction, and practical execution overlap. That might be a polished interface, a community initiative, an event people talk about afterward, or the systems connecting all three.'
+        />
+
+        <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
+          <Button
+            className='w-full sm:w-auto'
+            href={contactHref('hiring')}
+            icon={<Sparkles />}
+            variant='primary'
+          >
+            Start a conversation
+          </Button>
+          <Button
+            className='w-full sm:w-auto'
+            href='/initiatives'
+            icon={<ArrowRight />}
+            iconPosition='trailing'
+            variant='outline'
+          >
+            Explore initiatives
+          </Button>
         </div>
-      </section>
-    </SlideUpWhenVisible>
+      </div>
+    </section>
   );
 };
 

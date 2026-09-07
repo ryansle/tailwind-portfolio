@@ -1,11 +1,9 @@
 'use client';
 
-// Components
-import NextImage from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 import { FaPlay as Play } from 'react-icons/fa6';
 
-// Types
 type EventVideoProps = {
   channel?: string;
   id: string;
@@ -39,7 +37,7 @@ const EventVideo = (props: EventVideoProps) => {
             className='motion-parent ui-focus-inset group absolute inset-0 h-full w-full'
             onClick={() => setPlaying(true)}
           >
-            <NextImage
+            <Image
               fill
               className='motion-media object-cover opacity-80 transition-opacity duration-(--duration-base) group-hover:opacity-100'
               src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}

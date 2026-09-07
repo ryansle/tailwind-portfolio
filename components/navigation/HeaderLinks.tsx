@@ -1,25 +1,13 @@
 'use client';
 
-// Components
-import NextLink from 'next/link';
-
-// Utilities
-import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import Link from 'next/link';
+
+import { usePathname } from 'next/navigation';
 import { routes } from '@/lib/pages';
+import { navigationLinkState } from './linkStyles';
 
-// Types
 import type { Route } from '@/lib/pages';
-
-const renderStyles = (path: string, href: string) => {
-  const styles = 'interactive-link rounded-full px-4 py-2 text-sm font-semibold tracking-wide';
-
-  return clsx([
-    styles,
-    path === href && 'bg-teal-400/12 text-teal-300 ring-1 ring-teal-400/20',
-    path !== href && 'text-slate-100 hover:bg-white/5 hover:text-white focus-visible:bg-white/5 focus-visible:text-white'
-  ]);
-};
 
 const HeaderLinks = () => {
   const path = usePathname();
@@ -28,8 +16,9 @@ const HeaderLinks = () => {
     <div className='flex items-center space-x-4'>
       <div className='hidden items-center space-x-2 xl:flex'>
         {routes.map((route: Route) => (
-          <NextLink
-            className={renderStyles(path, route.href)}
+          <Link
+            aria-current={path === route.href ? 'page' : undefined}
+            className={clsx('interactive-link rounded-full px-4 py-2 text-sm font-semibold tracking-wide', navigationLinkState(path === route.href))}
             href={route.href}
             key={route.text}
           >
@@ -37,7 +26,7 @@ const HeaderLinks = () => {
               <route.icon />
               {route.text}
             </span>
-          </NextLink>
+          </Link>
         ))}
       </div>
     </div>

@@ -1,27 +1,24 @@
 import { forwardRef } from 'react';
+import clsx from 'clsx';
 
-// Components
 import { Field } from './Field';
 
-// Types
-import type { ChangeEvent } from 'react';
+import type { TextareaHTMLAttributes } from 'react';
 
-type TextareaProps = {
+type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
   name: string;
-  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder?: string;
-  required?: boolean;
-  rows?: number;
   error?: string;
-}
+};
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props: TextareaProps, ref) => {
   const {
     label,
     name,
-    onChange,
-    placeholder,
+    id,
+    className,
+    'aria-describedby': describedBy,
+    'aria-invalid': invalid,
     required = false,
     rows = 5,
     error,
@@ -30,21 +27,22 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props: Textarea
 
   return (
     <Field
-      className='resize-y'
+      className={clsx('resize-y', className)}
       label={label}
       name={name}
+      id={id}
+      describedBy={describedBy}
+      invalid={invalid}
       required={required}
       error={error}
     >
       {(field) => (
         <textarea
+          {...rest}
           {...field}
           name={name}
-          placeholder={placeholder}
-          onChange={onChange}
           required={required}
           rows={rows}
-          {...rest}
           ref={ref}
         />
       )}

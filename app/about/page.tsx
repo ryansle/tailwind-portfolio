@@ -1,12 +1,9 @@
-// Components
 import { Biography } from '@/components/about/Biography';
 import { Education } from '@/components/about/Education';
 import { Divider, JsonLd, PageIntro } from '@/components/global';
 
-// Types
 import type { Metadata } from 'next';
 
-// Utilities
 import { metadataFor } from '@/lib/seo';
 import { pageSchema } from '@/lib/schema';
 

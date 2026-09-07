@@ -1,17 +1,12 @@
-// Components
-import NextLink from 'next/link';
+import clsx from 'clsx';
+import { ProjectLinks } from './ProjectLinks';
 import { ProjectScreenshot } from './ProjectScreenshot';
-import { TechLabel } from '@/components/experience/TechLabel';
-import { AiFillGithub as GitHub } from 'react-icons/ai';
-import { HiExternalLink as Link } from 'react-icons/hi';
+import { TechStack } from '@/components/global/TechStack';
 
-// Types
 import type { Project } from '@/lib/types';
 
-// Constants
 import { categoryBadgeClasses } from '@/lib/projects';
 
-// Utilities
 import { convertTechStack } from '@/utils/convert';
 
 type ProjectCardProps = {
@@ -30,10 +25,10 @@ const ProjectCard = (props: ProjectCardProps) => {
     techStack,
   } = props.project;
 
-  const tech = convertTechStack(techStack).slice(0, 4);
+  const tech = convertTechStack(techStack);
 
   return (
-    <article className='group motion-parent interactive-card ui-card surface-hover motion-lift motion-glow flex h-full min-w-0 flex-col overflow-hidden'>
+    <article className='group motion-parent interactive-card ui-card surface-hover motion-lift flex h-full min-w-0 flex-col overflow-hidden'>
       <div className='relative aspect-16/10 w-full shrink-0 overflow-hidden border-b border-white/10 sm:aspect-video'>
         <ProjectScreenshot title={title} image={image} />
       </div>
@@ -45,25 +40,11 @@ const ProjectCard = (props: ProjectCardProps) => {
               <h3 className='min-w-0 text-xl font-semibold tracking-[-0.02em] text-white wrap-anywhere'>
                 {title}
               </h3>
-              <span className={`ui-badge ${categoryBadgeClasses[category]}`}>
+              <span className={clsx('ui-badge', categoryBadgeClasses[category])}>
                 {category}
               </span>
             </div>
-            {(github || url) && (
-              <div className='ml-auto flex shrink-0 items-center gap-2'>
-                {github && (
-                  <NextLink href={github} aria-label={`GitHub for ${title}`} className='ui-icon-button interactive-link'>
-                    <GitHub className='h-4 w-4' aria-label='GitHub icon' />
-                  </NextLink>
-                )}
-
-                {url && (
-                  <NextLink href={url} aria-label={`External Deployment for ${title}`} className='ui-icon-button interactive-link'>
-                    <Link className='h-5 w-5' aria-label='External URL icon' />
-                  </NextLink>
-                )}
-              </div>
-            )}
+            <ProjectLinks title={title} github={github} url={url} />
           </div>
           {subtitle && (
             <p className='text-sm font-medium tracking-wider text-soft'>
@@ -76,16 +57,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           </p>
         </div>
 
-        <div className='mt-auto flex flex-wrap pt-5'>
-          {tech.map((tool) => (
-            <TechLabel
-              key={tool.technology}
-              name={tool.technology}
-              icon={tool.icon}
-              radii={tool.radii}
-            />
-          ))}
-        </div>
+        <TechStack skills={tech} limit={4} className='mt-auto pt-5' />
       </div>
     </article>
   );

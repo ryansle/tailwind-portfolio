@@ -1,4 +1,3 @@
-// Components
 import { FaGear as Gear } from 'react-icons/fa6';
 
 type ListProps = {

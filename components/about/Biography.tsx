@@ -1,15 +1,11 @@
-'use client';
-
-// Components
-import NextImage from 'next/image';
-import NextLink from 'next/link';
-import { Transition } from '@headlessui/react';
+import { currentRole, ryanMeetup } from '@/lib/profile';
+import { getImageProps } from 'next/image';
+import Link from 'next/link';
+import { EntranceTransition } from '@/components/global/EntranceTransition';
 import { Button } from '@/components/global';
 
-// Utilities
 import { socials, socialIcons } from '@/lib/socials';
 
-// Types
 import type { Social } from '@/lib/socials';
 
 type ProofStat = {
@@ -17,6 +13,22 @@ type ProofStat = {
   label: string;
   detail: string;
 }
+
+// Keep both crops, but let the browser select one optimized source per viewport.
+const portraitOptions = {
+  alt: 'Ryan Le - Portrait',
+  fill: true,
+  sizes: '(min-width: 1550px) 680px, (min-width: 1024px) 45vw, 92vw',
+  className: 'rounded-surface z-10 object-cover',
+};
+const { props: portraitImage } = getImageProps({
+  ...portraitOptions,
+  src: '/athens.png',
+});
+const { props: landscapeImage } = getImageProps({
+  ...portraitOptions,
+  src: '/athens-longer.png',
+});
 
 const SocialMediaLink = (props: Social) => {
   const { url, platform } = props;
@@ -28,7 +40,7 @@ const SocialMediaLink = (props: Social) => {
       href={url}
       icon={<Icon className='w-5 h-5' />}
       size='sm'
-      variant='secondary'
+      variant='outline'
     >
       {platform}
     </Button>
@@ -41,7 +53,7 @@ const ProofStatCard = (props: ProofStat) => {
   return (
     <div className='proof-card'>
       <p className='text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl'>{value}</p>
-      <p className='mt-2 text-xs font-semibold uppercase tracking-[0.24em] text-teal-300'>{label}</p>
+      <p className='mt-2 type-meta text-teal-300'>{label}</p>
       <p className='mt-3 text-sm leading-6 text-soft'>{detail}</p>
     </div>
   );
@@ -55,12 +67,12 @@ const Biography = () => {
       detail: 'Professional front-end work across product, marketing, and design-system surfaces since 2021.',
     },
     {
-      value: '3.5+',
+      value: ryanMeetup.yearsOrganizing,
       label: 'Years Organizing',
       detail: 'Building Ryan Meetup through events, chapters, partnerships, stories, and the systems behind them.',
     },
     {
-      value: '25+',
+      value: ryanMeetup.events,
       label: 'Events Hosted',
       detail: 'Helping create gatherings that range from neighborhood meetups to national, multi-day experiences.',
     },
@@ -88,7 +100,7 @@ const Biography = () => {
         <div className='col-span-12 lg:col-span-6 xl:col-span-5'>
           <div className='space-y-4 text-soft tracking-wide'>
             <p>
-              I&apos;m Ryan Le, a UI engineer who also likes starting slightly ridiculous ideas and turning them into real things. I build product interfaces at CrowdStrike, co-run <NextLink className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href='https://www.ryanmeetup.com/'>Ryan Meetup</NextLink>, and help create local connection through CrowdNeighborhoods.
+              I&apos;m Ryan Le, a UI engineer who also likes starting slightly ridiculous ideas and turning them into real things. I build product interfaces at {currentRole.employer}, co-run <Link className='font-semibold text-white underline decoration-teal-400/70 underline-offset-4 transition hover:text-teal-300 hover:decoration-teal-300' href={ryanMeetup.urls.home}>Ryan Meetup</Link>, and help create local connection through CrowdNeighborhoods.
             </p>
 
             <p>
@@ -135,48 +147,27 @@ const Biography = () => {
 
             <div className='px-1 pb-1 pt-2 sm:px-2 sm:pb-2 sm:pt-3'>
               <div className='relative h-[320px] w-full overflow-visible sm:h-[380px] lg:h-[440px] xl:h-[500px]'>
-                <Transition
-                  as='div'
-                  appear={true}
-                  show={true}
+                <EntranceTransition
                   enter='transition-opacity ease-linear duration-1200'
                   enterFrom='opacity-0'
                   enterTo='opacity-100'
                 >
-                  {/*
-                    Each `sizes` matches the breakpoint range its variant is
-                    actually visible at. Without it Next assumes 100vw and every
-                    one of these pulls its widest candidate - roughly 3840px of a
-                    9MB source for a slot that is never above ~680px.
-                  */}
-                  <NextImage
-                    className='rounded-xl z-10 block sm:hidden'
-                    alt='Ryan Le - Portrait'
-                    fill
-                    sizes='92vw'
-                    src='/athens.png'
-                    style={{ objectFit: 'cover' }}
-                  />
-
-                  <NextImage
-                    className='rounded-xl z-10 hidden sm:block xl:hidden'
-                    alt='Ryan Le - Portrait'
-                    fill
-                    sizes='(min-width: 1024px) 45vw, 92vw'
-                    src='/athens-longer.png'
-                    style={{ objectFit: 'cover' }}
-                  />
-
-                  <NextImage
-                    className='rounded-xl z-10 hidden xl:block'
-                    alt='Ryan Le - Portrait'
-                    fill
-                    sizes='(min-width: 1550px) 680px, 45vw'
-                    src='/athens.png'
-                    style={{ objectFit: 'cover' }}
-                  />
-                  <div className='absolute left-2 top-2 z-0 h-full w-full rounded-xl border-4 border-teal-500 sm:left-3 sm:top-3 xl:left-4 xl:top-4' />
-                </Transition>
+                  <picture>
+                    <source
+                      media='(min-width: 1280px)'
+                      srcSet={portraitImage.srcSet}
+                      sizes={portraitImage.sizes}
+                    />
+                    <source
+                      media='(min-width: 640px)'
+                      srcSet={landscapeImage.srcSet}
+                      sizes={landscapeImage.sizes}
+                    />
+                    {/* getImageProps supplies Next's optimized src and srcSet. */}
+                    <img {...portraitImage} alt={portraitImage.alt} />
+                  </picture>
+                  <div className='absolute left-2 top-2 z-0 h-full w-full rounded-surface border-4 border-teal-500 sm:left-3 sm:top-3 xl:left-4 xl:top-4' />
+                </EntranceTransition>
               </div>
             </div>
           </div>

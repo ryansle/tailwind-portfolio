@@ -1,11 +1,10 @@
+import { ryanMeetup } from '@/lib/profile';
 import { Button } from './Button';
 import { FaHandshake as Handshake } from 'react-icons/fa';
 
 type RyanMeetupCtaProps = {
   className?: string;
 };
-
-const RYAN_MEETUP_COMPANY = 'Ryan Meetup';
 
 const RyanMeetupCta = (props: RyanMeetupCtaProps) => {
   const { className } = props;
@@ -14,7 +13,7 @@ const RyanMeetupCta = (props: RyanMeetupCtaProps) => {
     <Button
       className={className}
       fullWidth
-      href='https://www.ryanmeetup.com/about'
+      href={ryanMeetup.urls.about}
       target='_blank'
       rel='noreferrer'
       icon={<Handshake />}
@@ -25,4 +24,4 @@ const RyanMeetupCta = (props: RyanMeetupCtaProps) => {
   );
 };
 
-export { RyanMeetupCta, RYAN_MEETUP_COMPANY };
+export { RyanMeetupCta };

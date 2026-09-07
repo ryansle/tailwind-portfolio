@@ -1,6 +1,7 @@
-// Components
-import { PressWall, SkillsGrid, SkillsList } from '@/components/skills';
+import { ryanMeetup } from '@/lib/profile';
+import { PressWall, SectionHeader, SkillsGrid, SkillsList } from '@/components/skills';
 import { Button, Divider, PageIntro } from '@/components/global';
+import { StepCard } from '@/components/global/StepCard';
 import {
   FaBullhorn as Bullhorn,
   FaCalendarDay as CalendarDay,
@@ -17,22 +18,24 @@ import {
   FaWandMagicSparkles as Sparkles,
 } from 'react-icons/fa6';
 
-// Types
 import type { Metadata } from 'next';
 
-// Utilities
 import { fetchSkills } from '@/data/fetch';
 import { metadataFor } from '@/lib/seo';
+import { getPublishedSkills, prepareSkills } from '@/lib/skills';
 
 export const metadata: Metadata = metadataFor('/skills');
+
+// CMS edits become eligible for request-driven regeneration after 30 seconds.
+export const revalidate = 30;
 
 const SkillsPage = async () => {
   const skills = await fetchSkills();
 
-  const visibleSkills = skills.filter((skill) => skill.visibility);
+  const visibleSkills = prepareSkills(getPublishedSkills(skills));
 
-  const webSkills = visibleSkills.filter((skill) => skill.type === 'web');
-  const creativeSkills = visibleSkills.filter((skill) => skill.type === 'creative');
+  const webSkills = visibleSkills.filter(({ skill }) => skill.type === 'web');
+  const creativeSkills = visibleSkills.filter(({ skill }) => skill.type === 'creative');
 
   const capabilityGroups = [
     {
@@ -159,32 +162,19 @@ const SkillsPage = async () => {
       </div>
 
       <section className='section-panel'>
-        <div className='mb-6 space-y-4'>
-          <div className='flex flex-wrap items-center justify-between gap-4'>
-            <div className='flex items-center gap-3'>
-              <span className='section-icon'>
-                <Robot className='h-4 w-4' />
-              </span>
-              <h2 className='type-section-title'>
-                How I build with agents
-              </h2>
-            </div>
-            <span className='ui-badge ui-badge-brand'>
-              Agentic workflow
-            </span>
-          </div>
-          <p className='type-body'>
+        <SectionHeader
+          icon={<Robot className='h-4 w-4' />}
+          title='How I build with agents'
+          badge='Agentic workflow'
+        >
+          <p>
             Agents cover a lot of ground in a day, but the speed is only useful because I know the front end well enough to direct it: shaping the architecture, catching brittle output, protecting shared patterns, and pushing until the result feels intentional rather than generated.
           </p>
-        </div>
+        </SectionHeader>
 
         <div className='grid gap-4 lg:grid-cols-3'>
           {operatingModel.map((phase) => (
-            <div key={phase.step} className='subtle-panel px-5 py-5 sm:px-6'>
-              <p className='text-xs font-semibold tracking-[0.24em] text-teal-300'>{phase.step}</p>
-              <p className='mt-3 text-base font-semibold tracking-wide text-white'>{phase.title}</p>
-              <p className='mt-3 text-sm leading-7 text-soft'>{phase.description}</p>
-            </div>
+            <StepCard key={phase.step} {...phase} className='sm:px-6' />
           ))}
         </div>
       </section>
@@ -192,24 +182,15 @@ const SkillsPage = async () => {
       <Divider margins='md' />
 
       <section className='section-panel'>
-        <div className='mb-6 space-y-4'>
-          <div className='flex flex-wrap items-center justify-between gap-4'>
-            <div className='flex items-center gap-3'>
-              <span className='section-icon'>
-                <LaptopCode className='h-4 w-4' />
-              </span>
-              <h2 className='type-section-title'>
-                Web Engineering
-              </h2>
-            </div>
-            <span className='ui-badge ui-badge-brand'>
-              {webSkills.length} core tools
-            </span>
-          </div>
-          <p className='type-body'>
+        <SectionHeader
+          icon={<LaptopCode className='h-4 w-4' />}
+          title='Web Engineering'
+          badge={`${webSkills.length} core tools`}
+        >
+          <p>
             This list is short on purpose. It&apos;s what I&apos;m in every day and can defend in a code review, not everything I&apos;ve ever touched.
           </p>
-        </div>
+        </SectionHeader>
 
         <SkillsGrid skills={webSkills} />
       </section>
@@ -217,29 +198,18 @@ const SkillsPage = async () => {
       <Divider margins='md' />
 
       <section className='section-panel'>
-        <div className='mb-6 space-y-4'>
-          <div className='flex flex-wrap items-center justify-between gap-4'>
-            <div className='flex items-center gap-3'>
-              <span className='section-icon'>
-                <PeopleGroup className='h-4 w-4' />
-              </span>
-              <h2 className='type-section-title'>
-                Creative Operations & Organizing
-              </h2>
-            </div>
-            <span className='ui-badge ui-badge-brand'>
-              {creativeSkills.length} creative capabilities
-            </span>
-          </div>
-          <div className='space-y-4 type-body'>
-            <p>
-              I co-run Ryan Meetup, a community brand and event series built on shared identity, humor, and intentionally ridiculous programming. It&apos;s taught me more about being a founder than any job has: taking an idea from 0 to 100, funding it through sponsors, handing real ownership to organizers in other cities, and keeping it recognizable while it scales.
-            </p>
-            <p>
-              I also built and run the infrastructure the whole operation sits on — every Ryan Meetup web property, plus the internal systems organizers use for chapters, events, sponsors, and partnerships. It&apos;s the one place I get to be the engineer, the creative director, and the operator at the same time.
-            </p>
-          </div>
-        </div>
+        <SectionHeader
+          icon={<PeopleGroup className='h-4 w-4' />}
+          title='Creative Operations & Organizing'
+          badge={`${creativeSkills.length} creative capabilities`}
+        >
+          <p>
+            I co-run Ryan Meetup, a community brand and event series built on shared identity, humor, and intentionally ridiculous programming. It&apos;s taught me more about being a founder than any job has: taking an idea from 0 to 100, funding it through sponsors, handing real ownership to organizers in other cities, and keeping it recognizable while it scales.
+          </p>
+          <p>
+            I also built and run the infrastructure the whole operation sits on — every Ryan Meetup web property, plus the internal systems organizers use for chapters, events, sponsors, and partnerships. It&apos;s the one place I get to be the engineer, the creative director, and the operator at the same time.
+          </p>
+        </SectionHeader>
 
         <div className='mb-8 grid gap-x-10 gap-y-7 sm:grid-cols-2'>
           {communityCapabilities.map((capability) => (
@@ -256,8 +226,8 @@ const SkillsPage = async () => {
         <div className='mb-8'>
           <PressWall
             features={pressFeatures}
-            moreHref='https://www.ryanmeetup.com/press'
-            moreLabel='75+ features total →'
+            moreHref={ryanMeetup.urls.press}
+            moreLabel={`${ryanMeetup.pressFeatures} features total →`}
           />
         </div>
 

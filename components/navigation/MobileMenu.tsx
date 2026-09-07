@@ -1,14 +1,17 @@
 'use client';
 
-// Components
+import clsx from 'clsx';
 import { Menu, Transition } from '@headlessui/react';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { GiHamburgerMenu as Hamburger } from 'react-icons/gi';
 
-// Utilities
 import { routes } from '@/lib/pages';
+import { usePathname } from 'next/navigation';
+import { navigationLinkState } from './linkStyles';
 
 const MobileMenu = () => {
+  const path = usePathname();
+
   return (
     <div className='flex items-center justify-center'>
       <div className='relative inline-block text-left z-10'>
@@ -21,7 +24,7 @@ const MobileMenu = () => {
 
               <Transition
                 show={open}
-                enter='transition ease-out duration-200'
+                enter='transition ease-out duration-(--duration-fast)'
                 enterFrom='transform opacity-0 -translate-y-2'
                 enterTo='transform opacity-100 translate-y-0'
                 leave='transition ease-in duration-150'
@@ -36,16 +39,14 @@ const MobileMenu = () => {
                     {routes.map((row) => (
                       <Menu.Item key={row.text}>
                         {({ active }) => (
-                          <NextLink
-                            className={`${active
-                              ? 'bg-white/5 text-white'
-                              : 'text-slate-300'
-                              } interactive-link flex w-full items-center gap-x-4 px-3 py-2 text-left text-sm leading-5`}
+                          <Link
+                            aria-current={path === row.href ? 'page' : undefined}
+                            className={clsx(navigationLinkState(path === row.href, active), 'interactive-link flex w-full items-center gap-x-4 rounded-field px-3 py-2 text-left text-sm leading-5')}
                             href={row.href}
                           >
                             <row.icon />
                             {row.text}
-                          </NextLink>
+                          </Link>
                         )}
                       </Menu.Item>
                     ))}

@@ -1,4 +1,3 @@
-// Components
 import { Hero } from '@/components/home/Hero';
 import { DeliveryPreview } from '@/components/home/DeliveryPreview';
 import { HiringBlurb } from '@/components/home/HiringBlurb';
@@ -6,20 +5,21 @@ import { InitiativesPreview } from '@/components/home/InitiativesPreview';
 import { References } from '@/components/home/References';
 import { Divider } from '@/components/global';
 
-// Types
 import type { Metadata } from 'next';
 
-// Utilities
 import { fetchSkills, fetchTestimonies } from '@/data/fetch';
 import { metadataFor } from '@/lib/seo';
+import { getPrimarySkills, prepareSkills } from '@/lib/skills';
 
 export const metadata: Metadata = metadataFor('/');
 
-const Home = async () => {
-  const skills = await fetchSkills();
-  const references = await fetchTestimonies();
+// CMS edits become eligible for request-driven regeneration after 30 seconds.
+export const revalidate = 30;
 
-  const currentStack = skills.filter((skill) => skill.primary);
+const Home = async () => {
+  const [skills, references] = await Promise.all([fetchSkills(), fetchTestimonies()]);
+
+  const currentStack = prepareSkills(getPrimarySkills(skills));
 
   return (
     <>

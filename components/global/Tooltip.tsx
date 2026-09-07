@@ -1,9 +1,8 @@
 'use client';
 
-// Components
-import { useCallback, useId, useLayoutEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 
-// Types
 import type { ReactNode } from 'react';
 
 const VIEWPORT_MARGIN = 12;
@@ -23,7 +22,10 @@ const Tooltip = (props: TooltipProps) => {
     label,
   } = props;
 
-  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const open = (hovered || focused) && !dismissed;
   const [offset, setOffset] = useState(0);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const tooltipId = useId();
@@ -46,17 +48,36 @@ const Tooltip = (props: TooltipProps) => {
     if (open) clampToViewport();
   }, [clampToViewport, open]);
 
+  // Listen outside the trigger too: a pointer-opened tooltip need not have focus.
+  useEffect(() => {
+    if (!open) return;
+
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setDismissed(true);
+    };
+
+    document.addEventListener('keydown', dismiss);
+    return () => document.removeEventListener('keydown', dismiss);
+  }, [open]);
+
   return (
     <div
-      className={`relative${className ? ` ${className}` : ''}`}
-      onBlur={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      className={clsx('relative', className)}
+      onBlur={(event) => {
+        if (event.currentTarget.contains(event.relatedTarget)) return;
+        setFocused(false);
+        if (!hovered) setDismissed(false);
+      }}
+      onFocus={() => setFocused(true)}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => {
+        setHovered(false);
+        if (!focused) setDismissed(false);
+      }}
     >
       <div
         aria-describedby={open ? tooltipId : undefined}
-        className='rounded-[0.95rem] outline-hidden ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/30'
+        className='rounded-surface outline-hidden ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/30'
         tabIndex={0}
       >
         {children}
@@ -64,13 +85,13 @@ const Tooltip = (props: TooltipProps) => {
 
       <div
         aria-hidden={!open}
-        className={`pointer-events-none absolute top-full left-1/2 z-30 mt-3 w-[min(17rem,calc(100vw-1.5rem))] transition duration-200 ${open ? 'opacity-100' : 'opacity-0'}`}
+        className={clsx('absolute top-full left-1/2 z-30 w-[min(17rem,calc(100vw-1.5rem))] pt-3 transition duration-(--duration-fast)', open ? 'visible pointer-events-auto opacity-100' : 'invisible pointer-events-none opacity-0')}
         id={tooltipId}
         ref={tooltipRef}
         role='tooltip'
         style={{ transform: `translate(calc(-50% + ${offset}px), ${open ? '0' : '-0.25rem'})` }}
       >
-        <div className='rounded-md border border-(--border-strong) bg-(--surface-strong) px-3.5 py-2.5 text-left shadow-(--shadow)'>
+        <div className='rounded-field border border-(--border-strong) bg-(--surface-strong) px-3.5 py-2.5 text-left shadow-(--shadow)'>
           <p className='text-sm font-semibold tracking-wide text-white'>
             {label}
           </p>

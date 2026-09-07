@@ -1,15 +1,15 @@
-// Components
 import { ProjectsList } from '@/components/projects/ProjectsList';
 import { PageIntro } from '@/components/global';
 
-// Types
 import type { Metadata } from 'next';
 
-// Utilities
 import { fetchProjects } from '@/data/fetch';
 import { metadataFor } from '@/lib/seo';
 
 export const metadata: Metadata = metadataFor('/projects');
+
+// CMS edits become eligible for request-driven regeneration after 30 seconds.
+export const revalidate = 30;
 
 const ProjectsPage = async () => {
   const projects = await fetchProjects();

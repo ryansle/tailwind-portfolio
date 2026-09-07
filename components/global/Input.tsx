@@ -1,28 +1,24 @@
 import { forwardRef } from 'react';
 
-// Components
 import { Field } from './Field';
 
-// Types
-import type { ChangeEvent } from 'react';
+import type { InputHTMLAttributes } from 'react';
 
-type InputProps = {
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   name: string;
-  type?: 'text' | 'email' | 'url' | 'number';
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  required?: boolean;
   error?: string;
-}
+};
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) => {
   const {
     label,
     name,
+    id,
+    className,
+    'aria-describedby': describedBy,
+    'aria-invalid': invalid,
     type = 'text',
-    onChange,
-    placeholder,
     required = false,
     error,
     ...rest
@@ -32,18 +28,20 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref) 
     <Field
       label={label}
       name={name}
+      id={id}
+      className={className}
+      describedBy={describedBy}
+      invalid={invalid}
       required={required}
       error={error}
     >
       {(field) => (
         <input
+          {...rest}
           {...field}
           name={name}
-          placeholder={placeholder}
-          onChange={onChange}
           required={required}
           type={type}
-          {...rest}
           ref={ref}
         />
       )}

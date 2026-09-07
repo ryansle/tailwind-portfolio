@@ -1,24 +1,16 @@
 'use client';
 
-// Components
-import NextImage from 'next/image';
-import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { FaChevronLeft as ChevronLeft, FaChevronRight as ChevronRight } from 'react-icons/fa6';
 
-// Types
-type GalleryItem = {
-  src: string;
-  alt: string;
-  title?: string;
-  city?: string;
-};
+import type { GalleryItem } from '@/lib/gallery';
 
 type RotatingGalleryProps = {
   className?: string;
   items: GalleryItem[];
-  intervalMs?: number;
   priority?: boolean;
   sizes?: string;
 };
@@ -39,32 +31,13 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
   const {
     className,
     items,
-    intervalMs = 6000,
     priority = false,
     sizes = '(min-width: 1024px) 62vw, 100vw',
   } = props;
 
   const [activeSlide, setActiveSlide] = useState(0);
-  const [paused, setPaused] = useState(false);
 
   const slideCount = items.length;
-
-  /*
-    Autoplay, unless the visitor is reading a caption or asked for less motion.
-    The global reduced motion block flattens the transitions but cannot stop a
-    timer, so the rotation has to opt out on its own.
-  */
-  useEffect(() => {
-    if (slideCount <= 1 || paused) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const interval = setInterval(() => {
-      setActiveSlide((current) => (current + 1) % slideCount);
-    }, intervalMs);
-
-    return () => clearInterval(interval);
-  }, [intervalMs, paused, slideCount]);
 
   if (slideCount === 0) return null;
 
@@ -79,15 +52,14 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
   return (
     <div
       className={clsx('relative isolate overflow-hidden', className ?? 'ui-card h-60 sm:h-80 lg:h-[380px]')}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      role='group'
+      aria-roledescription='carousel'
+      aria-label='Community photos'
     >
       {items.map((slide, index) => (
         <Transition key={slide.src} appear show={currentIndex === index} {...transitionClasses}>
           <div className='absolute inset-0'>
-            <NextImage
+            <Image
               fill
               priority={priority && index === 0}
               className='object-cover'
@@ -99,6 +71,10 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
           </div>
         </Transition>
       ))}
+
+      <p className='sr-only' aria-live='polite' aria-atomic='true'>
+        Photo {currentIndex + 1} of {slideCount}: {activeItem.alt}
+      </p>
 
       {(activeItem.title || activeItem.city) && (
         <div className='pointer-events-none absolute bottom-4 left-4 z-20 flex flex-wrap items-center gap-2 sm:bottom-5 sm:left-5'>
@@ -154,7 +130,7 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
               >
                 <span
                   className={clsx(
-                    'h-1.5 rounded-full transition-all duration-300',
+                    'h-1.5 rounded-full transition-all duration-(--duration-base)',
                     currentIndex === index ? 'w-5 bg-teal-300' : 'w-1.5 bg-white/40 group-hover/dot:bg-white/80',
                   )}
                 />
@@ -168,4 +144,3 @@ const RotatingGallery = (props: RotatingGalleryProps) => {
 };
 
 export { RotatingGallery };
-export type { GalleryItem };

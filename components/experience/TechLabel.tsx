@@ -1,10 +1,8 @@
-// Components
-import NextImage from 'next/image';
+import clsx from 'clsx';
+import Image from 'next/image';
 
-// Types
-import { ContentfulImage } from '@/lib/types';
+import type { ContentfulImage } from '@/lib/types';
 
-// Utilities
 import { convertImageUrl } from '@/utils/convert';
 
 type TechLabelProps = {
@@ -21,15 +19,15 @@ const TechLabel = (props: TechLabelProps) => {
   return (
     <div className='ui-badge ui-badge-brand mt-1 mr-2'>
       {iconUrl && (
-        <NextImage
-          className={radii ? 'rounded-full' : 'rounded-none'}
+        <Image
+          className={clsx(radii ? 'rounded-full' : 'rounded-none')}
           src={iconUrl}
           width={15}
           height={15}
           alt={name}
         />
       )}
-      <p className={`text-white ${iconUrl ? 'ml-1.5' : ''}`}>{name}</p>
+      <p className={clsx('text-white', iconUrl && 'ml-1.5')}>{name}</p>
     </div>
   );
 };

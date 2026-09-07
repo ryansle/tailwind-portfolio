@@ -1,4 +1,5 @@
-import NextImage from 'next/image';
+import { currentRole, ryanMeetup } from '@/lib/profile';
+import Image from 'next/image';
 import { Button, Divider, PageIntro } from '@/components/global';
 import { EventGallery } from '@/components/initiatives';
 import {
@@ -8,7 +9,7 @@ import {
   FaPeopleGroup as People,
   FaRoute as Route,
 } from 'react-icons/fa6';
-import { HiExternalLink as ExternalLink, HiOutlineMail as Mail } from 'react-icons/hi';
+import { HiExternalLink as ExternalLink } from 'react-icons/hi';
 
 import type { Metadata } from 'next';
 
@@ -72,17 +73,17 @@ const InitiativesPage = () => {
       <section className='ui-card overflow-hidden'>
         <div className='grid lg:grid-cols-[minmax(320px,0.95fr)_minmax(0,1.05fr)]'>
           <div className='motion-parent relative min-h-[340px] overflow-hidden border-b border-white/10 lg:min-h-[560px] lg:border-b-0 lg:border-r'>
-            <NextImage
+            <Image
               fill
               priority
               className='motion-media object-cover'
               src='/ryan-meetup/ryanroundup.png'
-              sizes='(min-width: 1024px) 46vw, 100vw'
+              sizes='(min-width: 1550px) 675px, (min-width: 1024px) 46vw, 100vw'
               alt='A room full of Ryans posing together under a Ryan Meetup banner'
             />
             <div className='absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-slate-950/10' />
             <div className='absolute inset-x-5 bottom-5 sm:inset-x-7 sm:bottom-7'>
-              <span className='ui-badge border-white/20 bg-slate-950/70 text-white'>Established 2023</span>
+              <span className='ui-badge border-white/20 bg-slate-950/70 text-white'>Established {ryanMeetup.founded}</span>
             </div>
           </div>
 
@@ -91,7 +92,7 @@ const InitiativesPage = () => {
             <h2 className='type-page-title'>A joke with surprisingly durable infrastructure.</h2>
             <div className='mt-6 space-y-4 type-body'>
               <p>
-                Ryan Meetup is a not-for-profit community run by Ryans, for Ryans. I joined at the beginning and helped turn the premise into a real operation: three and a half years in, that is 25+ events, 16 active chapters, 75+ press features, a recognizable brand, and the digital systems holding it together.
+                Ryan Meetup is a not-for-profit community run by Ryans, for Ryans. I joined at the beginning and helped turn the premise into a real operation: {ryanMeetup.yearsOrganizing} years in, that is {ryanMeetup.events} events, {ryanMeetup.chapters} active chapters, {ryanMeetup.pressFeatures} press features, a recognizable brand, and the digital systems holding it together.
               </p>
               <p>
                 My role crosses the usual boundaries. On a given week I might be designing a new event format, refining the website, working through sponsor details, coordinating logistics, writing a campaign, or figuring out how to make a growing operation feel as personal as the first meetup.
@@ -103,7 +104,7 @@ const InitiativesPage = () => {
 
             <div className='mt-7 flex flex-col gap-3 sm:flex-row'>
               <Button
-                href='https://www.ryanmeetup.com/'
+                href={ryanMeetup.urls.home}
                 target='_blank'
                 rel='noreferrer'
                 icon={<ExternalLink />}
@@ -112,7 +113,7 @@ const InitiativesPage = () => {
                 Visit Ryan Meetup
               </Button>
               <Button
-                href='https://www.ryanmeetup.com/events'
+                href={ryanMeetup.urls.events}
                 target='_blank'
                 rel='noreferrer'
                 icon={<ArrowRight />}
@@ -166,9 +167,9 @@ const InitiativesPage = () => {
       <section className='section-panel'>
         <div className='grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center'>
           <div className='flex min-h-[220px] items-center justify-center p-8'>
-            <NextImage
+            <Image
               src='/crowdstrike-stacked.svg'
-              alt='CrowdStrike logo'
+              alt={`${currentRole.employer} logo`}
               width={334}
               height={152}
               className='h-auto w-full max-w-full'
@@ -180,7 +181,7 @@ const InitiativesPage = () => {
             <h2 className='type-page-title'>Making a remote company feel more local.</h2>
             <div className='mt-6 space-y-4 type-body'>
               <p>
-                At CrowdStrike, I also contribute to CrowdNeighborhoods, an employee-led initiative that helps remote coworkers meet the people who live and work near them.
+                At {currentRole.employer}, I also contribute to CrowdNeighborhoods, an employee-led initiative that helps remote coworkers meet the people who live and work near them.
               </p>
               <p>
                 It is a different environment from Ryan Meetup, but it raises many of the same questions: how much structure helps, what makes an invitation feel genuine, and how do you create a format that can adapt locally without losing its purpose?

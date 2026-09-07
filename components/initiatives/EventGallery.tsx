@@ -1,45 +1,19 @@
 'use client';
 
-// Components
-import NextImage from 'next/image';
+import Image from 'next/image';
 import { Fragment, useState } from 'react';
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
+import { DialogTitle } from '@headlessui/react';
 
 import { EventVideo } from './EventVideo';
+import { DialogFrame } from '@/components/global/DialogFrame';
 import {
   FaArrowUpRightFromSquare as ExternalLink,
   FaExpand as Expand,
   FaLocationDot as Pin,
   FaRegCalendar as Calendar,
-  FaXmark as Close,
 } from 'react-icons/fa6';
 
-// Types
-type EventHighlight = {
-  alt: string;
-  city: string;
-  date: string;
-  facts: string[];
-  factsTitle: string;
-  label: string;
-  sources?: {
-    href: string;
-    label: string;
-  }[];
-  src: string;
-  summary: string[];
-  summaryCallout?: {
-    title: string;
-    description: string;
-  };
-  venue: string;
-  videoNote?: string;
-  videos?: {
-    channel?: string;
-    id: string;
-    title: string;
-  }[];
-};
+import type { EventHighlight } from '@/lib/events';
 
 type EventGalleryProps = {
   events: EventHighlight[];
@@ -76,7 +50,7 @@ const EventGallery = (props: EventGalleryProps) => {
             onClick={() => openEvent(index)}
           >
             <div className='relative aspect-video overflow-hidden'>
-              <NextImage
+              <Image
                 fill
                 className='motion-media object-cover'
                 src={event.src}
@@ -97,167 +71,145 @@ const EventGallery = (props: EventGalleryProps) => {
         ))}
       </div>
 
-      <Dialog open={open} onClose={() => setOpen(false)} className='relative z-50'>
-        <DialogBackdrop
-          transition
-          className='fixed inset-0 bg-slate-950/80 backdrop-blur-xs transition duration-(--duration-base) ease-(--ease-standard) data-closed:opacity-0'
-        />
+      {/*
+        Capped to the viewport with the scroll on the inside, so a long
+        write-up never runs past the fold. The close button and resource
+        footer stay put while the event content scrolls.
+      */}
+      <DialogFrame
+        open={open}
+        onClose={() => setOpen(false)}
+        closeLabel='Close'
+        className='ui-card max-h-[90vh] max-w-4xl'
+        footer={activeEvent.sources && activeEvent.sources.length > 0 && (
+          <footer className='shrink-0 border-t border-white/10 bg-(--surface-strong) px-6 py-3 sm:px-8 lg:px-10'>
+            <nav aria-label='Event articles and useful links' className='flex flex-wrap gap-x-6'>
+              {activeEvent.sources.map((source) => (
+                <a
+                  key={source.href}
+                  className='interactive-link inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-white hover:text-teal-300'
+                  href={source.href}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  {source.label}
+                  <ExternalLink className='h-3 w-3 shrink-0' aria-hidden />
+                </a>
+              ))}
+            </nav>
+          </footer>
+        )}
+      >
+        {/*
+          These are posters, not photographs, so cropping one to fill a
+          short banner cuts the artwork up. The poster sits whole on a
+          blurred copy of itself instead, which fills the width without
+          losing anything.
+        */}
+        {/* Every poster is roughly 16:9, so the middle box matches the artwork rather than cropping it. */}
+        <div className='relative flex h-52 w-full shrink-0 items-center justify-center overflow-hidden bg-slate-950 sm:h-60 lg:h-64'>
+          <div className='poster-bleed-left relative aspect-video h-full shrink-0'>
+            <Image
+              fill
+              aria-hidden
+              className='object-cover blur-lg transform-[scaleX(-1.15)_scaleY(1.15)]'
+              src={activeEvent.src}
+              alt=''
+              sizes='(min-width: 768px) 30rem, 100vw'
+            />
+          </div>
 
-        <div className='fixed inset-0 overflow-y-auto p-4 sm:p-6'>
-          <div className='flex min-h-full items-center justify-center'>
-            {/*
-              Capped to the viewport with the scroll on the inside, so a long
-              write-up never runs past the fold. The close button and resource
-              footer stay put while the event content scrolls.
-            */}
-            <DialogPanel
-              transition
-              className='ui-card relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden transition duration-(--duration-base) ease-(--ease-standard) data-closed:translate-y-2 data-closed:opacity-0'
-            >
-              <button
-                type='button'
-                aria-label='Close'
-                className='ui-icon-button absolute right-3 top-3 z-10'
-                onClick={() => setOpen(false)}
-              >
-                <Close className='h-3.5 w-3.5' aria-hidden />
-              </button>
+          <div className='relative aspect-video h-full shrink-0'>
+            <Image
+              fill
+              className='object-cover'
+              src={activeEvent.src}
+              alt={activeEvent.alt}
+              sizes='(min-width: 768px) 30rem, 100vw'
+            />
+          </div>
 
-              <div className='min-h-0 overflow-y-auto overscroll-contain'>
-                {/*
-                  These are posters, not photographs, so cropping one to fill a
-                  short banner cuts the artwork up. The poster sits whole on a
-                  blurred copy of itself instead, which fills the width without
-                  losing anything.
-                */}
-                {/* Every poster is roughly 16:9, so the middle box matches the artwork rather than cropping it. */}
-                <div className='relative flex h-52 w-full shrink-0 items-center justify-center overflow-hidden bg-slate-950 sm:h-60 lg:h-64'>
-                  <div className='poster-bleed-left relative aspect-video h-full shrink-0'>
-                    <NextImage
-                      fill
-                      aria-hidden
-                      className='object-cover blur-lg transform-[scaleX(-1.15)_scaleY(1.15)]'
-                      src={activeEvent.src}
-                      alt=''
-                      sizes='(min-width: 768px) 30rem, 100vw'
-                    />
-                  </div>
-
-                  <div className='relative aspect-video h-full shrink-0'>
-                    <NextImage
-                      fill
-                      className='object-cover'
-                      src={activeEvent.src}
-                      alt={activeEvent.alt}
-                      sizes='(min-width: 768px) 30rem, 100vw'
-                    />
-                  </div>
-
-                  <div className='poster-bleed-right relative aspect-video h-full shrink-0'>
-                    <NextImage
-                      fill
-                      aria-hidden
-                      className='object-cover blur-lg transform-[scaleX(-1.15)_scaleY(1.15)]'
-                      src={activeEvent.src}
-                      alt=''
-                      sizes='(min-width: 768px) 30rem, 100vw'
-                    />
-                  </div>
-                </div>
-
-                <div className='p-6 sm:p-8 lg:p-10'>
-                  <DialogTitle className='type-section-title pr-10 text-white'>
-                    {activeEvent.label}
-                  </DialogTitle>
-
-                  <div className='mt-4 flex flex-wrap gap-2'>
-                    <span className='ui-badge gap-1.5'>
-                      <Calendar className='h-3 w-3' aria-hidden />
-                      {activeEvent.date}
-                    </span>
-                    <span className='ui-badge gap-1.5'>
-                      <Pin className='h-3 w-3' aria-hidden />
-                      {activeEvent.city}
-                    </span>
-                    <span className='ui-badge'>{activeEvent.venue}</span>
-                  </div>
-
-                  <div className='mt-5 space-y-4 type-body'>
-                    {activeEvent.summary.map((paragraph, index) => (
-                      <Fragment key={paragraph}>
-                        <p>{paragraph}</p>
-                        {index === 0 && activeEvent.summaryCallout && (
-                          <div className='rounded-2xl border border-teal-300/25 bg-teal-300/[0.07] p-5 sm:p-6'>
-                            <p className='text-4xl font-black tracking-tight text-teal-300 sm:text-6xl'>
-                              {activeEvent.summaryCallout.title}
-                            </p>
-                            <p className='mt-3 text-base leading-7 text-white'>
-                              {activeEvent.summaryCallout.description}
-                            </p>
-                          </div>
-                        )}
-                      </Fragment>
-                    ))}
-                  </div>
-
-                  <p className='type-meta mt-7'>{activeEvent.factsTitle}</p>
-
-                  <ul className='mt-3 space-y-3'>
-                    {activeEvent.facts.map((fact) => (
-                      <li key={fact} className='flex gap-3 text-sm leading-7 text-soft'>
-                        <span className='mt-3 h-1 w-1 shrink-0 rounded-full bg-teal-300' aria-hidden />
-                        {fact}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {activeEvent.videos && activeEvent.videos.length > 0 && (
-                    <>
-                      <p className='type-meta mt-7'>Watch</p>
-
-                      <div className='mt-3 grid gap-4 sm:grid-cols-2'>
-                        {activeEvent.videos.map((video) => (
-                          <EventVideo
-                            key={video.id}
-                            channel={video.channel}
-                            id={video.id}
-                            title={video.title}
-                          />
-                        ))}
-                      </div>
-                      {activeEvent.videoNote && (
-                        <p className='mt-4 text-sm leading-7 text-soft'>{activeEvent.videoNote}</p>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {activeEvent.sources && activeEvent.sources.length > 0 && (
-                <footer className='shrink-0 border-t border-white/10 bg-(--surface-strong) px-6 py-3 sm:px-8 lg:px-10'>
-                  <nav aria-label='Event articles and useful links' className='flex flex-wrap gap-x-6'>
-                    {activeEvent.sources.map((source) => (
-                      <a
-                        key={source.href}
-                        className='interactive-link inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-white hover:text-teal-300'
-                        href={source.href}
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        {source.label}
-                        <ExternalLink className='h-3 w-3 shrink-0' aria-hidden />
-                      </a>
-                    ))}
-                  </nav>
-                </footer>
-              )}
-            </DialogPanel>
+          <div className='poster-bleed-right relative aspect-video h-full shrink-0'>
+            <Image
+              fill
+              aria-hidden
+              className='object-cover blur-lg transform-[scaleX(-1.15)_scaleY(1.15)]'
+              src={activeEvent.src}
+              alt=''
+              sizes='(min-width: 768px) 30rem, 100vw'
+            />
           </div>
         </div>
-      </Dialog>
+
+        <div className='p-6 sm:p-8 lg:p-10'>
+          <DialogTitle className='type-section-title pr-10 text-white'>
+            {activeEvent.label}
+          </DialogTitle>
+
+          <div className='mt-4 flex flex-wrap gap-2'>
+            <span className='ui-badge gap-1.5'>
+              <Calendar className='h-3 w-3' aria-hidden />
+              {activeEvent.date}
+            </span>
+            <span className='ui-badge gap-1.5'>
+              <Pin className='h-3 w-3' aria-hidden />
+              {activeEvent.city}
+            </span>
+            <span className='ui-badge'>{activeEvent.venue}</span>
+          </div>
+
+          <div className='mt-5 space-y-4 type-body'>
+            {activeEvent.summary.map((paragraph, index) => (
+              <Fragment key={paragraph}>
+                <p>{paragraph}</p>
+                {index === 0 && activeEvent.summaryCallout && (
+                  <div className='rounded-surface border border-teal-300/25 bg-teal-300/[0.07] p-5 sm:p-6'>
+                    <p className='text-4xl font-black tracking-tight text-teal-300 sm:text-6xl'>
+                      {activeEvent.summaryCallout.title}
+                    </p>
+                    <p className='mt-3 text-base leading-7 text-white'>
+                      {activeEvent.summaryCallout.description}
+                    </p>
+                  </div>
+                )}
+              </Fragment>
+            ))}
+          </div>
+
+          <p className='type-meta mt-7'>{activeEvent.factsTitle}</p>
+
+          <ul className='mt-3 space-y-3'>
+            {activeEvent.facts.map((fact) => (
+              <li key={fact} className='flex gap-3 text-sm leading-7 text-soft'>
+                <span className='mt-3 h-1 w-1 shrink-0 rounded-full bg-teal-300' aria-hidden />
+                {fact}
+              </li>
+            ))}
+          </ul>
+
+          {activeEvent.videos && activeEvent.videos.length > 0 && (
+            <>
+              <p className='type-meta mt-7'>Watch</p>
+
+              <div className='mt-3 grid gap-4 sm:grid-cols-2'>
+                {activeEvent.videos.map((video) => (
+                  <EventVideo
+                    key={video.id}
+                    channel={video.channel}
+                    id={video.id}
+                    title={video.title}
+                  />
+                ))}
+              </div>
+              {activeEvent.videoNote && (
+                <p className='mt-4 text-sm leading-7 text-soft'>{activeEvent.videoNote}</p>
+              )}
+            </>
+          )}
+        </div>
+      </DialogFrame>
     </>
   );
 };
 
 export { EventGallery };
-export type { EventHighlight };

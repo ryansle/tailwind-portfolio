@@ -17,7 +17,7 @@ const Divider = (props: DividerProps) => {
   };
 
   return (
-    <div className={`${renderMargin(margins)} ui-divider h-px`} />
+    <div className={clsx(renderMargin(margins), 'ui-divider h-px')} />
   );
 };
 

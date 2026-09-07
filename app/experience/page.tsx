@@ -1,15 +1,15 @@
-// Components
 import { History } from '@/components/experience/History';
 import { PageIntro } from '@/components/global';
 
-// Types
 import type { Metadata } from 'next';
 
-// Utilities
 import { fetchExperience } from '@/data/fetch';
 import { metadataFor } from '@/lib/seo';
 
 export const metadata: Metadata = metadataFor('/experience');
+
+// CMS edits become eligible for request-driven regeneration after 30 seconds.
+export const revalidate = 30;
 
 const ExperiencePage = async () => {
   const experiences = await fetchExperience();

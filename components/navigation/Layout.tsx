@@ -1,11 +1,8 @@
-// Components
 import { Header } from './Header';
 import { Footer } from './Footer';
 
-// Utilities
 import clsx from 'clsx';
 
-// Types
 import type { ReactNode } from 'react';
 
 type LayoutProps = {

@@ -1,6 +1,5 @@
-// Components
 import { PageIntro } from '@/components/global';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import { MdVerified as Check } from 'react-icons/md';
 import { FaGraduationCap as Grad } from 'react-icons/fa6';
 
@@ -25,7 +24,7 @@ const Education = () => {
 
       <div className='grid grid-cols-12 gap-6 xl:items-center'>
         <div className='flex items-center justify-center col-span-12 xl:col-span-5'>
-          <NextImage
+          <Image
             src='/Nebraska.png'
             alt='University of Nebraska-Lincoln'
             height='300'

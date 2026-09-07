@@ -1,15 +1,12 @@
-// Components
 import { PageIntro } from '@/components/global';
-import SlideUpWhenVisible from '@/hooks/SlideUpWhenVisible';
-import NextImage from 'next/image';
-import NextLink from 'next/link';
+import { EmptyContent } from '@/components/global/EmptyContent';
+import Image from 'next/image';
+import Link from 'next/link';
 import { FaLinkedin as Linkedin } from 'react-icons/fa';
 import { HiOutlineMailOpen as Mail } from 'react-icons/hi';
 
-// Types
 import type { Reference } from '@/lib/types';
 
-// Utilities
 import { convertImageUrl } from '@/utils/convert';
 
 type ReferencesProps = {
@@ -36,7 +33,7 @@ const Testimony = (props: Reference) => {
       <div className='mb-4 flex items-start gap-4'>
         {avatarUrl && (
           <div className='relative h-12 w-12 aspect-square'>
-            <NextImage
+            <Image
               className='rounded-full shadow-sm'
               src={avatarUrl}
               fill
@@ -54,23 +51,23 @@ const Testimony = (props: Reference) => {
 
             <div className='flex items-center gap-1.5'>
               {linkedinUrl && (
-                <NextLink
+                <Link
                   className='ui-icon-button h-7 w-7 rounded-lg! p-0! text-sm'
                   href={linkedinUrl}
                   aria-label={`${name}'s LinkedIn Profile`}
                 >
                   <Linkedin />
-                </NextLink>
+                </Link>
               )}
 
               {email && (
-                <NextLink
+                <Link
                   className='ui-icon-button h-7 w-7 rounded-lg! p-0! text-sm'
                   href={`mailto:${email}`}
                   aria-label={`Contact ${name} via email`}
                 >
                   <Mail />
-                </NextLink>
+                </Link>
               )}
             </div>
           </div>
@@ -102,27 +99,26 @@ const References = (props: ReferencesProps) => {
   const { references } = props;
 
   return (
-    <SlideUpWhenVisible>
-      <section className='space-y-10 tracking-wide'>
-        <PageIntro
-          as='h2'
-          eyebrow='References'
-          title="What it's like to work with me."
-          subtitle='The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.'
-        />
+    <section className='space-y-10 tracking-wide'>
+      <PageIntro
+        as='h2'
+        eyebrow='References'
+        title="What it's like to work with me."
+        subtitle='The clearest proof usually comes from collaborators, managers, and partners who have seen the work in real delivery environments.'
+      />
 
-        <div>
-          <div className='columns-1 gap-4 sm:columns-2 xl:columns-3'>
-            {references.map((reference) => (
-              <Testimony
-                key={reference.name}
-                {...reference}
-              />
-            ))}
-          </div>
+      {references.length === 0 && <EmptyContent>No testimonials are published yet. Get in touch if you would like references.</EmptyContent>}
+      <div>
+        <div className='columns-1 gap-4 sm:columns-2 xl:columns-3'>
+          {references.map((reference) => (
+            <Testimony
+              key={reference.id}
+              {...reference}
+            />
+          ))}
         </div>
-      </section>
-    </SlideUpWhenVisible>
+      </div>
+    </section>
   );
 };
 

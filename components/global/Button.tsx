@@ -1,9 +1,9 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import clsx from 'clsx';
 
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ComponentPropsWithRef, ReactNode } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline';
+type ButtonVariant = 'primary' | 'outline';
 
 type ButtonSize = 'sm' | 'md';
 
@@ -20,12 +20,12 @@ type SharedProps = {
 };
 
 type LinkButtonProps = SharedProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+  ComponentPropsWithRef<'a'> & {
     href: string;
   };
 
 type NativeButtonProps = SharedProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
+  ComponentPropsWithRef<'button'> & {
     href?: undefined;
   };
 
@@ -33,7 +33,6 @@ type ButtonProps = LinkButtonProps | NativeButtonProps;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: 'ui-button-primary',
-  secondary: 'ui-button-secondary',
   outline: 'ui-button-outline',
 };
 
@@ -63,7 +62,40 @@ const sharedClassName = (variant: ButtonVariant, size: ButtonSize, fullWidth?: b
     className,
   );
 
-const Button = (props: ButtonProps) => {
+const LinkButton = (props: LinkButtonProps) => {
+  const {
+    href,
+    children,
+    className,
+    fullWidth,
+    icon,
+    iconPosition = 'leading',
+    size = 'md',
+    variant = 'primary',
+    ...anchorProps
+  } = props;
+
+  const classes = sharedClassName(variant, size, fullWidth, className);
+
+  const isExternalLike = /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(href);
+  const shouldUseAnchor = isExternalLike || (anchorProps.download != null && anchorProps.download !== false) || anchorProps.target === '_blank';
+
+  if (shouldUseAnchor) {
+    return (
+      <a href={href} className={classes} {...anchorProps}>
+        {content(children, icon, iconPosition)}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={classes} {...anchorProps}>
+      {content(children, icon, iconPosition)}
+    </Link>
+  );
+};
+
+const NativeButton = (props: NativeButtonProps) => {
   const {
     children,
     className,
@@ -72,37 +104,18 @@ const Button = (props: ButtonProps) => {
     iconPosition = 'leading',
     size = 'md',
     variant = 'primary',
-    ...rest
+    type = 'button',
+    ...buttonProps
   } = props;
 
-  const classes = sharedClassName(variant, size, fullWidth, className);
-
-  if ('href' in props && props.href) {
-    const { href, ...anchorProps } = rest as LinkButtonProps;
-    const resolvedHref = href as string;
-    const isExternalLike = resolvedHref.startsWith('http') || resolvedHref.startsWith('mailto:') || resolvedHref.startsWith('tel:');
-    const shouldUseAnchor = isExternalLike || Boolean(anchorProps.download) || anchorProps.target === '_blank';
-
-    if (shouldUseAnchor) {
-      return (
-        <a href={resolvedHref} className={classes} {...anchorProps}>
-          {content(children, icon, iconPosition)}
-        </a>
-      );
-    }
-
-    return (
-      <NextLink href={resolvedHref} className={classes}>
-        {content(children, icon, iconPosition)}
-      </NextLink>
-    );
-  }
-
   return (
-    <button className={classes} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button type={type} className={sharedClassName(variant, size, fullWidth, className)} {...buttonProps}>
       {content(children, icon, iconPosition)}
     </button>
   );
 };
+
+const Button = (props: ButtonProps) =>
+  props.href !== undefined ? <LinkButton {...props} /> : <NativeButton {...props} />;
 
 export { Button };

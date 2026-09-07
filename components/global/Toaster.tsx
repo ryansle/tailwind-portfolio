@@ -1,6 +1,5 @@
 'use client';
 
-// Components
 import { Toaster as HotToaster } from 'react-hot-toast';
 
 /**
