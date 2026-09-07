@@ -1,53 +1,22 @@
-// #region Contentful Types
-type ContentfulSys = {
-  id: string;
-  type: string;
-  linkType: string;
-}
-
-type ContentfulFile = {
-  contentType: string;
-  details: {
-    image: {
-      height: number;
-      width: number;
-    }
-    size: number;
-  }
-  fileName: string;
-  url: string;
-}
-
+/** The resolved asset fields consumed by the UI; unpublished assets are optional. */
 type ContentfulImage = {
   fields: {
-    title: string;
-    description: string;
-    file: ContentfulFile;
-  }
-  metaData: {
-    tags: string[]
-  }
-  sys: {
-    createdAt: string;
-    environment: {
-      sys: ContentfulSys;
-    }
-  }
-  id: string;
-  locale: string;
-  revision: number;
-  space: {
-    sys: ContentfulSys;
-    type: string;
-    updatedAt: string;
-  }
-}
-// #endregion
+    title?: string;
+    description?: string;
+    file: {
+      url: string;
+      details?: { image?: { height: number; width: number } };
+    };
+  };
+};
 
-// #region Custom Types
+type SkillLink = { fields: Skill };
+
+/** Normalized entry shapes the UI renders, keyed by the `sys.id` carried through `data/normalize.ts`. */
 type Skill = {
+  id: string;
   technology: string;
-  icon: ContentfulImage;
+  icon?: ContentfulImage;
   confidence: number;
   type: 'web' | 'creative';
   radii: boolean;
@@ -58,51 +27,40 @@ type Skill = {
 }
 
 type Reference = {
+  id: string;
   name: string;
   jobTitle: string;
-  avatar: ContentfulImage;
+  avatar?: ContentfulImage;
   testimony: string;
   linkedinUrl: string;
   email: string;
 }
 
 type Experience = {
+  id: string;
   company: string;
   title: string;
   datesEmployed: string;
   summary: string;
   header: string;
-  image: ContentfulImage;
+  image?: ContentfulImage;
   responsibilities: string[];
-  techStack: {
-    metadata: {
-      tags: string[];
-    }
-    sys: ContentfulSys;
-    fields: Skill;
-  }[];
+  techStack: SkillLink[];
   companyUrl: string;
 }
 
 type Project = {
+  id: string;
   title: string;
   subtitle?: string;
   summary: string;
-  image: ContentfulImage;
+  image?: ContentfulImage;
   github?: string;
   url?: string;
   category: 'Professional' | 'Freelance' | 'Personal';
-  techStack: {
-    metadata: {
-      tags: string[];
-    }
-    sys: ContentfulSys;
-    fields: Skill;
-  }[];
+  techStack: SkillLink[];
   featured: boolean;
 }
-
-// #endregion
 
 export type {
   ContentfulImage,

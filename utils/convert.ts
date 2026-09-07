@@ -1,4 +1,3 @@
-// Types
 import type { ContentfulImage, Experience, Skill } from '@/lib/types';
 
 /**

@@ -26,7 +26,7 @@ const contactIntents: Record<ContactIntentId, ContactIntent> = {
 };
 
 const isContactIntentId = (value: string | null | undefined): value is ContactIntentId => {
-  return !!value && value in contactIntents;
+  return typeof value === 'string' && Object.hasOwn(contactIntents, value);
 };
 
 /** Links to the contact page with an intent attached, e.g. /contact?intent=hiring */

@@ -1,4 +1,3 @@
-// Types
 import type { Project } from '@/lib/types';
 
 const categoryBadgeClasses: Record<Project['category'], string> = {

@@ -1,5 +1,28 @@
-// Types
-import type { EventHighlight } from '@/components/initiatives';
+type EventHighlight = {
+  alt: string;
+  city: string;
+  date: string;
+  facts: string[];
+  factsTitle: string;
+  label: string;
+  sources?: {
+    href: string;
+    label: string;
+  }[];
+  src: string;
+  summary: string[];
+  summaryCallout?: {
+    title: string;
+    description: string;
+  };
+  venue: string;
+  videoNote?: string;
+  videos?: {
+    channel?: string;
+    id: string;
+    title: string;
+  }[];
+};
 
 /**
  * The four Ryan Meetup nights featured on the initiatives page, drawing on
@@ -172,3 +195,5 @@ const ryanMeetupEvents: EventHighlight[] = [
 ];
 
 export { ryanMeetupEvents };
+
+export type { EventHighlight };

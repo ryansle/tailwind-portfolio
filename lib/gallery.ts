@@ -1,5 +1,9 @@
-// Types
-import type { GalleryItem } from '@/components/global';
+type GalleryItem = {
+  src: string;
+  alt: string;
+  title?: string;
+  city?: string;
+};
 
 /**
  * The rotating set of Ryan Meetup group photos, ordered so consecutive slides
@@ -82,3 +86,5 @@ const ryanMeetupGallery: GalleryItem[] = [
 ];
 
 export { ryanMeetupGallery };
+
+export type { GalleryItem };

@@ -1,10 +1,8 @@
-// Components
 import {
   FaLinkedin as LinkedIn,
   FaGithub as GitHub,
 } from 'react-icons/fa6';
 
-// Types
 import type { IconType } from 'react-icons';
 
 type SocialPlatform = 'LinkedIn' | 'GitHub';
