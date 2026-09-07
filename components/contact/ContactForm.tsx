@@ -1,39 +1,27 @@
 'use client';
 
-import { useEffect, useState, useSyncExternalStore } from 'react';
-import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-// Components
 import { Button, Input, Textarea } from '@/components/global';
 import { BiMailSend as Send } from 'react-icons/bi';
-import toast from 'react-hot-toast';
-import type { Toast } from 'react-hot-toast';
-import { IoCloseSharp as Close } from 'react-icons/io5';
-import { FaCheckCircle as Check, FaExclamationCircle as Alert } from 'react-icons/fa';
 
-// Utilities
 import { useForm } from 'react-hook-form';
 import { validateEmail } from '@/utils/validate';
-import emailjs from '@emailjs/browser';
+import { notifyMessageSent, notifyMessageFailed } from '@/components/contact/ContactToast';
+import { sendContactEmail } from '@/lib/email';
+import type { ContactMessage } from '@/lib/email';
 import { contactEmail, contactEmailHref } from '@/lib/constants';
 import { contactIntents, isContactIntentId } from '@/lib/contact';
 import type { ContactIntent } from '@/lib/contact';
+import { isFixtureMode } from '@/lib/fixture-mode';
 
-/**
- * The intent only changes on a navigation, which remounts the form, so there is
- * nothing to subscribe to. Both functions are module-level to keep their
- * identities stable across renders.
- */
-const subscribeToIntent = () => () => {};
-const readIntent = () => new URLSearchParams(window.location.search).get('intent');
-const readIntentOnServer = () => null;
-
-type Form = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  subject: string;
-  message: string;
+const emptyForm: ContactMessage = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  subject: '',
+  message: '',
 };
 
 const Loader = () => {
@@ -47,106 +35,55 @@ const Loader = () => {
   );
 };
 
-type AlertProps = {
-  toast: Toast;
-  icon: ReactNode;
-  title: string;
-  description: string;
-};
-
-const AlertToast = ({ toast: t, icon, title, description }: AlertProps) => {
-  return (
-    <div
-      className={`${t.visible ? 'animate-enter' : 'animate-leave'
-        } ui-card pointer-events-auto grid w-full max-w-md grid-cols-12 p-4 text-white`}
-    >
-      <div className='col-span-1 flex items-center justify-center'>
-        {icon}
-      </div>
-      <div className='col-span-10 pl-4 pr-6'>
-        <p className='text-lg font-semibold'>{title}</p>
-        <p className='text-sm tracking-wide text-soft'>
-          {description}
-        </p>
-      </div>
-      <div className='col-span-1 flex items-center'>
-        <button onClick={() => toast.dismiss(t.id)}>
-          <span className='sr-only'>Close</span>
-          <Close className='w-8 h-8 shrink-0' />
-        </button>
-      </div>
-    </div>
-  );
-};
-
 const ContactForm = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-
-  // CTAs elsewhere on the site link here as /contact?intent=hiring and friends.
-  // Read through useSyncExternalStore rather than useSearchParams, which would
-  // force the whole page out of static rendering. The server snapshot is null,
-  // so the prerendered markup matches what React hydrates against.
-  const intentParam = useSyncExternalStore(subscribeToIntent, readIntent, readIntentOnServer);
+  const demo = isFixtureMode();
+  const [demoResult, setDemoResult] = useState('');
+  const intentParam = useSearchParams().get('intent');
   const intent: ContactIntent | undefined = isContactIntentId(intentParam)
     ? contactIntents[intentParam]
     : undefined;
+  const intentSubject = intent?.subject ?? '';
 
   const {
     register,
     handleSubmit,
     reset,
-    setValue,
-    formState: { errors },
-  } = useForm<Form>({
+    resetField,
+    getFieldState,
+    getValues,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactMessage>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      subject: '',
-      message: '',
+      ...emptyForm,
+      subject: intentSubject,
     },
   });
 
   useEffect(() => {
-    if (intent) setValue('subject', intent.subject);
-  }, [intent, setValue]);
+    // Query context can change without remounting. Only replace an unedited
+    // subject, and make the new prefill its baseline for future edits.
+    if (!getFieldState('subject').isDirty) {
+      resetField('subject', { defaultValue: intentSubject });
+    }
+  }, [intentSubject, getFieldState, resetField]);
 
-  const sendEmail = async (data: Form) => {
-    setLoading(true);
+  const sendEmail = async (data: ContactMessage) => {
+    setDemoResult('');
+    if (demo) {
+      setDemoResult('Demo complete: your message was validated locally. No email was sent or saved.');
+      return;
+    }
     try {
-      const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
-      const userId = process.env.NEXT_PUBLIC_USER_ID;
-      const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
-
-      await emailjs.send(serviceId as string, templateId as string, data, userId);
-      sendSuccessAlert();
-      reset();
+      await sendContactEmail(data);
+      notifyMessageSent();
+      // Keep the current subject (including edits) for a follow-up message.
+      reset({ ...emptyForm, subject: getValues('subject') });
     } catch {
-      sendErrorAlert();
-    } finally {
-      setLoading(false);
+      notifyMessageFailed();
     }
   };
-
-  const sendSuccessAlert = () => toast.custom((t: Toast) => (
-    <AlertToast
-      toast={t}
-      icon={<Check className='h-8 w-8 fill-green-500 shrink-0' />}
-      title='Email sent!'
-      description='Expect an email back from me soon!'
-    />
-  ));
-
-  const sendErrorAlert = () => toast.custom((t: Toast) => (
-    <AlertToast
-      toast={t}
-      icon={<Alert className='h-8 w-8 fill-red-500 shrink-0' />}
-      title="Message didn't send"
-      description={`Something went wrong on the way out. Try again, or email me directly at ${contactEmail}.`}
-    />
-  ));
 
   return (
     <form className='ui-card p-5 sm:p-6' onSubmit={handleSubmit(sendEmail)}>
@@ -155,6 +92,8 @@ const ContactForm = () => {
         <p className='text-sm text-soft'>
           Share the role, project, or collaboration idea. I usually reply within 1 to 2 business days.
         </p>
+        {demo && <p className='mt-3 text-sm text-teal-200'>Demo mode: this form validates locally and does not send email.</p>}
+        <p role='status' className='mt-3 text-sm text-teal-200'>{demoResult}</p>
         {intent && (
           <p className='ui-eyebrow mt-3'>
             Starting from: {intent.label}
@@ -241,10 +180,10 @@ const ContactForm = () => {
           type='submit'
           variant='primary'
           className='uppercase'
-          disabled={loading}
-          icon={loading ? <Loader /> : <Send />}
+          disabled={isSubmitting}
+          icon={isSubmitting ? <Loader /> : <Send />}
         >
-          {loading ? 'Sending...' : 'Send Message'}
+          {isSubmitting ? 'Sending...' : demo ? 'Try demo submission' : 'Send Message'}
         </Button>
       </div>
     </form>

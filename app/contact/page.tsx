@@ -1,13 +1,11 @@
-// Components
+import { Suspense } from 'react';
 import { ContactForm } from '@/components/contact/ContactForm';
 import { Button, JsonLd } from '@/components/global';
 import { HiOutlineMail, HiOutlineSparkles, HiOutlineClock, HiOutlineBriefcase } from 'react-icons/hi';
 
-// Types
 import type { NextPage } from 'next';
 import type { Metadata } from 'next';
 
-// Utilities
 import { metadataFor } from '@/lib/seo';
 import { pageSchema } from '@/lib/schema';
 import { socials, socialIcons } from '@/lib/socials';
@@ -66,7 +64,9 @@ const ContactPage: NextPage = () => {
         </div>
 
         <div className='order-2 space-y-6 xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:sticky xl:top-0 xl:self-start'>
-          <ContactForm />
+          <Suspense fallback={<div className='ui-card p-5 sm:p-6' role='status'>Loading contact form...</div>}>
+            <ContactForm />
+          </Suspense>
 
           <div className='section-panel py-5!'>
             <h2 className='type-section-title mb-4'>Quick Contact</h2>
@@ -76,7 +76,7 @@ const ContactPage: NextPage = () => {
                 href={contactEmailHref}
                 icon={<HiOutlineMail className='h-4 w-4' />}
                 size='sm'
-                variant='secondary'
+                variant='outline'
               >
                 Email
               </Button>
@@ -89,7 +89,7 @@ const ContactPage: NextPage = () => {
                     href={social.url}
                     icon={<Icon className='h-4 w-4' />}
                     size='sm'
-                    variant='secondary'
+                    variant='outline'
                   >
                     {social.platform}
                   </Button>
