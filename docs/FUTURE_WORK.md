@@ -1,139 +1,110 @@
-# Future work: SEO
+# Future work
 
-Open items left over from the SEO audit of 2026-09-05. Everything here is a
-deliberate hand-back, not an oversight — each one needs an asset, a copy
-decision, or a CMS change that could not be made from the code alone.
+Remaining work, checked against the current code on 2026-09-07.
 
 Maintenance note:
 - When an item is done, delete it. This file should always describe remaining
   work, not history.
+- Every item says who it is waiting on. Nothing here is waiting on Claude alone;
+  if it were, it would already be done.
 
-## 1. `/initiatives` has no social card
+---
 
-**Status: needs an asset.**
+## Waiting on you
 
-`/initiatives` currently points at `/seo/projects.png`, so it and `/projects`
-share one Open Graph image. Anything linking to either page in Slack, LinkedIn
-or iMessage renders the same preview.
+### 1. Paste the Search Console token
 
-The dev-time registry audit in `lib/seo.ts` flags this on every `next dev` boot:
+**Blocks: all SEO measurement.**
 
-```
-[seo] registry warning(s) in lib/pages.ts:
-  /initiatives - ogImage /seo/projects.png is also used by /projects
-  /projects    - ogImage /seo/projects.png is also used by /initiatives
-```
-
-**To fix:** produce a 1200×630 card at `public/seo/initiatives.png` matching the
-other six, then update the one line in `lib/pages.ts`:
-
-```ts
-'/initiatives': {
-  ogImage: '/seo/initiatives.png',   // currently '/seo/projects.png'
-  ogImageAlt: '...',                 // describe the card, not the page title
-}
-```
-
-The warning disappears on its own once both routes have distinct images.
-
-Worth considering instead: delete all seven static PNGs and generate the cards
-with `next/og` (`app/<route>/opengraph-image.tsx`). That makes a missing card
-structurally impossible and keeps the image in sync with the title — but it is a
-bigger change than dropping one file in `public/`.
-
-## 2. `/projects` description is too short
-
-**Status: needs copy.**
-
-112 characters against a 140–160 target, so the search snippet is leaving space
-unused. Every other route is in range. The audit warns about it on `next dev`.
-
-## 3. `/about` downloads three portraits
-
-**Status: needs an art-direction decision.**
-
-`components/about/Biography.tsx` renders `athens.png`, `athens-longer.png`, and
-`athens.png` again, switching between them with `block sm:hidden` /
-`hidden sm:block xl:hidden` / `hidden xl:block`. All three are in the DOM on
-every viewport, and Chrome still requests images hidden with `display: none` —
-so a phone pulls the 17 MB variant it will never show.
-
-Correct `sizes` values are already in place, so each downloads at its real
-rendered width rather than ~3840px. The redundant *fetches* remain.
-
-Two ways out, and the choice is a design call:
-
-- **Collapse to one `NextImage`** — simplest, but loses the per-breakpoint crops.
-- **Use a real `<picture>` with `<source media>`** — keeps the crops and genuinely
-  prevents the unused fetch, but gives up `next/image` optimization.
-
-Either way, downsample the source PNGs first: 17 MB and 8.9 MB for a slot never
-wider than ~680px.
-
-## 4. Decide what `/resume.pdf` is for
-
-**Status: needs a decision.**
-
-`public/resume.pdf` is crawlable (robots allows `/`) but absent from the sitemap.
-PDFs do rank, so it can surface as a result with no navigation, no canonical
-relationship to the site, and a stale copy of the work history.
-
-Pick one:
-- **Index it** — add it to the sitemap and serve an `X-Robots-Tag` with a
-  canonical pointing at `/experience`.
-- **Hide it** — `noindex` via a header in `next.config.js`.
-
-## 5. Meta `keywords` is dead weight
-
-**Status: needs a call from you.**
-
-`lib/seo.ts` ships 16 keywords site-wide. Google has ignored the tag since 2009;
-Bing has treated it as a spam signal. It is not hurting rankings, but it reads as
-templated SEO.
-
-The terms that matter are already expressed as `knowsAbout` on the Person schema
-in `lib/schema.ts`, which is a field search engines actually consume. Deleting
-`keywords` costs nothing.
-
-## 6. Connect Search Console
-
-**Status: needs a token.**
-
-The plumbing is done — `lib/seo.ts` reads `NEXT_PUBLIC_GSC_TOKEN` and omits the
-tag entirely when unset. Paste the value into `.env.local` and the verification
-meta tag appears.
+`lib/seo.ts` already reads `NEXT_PUBLIC_GSC_TOKEN` and omits the verification
+meta tag entirely when it is unset, so the code side is finished. Put the value
+in `.env.local` and the tag appears.
 
 Until this is connected there is no impressions, position, or click data, which
-means none of the audit's other fixes can be measured.
+means none of the other SEO work on this site can be measured. This is the
+cheapest item here and it gates the usefulness of everything else.
 
-## 7. Manifest icons
+### 2. Add a `slug` field in Contentful
 
-**Status: needs assets.**
+**Blocks: item 4 below.**
 
-`public/site.webmanifest` declares a single 48×48 `favicon.ico`. Lighthouse flags
-the missing 192×192 and 512×512 PNGs, and there is no `apple-touch-icon` or
-`maskable` variant. Add `icon-192.png`, `icon-512.png`, `apple-icon.png` to
-`public/`, then list them in both the manifest and `metadata.icons`.
+Add `slug` (Short text, unique) to the `projects` content type and populate it
+for each project. The API token in this repo is read-only, so Claude cannot add
+the field or backfill the values.
 
-## 8. Give CMS content its own URLs
+Deriving slugs from `title` instead was considered and rejected: renaming a
+project would silently change its URL and drop whatever ranking it had.
 
-**Status: needs a Contentful field. Largest remaining opportunity.**
+### 3. Decide whether social cards should carry text
 
-The site has eight indexable URLs. Contentful holds every project and role —
-unique long-tail content (project names, tech stacks, summaries, companies) —
-compressed onto two list pages where it competes with itself for one ranking.
-Someone searching a specific project name has nothing to land on.
+**Nothing is broken; this is a design call.**
 
-`/projects/[slug]` would multiply the indexable surface using copy that already
-exists.
+All seven cards in `public/seo/` are blank gradients - no title, no name, no
+URL. A link to any page in Slack, LinkedIn or iMessage renders a dark rectangle
+that says nothing about what is being shared. That is a deliberate look, and it
+is consistent, so this is only worth changing if you want previews to carry
+information.
 
-Prerequisites:
-- Add a `slug` field to the `projects` content type in Contentful, and to
-  `Project` in `lib/types.ts`.
+If you do want text, `scripts/og-card.mjs` already renders the whole set from
+markup, so it is a matter of adding a title layer and re-running it, not new
+tooling.
+
+---
+
+## Waiting on you first, then Claude
+
+### 4. Give CMS content its own URLs
+
+**Largest remaining opportunity. Needs item 2 first.**
+
+The registry in `lib/pages.ts` has seven indexable URLs. Contentful holds every
+project and role - unique long-tail content (project names, tech stacks,
+summaries, companies) - compressed onto two list pages where it competes with
+itself for one ranking. Someone searching a specific project name has nothing to
+land on.
+
+Once the `slug` field exists, the build is:
+
+- Add `slug` to `Project` in `lib/types.ts` and to the normalizer in
+  `data/normalize.ts`, with a test for entries that are missing it.
 - `generateStaticParams` + `generateMetadata` in `app/projects/[slug]/page.tsx`.
 - `CreativeWork` schema per detail page; `ItemList` on the list page.
 - Extend `app/sitemap.ts` to fold these in beside the static registry entries.
+- Add `BreadcrumbList` to `lib/schema.ts`, deliberately skipped until now
+  because the site is flat and every trail would read "Home > Page".
 
-Once detail pages exist, add `BreadcrumbList` to `lib/schema.ts` — deliberately
-skipped today because the site is flat and every trail would read
-"Home > Page".
+---
+
+## Waiting on upstream
+
+### 5. ESLint 10 and TypeScript 7
+
+**Neither of us can move this yet. Re-checked 2026-09-07; both still blocked.**
+
+Both majors were tried and reverted (see commit `99abc2d`), and the blockers are
+unchanged:
+
+- `eslint-plugin-react` is still 7.37.5, and its peer range still stops at
+  `eslint ^9.7`. ESLint 10 removed `context.getFilename()`, which the plugin
+  still calls, so linting fails outright.
+- `typescript-eslint` is still on a `typescript <6.1.0` peer range.
+  TypeScript 7 works for `tsc` and `next build` - it cuts the build's type check
+  from ~1.8s to ~0.4s - but typescript-eslint will not load against the TS 7 API.
+
+Recheck with `npm view eslint-plugin-react peerDependencies` and
+`npm view typescript-eslint peerDependencies`. When the ranges open up, the
+upgrade is Claude's to do.
+
+---
+
+## Notes for whoever touches images next
+
+Two things worth knowing before the next asset pass, carried over from the
+September 2026 resize of `athens.png`, `athens-longer.png`, and
+`ryanroundup.png`:
+
+- Resize from the original in Git history, not from the already-reduced file.
+  Resampling a resample compounds the loss.
+- Source-file sizes are not browser transfer savings. Next serves optimized
+  derivatives, so establishing real transfer cost takes a browser network trace
+  at the relevant viewport and device pixel ratio.
