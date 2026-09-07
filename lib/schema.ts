@@ -1,10 +1,9 @@
-// Utilities
+import { currentRole } from '@/lib/profile';
 import { pages } from '@/lib/pages';
 import { absoluteUrl, siteName, siteUrl } from '@/lib/seo';
 import { socials } from '@/lib/socials';
 import { contactEmail } from '@/lib/constants';
 
-// Types
 import type { PageKey } from '@/lib/pages';
 
 /**
@@ -31,12 +30,12 @@ const person = {
   alternateName: 'Ryan S. Le',
   url: siteUrl,
   image: absoluteUrl('/profile.png'),
-  jobTitle: 'UI Engineer',
+  jobTitle: currentRole.title,
   email: `mailto:${contactEmail}`,
   worksFor: {
     '@type': 'Organization',
-    name: 'CrowdStrike',
-    url: 'https://www.crowdstrike.com/',
+    name: currentRole.employer,
+    url: currentRole.url,
   },
   alumniOf: {
     '@type': 'CollegeOrUniversity',
@@ -63,11 +62,7 @@ const person = {
     'Community building',
     'Event production',
   ],
-  /**
-   * The corroborating profiles. This is the single strongest input Google has
-   * for tying the site to the same person it already knows from elsewhere, so it
-   * reads from the same list the footer and contact page link to.
-   */
+  // Use the same public profiles as the footer and contact page.
   sameAs: socials.map((social) => social.url),
 };
 

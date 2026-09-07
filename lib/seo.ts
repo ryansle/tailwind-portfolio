@@ -1,9 +1,7 @@
-// Utilities
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { pages } from '@/lib/pages';
 
-// Types
 import type { Metadata, Viewport } from 'next';
 import type { PageKey } from '@/lib/pages';
 
@@ -16,25 +14,6 @@ const twitterHandle = '@ryansle';
  * the tagline and description are written.
  */
 const home = pages['/'];
-
-const defaultKeywords = [
-  'Ryan Le',
-  'UI Engineer',
-  'front-end engineer',
-  'front-end systems',
-  'product UI',
-  'community organizer',
-  'community initiatives',
-  'event programming',
-  'creative operations',
-  'React developer',
-  'Next.js developer',
-  'TypeScript developer',
-  'design systems',
-  'CrowdStrike',
-  'Ryan Meetup',
-  'CrowdNeighborhoods',
-];
 
 const absoluteUrl = (path = '/') => new URL(path, siteUrl).toString();
 
@@ -89,7 +68,7 @@ const metadataFor = (route: PageKey): Metadata => {
 
 /**
  * Root layout metadata. Everything here is inherited by pages that do not set
- * the field themselves, so site-wide values (keywords, icons, robots) are
+ * the field themselves, so site-wide values (icons, robots, authorship) are
  * declared once rather than repeated per route.
  */
 const siteMetadata: Metadata = {
@@ -100,7 +79,6 @@ const siteMetadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description: home.description,
-  keywords: defaultKeywords,
   applicationName: siteName,
   authors: [{ name: siteName, url: siteUrl }],
   creator: siteName,
@@ -112,8 +90,14 @@ const siteMetadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: '/favicon.ico',
+    // The SVG is theme-adaptive and wins wherever it is supported; the .ico is
+    // the fallback for browsers that do not take SVG favicons.
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
     shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
   // Set NEXT_PUBLIC_GSC_TOKEN to the value Search Console gives you. Until then
@@ -173,8 +157,6 @@ const siteViewport: Viewport = {
   colorScheme: 'dark',
 };
 
-// #region Registry audit
-
 const TITLE_MAX = 60;
 const DESCRIPTION_MIN = 140;
 const DESCRIPTION_MAX = 160;
@@ -228,8 +210,6 @@ if (process.env.NODE_ENV === 'development') {
     console.warn(`\n[seo] ${warnings.length} registry warning(s) in lib/pages.ts:\n${warnings.join('\n')}\n`);
   }
 }
-
-// #endregion
 
 export {
   metadataFor,

@@ -1,4 +1,3 @@
-// Components
 import { AiFillHome as Home } from 'react-icons/ai';
 import { IoPerson as Person } from 'react-icons/io5';
 import { HiAtSymbol as Contact } from 'react-icons/hi';
@@ -9,7 +8,6 @@ import {
   MdOutlineRocketLaunch as Initiative,
 } from 'react-icons/md';
 
-// Types
 import type { IconType } from 'react-icons';
 import type { MetadataRoute } from 'next';
 
@@ -101,7 +99,7 @@ const pages = {
     icon: Initiative,
     title: 'Initiatives | Ryan Le',
     description: 'See how Ryan Le helps bring ideas to life through Ryan Meetup, CrowdNeighborhoods, event programming, creative operations, storytelling, and software.',
-    ogImage: '/seo/projects.png',
+    ogImage: '/seo/initiatives.png',
     ogImageAlt: 'Ryan Le’s community initiatives, events, and creative operating work',
     updated: '2026-09-05',
     priority: 0.9,
@@ -111,7 +109,7 @@ const pages = {
     text: 'Projects',
     icon: Mac,
     title: 'Projects | Ryan Le',
-    description: 'Browse projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work.',
+    description: 'Browse projects by Ryan Le across product UI, front-end implementation, engineering delivery, and creative work, with the stack and role behind each one.',
     ogImage: '/seo/projects.png',
     ogImageAlt: 'Selected product, engineering, and creative projects by Ryan Le',
     updated: '2026-08-31',

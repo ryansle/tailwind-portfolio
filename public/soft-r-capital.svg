@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg">
+  <!-- Glyph only: no background tile, no border. The lockup is optically centred
+       and scaled to 92% of the canvas width. The dot sits 18 units after the R
+       (0.30x its own diameter) so it reads as a period, not a separate mark. -->
+  <g transform="translate(256,256) scale(1.7067) translate(-244,-269)">
+    <g aria-label="R" style="font-weight:700;fill:#f8fafc;stroke:#f8fafc;stroke-width:5;stroke-linejoin:round">
+      <path
+         d="m 186.79492,256.51758 q 17.25195,0 24.66602,-6.41602 7.55664,-6.41601 7.55664,-21.10156 0,-14.54297 -7.55664,-20.81641 -7.41407,-6.27343 -24.66602,-6.27343 h -23.09765 v 54.60742 z m -23.09765,37.92578 V 375 H 108.80469 V 162.13086 h 83.83593 q 42.06055,0 61.59375,14.11523 19.67579,14.11524 19.67579,44.62696 0,21.10156 -10.26563,34.64648 -10.12305,13.54492 -30.6543,19.96094 11.26368,2.5664 20.10352,11.6914 8.98242,8.98243 18.10742,27.375 L 301,375 h -58.45703 l -25.94922,-52.89648 q -7.8418,-15.96875 -15.96875,-21.81446 -7.98438,-5.8457 -21.38672,-5.8457 z" />
+    </g>
+    <circle cx="352" cy="350" r="30" fill="#2DD4BF" />
+  </g>
+</svg>
